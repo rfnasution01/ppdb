@@ -7,7 +7,7 @@ export function RootHeader() {
   const [isShow, setIsShow] = useState<boolean>(false)
 
   return (
-    <div className="flex justify-between bg-white px-[20rem] py-16 shadow-md phones:px-32">
+    <header className="flex justify-between bg-white px-[20rem] py-16 shadow-md phones:px-32">
       <img src="/img/logo.png" alt="logo" className="h-[5.5rem] w-[34rem]" />
       <button
         type="button"
@@ -43,6 +43,6 @@ export function RootHeader() {
           </div>
         }
       />
-    </div>
+    </header>
   )
 }
