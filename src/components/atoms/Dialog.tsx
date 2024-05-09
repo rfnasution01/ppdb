@@ -13,37 +13,87 @@ DialogPortal.displayName = DialogPrimitive.Portal.displayName
 
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Overlay
-    ref={ref}
-    className={cn(
-      'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-slate-500/30 backdrop-blur-sm',
-      className,
-    )}
-    {...props}
-  />
-))
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay> & {
+    position?: 'left' | 'right' | 'top' | 'bottom' | 'middle'
+  }
+>(({ className, position, ...props }, ref) => {
+  let overlayClassName =
+    'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50'
+
+  switch (position) {
+    case 'left':
+      overlayClassName += ' left-0 top-0 bottom-0'
+      break
+    case 'right':
+      overlayClassName += ' right-0 top-0 bottom-0'
+      break
+    case 'top':
+      overlayClassName += ' top-0 left-0 right-0'
+      break
+    case 'bottom':
+      overlayClassName += ' bottom-0 left-0 right-0'
+      break
+    case 'middle':
+      overlayClassName += ' top-0 left-0 right-0'
+      break
+    default:
+      overlayClassName += ' top-0 left-0 right-0'
+  }
+
+  return (
+    <DialogPrimitive.Overlay
+      ref={ref}
+      className={cn(overlayClassName, className)}
+      {...props}
+    />
+  )
+})
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay className="z-[1300]" />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed left-[50%] top-[50%] z-[1400] grid h-4/5 w-2/3 translate-x-[-50%] translate-y-[-50%] gap-24 rounded-2xl shadow-lg duration-200 phones:h-full phones:w-full',
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </DialogPrimitive.Content>
-  </DialogPortal>
-))
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
+    position?: 'left' | 'right' | 'top' | 'bottom' | 'middle'
+  }
+>(({ className, position, children, ...props }, ref) => {
+  let contentClassName =
+    'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed z-[1400] gap-24 rounded-2xl shadow-lg duration-200'
+
+  switch (position) {
+    case 'left':
+      contentClassName += ' left-0 top-[50%] transform translate-y-[-50%]'
+      break
+    case 'right':
+      contentClassName += ' right-0 top-[50%] transform translate-y-[-50%]'
+      break
+    case 'top':
+      contentClassName += ' top-0 left-[50%] transform translate-x-[-50%]'
+      break
+    case 'bottom':
+      contentClassName += ' bottom-0 left-[50%] transform translate-x-[-50%]'
+      break
+    case 'middle':
+      contentClassName +=
+        ' top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]'
+      break
+    default:
+      contentClassName +=
+        ' top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]'
+  }
+
+  return (
+    <DialogPortal>
+      <DialogOverlay className="z-[1300]" position={position} />
+      <DialogPrimitive.Content
+        ref={ref}
+        className={cn(contentClassName, className)}
+        {...props}
+      >
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPortal>
+  )
+})
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
 const DialogHeader = ({

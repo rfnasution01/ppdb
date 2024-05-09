@@ -48,6 +48,8 @@ export default {
       DEFAULT: '0.1rem',
       0.1: '0.01rem',
       0.25: '0.025rem',
+      0.5: '0.05rem',
+      0.75: '0.075rem',
       1.25: '0.125rem',
       1.5: '0.15rem',
       6: '0.6rem',
@@ -79,28 +81,39 @@ export default {
 
       // ? ----- COLOR SYSTEM
       colors: {
-        background: '#f0f4f7',
+        background: '#f0f0f0',
         primary: {
-          DEFAULT: '#6200EE',
-          shade: { 200: '#BB86FC', 500: '#6200EE', 700: '#3700B3' },
-          tint: { 1: '#F2F8FF', 2: '#F3FAFF', 3: '#E6F4F1' },
+          DEFAULT: '#1b2f69',
+          100: '#d2e0f7',
+          200: '#AFE6FF',
+          300: '#7491D2',
+          400: '#4963A4',
+          500: '#1B2F69',
+          600: '#13235A',
+          700: '#1C5EB7',
+          800: '#08113C',
+          900: '#0A2E7A',
         },
         secondary: {
-          DEFAULT: '#333333',
-          shade: { 100: '#03DAC5' },
+          DEFAULT: '#e74c3c',
+          shade: { 100: '#6b7280' },
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
-        black: '#202223',
+        black: {
+          DEFAULT: '#000000',
+          100: '#2d2d2d',
+        },
         general: {
           DEFAULT: '#1349A0',
           tint: { 1: '#D5E3F9', 2: '#3877DD', 3: '#326bc7' },
           shade: { 1: '#0E3C87' },
         },
         success: {
-          DEFAULT: '#2DA013',
+          DEFAULT: '#5cb85c',
+          700: '#3B9A13',
           tint: { 1: '#568500', 2: '#D6F9D5' },
           shade: { 1: '#2B4200' },
         },
