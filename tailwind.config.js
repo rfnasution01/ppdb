@@ -83,7 +83,8 @@ export default {
       colors: {
         background: '#f0f0f0',
         primary: {
-          DEFAULT: '#1b2f69',
+          DEFAULT: '#28A6F4',
+          background: '#0891E6',
           100: '#d2e0f7',
           200: '#AFE6FF',
           300: '#7491D2',
@@ -118,7 +119,10 @@ export default {
           shade: { 1: '#2B4200' },
         },
         warning: { DEFAULT: '#DD8D38', tint: { 1: '#F9EDD5' } },
-        danger: { DEFAULT: '#A01313', tint: { 1: '#F9D5D5' } },
+        danger: {
+          DEFAULT: '#A01313',
+          tint: { 1: '#F9D5D5', 2: '#FF6666', 3: '#990000', 4: '#db1514' },
+        },
         border: {
           DEFAULT: '#8C9196',
           subdued: '#C9CCCF',
