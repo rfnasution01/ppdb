@@ -4,6 +4,7 @@ import { AppHeaderNavigasi } from './app-header-navigasi'
 import { ListAsideNavigation } from '@/libs/dummy/list-aside-navigation'
 import { IconComponent2 } from './IconComponent2'
 import { convertToSlug } from '@/libs/helpers/format-text'
+import { AppJenjangSelect } from './app-jenjang-select'
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   const searchParams = new URLSearchParams(location.search)
@@ -13,8 +14,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
   const isSD = jenjang?.toLowerCase() === 'sd'
   const isSMP = jenjang?.toLowerCase() === 'smp'
-
-  console.log(setJenjang)
 
   return (
     <div className="flex flex-col">
@@ -30,7 +29,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         {/* --- Aside --- */}
         <div className="flex w-1/6 flex-col gap-64">
           {/* --- Jenjang --- */}
-          <div className="flex flex-col gap-32">Tes</div>
+          <div className="flex flex-col gap-32">
+            <AppJenjangSelect jenjang={jenjang} setJenjang={setJenjang} />
+          </div>
           {/* --- Navigasi --- */}
           <div className="flex flex-col gap-0">
             {ListAsideNavigation.map((item, idx) => (
