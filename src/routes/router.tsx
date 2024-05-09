@@ -65,11 +65,11 @@ export const router = createBrowserRouter([
         element: <DayaTampungPage />,
       },
       {
-        path: 'nun',
+        path: 'sebaran-nun',
         element: <NUNPage />,
       },
       {
-        path: 'arsip',
+        path: 'arsip-tahun-lalu',
         element: <ArsipPage />,
       },
       {
@@ -77,7 +77,7 @@ export const router = createBrowserRouter([
         element: <BeritaPage />,
       },
       {
-        path: 'pesan',
+        path: 'pesan-anda',
         element: <PesanPage />,
       },
       {

@@ -6,9 +6,11 @@ import { convertToSlug } from '@/libs/helpers/format-text'
 export function AppHeaderNavigasi({
   isSD,
   isSMP,
+  jenjang,
 }: {
   isSMP: boolean
   isSD: boolean
+  jenjang: string
 }) {
   return (
     <div
@@ -27,7 +29,7 @@ export function AppHeaderNavigasi({
             <IconComponent
               icon={item?.icon}
               title={item?.judul}
-              link={convertToSlug(item?.judul)}
+              link={`/${convertToSlug(item?.judul)}?jenjang=${jenjang}`}
               isSD={isSD}
               isSMP={isSMP}
             />
