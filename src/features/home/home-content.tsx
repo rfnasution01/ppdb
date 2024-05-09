@@ -38,8 +38,15 @@ export function HomeContent() {
             <IconComponent
               title="Lihat Jadwal"
               icon={<CalendarDays size={16} />}
+              link="/jadwal?jenjang=sd"
+              isSD
             />
-            <IconComponent title="Data Pendaftar" icon={<Pencil size={16} />} />
+            <IconComponent
+              title="Data Pendaftar"
+              icon={<Pencil size={16} />}
+              link="/daptar?jenjang=sd"
+              isSD
+            />
           </div>
         </div>
       </div>
@@ -76,8 +83,15 @@ export function HomeContent() {
             <IconComponent
               title="Lihat Jadwal"
               icon={<CalendarDays size={16} />}
+              link="/jadwal?jenjang=smp"
+              isSMP
             />
-            <IconComponent title="Data Pendaftar" icon={<Pencil size={16} />} />
+            <IconComponent
+              title="Data Pendaftar"
+              icon={<Pencil size={16} />}
+              link="/daptar?jenjang=smp"
+              isSMP
+            />
           </div>
         </div>
       </div>
