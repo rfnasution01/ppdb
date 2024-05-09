@@ -1,4 +1,4 @@
-import { HomeContent, HomeHeader } from '@/layouts/home'
+import { HomeContent, HomeHeader } from '@/features/home'
 
 export default function Home() {
   return (
