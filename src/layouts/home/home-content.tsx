@@ -14,11 +14,11 @@ export function HomeContent() {
       >
         <div className="flex flex-col">
           {/* --- Header --- */}
-          <div className={`relative col-span-6 block`}>
+          <div className={`relative`}>
             <img
               src="/img/bg-smp.png"
               alt="login"
-              className="h-[16vh] w-full object-cover filter phones:h-[14vh]"
+              className="h-[16vh] w-full phones:h-[14vh]"
               style={{
                 filter: 'hue-rotate(160deg)',
                 borderTopLeftRadius: '1rem',
@@ -53,11 +53,11 @@ export function HomeContent() {
       >
         <div className="flex flex-col">
           {/* --- Header --- */}
-          <div className={`relative col-span-6 block`}>
+          <div className={`relative`}>
             <img
               src="/img/bg-smp.png"
               alt="login"
-              className="h-[16vh] w-full object-cover filter phones:h-[14vh]"
+              className="h-[16vh] w-full phones:h-[14vh]"
               style={{
                 borderTopLeftRadius: '1rem',
                 borderTopRightRadius: '1rem',
@@ -67,7 +67,7 @@ export function HomeContent() {
               <div className="flex h-full w-full flex-col gap-8 text-white">
                 {/* --- Navigation -- */}
                 <p>PPDB Online Jenjang</p>
-                <p className="text-[3.6rem]">Sekolah Menegah Pertama (SMP)</p>
+                <p className="text-[3.6rem]">Sekolah Menengah Pertama (SMP)</p>
               </div>
             </div>
           </div>
