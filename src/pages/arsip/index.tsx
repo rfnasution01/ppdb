@@ -1,10 +1,12 @@
 export default function Arsip() {
   return (
-    <div className="">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit odit,
-      quo consequuntur obcaecati a similique, corporis dicta ex ut quia
-      possimus! Animi beatae, rerum obcaecati illum mollitia similique dolor
-      perspiciatis?
+    <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
+      <p className="font-nunito">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea architecto
+        corporis quidem temporibus obcaecati voluptates culpa earum dicta,
+        voluptas nam facere nemo harum fuga vitae, rerum a. Placeat, fugiat
+        odit?
+      </p>
     </div>
   )
 }
