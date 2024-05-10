@@ -1,5 +1,4 @@
-import { AlurHeader } from '@/features/alur'
-import { AlurContent } from '@/features/alur/alur-content'
+import { AlurContent, AlurHeader } from '@/features/alur'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'

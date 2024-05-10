@@ -1,4 +1,4 @@
-import { DaptarHeader } from '@/features/daptar'
+import { DaptarContent, DaptarHeader } from '@/features/daptar'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +23,7 @@ export default function Daptar() {
   return (
     <div className="flex w-full flex-col gap-32">
       <DaptarHeader showJenjang={showJenjang} />
+      <DaptarContent />
     </div>
   )
 }
