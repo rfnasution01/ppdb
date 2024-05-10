@@ -1,10 +1,28 @@
+import { StatistikHeader } from '@/features/statistik'
+import { getJenjangSlice } from '@/store/reducer/stateJenjang'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+
 export default function Statistik() {
+  const searchParams = new URLSearchParams(location.search)
+  const jenjangParams = searchParams.get('jenjang')
+  const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+
+  useEffect(() => {
+    if (stateJenjang) {
+      setJenjang(stateJenjang)
+    }
+  }, [stateJenjang])
+
+  const [jenjang, setJenjang] = useState<string>(
+    jenjangParams ?? stateJenjang ?? 'sd',
+  )
+
+  const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
+
   return (
-    <div className="">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit odit,
-      quo consequuntur obcaecati a similique, corporis dicta ex ut quia
-      possimus! Animi beatae, rerum obcaecati illum mollitia similique dolor
-      perspiciatis?
+    <div className="flex w-full flex-col gap-32">
+      <StatistikHeader showJenjang={showJenjang} />
     </div>
   )
 }
