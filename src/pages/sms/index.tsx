@@ -1,4 +1,4 @@
-import { SMSHeader } from '@/features/sms'
+import { SMSContent, SMSHeader } from '@/features/sms'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +23,7 @@ export default function SMS() {
   return (
     <div className="flex w-full flex-col gap-32">
       <SMSHeader showJenjang={showJenjang} />
+      <SMSContent />
     </div>
   )
 }
