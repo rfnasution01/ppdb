@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { TimeflowLoading } from './TimeflowLoading'
-import { ChevronDown } from 'lucide-react'
+import { ArrowDown01, BarChart, ChevronDown } from 'lucide-react'
 
 export type Column<T> = {
   header: string
@@ -20,6 +20,7 @@ type Props<T, P> = {
   onItemClick?: (rowData: T) => void
   collapseComponent?: React.ReactNode
   checkbox?: boolean
+  isStatistik?: boolean
 }
 
 export function Table<T, P>({
@@ -32,6 +33,7 @@ export function Table<T, P>({
   onItemClick,
   collapseComponent,
   checkbox,
+  isStatistik,
 }: Props<T, P>) {
   const [rowIsOpen, setRowIsOpen] = useState<number | null>(null)
 
@@ -60,12 +62,19 @@ export function Table<T, P>({
                     .filter((column) => !column.header.includes('Aksi'))
                     .map((column, colIndex) => (
                       <th
-                        className={`sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left ${column.width}`}
+                        className={`sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left uppercase ${column.width}`}
                         key={column.key || colIndex.toString()}
                       >
                         {column.header}
                       </th>
                     ))}
+
+                  {/* ----- Statistil ----- */}
+                  {isStatistik && (
+                    <th className="sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
+                      Detail
+                    </th>
+                  )}
 
                   {/* ----- Detail Header ----- */}
                   {collapseComponent && (
@@ -101,6 +110,20 @@ export function Table<T, P>({
                                 ] as React.ReactNode) || '-'}
                           </td>
                         ))}
+
+                      {/* ----- Detail ----- */}
+                      {isStatistik && (
+                        <td className="px-24 py-12 leading-medium">
+                          <div className="flex items-center gap-8">
+                            <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
+                              <ArrowDown01 size={16} />
+                            </span>
+                            <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
+                              <BarChart size={16} />
+                            </span>
+                          </div>
+                        </td>
+                      )}
 
                       {/* ----- Collapse Trigger ----- */}
                       {collapseComponent && (

@@ -1,4 +1,4 @@
-import { StatistikHeader } from '@/features/statistik'
+import { StatistikContent, StatistikHeader } from '@/features/statistik'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +23,7 @@ export default function Statistik() {
   return (
     <div className="flex w-full flex-col gap-32">
       <StatistikHeader showJenjang={showJenjang} />
+      <StatistikContent />
     </div>
   )
 }
