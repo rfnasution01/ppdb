@@ -11,7 +11,11 @@ export function Calendars() {
 
   return (
     <div>
-      <Calendar onChange={onChange} value={value} />
+      <Calendar
+        onChange={onChange}
+        value={value}
+        className="custom-calendar rounded-2xl"
+      />
     </div>
   )
 }

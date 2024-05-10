@@ -127,3 +127,8 @@
   border-bottom: 8px solid #6200ee;
   border-right: 8px solid transparent;
 }
+
+.custom-calendar {
+  border: 2px solid transparent !important;
+  border-radius: 1rem !important;
+}
