@@ -1,4 +1,4 @@
-import { SeleksiHeader } from '@/features/seleksi'
+import { SeleksiContent, SeleksiHeader } from '@/features/seleksi'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +23,7 @@ export default function Seleksi() {
   return (
     <div className="flex w-full flex-col gap-32">
       <SeleksiHeader showJenjang={showJenjang} />
+      <SeleksiContent showJenjang={showJenjang} />
     </div>
   )
 }

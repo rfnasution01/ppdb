@@ -23,7 +23,7 @@ export default function Daptar() {
   return (
     <div className="flex w-full flex-col gap-32">
       <DaptarHeader showJenjang={showJenjang} />
-      <DaptarContent />
+      <DaptarContent showJenjang={showJenjang} />
     </div>
   )
 }
