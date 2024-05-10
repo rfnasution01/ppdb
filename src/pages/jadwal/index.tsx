@@ -1,4 +1,4 @@
-import { JadwalHeader } from '@/features/jadwal'
+import { JadwalContent, JadwalHeader } from '@/features/jadwal'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -25,6 +25,7 @@ export default function Jadwal() {
   return (
     <div className="flex w-full flex-col gap-32">
       <JadwalHeader />
+      <JadwalContent />
     </div>
   )
 }

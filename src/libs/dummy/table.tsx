@@ -15,6 +15,13 @@ type ListLokasiType = {
   kumulatif: number
 }
 
+type ListJadwal = {
+  kegiatan: string
+  lokasi: string
+  hari: string
+  waktu: string
+}
+
 export const columnsListLokasi: Column<ListLokasiType>[] = [
   { header: 'Lokasi', key: 'lokasi', width: '!min-w-[12rem]' },
   { header: 'Alamat', key: 'alamat', width: '!min-w-[12rem]' },
@@ -107,4 +114,11 @@ export const columnsListNun: Column<ListLokasiType>[] = [
   { header: 'Rentang', key: 'rentang', width: '!min-w-[12rem]' },
   { header: 'Jumlah', key: 'jumlah', width: '!min-w-[12rem]' },
   { header: 'Kumulatif', key: 'kumulatif', width: '!min-w-[12rem]' },
+]
+
+export const columnsListJadwal: Column<ListJadwal>[] = [
+  { header: 'Kegiatan', key: 'kegiatan', width: '!min-w-[12rem]' },
+  { header: 'lokasi', key: 'lokasi', width: '!min-w-[12rem]' },
+  { header: 'hari', key: 'hari', width: '!min-w-[12rem]' },
+  { header: 'waktu', key: 'waktu', width: '!min-w-[12rem]' },
 ]
