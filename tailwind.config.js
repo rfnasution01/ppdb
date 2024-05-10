@@ -85,6 +85,7 @@ export default {
         primary: {
           DEFAULT: '#28A6F4',
           background: '#0891E6',
+          50: '#D9EDF7',
           100: '#d2e0f7',
           200: '#AFE6FF',
           300: '#7491D2',

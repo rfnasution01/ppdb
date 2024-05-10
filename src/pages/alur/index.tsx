@@ -1,4 +1,5 @@
 import { AlurHeader } from '@/features/alur'
+import { AlurContent } from '@/features/alur/alur-content'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +24,7 @@ export default function Alur() {
   return (
     <div className="flex w-full flex-col gap-32">
       <AlurHeader showJenjang={showJenjang} />
+      <AlurContent />
     </div>
   )
 }
