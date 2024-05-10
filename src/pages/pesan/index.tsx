@@ -1,4 +1,4 @@
-import { PesanHeader } from '@/features/pesan'
+import { PesanContent, PesanHeader } from '@/features/pesan'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +23,7 @@ export default function Pesan() {
   return (
     <div className="flex w-full flex-col gap-32">
       <PesanHeader showJenjang={showJenjang} />
+      <PesanContent showJenjang={showJenjang} />
     </div>
   )
 }
