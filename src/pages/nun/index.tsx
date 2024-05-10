@@ -1,4 +1,4 @@
-import { NunHeader } from '@/features/nun'
+import { NunContent, NunHeader } from '@/features/nun'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +23,7 @@ export default function Nun() {
   return (
     <div className="flex w-full flex-col gap-32">
       <NunHeader showJenjang={showJenjang} />
+      <NunContent />
     </div>
   )
 }

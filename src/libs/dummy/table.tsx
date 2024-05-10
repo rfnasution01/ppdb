@@ -10,6 +10,9 @@ type ListLokasiType = {
   npsn: string
   total: number
   gambar: string
+  rentang: number
+  jumlah: number
+  kumulatif: number
 }
 
 export const columnsListLokasi: Column<ListLokasiType>[] = [
@@ -98,4 +101,10 @@ export const columnsListDayaTampung: Column<ListLokasiType>[] = [
       return <div>{rowdata?.total} Siswa</div>
     },
   },
+]
+
+export const columnsListNun: Column<ListLokasiType>[] = [
+  { header: 'Rentang', key: 'rentang', width: '!min-w-[12rem]' },
+  { header: 'Jumlah', key: 'jumlah', width: '!min-w-[12rem]' },
+  { header: 'Kumulatif', key: 'kumulatif', width: '!min-w-[12rem]' },
 ]
