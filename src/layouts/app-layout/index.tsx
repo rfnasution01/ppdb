@@ -69,9 +69,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
         {/* --- Content --- */}
-        <div className="w-5/6">
-          <div className="flex rounded-lg bg-white p-32">{children}</div>
-        </div>
+        <div className="w-5/6 phones:w-full">{children}</div>
       </div>
     </div>
   )

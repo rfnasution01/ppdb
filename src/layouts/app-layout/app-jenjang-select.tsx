@@ -6,9 +6,11 @@ import {
   MenubarTrigger,
 } from '@/components/atoms/Menubar'
 import { usePathname } from '@/libs/hooks/usePathname'
+import { setStateJenjang } from '@/store/reducer/stateJenjang'
 import clsx from 'clsx'
 import { ChevronDown } from 'lucide-react'
 import { Dispatch, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 export function AppJenjangSelect({
@@ -20,6 +22,7 @@ export function AppJenjangSelect({
 }) {
   const { firstPathname } = usePathname()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   return (
     <Menubar>
@@ -48,8 +51,9 @@ export function AppJenjangSelect({
               key={index}
               onClick={() => {
                 if (item.toLowerCase() !== jenjang.toLowerCase()) {
-                  navigate(`/${firstPathname}?jenjang=${item.toLowerCase()}`)
+                  dispatch(setStateJenjang({ tingkatan: item?.toLowerCase() }))
                   setJenjang(item?.toLowerCase())
+                  navigate(`/${firstPathname}?jenjang=${item.toLowerCase()}`)
                 }
               }}
               className={clsx('px-24 py-8 text-[2.6rem] hover:bg-slate-200', {

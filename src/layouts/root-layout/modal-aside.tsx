@@ -4,7 +4,7 @@ import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
 import { getJenjangSlice, setStateJenjang } from '@/store/reducer/stateJenjang'
 import clsx from 'clsx'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -18,11 +18,19 @@ export function ModalAside({
   const { firstPathname } = usePathname()
   const dispatch = useDispatch()
 
+  const searchParams = new URLSearchParams(location.search)
+  const jenjangParams = searchParams.get('jenjang')
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
-  const [jenjang, setJenjang] = useState<string>(stateJenjang ?? 'sd')
+  useEffect(() => {
+    if (stateJenjang) {
+      setJenjang(stateJenjang)
+    }
+  }, [stateJenjang])
 
-  const isSD = jenjang?.toLowerCase() === 'sd'
+  const [jenjang, setJenjang] = useState<string>(
+    jenjangParams ?? stateJenjang ?? 'sd',
+  )
 
   const beranda = [
     'aturan',
@@ -44,6 +52,8 @@ export function ModalAside({
     }
     return false
   }
+
+  const isSD = jenjang?.toLowerCase() === 'sd'
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>

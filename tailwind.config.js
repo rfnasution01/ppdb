@@ -118,7 +118,7 @@ export default {
           tint: { 1: '#568500', 2: '#D6F9D5' },
           shade: { 1: '#2B4200' },
         },
-        warning: { DEFAULT: '#DD8D38', tint: { 1: '#F9EDD5' } },
+        warning: { DEFAULT: '#DD8D38', tint: { 1: '#F9EDD5', 2: '#fffbee' } },
         danger: {
           DEFAULT: '#A01313',
           tint: { 1: '#F9D5D5', 2: '#FF6666', 3: '#990000', 4: '#db1514' },
