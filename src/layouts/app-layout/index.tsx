@@ -27,28 +27,40 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       {/* --- Content --- */}
       <div className="flex gap-32 px-[20rem] py-32 phones:px-32">
         {/* --- Aside --- */}
-        <div className="flex w-1/6 flex-col gap-64">
-          {/* --- Jenjang --- */}
-          <div className="flex flex-col gap-32">
-            <AppJenjangSelect jenjang={jenjang} setJenjang={setJenjang} />
-          </div>
-          {/* --- Navigasi --- */}
-          <div className="flex flex-col gap-0">
-            {ListAsideNavigation.map((item, idx) => (
-              <div key={idx}>
-                <IconComponent2
-                  icon={item?.icon}
-                  title={item?.title}
-                  link={`/${convertToSlug(item?.title)}?jenjang=${jenjang}`}
-                  isSD={isSD}
-                  isSMP={isSMP}
+        <div className="relative -top-128 w-1/6">
+          <div className="flex flex-col gap-64">
+            {/* --- Jenjang --- */}
+            <div className="flex flex-col gap-32">
+              <div className="w-5/6 rounded-lg bg-white p-24">
+                <img
+                  src="/img/smp.png"
+                  alt="SMP"
+                  className="w-full"
+                  style={{ filter: isSD && 'hue-rotate(160deg)' }}
                 />
               </div>
-            ))}
+              <AppJenjangSelect jenjang={jenjang} setJenjang={setJenjang} />
+            </div>
+            {/* --- Navigasi --- */}
+            <div className="flex flex-col gap-0">
+              {ListAsideNavigation.map((item, idx) => (
+                <div key={idx}>
+                  <IconComponent2
+                    icon={item?.icon}
+                    title={item?.title}
+                    link={`/${convertToSlug(item?.title)}?jenjang=${jenjang}`}
+                    isSD={isSD}
+                    isSMP={isSMP}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         {/* --- Content --- */}
-        <div className="w-5/6 rounded-lg bg-white p-32">{children}</div>
+        <div className="w-5/6">
+          <div className="flex rounded-lg bg-white p-32">{children}</div>
+        </div>
       </div>
     </div>
   )
