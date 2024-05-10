@@ -4,10 +4,12 @@ import { LayoutGrid, List, Search } from 'lucide-react'
 import { Searching } from '@/components/atoms/Search'
 import { ModalAside } from './modal-aside'
 import { Link } from 'react-router-dom'
+import { ModalHeader } from './modal-header'
 
 export function RootHeader() {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [isShowAside, setIsShowAside] = useState<boolean>(false)
+  const [isShowHeader, setIsShowHeader] = useState<boolean>(false)
 
   return (
     <header className="flex justify-between gap-24 bg-white px-[20rem] py-16 shadow-md phones:px-32">
@@ -36,7 +38,10 @@ export function RootHeader() {
         >
           <Search size={16} /> <p>Cari</p>{' '}
         </button>
-        <span className="hidden phones:block">
+        <span
+          className="hidden phones:block"
+          onClick={() => setIsShowHeader(true)}
+        >
           <LayoutGrid />
         </span>
       </div>
@@ -69,6 +74,7 @@ export function RootHeader() {
         }
       />
       <ModalAside setIsOpen={setIsShowAside} isOpen={isShowAside} />
+      <ModalHeader setIsOpen={setIsShowHeader} isOpen={isShowHeader} />
     </header>
   )
 }

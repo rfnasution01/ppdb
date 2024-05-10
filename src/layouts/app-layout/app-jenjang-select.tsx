@@ -25,11 +25,14 @@ export function AppJenjangSelect({
     <Menubar>
       <MenubarMenu>
         <MenubarTrigger
-          className="h-full rounded-2xl bg-white"
+          className={clsx('h-full rounded-2xl text-white', {
+            'bg-primary-background': jenjang === 'smp',
+            'bg-danger-tint-4': jenjang === 'sd',
+          })}
           variant="outlined"
         >
           <p
-            className="border-r bg-white p-24 text-[5rem] font-bold uppercase"
+            className="border-r border-slate-100 p-24 text-[5rem] font-bold uppercase"
             style={{
               borderTopLeftRadius: '1rem',
               borderBottomLeftRadius: '1rem',

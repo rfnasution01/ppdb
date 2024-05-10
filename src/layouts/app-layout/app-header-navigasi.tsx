@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import { IconComponent } from './IconComponent'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
+import { ListHeaderNavigationMobile } from '@/libs/dummy/list-header-navigation -mobile'
+import { ListAsideNavigationMobile } from '@/libs/dummy/list-aside-navigation-mobile'
 
 export function AppHeaderNavigasi({
   isSD,
@@ -14,8 +16,11 @@ export function AppHeaderNavigasi({
   jenjang: string
 }) {
   const { firstPathname } = usePathname()
-  const isActivePage = ListHeaderNavigation.find(
+  const isActivePage = ListHeaderNavigationMobile.find(
     (item) => convertToSlug(item?.judul) === firstPathname,
+  )
+  const isAsideActivePage = ListAsideNavigationMobile.find(
+    (item) => convertToSlug(item?.title) === firstPathname,
   )
 
   return (
@@ -43,9 +48,11 @@ export function AppHeaderNavigasi({
         ))}
       </div>
       <div className="hidden phones:block">
-        <div className="flex items-center gap-8 py-16">
-          {isActivePage?.icon}
-          <p>{isActivePage?.judul}</p>
+        <div className="flex items-center gap-12 py-16">
+          {isActivePage?.icon ?? isAsideActivePage?.icon}
+          <p className="text-[2.4rem] uppercase">
+            {isActivePage?.judul ?? isAsideActivePage?.title}
+          </p>
         </div>
       </div>
     </div>

@@ -29,8 +29,10 @@ export function AppBreadcumbs({
       )}
     >
       <div className="w-1/6 phones:hidden"></div>
-      <div className="flex w-5/6 items-center gap-8">
-        <Link to="/">Kab. Deli Serdang</Link>
+      <div className="flex w-5/6 flex-nowrap items-center gap-8">
+        <Link to="/" className="phones:text-nowrap">
+          Kab. Deli Serdang
+        </Link>
         <span>
           <ChevronRight size={16} />
         </span>
@@ -46,7 +48,7 @@ export function AppBreadcumbs({
         <span>
           <ChevronRight size={16} />
         </span>
-        <p className="hover:cursor-not-allowed">
+        <p className="hover:cursor-not-allowed phones:text-nowrap">
           {capitalizeFirstLetterFromLowercase(
             convertSlugToText(firstPathname).toLowerCase(),
           )}

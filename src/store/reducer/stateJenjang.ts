@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type StateJenjangType = {
-  tingkatan: string
+  tingkatan: string | null
 }
 
 const initialState: StateJenjangType = {
-  tingkatan: 'sd',
+  tingkatan: null,
 }
 
 const stateJenjangSlice = createSlice({

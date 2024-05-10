@@ -2,8 +2,10 @@ import { Dialog, DialogContent } from '@/components/atoms/Dialog'
 import { ListAsideNavigation } from '@/libs/dummy/list-aside-navigation'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
+import { getJenjangSlice, setStateJenjang } from '@/store/reducer/stateJenjang'
 import clsx from 'clsx'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export function ModalAside({
@@ -14,9 +16,13 @@ export function ModalAside({
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }) {
   const { firstPathname } = usePathname()
-  const searchParams = new URLSearchParams(location.search)
-  const jenjangParams = searchParams.get('jenjang') ?? 'sd'
-  const isSD = jenjangParams === 'sd'
+  const dispatch = useDispatch()
+
+  const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+
+  const [jenjang, setJenjang] = useState<string>(stateJenjang ?? 'sd')
+
+  const isSD = jenjang?.toLowerCase() === 'sd'
 
   const beranda = [
     'aturan',
@@ -53,9 +59,9 @@ export function ModalAside({
           {/* --- Header --- */}
           <div
             className={clsx('flex items-center gap-32 p-32 text-white', {
-              'to-primary-background from-primary-background bg-gradient-to-br via-primary ':
+              'bg-gradient-to-br from-primary-background via-primary to-primary-background ':
                 !isSD,
-              'to-danger-tint-4 from-danger-tint-4 via-danger-tint-2 bg-gradient-to-br ':
+              'bg-gradient-to-br from-danger-tint-4 via-danger-tint-2 to-danger-tint-4 ':
                 isSD,
             })}
           >
@@ -78,13 +84,17 @@ export function ModalAside({
                   <Link
                     to={`/${firstPathname}?jenjang=${item.toLowerCase()}`}
                     onClick={() => {
+                      dispatch(
+                        setStateJenjang({ tingkatan: item?.toLowerCase() }),
+                      )
+                      setJenjang(item?.toLowerCase())
                       setIsOpen(false)
                     }}
                     className={clsx('rounded-2xl border p-16 text-[2.4rem]', {
-                      'text-danger-tint-4 bg-white':
-                        jenjangParams === item.toLowerCase() && isSD,
-                      'text-primary-background bg-white':
-                        jenjangParams === item.toLowerCase() && !isSD,
+                      'bg-white text-danger-tint-4':
+                        jenjang === item.toLowerCase() && isSD,
+                      'bg-white text-primary-background':
+                        jenjang === item.toLowerCase() && !isSD,
                     })}
                     key={idx}
                   >
@@ -99,7 +109,9 @@ export function ModalAside({
             {ListAsideNavigation.map((item, idx) => (
               <Link
                 to={`/${convertToSlug(item?.title)}?jenjang=${isSD ? 'sd' : 'smp'}`}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false)
+                }}
                 className={clsx(
                   'flex items-center gap-16 border-b p-16',
                   {

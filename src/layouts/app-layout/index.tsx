@@ -1,16 +1,27 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { AppBreadcumbs } from './app-breadcrumbs'
 import { AppHeaderNavigasi } from './app-header-navigasi'
 import { ListAsideNavigation } from '@/libs/dummy/list-aside-navigation'
 import { IconComponent2 } from './IconComponent2'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { AppJenjangSelect } from './app-jenjang-select'
+import { useSelector } from 'react-redux'
+import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
+  const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
-  const [jenjang, setJenjang] = useState<string>(jenjangParams ?? 'sd')
+  useEffect(() => {
+    if (stateJenjang) {
+      setJenjang(stateJenjang)
+    }
+  }, [stateJenjang])
+
+  const [jenjang, setJenjang] = useState<string>(
+    jenjangParams ?? stateJenjang ?? 'sd',
+  )
 
   const isSD = jenjang?.toLowerCase() === 'sd'
   const isSMP = jenjang?.toLowerCase() === 'smp'
