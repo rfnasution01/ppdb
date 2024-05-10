@@ -10,7 +10,7 @@ export function NunContent() {
           Sebaran Nilai Hasil Ujian Nasional SD/MI Kab. Deli Serdang Tahun 2024
         </p>
       </div>
-      <div className="flex gap-32">
+      <div className="flex gap-32 phones:flex-col">
         <Table
           data={ListLokasi}
           columns={columnsListNun}
@@ -20,7 +20,7 @@ export function NunContent() {
         <Table
           data={ListLokasi}
           columns={columnsListNun}
-          containerClasses="w-full flex-1"
+          containerClasses="w-full flex-1 phones:hidden"
           loading={false}
         />
       </div>

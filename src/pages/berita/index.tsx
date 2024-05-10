@@ -1,4 +1,4 @@
-import { BeritaHeader } from '@/features/berita'
+import { BeritaContent, BeritaHeader } from '@/features/berita'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +23,7 @@ export default function Berita() {
   return (
     <div className="flex w-full flex-col gap-32">
       <BeritaHeader showJenjang={showJenjang} />
+      <BeritaContent />
     </div>
   )
 }
