@@ -1,4 +1,5 @@
 import { LokasiHeader } from '@/features/lokasi'
+import LokasiContent from '@/features/lokasi/lokasi-content'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -25,6 +26,7 @@ export default function Lokasi() {
   return (
     <div className="flex w-full flex-col gap-32">
       <LokasiHeader />
+      <LokasiContent />
     </div>
   )
 }
