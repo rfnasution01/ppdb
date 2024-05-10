@@ -6,6 +6,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Surabaya',
@@ -14,6 +17,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Bandung',
@@ -22,6 +28,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Yogyakarta',
@@ -30,6 +39,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Semarang',
@@ -38,6 +50,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Medan',
@@ -46,6 +61,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Palembang',
@@ -54,6 +72,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Makassar',
@@ -62,6 +83,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Malang',
@@ -70,6 +94,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Bogor',
@@ -78,6 +105,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Denpasar',
@@ -86,6 +116,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Tangerang',
@@ -94,6 +127,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Padang',
@@ -102,6 +138,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Balikpapan',
@@ -110,6 +149,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Samarinda',
@@ -118,6 +160,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Pontianak',
@@ -126,6 +171,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Manado',
@@ -134,6 +182,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Banjarmasin',
@@ -142,6 +193,7 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
   },
   {
     lokasi: 'SMPN 1 Pekanbaru',
@@ -150,6 +202,9 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
   {
     lokasi: 'SMPN 1 Jayapura',
@@ -158,5 +213,8 @@ export const ListLokasi = [
     terendah: 15,
     tertinggi: 15,
     rata_rata: 15,
+    gambar: '/img/tutwuri.png',
+    npsn: '10260107',
+    total: 200,
   },
 ]

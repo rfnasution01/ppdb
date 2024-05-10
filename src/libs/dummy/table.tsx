@@ -7,6 +7,9 @@ type ListLokasiType = {
   terendah: number
   tertinggi: number
   rata_rata: number
+  npsn: string
+  total: number
+  gambar: string
 }
 
 export const columnsListLokasi: Column<ListLokasiType>[] = [
@@ -63,6 +66,36 @@ export const columnsListStatistik: Column<ListLokasiType>[] = [
           <p>{rowData?.rata_rata}</p>
         </div>
       )
+    },
+  },
+]
+
+export const columnsListDayaTampung: Column<ListLokasiType>[] = [
+  {
+    header: 'Sekolah',
+    key: 'lokasi',
+    width: '!w-[28rem]',
+    renderCell: (rowData) => {
+      return (
+        <div className="flex items-center gap-8">
+          <div className="flex items-center justify-center rounded-2xl bg-white p-8">
+            <img src={rowData?.gambar} alt="Sekolah" className="w-[4rem]" />
+          </div>
+          <div className="flex flex-col gap-y-4">
+            <p className="font-semibold">{rowData?.lokasi}</p>
+            <p className="text-[1.8rem]">{rowData?.npsn}</p>
+            <p className="text-[2rem]">{rowData?.alamat}</p>
+          </div>
+        </div>
+      )
+    },
+  },
+  {
+    header: 'Total',
+    key: 'total',
+    width: '!w-[15%]',
+    renderCell: (rowdata) => {
+      return <div>{rowdata?.total} Siswa</div>
     },
   },
 ]

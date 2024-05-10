@@ -1,4 +1,4 @@
-import { DayaTampungHeader } from '@/features/daya-tampung'
+import { DayaTampungContent, DayaTampungHeader } from '@/features/daya-tampung'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -25,6 +25,7 @@ export default function DayaTampung() {
   return (
     <div className="flex w-full flex-col gap-32">
       <DayaTampungHeader />
+      <DayaTampungContent />
     </div>
   )
 }

@@ -69,9 +69,9 @@ export function Table<T, P>({
                       </th>
                     ))}
 
-                  {/* ----- Statistil ----- */}
+                  {/* ----- Statistik ----- */}
                   {isStatistik && (
-                    <th className="sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
+                    <th className="sticky top-0 w-[10%] border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
                       Detail
                     </th>
                   )}
@@ -113,7 +113,7 @@ export function Table<T, P>({
 
                       {/* ----- Detail ----- */}
                       {isStatistik && (
-                        <td className="px-24 py-12 leading-medium">
+                        <td className="w-[10%] px-24 py-12 leading-medium">
                           <div className="flex items-center gap-8">
                             <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
                               <ArrowDown01 size={16} />
