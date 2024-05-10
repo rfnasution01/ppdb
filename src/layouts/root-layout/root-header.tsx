@@ -1,21 +1,46 @@
 import { useState } from 'react'
 import { ModalSearch } from './modal-search'
-import { Search } from 'lucide-react'
+import { LayoutGrid, List, Search } from 'lucide-react'
 import { Searching } from '@/components/atoms/Search'
+import { ModalAside } from './modal-aside'
+import { Link } from 'react-router-dom'
 
 export function RootHeader() {
   const [isShow, setIsShow] = useState<boolean>(false)
+  const [isShowAside, setIsShowAside] = useState<boolean>(false)
 
   return (
-    <header className="flex justify-between bg-white px-[20rem] py-16 shadow-md phones:px-32">
-      <img src="/img/logo.png" alt="logo" className="h-[5.5rem] w-[34rem]" />
-      <button
-        type="button"
-        onClick={() => setIsShow(true)}
-        className="flex items-center gap-x-8 rounded-lg bg-secondary px-24 py-12 text-white hover:bg-opacity-90"
-      >
-        <Search size={16} /> <p>Cari</p>{' '}
-      </button>
+    <header className="flex justify-between gap-24 bg-white px-[20rem] py-16 shadow-md phones:px-32">
+      <div className="flex items-center gap-24">
+        <span
+          className="hidden phones:block"
+          onClick={() => {
+            setIsShowAside(true)
+          }}
+        >
+          <List />
+        </span>
+        <Link to="/">
+          <img
+            src="/img/logo.png"
+            alt="logo"
+            className="h-[5.5rem] w-[34rem] phones:h-[4rem] phones:w-[25rem]"
+          />
+        </Link>
+      </div>
+      <div className="flex items-center gap-24">
+        <button
+          type="button"
+          onClick={() => setIsShow(true)}
+          className="flex items-center gap-x-8 rounded-lg bg-secondary px-24 py-12 text-white hover:bg-opacity-90"
+        >
+          <Search size={16} /> <p>Cari</p>{' '}
+        </button>
+        <span className="hidden phones:block">
+          <LayoutGrid />
+        </span>
+      </div>
+
       <ModalSearch
         isOpen={isShow}
         setIsOpen={setIsShow}
@@ -43,6 +68,7 @@ export function RootHeader() {
           </div>
         }
       />
+      <ModalAside setIsOpen={setIsShowAside} isOpen={isShowAside} />
     </header>
   )
 }

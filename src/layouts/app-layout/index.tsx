@@ -27,7 +27,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       {/* --- Content --- */}
       <div className="flex gap-32 px-[20rem] py-32 phones:px-32">
         {/* --- Aside --- */}
-        <div className="relative -top-128 w-1/6">
+        <div className="relative -top-128 w-1/6 phones:hidden">
           <div className="flex flex-col gap-64">
             {/* --- Jenjang --- */}
             <div className="flex flex-col gap-32">

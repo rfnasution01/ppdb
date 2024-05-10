@@ -2,6 +2,7 @@ import { ListHeaderNavigation } from '@/libs/dummy/list-header-navigation'
 import clsx from 'clsx'
 import { IconComponent } from './IconComponent'
 import { convertToSlug } from '@/libs/helpers/format-text'
+import { usePathname } from '@/libs/hooks/usePathname'
 
 export function AppHeaderNavigasi({
   isSD,
@@ -12,6 +13,11 @@ export function AppHeaderNavigasi({
   isSD: boolean
   jenjang: string
 }) {
+  const { firstPathname } = usePathname()
+  const isActivePage = ListHeaderNavigation.find(
+    (item) => convertToSlug(item?.judul) === firstPathname,
+  )
+
   return (
     <div
       className={clsx(
@@ -23,7 +29,7 @@ export function AppHeaderNavigasi({
       )}
     >
       <div className="w-1/6 phones:hidden"></div>
-      <div className="flex w-5/6">
+      <div className="flex w-5/6 phones:hidden">
         {ListHeaderNavigation.map((item, idx) => (
           <div key={idx}>
             <IconComponent
@@ -35,6 +41,12 @@ export function AppHeaderNavigasi({
             />
           </div>
         ))}
+      </div>
+      <div className="hidden phones:block">
+        <div className="flex items-center gap-8 py-16">
+          {isActivePage?.icon}
+          <p>{isActivePage?.judul}</p>
+        </div>
       </div>
     </div>
   )
