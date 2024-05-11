@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, redirect } from 'react-router-dom'
 import {
   AlurPage,
   ArsipPage,
@@ -19,11 +19,21 @@ import {
   StatistikPage,
   LoginPage,
 } from './loadables'
+import Cookies from 'js-cookie'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    loader: async () => {
+      const jwtPayload = Cookies.get('token')
+
+      if (!jwtPayload) {
+        return redirect('/login')
+      }
+
+      return null
+    },
     children: [
       {
         path: '',
@@ -90,6 +100,15 @@ export const router = createBrowserRouter([
   },
   {
     path: 'login',
+    loader: async () => {
+      const jwtPayload = Cookies.get('token')
+
+      if (jwtPayload) {
+        return redirect('/main')
+      }
+
+      return null
+    },
     element: <LoginPage />,
   },
   {
