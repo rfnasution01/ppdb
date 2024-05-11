@@ -68,7 +68,11 @@ export function LoginForm() {
       setMsg('Login Berhasil!')
       setTimeout(() => {
         navigate(
-          isUpdate ? '/update-profile' : isChange ? '/ganti-password' : '/main',
+          isUpdate
+            ? '/update-profile'
+            : isChange
+              ? '/ganti-password'
+              : '/biodata',
         )
       }, 1000)
     }

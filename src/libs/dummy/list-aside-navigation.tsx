@@ -1,6 +1,5 @@
 import {
   Home,
-  Mail,
   MessageCircleMore,
   Newspaper,
   PieChart,
@@ -23,10 +22,6 @@ export const ListAsideNavigation = [
   {
     title: 'Berita',
     icon: <Newspaper size={16} />,
-  },
-  {
-    title: 'Pesan Anda',
-    icon: <Mail size={16} />,
   },
   {
     title: 'SMS',
