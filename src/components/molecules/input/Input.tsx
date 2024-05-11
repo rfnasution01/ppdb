@@ -1,3 +1,4 @@
+import { useFormField } from '@/components/atoms/Form'
 import { cn } from '@/libs/helpers/utils'
 import * as React from 'react'
 
@@ -29,6 +30,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
+    const { error: errorSchema } = useFormField()
+
     return (
       <div className={cn('relative flex w-full', className)}>
         {prefix && (
@@ -47,11 +50,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             h-[4.8rem]
             flex-grow
             rounded-lg
-            border-2
+            border
             border-gray-300
-            px-12
-            py-12
-            text-black 
+            px-12 py-24
             transition-all
             duration-300
             file:border-0
@@ -63,10 +64,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
             focus:ring-indigo-500
             disabled:cursor-not-allowed
-            disabled:opacity-50
-          phones:h-[6.2rem]
-            phones:py-16`,
+            disabled:opacity-50`,
             className,
+            errorSchema &&
+              'border-destructive text-destructive placeholder:text-destructive',
             error && 'border-destructive',
             prefix && 'pl-48 phones:pl-64', // add left padding if prefix is present
             suffix && 'pr-48 phones:pl-64', // add right padding if suffix is present

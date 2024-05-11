@@ -19,6 +19,7 @@ import {
   StatistikPage,
   LoginPage,
   UserLayout,
+  BiodataPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 
@@ -102,6 +103,12 @@ export const router = createBrowserRouter([
       return null
     },
     element: <UserLayout />,
+    children: [
+      {
+        path: '',
+        element: <BiodataPage />,
+      },
+    ],
   },
   {
     path: 'login',

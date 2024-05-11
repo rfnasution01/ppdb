@@ -1,0 +1,6 @@
+export * from './biodata-dokumen'
+export * from './biodata-jalur'
+export * from './biodata-orangtua'
+export * from './biodata-pribadi'
+export * from './biodata-sekolah'
+export * from './biodata-pendidikan'

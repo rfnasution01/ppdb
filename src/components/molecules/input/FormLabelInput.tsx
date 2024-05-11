@@ -27,7 +27,7 @@ export function FormLabelInput({
   name: string
   prefix?: JSX.Element
   suffix?: JSX.Element
-  type?: 'text' | 'number' | 'password' | 'date'
+  type?: 'text' | 'number' | 'password' | 'date' | 'file'
   handlerClick?: () => void
   className?: string
   isDisabled?: boolean
@@ -38,20 +38,24 @@ export function FormLabelInput({
       name={name}
       render={({ field }) => (
         <FormItem
-          className={`flex flex-col gap-y-8 text-[2rem] text-black ${className}`}
+          className={`flex w-full items-center gap-32 text-[2rem] phones:flex-col phones:text-[2.4rem] ${className}`}
         >
-          <FormLabel>{label}</FormLabel>
-          <Input
-            {...field}
-            className="bg-white"
-            type={type}
-            placeholder={placeholder}
-            value={field.value}
-            prefix={prefix}
-            suffix={suffix}
-            handlerClick={handlerClick}
-            disabled={isDisabled}
-          />
+          <FormLabel className="w-4/12 text-nowrap text-right text-emerald-800 phones:w-full">
+            {label}
+          </FormLabel>
+          <div className={`${type === 'date' ? 'w-2/12' : 'w-4/12'}`}>
+            <Input
+              {...field}
+              className="w-full bg-white hover:cursor-pointer"
+              type={type}
+              placeholder={placeholder}
+              value={field.value}
+              prefix={prefix}
+              suffix={suffix}
+              handlerClick={handlerClick}
+              disabled={isDisabled}
+            />
+          </div>
           <FormMessage />
         </FormItem>
       )}
