@@ -12,7 +12,6 @@ import clsx from 'clsx'
 import { usePathname } from '@/libs/hooks/usePathname'
 import { DoorClosed } from 'lucide-react'
 import Cookies from 'js-cookie'
-import { ListAsideNavigationLogin } from '@/libs/dummy/list-aside-navigation-login'
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate()
@@ -75,19 +74,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                   />
                 </div>
               ))}
-              {/* --- Biodata --- */}
-              {token &&
-                ListAsideNavigationLogin.map((item, idx) => (
-                  <div key={idx}>
-                    <IconComponent2
-                      icon={item?.icon}
-                      title={item?.title}
-                      link={`/${convertToSlug(item?.title)}?jenjang=${jenjang}`}
-                      isSD={isSD}
-                      isSMP={isSMP}
-                    />
-                  </div>
-                ))}
               {token ? (
                 <div
                   onClick={() => {

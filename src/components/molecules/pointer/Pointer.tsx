@@ -1,11 +1,9 @@
 import './index.css'
 
-export function Pointer() {
+export function Pointer({ title }: { title: string }) {
   return (
-    <div className="pointer bg-slate-300 p-24">
-      <div className="text-content">
-        <p>L</p>
-      </div>
+    <div className="pointer flex border-2 border-red-300">
+      <p>{title}</p>
     </div>
   )
 }

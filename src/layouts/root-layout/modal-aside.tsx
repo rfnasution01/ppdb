@@ -1,6 +1,5 @@
 import { Dialog, DialogContent } from '@/components/atoms/Dialog'
 import { ListAsideNavigation } from '@/libs/dummy/list-aside-navigation'
-import { ListAsideNavigationLogin } from '@/libs/dummy/list-aside-navigation-login'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
 import { getJenjangSlice, setStateJenjang } from '@/store/reducer/stateJenjang'
@@ -148,29 +147,6 @@ export function ModalAside({
                 <p className="text-[2.4rem]">{item?.title}</p>
               </Link>
             ))}
-            {token &&
-              ListAsideNavigationLogin.map((item, idx) => (
-                <Link
-                  to={`/${convertToSlug(item?.title)}?jenjang=${isSD ? 'sd' : 'smp'}`}
-                  onClick={() => {
-                    setIsOpen(false)
-                  }}
-                  className={clsx(
-                    'flex items-center gap-16 border-b p-16',
-                    {
-                      'text-primary-background':
-                        isActivePage(item?.title) && !isSD,
-                    },
-                    {
-                      'text-danger-tint-4': isActivePage(item?.title) && isSD,
-                    },
-                  )}
-                  key={idx}
-                >
-                  <span>{item?.icon}</span>
-                  <p className="text-[2.4rem]">{item?.title}</p>
-                </Link>
-              ))}
           </div>
 
           {token ? (
