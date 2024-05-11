@@ -17,6 +17,7 @@ import {
   SeleksiPage,
   JadwalPage,
   StatistikPage,
+  LoginPage,
 } from './loadables'
 
 export const router = createBrowserRouter([
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
         path: '',
         element: <HomePage />,
       },
+
       {
         path: 'beranda',
         element: <BerandaPage />,
@@ -85,6 +87,10 @@ export const router = createBrowserRouter([
         element: <SMSPage />,
       },
     ],
+  },
+  {
+    path: 'login',
+    element: <LoginPage />,
   },
   {
     path: '*',

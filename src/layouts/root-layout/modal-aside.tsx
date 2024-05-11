@@ -4,9 +4,11 @@ import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
 import { getJenjangSlice, setStateJenjang } from '@/store/reducer/stateJenjang'
 import clsx from 'clsx'
+import Cookies from 'js-cookie'
+import { DoorClosed, DoorOpen, User } from 'lucide-react'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function ModalAside({
   isOpen,
@@ -17,6 +19,13 @@ export function ModalAside({
 }) {
   const { firstPathname } = usePathname()
   const dispatch = useDispatch()
+  const token = Cookies.get('token')
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    Cookies.remove('token')
+    navigate('/login')
+  }
 
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
@@ -139,6 +148,41 @@ export function ModalAside({
               </Link>
             ))}
           </div>
+          {token && (
+            <button
+              type="button"
+              onClick={() => {
+                navigate('/main')
+              }}
+              className="flex items-center gap-16 border-b pl-16"
+            >
+              <div className="flex items-center gap-16 p-16">
+                <User size={16} />
+                <p className="text-[2.4rem]">Informasi Saya</p>
+              </div>
+            </button>
+          )}
+          {token ? (
+            <div
+              onClick={() => handleLogout()}
+              className="flex items-center gap-16 border-b pl-16"
+            >
+              <div className="flex items-center gap-16 p-16">
+                <DoorOpen size={16} />
+                <p className="text-[2.4rem]">Logout</p>
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center gap-16 border-b pl-16"
+            >
+              <div className="flex items-center gap-16 p-16">
+                <DoorClosed size={16} />
+                <p className="text-[2.4rem]">Login</p>
+              </div>
+            </Link>
+          )}
         </div>
       </DialogContent>
     </Dialog>

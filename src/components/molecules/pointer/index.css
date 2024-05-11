@@ -1,0 +1,20 @@
+.pointer {
+  display: inline-block;
+  @include dist(padding-left, 5);
+  @include dist(padding-right, 5);
+  @include dist(padding-top, 2);
+  @include dist(padding-bottom, 2);
+  @include dist(height, 16);
+  position: relative;
+  /*@include dist(margin, 3);*/
+  @include dist(max-width, 32);
+  @include dist(min-width, 12);
+  clip-path: polygon(
+    calc(0.4rem * 42 * 0.85) 0,
+    calc(0.4rem * 42) 50%,
+    calc(0.4rem * 42 * 0.85) 100%,
+    0% 100%,
+    calc(0.4rem * 32 * 0.15) 50%,
+    0% 0%
+  );
+}

@@ -1,15 +1,30 @@
 import { useState } from 'react'
 import { ModalSearch } from './modal-search'
-import { LayoutGrid, List, Search } from 'lucide-react'
+import {
+  DoorClosed,
+  DoorOpen,
+  LayoutGrid,
+  List,
+  Search,
+  User,
+} from 'lucide-react'
 import { Searching } from '@/components/atoms/Search'
 import { ModalAside } from './modal-aside'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ModalHeader } from './modal-header'
+import Cookies from 'js-cookie'
 
 export function RootHeader() {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [isShowAside, setIsShowAside] = useState<boolean>(false)
   const [isShowHeader, setIsShowHeader] = useState<boolean>(false)
+  const token = Cookies.get('token')
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    Cookies.remove('token')
+    navigate('/login')
+  }
 
   return (
     <header className="flex justify-between gap-24 bg-white px-[20rem] py-16 shadow-md phones:px-32">
@@ -31,13 +46,45 @@ export function RootHeader() {
         </Link>
       </div>
       <div className="flex items-center gap-24">
+        {token && (
+          <div className="phones:hidden">
+            <button
+              type="button"
+              onClick={() => {
+                navigate('/main')
+              }}
+              className="flex items-center gap-x-8 rounded-lg bg-green-700 px-24 py-12 text-white hover:bg-orange-900 hover:bg-opacity-90"
+            >
+              <User size={16} /> <p>Informasi Saya</p>{' '}
+            </button>
+          </div>
+        )}
+        {token && <div className="h-full w-2 bg-gray-300 phones:hidden"></div>}
         <button
           type="button"
           onClick={() => setIsShow(true)}
-          className="flex items-center gap-x-8 rounded-lg bg-secondary px-24 py-12 text-white hover:bg-opacity-90"
+          className="flex items-center gap-x-8 rounded-lg bg-secondary px-24 py-12 text-white hover:bg-orange-900 hover:bg-opacity-90"
         >
           <Search size={16} /> <p>Cari</p>{' '}
         </button>
+        <div className="h-full w-2 bg-gray-300 phones:hidden"></div>
+        {token ? (
+          <div
+            onClick={() => handleLogout()}
+            className="flex items-center gap-x-8 rounded-lg bg-indigo-700 px-24 py-12 text-white hover:bg-indigo-900 hover:bg-opacity-90 phones:hidden"
+          >
+            Logout
+            <DoorOpen size={16} />
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="flex items-center gap-x-8 rounded-lg bg-primary-700 px-24 py-12 text-white hover:bg-primary-500 hover:bg-opacity-90 phones:hidden"
+          >
+            Login
+            <DoorClosed size={16} />
+          </Link>
+        )}
         <span
           className="hidden phones:block"
           onClick={() => setIsShowHeader(true)}
