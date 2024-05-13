@@ -18,10 +18,13 @@ import {
   JadwalPage,
   StatistikPage,
   LoginPage,
-  UserLayout,
   BiodataPage,
+  MainLayout,
+  PendaftaranPage,
+  ProfilPage,
 } from './loadables'
 import Cookies from 'js-cookie'
+import DaptarAkun from '@/pages/daptar-akun'
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: 'daptar',
         element: <DaptarPage />,
+      },
+      {
+        path: 'daptar-akun',
+        element: <DaptarAkun />,
       },
       {
         path: 'seleksi',
@@ -102,11 +109,21 @@ export const router = createBrowserRouter([
 
       return null
     },
-    element: <UserLayout />,
+    element: <MainLayout />,
     children: [
       {
         path: '',
         element: <BiodataPage />,
+        children: [
+          {
+            path: '',
+            element: <PendaftaranPage />,
+          },
+          {
+            path: 'biodata',
+            element: <ProfilPage />,
+          },
+        ],
       },
     ],
   },

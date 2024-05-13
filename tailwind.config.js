@@ -123,6 +123,9 @@ export default {
         danger: {
           DEFAULT: '#A01313',
           tint: { 1: '#F9D5D5', 2: '#FF6666', 3: '#990000', 4: '#db1514' },
+          100: '#e91e63',
+          200: '#d80d52',
+          300: '#c70041',
         },
         border: {
           DEFAULT: '#8C9196',

@@ -19,10 +19,10 @@ export function BiodataPribadi() {
   return (
     <Form {...form}>
       <form
-        className="scrollbar flex h-full w-full flex-col overflow-auto"
+        className="flex w-full flex-col"
         onSubmit={form.handleSubmit(handleFormLogin)}
       >
-        <div className="scrollbar flex h-full flex-1 flex-col gap-32 overflow-auto pb-32">
+        <div className="flex flex-1 flex-col gap-32 pb-32">
           {/* --- Informasi Pribadi --- */}
           <div className="flex flex-col gap-24">
             <p>Informasi Pribadi</p>

@@ -7,6 +7,7 @@ import loadable from '@loadable/component'
 export const RootLayout = loadable(() => import('@/layouts/root-layout'))
 export const AppLayout = loadable(() => import('@/layouts/app-layout'))
 export const UserLayout = loadable(() => import('@/layouts/user-layout'))
+export const MainLayout = loadable(() => import('@/layouts/main-layout'))
 
 // ------------------
 // ----- Pages -----
@@ -31,3 +32,6 @@ export const SMSPage = loadable(() => import('@/pages/sms'))
 export const StatistikPage = loadable(() => import('@/pages/statistik'))
 export const LoginPage = loadable(() => import('@/pages/login'))
 export const BiodataPage = loadable(() => import('@/pages/biodata'))
+export const PendaftaranPage = loadable(() => import('@/pages/pendaftaran'))
+export const ProfilPage = loadable(() => import('@/pages/profil'))
+export const DaptarAkunPage = loadable(() => import('@/pages/daptar-akun'))

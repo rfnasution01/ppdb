@@ -19,11 +19,15 @@ export function IconComponent({
   const { firstPathname } = usePathname()
 
   const isActivePage = (item) => {
-    if (convertToSlug(item) === firstPathname) {
+    if (
+      convertToSlug(item) === firstPathname ||
+      (convertToSlug(item) === 'daptar' && firstPathname === 'daptar-akun')
+    ) {
       return true
     }
     return false
   }
+
   return (
     <Link
       to={link}
@@ -34,8 +38,8 @@ export function IconComponent({
           'hover:text-danger-tint-4': isSD,
         },
         {
-          'text-primary-background bg-white': isActivePage(title) && isSMP,
-          'text-danger-tint-4 bg-white': isActivePage(title) && isSD,
+          'bg-white text-primary-background': isActivePage(title) && isSMP,
+          'bg-white text-danger-tint-4': isActivePage(title) && isSD,
         },
       )}
     >

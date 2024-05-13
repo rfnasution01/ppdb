@@ -22,7 +22,10 @@ export function ModalHeader({
   const isSD = jenjangParams === 'sd'
 
   const isActivePage = (item) => {
-    if (convertToSlug(item) === firstPathname) {
+    if (
+      convertToSlug(item) === firstPathname ||
+      (convertToSlug(item) === 'daptar' && firstPathname === 'daptar-akun')
+    ) {
       return true
     }
     return false

@@ -7,18 +7,10 @@ import { convertToSlug } from '@/libs/helpers/format-text'
 import { AppJenjangSelect } from './app-jenjang-select'
 import { useSelector } from 'react-redux'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
-import { Link, useNavigate } from 'react-router-dom'
-import clsx from 'clsx'
-import { usePathname } from '@/libs/hooks/usePathname'
-import { DoorClosed } from 'lucide-react'
-import Cookies from 'js-cookie'
-
 export default function AppLayout({ children }: { children: ReactNode }) {
-  const navigate = useNavigate()
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
-  const { firstPathname } = usePathname()
 
   useEffect(() => {
     if (stateJenjang) {
@@ -32,8 +24,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
   const isSD = jenjang?.toLowerCase() === 'sd'
   const isSMP = jenjang?.toLowerCase() === 'smp'
-
-  const token = Cookies.get('token')
 
   return (
     <div className="flex flex-col">
@@ -74,56 +64,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                   />
                 </div>
               ))}
-              {token ? (
-                <div
-                  onClick={() => {
-                    Cookies.remove('token')
-                    navigate('/login')
-                  }}
-                  className={clsx(
-                    'flex items-center gap-12 p-16 hover:cursor-pointer phones:hidden',
-                    {
-                      'rounded-lg bg-primary-400':
-                        isSMP && firstPathname === 'logout',
-                      'rounded-lg bg-danger-tint-1':
-                        isSD && firstPathname === 'logout',
-                    },
-                  )}
-                >
-                  <DoorClosed size={16} />
-                  <p
-                    className={clsx('', {
-                      'hover:text-primary-300 hover:underline': isSMP,
-                      'hover:text-danger-tint-3 hover:underline': isSD,
-                    })}
-                  >
-                    Logout
-                  </p>
-                </div>
-              ) : (
-                <Link
-                  to="/login"
-                  className={clsx(
-                    'flex items-center gap-12 p-16 phones:hidden',
-                    {
-                      'rounded-lg bg-primary-400':
-                        isSMP && firstPathname === 'biodata',
-                      'rounded-lg bg-danger-tint-1':
-                        isSD && firstPathname === 'biodata',
-                    },
-                  )}
-                >
-                  <DoorClosed size={16} />
-                  <p
-                    className={clsx('', {
-                      'hover:text-primary-300 hover:underline': isSMP,
-                      'hover:text-danger-tint-3 hover:underline': isSD,
-                    })}
-                  >
-                    Login
-                  </p>
-                </Link>
-              )}
             </div>
           </div>
         </div>

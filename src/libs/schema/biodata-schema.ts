@@ -23,22 +23,15 @@ export const informasiPribadiSchema = zod.object({
   }),
   nik: zod
     .string()
-    .refine((value) => value.length === 16, {
-      message: 'NIK harus terdiri dari 16 karakter',
-      path: ['nik'],
-    })
-    .refine((value) => /^\d+$/.test(value), {
-      message: 'NIK hanya boleh berisi angka',
+    .refine((value) => value.length === 16 && /^\d+$/.test(value), {
+      message:
+        'NIK harus terdiri dari 16 karakter dan hanya boleh berisi angka',
       path: ['nik'],
     }),
   kk: zod
     .string()
-    .refine((value) => value.length === 16, {
-      message: 'KK harus terdiri dari 16 karakter',
-      path: ['kk'],
-    })
-    .refine((value) => /^\d+$/.test(value), {
-      message: 'KK hanya boleh berisi angka',
+    .refine((value) => value.length === 16 && /^\d+$/.test(value), {
+      message: 'KK harus terdiri dari 16 karakter dan hanya boleh berisi angka',
       path: ['kk'],
     }),
   no_hp: zod.string({

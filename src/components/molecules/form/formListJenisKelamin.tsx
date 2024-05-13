@@ -36,12 +36,9 @@ export function FormListJenisKelamin({
       render={({ field }) => {
         return (
           <FormItem
-            className={cn(
-              'flex w-full items-center  gap-32 text-[2rem]',
-              className,
-            )}
+            className={cn('flex flex-col gap-16 text-[2rem]', className)}
           >
-            <FormLabel className={'w-4/12 py-4 text-right text-emerald-800'}>
+            <FormLabel className={'py-4 text-emerald-800'}>
               {headerLabel}
             </FormLabel>
             <FormControl>
@@ -93,7 +90,7 @@ export function FormListJenisKelamin({
                     },
                   }),
                 }}
-                className={'w-3/12 text-[2rem]'}
+                className={'text-[2rem]'}
                 options={ListJenisKelamin}
                 value={
                   ListJenisKelamin.filter(

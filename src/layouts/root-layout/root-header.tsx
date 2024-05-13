@@ -1,15 +1,24 @@
 import { useState } from 'react'
 import { ModalSearch } from './modal-search'
-import { LayoutGrid, List, Search } from 'lucide-react'
+import { DoorClosed, DoorOpen, LayoutGrid, List, Search } from 'lucide-react'
 import { Searching } from '@/components/atoms/Search'
 import { ModalAside } from './modal-aside'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ModalHeader } from './modal-header'
+import Cookies from 'js-cookie'
 
 export function RootHeader() {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [isShowAside, setIsShowAside] = useState<boolean>(false)
   const [isShowHeader, setIsShowHeader] = useState<boolean>(false)
+
+  const token = Cookies.get('token')
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    Cookies.remove('token')
+    navigate('/login')
+  }
 
   return (
     <header className="flex justify-between gap-24 bg-white px-[20rem] py-16 shadow-md phones:px-32">
@@ -38,6 +47,26 @@ export function RootHeader() {
         >
           <Search size={16} /> <p>Cari</p>{' '}
         </button>
+
+        <div className="phones:hidden">
+          {token ? (
+            <div
+              onClick={() => {
+                handleLogout()
+              }}
+              className="flex items-center gap-x-8 rounded-lg bg-primary-background px-24 py-12 text-white hover:cursor-pointer hover:bg-primary-700 hover:bg-opacity-90"
+            >
+              <DoorClosed size={16} /> <p>Logout</p>{' '}
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center gap-x-8 rounded-lg bg-primary-background px-24 py-12 text-white hover:bg-primary-700 hover:bg-opacity-90"
+            >
+              <DoorOpen size={16} /> <p>Login</p>{' '}
+            </Link>
+          )}
+        </div>
 
         <span
           className="hidden phones:block"
