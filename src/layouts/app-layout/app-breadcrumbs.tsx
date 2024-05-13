@@ -11,10 +11,12 @@ export function AppBreadcumbs({
   isSD,
   isSMP,
   jenjang,
+  kode,
 }: {
   isSMP: boolean
   isSD: boolean
   jenjang: string
+  kode: string
 }) {
   const { firstPathname } = usePathname()
 
@@ -36,14 +38,14 @@ export function AppBreadcumbs({
         <span>
           <ChevronRight size={16} />
         </span>
-        <Link to="/beranda" className="uppercase hover:cursor-pointer">
+        <Link to="/" className="uppercase hover:cursor-pointer">
           {jenjang}
         </Link>
         <span>
           <ChevronRight size={16} />
         </span>
-        <Link to="/beranda" className="hover:cursor-pointer">
-          Reguler
+        <Link to="/" className="hover:cursor-pointer">
+          {kode ?? 'Reguler'}
         </Link>
         <span>
           <ChevronRight size={16} />

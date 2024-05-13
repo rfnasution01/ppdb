@@ -10,10 +10,12 @@ export function AppHeaderNavigasi({
   isSD,
   isSMP,
   jenjang,
+  kode,
 }: {
   isSMP: boolean
   isSD: boolean
   jenjang: string
+  kode: string
 }) {
   const { firstPathname } = usePathname()
   const isActivePage = ListHeaderNavigationMobile.find(
@@ -40,7 +42,7 @@ export function AppHeaderNavigasi({
             <IconComponent
               icon={item?.icon}
               title={item?.judul}
-              link={`/${convertToSlug(item?.judul)}?jenjang=${jenjang}`}
+              link={`/${convertToSlug(item?.judul)}?jenjang=${jenjang}&kode=${kode}`}
               isSD={isSD}
               isSMP={isSMP}
             />

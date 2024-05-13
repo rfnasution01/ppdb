@@ -29,6 +29,7 @@ export function ModalAside({
 
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
+  const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
   useEffect(() => {
@@ -127,7 +128,7 @@ export function ModalAside({
           <div className="flex flex-col gap-16 pl-16">
             {ListAsideNavigation.map((item, idx) => (
               <Link
-                to={`/${convertToSlug(item?.title)}?jenjang=${isSD ? 'sd' : 'smp'}`}
+                to={`/${convertToSlug(item?.title)}?jenjang=${isSD ? 'sd' : 'smp'}&kode=${kodeParams}`}
                 onClick={() => {
                   setIsOpen(false)
                 }}

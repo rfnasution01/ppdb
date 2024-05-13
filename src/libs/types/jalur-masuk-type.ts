@@ -1,5 +1,5 @@
 export type JenjangParams = {
-  jenjang?: 'sd' | 'smp'
+  jenjang?: 'sd' | 'smp' | string
   jalur?: string
 }
 

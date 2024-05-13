@@ -45,9 +45,9 @@ export function MainHeader() {
               }
               key={idx}
               className={clsx(
-                'hover:border-danger-300 hover:text-danger-300 flex items-center gap-16 border-l-2 px-24 py-8 hover:cursor-pointer hover:bg-danger-tint-1 hover:bg-opacity-20',
+                'flex items-center gap-16 border-l-2 px-24 py-8 hover:cursor-pointer hover:border-danger-300 hover:bg-danger-tint-1 hover:bg-opacity-20 hover:text-danger-300',
                 {
-                  'border-danger-300 text-danger-300 bg-danger-tint-1 bg-opacity-20':
+                  'border-danger-300 bg-danger-tint-1 bg-opacity-20 text-danger-300':
                     isActivePage(convertToSlug(item?.title)),
                   'text-balance border-transparent': !isActivePage(
                     convertToSlug(item?.title),
@@ -64,7 +64,7 @@ export function MainHeader() {
           onClick={() => {
             handleLogout()
           }}
-          className="hover:border-danger-300 hover:text-danger-300 flex items-center gap-16 border-l-2 border-transparent px-24 py-8 hover:cursor-pointer hover:bg-danger-tint-1 hover:bg-opacity-20"
+          className="flex items-center gap-16 border-l-2 border-transparent px-24 py-8 hover:cursor-pointer hover:border-danger-300 hover:bg-danger-tint-1 hover:bg-opacity-20 hover:text-danger-300"
         >
           <Trash2 size={16} />
           <p>Keluar</p>

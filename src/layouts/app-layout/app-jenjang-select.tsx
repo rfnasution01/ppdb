@@ -16,9 +16,11 @@ import { useNavigate } from 'react-router-dom'
 export function AppJenjangSelect({
   jenjang,
   setJenjang,
+  kode,
 }: {
   jenjang: string
   setJenjang: Dispatch<SetStateAction<string>>
+  kode: string
 }) {
   const { firstPathname } = usePathname()
   const navigate = useNavigate()
@@ -53,7 +55,9 @@ export function AppJenjangSelect({
                 if (item.toLowerCase() !== jenjang.toLowerCase()) {
                   dispatch(setStateJenjang({ tingkatan: item?.toLowerCase() }))
                   setJenjang(item?.toLowerCase())
-                  navigate(`/${firstPathname}?jenjang=${item.toLowerCase()}`)
+                  navigate(
+                    `/${firstPathname}?jenjang=${item.toLowerCase()}&kode=${kode}`,
+                  )
                 }
               }}
               className={clsx('px-24 py-8 text-[2.6rem] hover:bg-slate-200', {

@@ -8,9 +8,12 @@ import { AppJenjangSelect } from './app-jenjang-select'
 import { useSelector } from 'react-redux'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import Loading from '@/components/atoms/Loading'
+import { JalurMasukType } from '@/libs/types'
+import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
 export default function AppLayout({ children }: { children: ReactNode }) {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
+  const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
   useEffect(() => {
@@ -26,14 +29,38 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   const isSD = jenjang?.toLowerCase() === 'sd'
   const isSMP = jenjang?.toLowerCase() === 'smp'
 
+  // --- Jalur Masuk ---
+  const [jalurMasuk, setJalurMasuk] = useState<JalurMasukType[]>([])
+  const { data: getJalurMasuk } = useGetJalurMasukQuery({ jenjang: jenjang })
+
+  useEffect(() => {
+    if (getJalurMasuk?.data) {
+      setJalurMasuk(getJalurMasuk?.data)
+    }
+  }, [getJalurMasuk?.data])
+
+  const kodeSekarang = jalurMasuk.find(
+    (item) => item?.kode.toLowerCase() === kodeParams,
+  )?.nama
+
   return (
     <div className="flex flex-col">
       {/* --- Header --- */}
       <div className="flex flex-col">
         {/* --- BreadCrumbs --- */}
-        <AppBreadcumbs isSD={isSD} isSMP={isSMP} jenjang={jenjang} />
+        <AppBreadcumbs
+          isSD={isSD}
+          isSMP={isSMP}
+          jenjang={jenjang}
+          kode={kodeSekarang}
+        />
         {/* --- Navigasi --- */}
-        <AppHeaderNavigasi isSD={isSD} isSMP={isSMP} jenjang={jenjang} />
+        <AppHeaderNavigasi
+          isSD={isSD}
+          isSMP={isSMP}
+          jenjang={jenjang}
+          kode={kodeParams}
+        />
       </div>
       {/* --- Content --- */}
       <div className="flex gap-32 px-[20rem] py-32 phones:px-32">
@@ -50,7 +77,11 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                   style={{ filter: isSD && 'hue-rotate(160deg)' }}
                 />
               </div>
-              <AppJenjangSelect jenjang={jenjang} setJenjang={setJenjang} />
+              <AppJenjangSelect
+                jenjang={jenjang}
+                setJenjang={setJenjang}
+                kode={kodeParams}
+              />
             </div>
             {/* --- Navigasi --- */}
             <div className="flex flex-col gap-0">
@@ -59,7 +90,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                   <IconComponent2
                     icon={item?.icon}
                     title={item?.title}
-                    link={`/${convertToSlug(item?.title)}?jenjang=${jenjang}`}
+                    link={`/${convertToSlug(item?.title)}?jenjang=${jenjang}&kode=${kodeParams}`}
                     isSD={isSD}
                     isSMP={isSMP}
                   />

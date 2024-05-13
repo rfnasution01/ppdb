@@ -19,6 +19,7 @@ export function ModalHeader({
   const { firstPathname } = usePathname()
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang') ?? 'sd'
+  const kodeParams = searchParams.get('kode') ?? 'zn'
   const isSD = jenjangParams === 'sd'
 
   const isActivePage = (item) => {
@@ -54,7 +55,7 @@ export function ModalHeader({
           <div className="grid grid-cols-12">
             {ListHeaderNavigation?.map((item, idx) => (
               <Link
-                to={`/${convertToSlug(item?.judul)}?jenjang=${isSD ? 'sd' : 'smp'}`}
+                to={`/${convertToSlug(item?.judul)}?jenjang=${isSD ? 'sd' : 'smp'}&kode${kodeParams}`}
                 onClick={() => setIsOpen(false)}
                 className={clsx(
                   'col-span-4 flex flex-col items-center gap-24 border p-32',
