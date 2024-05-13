@@ -1,1 +1,6 @@
 export * from './login-type'
+export * from './identitas-type'
+export * from './jalur-masuk-type'
+export * from './gelombang-type'
+export * from './sekilas-type'
+export * from './aturana-type'

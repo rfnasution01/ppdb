@@ -13,8 +13,15 @@ import { ModalAside } from './modal-aside'
 import { Link, useNavigate } from 'react-router-dom'
 import { ModalHeader } from './modal-header'
 import Cookies from 'js-cookie'
+import { InstansiData } from '@/libs/types'
 
-export function RootHeader() {
+export function RootHeader({
+  getIdentitas,
+  isLoading,
+}: {
+  getIdentitas: InstansiData
+  isLoading?: boolean
+}) {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [isShowAside, setIsShowAside] = useState<boolean>(false)
   const [isShowHeader, setIsShowHeader] = useState<boolean>(false)
@@ -39,11 +46,18 @@ export function RootHeader() {
           <List />
         </span>
         <Link to="/">
-          <img
-            src="/img/logo.png"
-            alt="logo"
-            className="h-[5.5rem] w-[34rem] phones:h-[4rem] phones:w-[25rem]"
-          />
+          {isLoading ? (
+            <div className="h-[5.5rem] w-[34rem] animate-pulse rounded-full bg-slate-200 font-roboto text-[3rem] duration-100 phones:h-[4rem] phones:w-[25rem]" />
+          ) : (
+            <div className="flex items-center gap-16">
+              <img
+                src={getIdentitas?.logo}
+                alt="Batu Bara"
+                className="h-[5.5rem] w-[5rem] phones:h-[4rem] phones:w-[4rem]"
+              />
+              <p className="phones:hidden">{getIdentitas?.nama}</p>
+            </div>
+          )}
         </Link>
       </div>
       <div className="flex items-center gap-24">
@@ -61,13 +75,15 @@ export function RootHeader() {
           </div>
         )}
 
-        <Link
-          to="/main"
-          onClick={() => setIsShow(true)}
-          className="flex items-center gap-x-8 rounded-lg bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900 hover:bg-opacity-90 phones:hidden"
-        >
-          <User2 size={16} /> <p>Informasi Saya</p>{' '}
-        </Link>
+        {token && (
+          <Link
+            to="/main"
+            onClick={() => setIsShow(true)}
+            className="flex items-center gap-x-8 rounded-lg bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900 hover:bg-opacity-90 phones:hidden"
+          >
+            <User2 size={16} /> <p>Informasi Saya</p>{' '}
+          </Link>
+        )}
 
         <div className="phones:hidden">
           {token ? (

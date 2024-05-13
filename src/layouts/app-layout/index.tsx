@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, Suspense, useEffect, useState } from 'react'
 import { AppBreadcumbs } from './app-breadcrumbs'
 import { AppHeaderNavigasi } from './app-header-navigasi'
 import { ListAsideNavigation } from '@/libs/dummy/list-aside-navigation'
@@ -7,6 +7,7 @@ import { convertToSlug } from '@/libs/helpers/format-text'
 import { AppJenjangSelect } from './app-jenjang-select'
 import { useSelector } from 'react-redux'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
+import Loading from '@/components/atoms/Loading'
 export default function AppLayout({ children }: { children: ReactNode }) {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
@@ -68,7 +69,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
         {/* --- Content --- */}
-        <div className="w-5/6 phones:w-full">{children}</div>
+        <div className="w-5/6 phones:w-full">
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </div>
       </div>
     </div>
   )
