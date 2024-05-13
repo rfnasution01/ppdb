@@ -24,7 +24,7 @@ export function AppBreadcumbs({
         'flex gap-32 px-[20rem] py-24 text-[2rem] text-white phones:px-32',
         {
           'bg-primary-background': isSMP,
-          'bg-danger-tint-4': isSD,
+          'bg-danger-300': isSD,
         },
       )}
     >

@@ -21,9 +21,9 @@ export function DaptarHeader({ showJenjang }: { showJenjang: string }) {
           <button
             type="button"
             className={clsx('rounded-lg px-24 py-12 text-white phones:w-full', {
-              'bg-primary-background hover:bg-primary-700':
+              'bg-primary hover:bg-primary-700':
                 showJenjang.toLowerCase() === 'smp',
-              'bg-danger-tint-4 hover:bg-danger-tint-3':
+              'bg-danger-100 hover:bg-danger-300':
                 showJenjang.toLowerCase() === 'sd',
             })}
           >

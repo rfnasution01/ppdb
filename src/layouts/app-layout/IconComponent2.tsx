@@ -31,7 +31,8 @@ export function IconComponent2({
   const isActivePage = (item: string) => {
     if (
       convertToSlug(item) === firstPathname ||
-      (item.toLowerCase() === 'beranda' && beranda.includes(firstPathname))
+      (item.toLowerCase() === 'beranda' && beranda.includes(firstPathname)) ||
+      (item.toLowerCase() === 'beranda' && firstPathname === 'daptar-akun')
     ) {
       return true
     }
@@ -41,20 +42,13 @@ export function IconComponent2({
   return (
     <Link
       to={link}
-      className={clsx('flex items-center gap-12 p-16', {
-        'rounded-lg bg-primary-400': isSMP && isActivePage(title),
-        'rounded-lg bg-danger-tint-1': isSD && isActivePage(title),
+      className={clsx('flex items-center gap-12 p-16 ', {
+        'rounded-lg bg-primary text-white': isSMP && isActivePage(title),
+        'rounded-lg bg-danger-100 text-white': isSD && isActivePage(title),
       })}
     >
       {icon}
-      <p
-        className={clsx('', {
-          'hover:text-primary-300 hover:underline': isSMP,
-          'hover:text-danger-tint-3 hover:underline': isSD,
-        })}
-      >
-        {title}
-      </p>
+      <p>{title}</p>
     </Link>
   )
 }

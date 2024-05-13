@@ -29,8 +29,8 @@ export function AppJenjangSelect({
       <MenubarMenu>
         <MenubarTrigger
           className={clsx('h-full rounded-2xl text-white', {
-            'bg-primary-background': jenjang === 'smp',
-            'bg-danger-tint-4': jenjang === 'sd',
+            'bg-primary': jenjang === 'smp',
+            'bg-danger-100': jenjang === 'sd',
           })}
           variant="outlined"
         >

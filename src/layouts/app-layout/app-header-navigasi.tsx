@@ -29,7 +29,7 @@ export function AppHeaderNavigasi({
         'flex items-center gap-32 px-[20rem] text-white phones:px-32',
         {
           'bg-primary': isSMP,
-          'bg-danger-tint-2': isSD,
+          'bg-danger-100': isSD,
         },
       )}
     >

@@ -35,11 +35,11 @@ export function IconComponent({
         'flex flex-col items-center gap-16 p-32 hover:bg-white',
         {
           'hover:text-primary-background': isSMP,
-          'hover:text-danger-tint-4': isSD,
+          'hover:text-danger-100': isSD,
         },
         {
           'bg-white text-primary-background': isActivePage(title) && isSMP,
-          'bg-white text-danger-tint-4': isActivePage(title) && isSD,
+          'bg-white text-danger-100': isActivePage(title) && isSD,
         },
       )}
     >
