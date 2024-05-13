@@ -1,11 +1,35 @@
-export function BerandaHeader({ showJenjang }: { showJenjang: string }) {
+import { NoData } from '@/components/atoms/NoData'
+import { SingleSkeleton } from '@/components/molecules/skeleton'
+import { SekilasType } from '@/libs/types'
+
+export function BerandaHeader({
+  showJenjang,
+  getSekilas,
+  isLoading,
+  kode,
+}: {
+  showJenjang: string
+  getSekilas: SekilasType
+  isLoading: boolean
+  kode: string
+}) {
   return (
-    <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
-      <p className="text-[3.6rem]">PPDB {showJenjang} Reguler</p>
-      <p className="font-nunito">
-        Berikut adalah sekilas informasi mengenai PPDB {showJenjang} Reguler di
-        Kab. Deli Serdang Periode 2024 / 2025.
-      </p>
+    <div className="flex flex-col gap-24 rounded-2xl border bg-white p-32 shadow-md">
+      {isLoading ? (
+        <>
+          <SingleSkeleton width="w-1/4" />
+          <SingleSkeleton height="h-[3rem]" width="w-4/6" />
+        </>
+      ) : getSekilas ? (
+        <>
+          <p className="text-[3.6rem]">
+            PPDB {showJenjang} {kode ?? 'Reguler'}
+          </p>
+          <div dangerouslySetInnerHTML={{ __html: getSekilas?.deskripsi }} />
+        </>
+      ) : (
+        <NoData />
+      )}
     </div>
   )
 }

@@ -1,14 +1,32 @@
-import { CircleHelp } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { NoData } from '@/components/atoms/NoData'
+import { SingleSkeleton } from '@/components/molecules/skeleton'
+import { SekilasType } from '@/libs/types'
 
-export function BerandaContent({ showJenjang }: { showJenjang: string }) {
+export function BerandaContent({
+  showJenjang,
+  getSekilas,
+  isLoading,
+}: {
+  showJenjang: string
+  getSekilas: SekilasType
+  isLoading: boolean
+}) {
+  console.log(showJenjang)
+
   return (
     <div
-      className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md"
+      className="flex flex-col gap-24 rounded-2xl border bg-white p-32 shadow-md"
       style={{ lineHeight: '130%' }}
     >
+      {isLoading ? (
+        <SingleSkeleton />
+      ) : getSekilas ? (
+        <div dangerouslySetInnerHTML={{ __html: getSekilas?.isi }} />
+      ) : (
+        <NoData />
+      )}
       {/* --- Title --- */}
-      <div className="font-nunito">
+      {/* <div className="font-nunito">
         Bagi masyarakat dan calon siswa dapat memanfaatkan fasilitas{' '}
         <Link
           to={`/pesan-anda?jenjang=${showJenjang.toLowerCase()}`}
@@ -26,33 +44,33 @@ export function BerandaContent({ showJenjang }: { showJenjang: string }) {
         </Link>{' '}
         dengan seksama sebelum melakukan proses pendaftaran. Demikian informasi
         ini dan terima kasih atas perhatian dan kerjasamanya.
-      </div>
+      </div> */}
       {/* --- Alur --- */}
-      <div className="grid grid-cols-12 gap-32">
+      {/* <div className="grid grid-cols-12 gap-32">
         <Link
           to=""
-          className="bg-warning-tint-2 col-span-4 flex flex-col gap-y-12 rounded-lg border border-warning-tint-1 p-32 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
+          className="col-span-4 flex flex-col gap-y-12 rounded-lg border border-warning-tint-1 bg-warning-tint-2 p-32 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
         >
           <p className="text-[2.8rem] font-bold">Mengisi Formulir</p>
           <p>Mengisi Formulir di Sekolah Tujuan</p>
         </Link>
         <Link
           to=""
-          className="bg-warning-tint-2 col-span-4 flex flex-col gap-y-12 rounded-lg border border-warning-tint-1 p-32 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
+          className="col-span-4 flex flex-col gap-y-12 rounded-lg border border-warning-tint-1 bg-warning-tint-2 p-32 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
         >
           <p className="text-[2.8rem] font-bold">Input Pendaftaran</p>
           <p>Input Pendaftaran Oleh Operator PPDB Sekolah</p>
         </Link>
         <Link
           to="/seleksi"
-          className="bg-warning-tint-2 col-span-4 flex flex-col gap-y-12 rounded-lg border border-warning-tint-1 p-32 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
+          className="col-span-4 flex flex-col gap-y-12 rounded-lg border border-warning-tint-1 bg-warning-tint-2 p-32 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
         >
           <p className="text-[2.8rem] font-bold">Memantau Hasil Seleksi</p>
           <p>Memantau Hasil Seleksi Siswa Memantau Hasil Seleksi</p>
         </Link>
-      </div>
+      </div> */}
       {/* --- Ask --- */}
-      <div className="flex flex-col gap-y-8 font-helvetica text-primary-900">
+      {/* <div className="flex flex-col gap-y-8 font-helvetica text-primary-900">
         {[
           'Mendaftar sebagai Peserta?',
           'Bagaimana Cara dan Aturan Pendaftaran?',
@@ -71,7 +89,7 @@ export function BerandaContent({ showJenjang }: { showJenjang: string }) {
             {item}
           </Link>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }
