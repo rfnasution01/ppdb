@@ -4,8 +4,18 @@ import * as zod from 'zod'
 import { daptarAkunSchema } from '@/libs/schema/daptar-akun-schema'
 import { Form } from '@/components/atoms/Form'
 import { FormDaptar } from './form-daptar'
+import { useEffect, useState } from 'react'
 
 export function FormDaptarAkun({ showJenjang }: { showJenjang: string }) {
+  const [first, setFirst] = useState(true)
+  const [isChecked, setIsChecked] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (first) {
+      setFirst(false)
+    }
+  }, [first])
+
   const form = useForm<zod.infer<typeof daptarAkunSchema>>({
     resolver: zodResolver(daptarAkunSchema),
     defaultValues: {},
@@ -14,6 +24,7 @@ export function FormDaptarAkun({ showJenjang }: { showJenjang: string }) {
   const handleFormLogin = (values) => {
     console.log(values)
   }
+
   return (
     <Form {...form}>
       <form
@@ -22,7 +33,12 @@ export function FormDaptarAkun({ showJenjang }: { showJenjang: string }) {
       >
         <div className="scrollbar flex h-full flex-1 flex-col gap-32 overflow-auto pb-32">
           {/* --- Informasi Pribadi --- */}
-          <FormDaptar form={form} showJenjang={showJenjang} />
+          <FormDaptar
+            form={form}
+            showJenjang={showJenjang}
+            setIsChecked={setIsChecked}
+            isChecked={isChecked}
+          />
         </div>
         {/* --- button --- */}
         <div className="flex items-center justify-between bg-primary-50 p-32">

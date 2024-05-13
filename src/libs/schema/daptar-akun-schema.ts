@@ -39,12 +39,20 @@ export const daptarAkunSchema = zod
       required_error: 'Tanggal lahit harus di isi',
       invalid_type_error: 'Format tanggal lahir tidak valid',
     }),
+    isChecked: zod
+      .boolean({
+        required_error: 'Harus dicentang',
+        invalid_type_error: 'Harus berupa boolean',
+      })
+      .refine((value) => value === true, {
+        message: 'Harus dicentang',
+      }),
   })
   .refine((values) => values.nik === values.konfirmasi_nik, {
-    message: 'NIK harus sama dengan Konfirmasi NIK',
+    message: 'Konfirmasi NIK harus sama dengan NIK',
     path: ['konfirmasi_nik'],
   })
   .refine((values) => values.tgl_lahir === values.konfirmasi_tgl_lahir, {
-    message: 'NIK harus sama dengan Konfirmasi NIK',
+    message: 'Konfirmasi tanggal lahir harus sama dengan tanggal lahir',
     path: ['konfirmasi_tgl_lahir'],
   })
