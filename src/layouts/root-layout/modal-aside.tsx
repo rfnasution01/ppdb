@@ -5,7 +5,7 @@ import { usePathname } from '@/libs/hooks/usePathname'
 import { getJenjangSlice, setStateJenjang } from '@/store/reducer/stateJenjang'
 import clsx from 'clsx'
 import Cookies from 'js-cookie'
-import { DoorClosed, DoorOpen } from 'lucide-react'
+import { DoorClosed, DoorOpen, User2 } from 'lucide-react'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -150,15 +150,26 @@ export function ModalAside({
           </div>
 
           {token ? (
-            <div
-              onClick={() => handleLogout()}
-              className="flex items-center gap-16 border-b pl-16"
-            >
-              <div className="flex items-center gap-16 p-16">
-                <DoorOpen size={16} />
-                <p className="text-[2.4rem]">Logout</p>
+            <>
+              <Link
+                to="/main"
+                className="flex items-center gap-16 border-b pl-16"
+              >
+                <div className="flex items-center gap-16 p-16">
+                  <User2 size={16} />
+                  <p className="text-[2.4rem]">Informasi Saya</p>
+                </div>
+              </Link>
+              <div
+                onClick={() => handleLogout()}
+                className="flex items-center gap-16 border-b pl-16"
+              >
+                <div className="flex items-center gap-16 p-16">
+                  <DoorOpen size={16} />
+                  <p className="text-[2.4rem]">Logout</p>
+                </div>
               </div>
-            </div>
+            </>
           ) : (
             <Link
               to="/login"

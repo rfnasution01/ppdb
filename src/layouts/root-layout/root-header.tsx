@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import { ModalSearch } from './modal-search'
-import { DoorClosed, DoorOpen, LayoutGrid, List, Search } from 'lucide-react'
+import {
+  DoorClosed,
+  DoorOpen,
+  LayoutGrid,
+  List,
+  Search,
+  User2,
+} from 'lucide-react'
 import { Searching } from '@/components/atoms/Search'
 import { ModalAside } from './modal-aside'
 import { Link, useNavigate } from 'react-router-dom'
@@ -47,6 +54,20 @@ export function RootHeader() {
         >
           <Search size={16} /> <p>Cari</p>{' '}
         </button>
+
+        {token && (
+          <div className="h-full phones:hidden">
+            <div className="mx-16 h-full w-1 border-l border-slate-100" />
+          </div>
+        )}
+
+        <Link
+          to="/main"
+          onClick={() => setIsShow(true)}
+          className="flex items-center gap-x-8 rounded-lg bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900 hover:bg-opacity-90 phones:hidden"
+        >
+          <User2 size={16} /> <p>Informasi Saya</p>{' '}
+        </Link>
 
         <div className="phones:hidden">
           {token ? (
