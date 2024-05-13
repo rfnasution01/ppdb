@@ -1,4 +1,6 @@
+import Tooltips from '@/components/atoms/Tooltip'
 import { setStateJenjang } from '@/store/reducer/stateJenjang'
+import { CircleAlert } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -8,12 +10,14 @@ export function IconComponent({
   link,
   isSD,
   isSMP,
+  informasi,
 }: {
   icon?: JSX.Element
   title?: string
   link?: string
   isSD?: boolean
   isSMP?: boolean
+  informasi?: string
 }) {
   const dispatch = useDispatch()
 
@@ -31,6 +35,10 @@ export function IconComponent({
     >
       {icon}
       <p>{title}</p>
+      <Tooltips
+        triggerComponent={<CircleAlert size={16} />}
+        tooltipContent={<div dangerouslySetInnerHTML={{ __html: informasi }} />}
+      />
     </Link>
   )
 }
