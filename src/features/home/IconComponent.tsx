@@ -35,10 +35,14 @@ export function IconComponent({
     >
       {icon}
       <p>{title}</p>
-      <Tooltips
-        triggerComponent={<CircleAlert size={16} />}
-        tooltipContent={<div dangerouslySetInnerHTML={{ __html: informasi }} />}
-      />
+      <div className="phones:hidden">
+        <Tooltips
+          triggerComponent={<CircleAlert size={16} />}
+          tooltipContent={
+            <div dangerouslySetInnerHTML={{ __html: informasi }} />
+          }
+        />
+      </div>
     </Link>
   )
 }

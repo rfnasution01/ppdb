@@ -29,7 +29,6 @@ export default function RootLayout() {
   return (
     <main className="scrollbar flex h-screen flex-col overflow-auto text-[2.4rem] text-slate-700 phones:text-[2.8rem]">
       <RootHeader getIdentitas={identitas} isLoading={isLoading} />
-      <p>{identitas?.background}</p>
       <div className="scrollbar h-full flex-1 overflow-auto">
         <div
           className={`flex flex-col ${isRoot ? 'gap-64' : 'gap-0'} overflow-auto font-helvetica`}

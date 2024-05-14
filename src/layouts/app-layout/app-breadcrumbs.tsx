@@ -33,7 +33,7 @@ export function AppBreadcumbs({
       <div className="w-1/6 phones:hidden"></div>
       <div className="flex w-5/6 flex-nowrap items-center gap-8">
         <Link to="/" className="phones:text-nowrap">
-          Kab. Deli Serdang
+          Kab. Batu Bara
         </Link>
         <span>
           <ChevronRight size={16} />
