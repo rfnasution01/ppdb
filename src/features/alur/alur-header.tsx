@@ -1,11 +1,29 @@
-export function AlurHeader({ showJenjang }: { showJenjang: string }) {
+import { NoData } from '@/components/atoms/NoData'
+import { JudulSkeleton } from '@/components/molecules/skeleton'
+import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
+import { AlurType } from '@/libs/types'
+
+export function AlurHeader({
+  getAlur,
+  isLoading,
+}: {
+  getAlur: AlurType
+  isLoading: boolean
+}) {
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
-      <p className="text-[3.6rem]">Alur Pelaksanaan Reguler</p>
-      <p className="font-nunito">
-        Berikut adalah penjelasan dari alur pelaksanaan PPDB {showJenjang}{' '}
-        Reguler di Kab. Deli Serdang Periode 2024 / 2025.
-      </p>
+      {isLoading ? (
+        <JudulSkeleton />
+      ) : getAlur ? (
+        <>
+          <p className="text-[3.6rem]">
+            {capitalizeFirstLetterFromLowercase(getAlur?.judul)}
+          </p>
+          <p className="font-nunito">{getAlur?.deskripsi}</p>
+        </>
+      ) : (
+        <NoData />
+      )}
     </div>
   )
 }

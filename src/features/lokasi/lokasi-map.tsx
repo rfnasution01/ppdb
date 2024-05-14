@@ -1,4 +1,4 @@
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 
@@ -14,14 +14,14 @@ export const LokasiMap = ({
   return (
     <MapContainer
       center={[latitude, longitude]}
-      zoom={13}
+      zoom={17}
       style={{ height: '500px' }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Marker position={[latitude, longitude]}>
-        <Popup>
+        <Tooltip sticky>
           <p className="text-[3rem]">{description}</p>
-        </Popup>
+        </Tooltip>
       </Marker>
     </MapContainer>
   )
