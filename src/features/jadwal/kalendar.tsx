@@ -14,6 +14,9 @@ export function Calendars() {
       <Calendar
         onChange={onChange}
         value={value}
+        calendarType="iso8601"
+        defaultView="month"
+        locale="id"
         className="custom-calendar rounded-2xl"
       />
     </div>

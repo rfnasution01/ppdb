@@ -1,15 +1,14 @@
 import { AturanContent, AturanHeader } from '@/features/aturan'
-import { AturanType, JalurMasukType } from '@/libs/types'
+import { AturanType } from '@/libs/types'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetAturanQuery } from '@/store/slices/aturanAPI'
-import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 export default function Aturan() {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
-  const kodeParams = searchParams.get('kode')
+  const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function Aturan() {
 
   console.log(showJenjang)
 
-  // --- Beranda ---
+  // --- Aturan ---
   const [aturan, setAturan] = useState<AturanType>()
   const {
     data: getAturan,
@@ -41,22 +40,6 @@ export default function Aturan() {
       setAturan(getAturan?.data)
     }
   }, [getAturan?.data])
-
-  // --- Jalur Masuk ---
-  const [jalurMasuk, setJalurMasuk] = useState<JalurMasukType[]>([])
-  const { data: getJalurMasuk } = useGetJalurMasukQuery({ jenjang: jenjang })
-
-  useEffect(() => {
-    if (getJalurMasuk?.data) {
-      setJalurMasuk(getJalurMasuk?.data)
-    }
-  }, [getJalurMasuk?.data])
-
-  const kodeSekarang = jalurMasuk.find(
-    (item) => item?.kode.toLowerCase() === kodeParams,
-  )?.nama
-
-  console.log(kodeSekarang)
 
   return (
     <div className="flex w-full flex-col gap-32">

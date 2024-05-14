@@ -1,4 +1,5 @@
 import { Column } from '@/components/atoms/Table'
+import { JadwalIsiType } from '../types'
 
 type ListLokasiType = {
   lokasi: string
@@ -13,13 +14,6 @@ type ListLokasiType = {
   rentang: number
   jumlah: number
   kumulatif: number
-}
-
-type ListJadwal = {
-  kegiatan: string
-  lokasi: string
-  hari: string
-  waktu: string
 }
 
 export const columnsListLokasi: Column<ListLokasiType>[] = [
@@ -116,9 +110,9 @@ export const columnsListNun: Column<ListLokasiType>[] = [
   { header: 'Kumulatif', key: 'kumulatif', width: '!min-w-[12rem]' },
 ]
 
-export const columnsListJadwal: Column<ListJadwal>[] = [
+export const columnsListJadwal: Column<JadwalIsiType>[] = [
   { header: 'Kegiatan', key: 'kegiatan', width: '!min-w-[12rem]' },
   { header: 'lokasi', key: 'lokasi', width: '!min-w-[12rem]' },
-  { header: 'hari', key: 'hari', width: '!min-w-[12rem]' },
+  { header: 'tanggal', key: 'tanggal', width: '!min-w-[12rem]' },
   { header: 'waktu', key: 'waktu', width: '!min-w-[12rem]' },
 ]

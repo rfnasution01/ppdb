@@ -1,5 +1,5 @@
 import { NoData } from '@/components/atoms/NoData'
-import { SingleSkeleton } from '@/components/molecules/skeleton'
+import { JudulSkeleton } from '@/components/molecules/skeleton'
 import { SekilasType } from '@/libs/types'
 
 export function BerandaHeader({
@@ -17,8 +17,7 @@ export function BerandaHeader({
     <div className="flex flex-col gap-24 rounded-2xl border bg-white p-32 shadow-md">
       {isLoading ? (
         <>
-          <SingleSkeleton width="w-1/4" />
-          <SingleSkeleton height="h-[3rem]" width="w-4/6" />
+          <JudulSkeleton />
         </>
       ) : getSekilas ? (
         <>
