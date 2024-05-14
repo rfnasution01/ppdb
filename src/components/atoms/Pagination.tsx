@@ -1,70 +1,51 @@
-import { useSearch } from '@/libs/hooks/useSearch'
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-} from 'lucide-react'
+import clsx from 'clsx'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Dispatch, SetStateAction } from 'react'
 
-interface PaginationProps {
-  classes?: string
-  totalPage: number
-}
-
-export const Pagination = ({ classes = '', totalPage }: PaginationProps) => {
-  const { currentPage, onPageChange } = useSearch()
-
+export const Pagination = ({
+  numberStart,
+  dataPerPage,
+  setNumberStart,
+  pageNow,
+  maxPage,
+}: {
+  numberStart: number
+  dataPerPage: number
+  setNumberStart: Dispatch<SetStateAction<number>>
+  pageNow: number
+  maxPage: number
+}) => {
   return (
-    <div className={`flex items-center gap-12 font-helvetica ${classes}`}>
-      <div className="flex items-center gap-12">
-        <button
-          className="rounded-md disabled:cursor-not-allowed"
-          onClick={() => {
-            onPageChange(1)
-          }}
-          disabled={currentPage === 1}
-          aria-disabled={currentPage === 1}
-        >
-          <ChevronsLeft width={16} height={16} />
-        </button>
-        <button
-          className="rounded-md disabled:cursor-not-allowed"
-          onClick={() => {
-            onPageChange(currentPage - 1)
-          }}
-          disabled={currentPage === 1}
-          aria-disabled={currentPage === 1}
-        >
-          <ChevronLeft width={16} height={16} />
-        </button>
-      </div>
-      <div className="flex items-center gap-8">
-        <span>{currentPage}</span>
-        <span>of</span>
-        <span>{totalPage}</span>
-      </div>
-      <div className="flex items-center gap-12">
-        <button
-          className="rounded-md disabled:cursor-not-allowed"
-          onClick={() => {
-            onPageChange(currentPage + 1)
-          }}
-          disabled={currentPage === totalPage}
-          aria-disabled={currentPage === totalPage}
-        >
-          <ChevronRight width={16} height={16} />
-        </button>
-        <button
-          className="rounded-md disabled:cursor-not-allowed"
-          onClick={() => {
-            onPageChange(totalPage)
-          }}
-          disabled={currentPage === totalPage}
-          aria-disabled={currentPage === totalPage}
-        >
-          <ChevronsRight width={16} height={16} />
-        </button>
-      </div>
+    <div className="flex items-center gap-24">
+      <span
+        className={clsx('border p-4', {
+          'hover:cursor-pointer': numberStart - dataPerPage >= 0,
+          'hover:cursor-not-allowed': numberStart - dataPerPage < 0,
+        })}
+        onClick={() => {
+          if (numberStart - dataPerPage >= 0) {
+            setNumberStart(numberStart - dataPerPage)
+          }
+        }}
+      >
+        <ChevronLeft />
+      </span>
+      <p>
+        <span className="text-rose-950">{pageNow + 1}</span> / {maxPage}
+      </p>
+      <span
+        className={clsx('border p-4', {
+          'hover:cursor-pointer': pageNow < maxPage - 1,
+          'hover:cursor-not-allowed': pageNow >= maxPage - 1,
+        })}
+        onClick={() => {
+          if (pageNow < maxPage - 1) {
+            setNumberStart(numberStart + dataPerPage)
+          }
+        }}
+      >
+        <ChevronRight />
+      </span>
     </div>
   )
 }

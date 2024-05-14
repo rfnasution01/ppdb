@@ -11,7 +11,7 @@ export function JadwalHeader({
   isLoading: boolean
 }) {
   return (
-    <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
+    <div className="flex flex-col gap-24 rounded-2xl border bg-white p-32 shadow-md">
       {isLoading ? (
         <JudulSkeleton />
       ) : getJadwal ? (

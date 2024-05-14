@@ -1,7 +1,8 @@
 import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import { TimeflowLoading } from './TimeflowLoading'
-import { ArrowDown01, BarChart, ChevronDown } from 'lucide-react'
+import { ArrowDown01, BarChart, ChevronDown, MapPin } from 'lucide-react'
+import { ModalLokasi } from '@/features/lokasi/modal-lokasi'
 
 export type Column<T> = {
   header: string
@@ -21,6 +22,9 @@ type Props<T, P> = {
   collapseComponent?: React.ReactNode
   checkbox?: boolean
   isStatistik?: boolean
+  isLokasi?: boolean
+  latitude?: number
+  longitude?: number
 }
 
 export function Table<T, P>({
@@ -34,11 +38,14 @@ export function Table<T, P>({
   collapseComponent,
   checkbox,
   isStatistik,
+  isLokasi,
 }: Props<T, P>) {
   const [rowIsOpen, setRowIsOpen] = useState<number | null>(null)
+  const [lokasiIsOpen, setLokasiIsOpen] = useState<number | null>(null)
 
   const columnArray =
     typeof columns === 'function' ? columns(columnProps as P) : columns
+  const [isShowLokasi, setIsShowLokasi] = useState<boolean>(false)
 
   return (
     <div className={`rounded-2xl ${containerClasses}`}>
@@ -76,6 +83,13 @@ export function Table<T, P>({
                     </th>
                   )}
 
+                  {/* ----- Lokasi ----- */}
+                  {isLokasi && (
+                    <th className="sticky top-0 w-[10%] border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
+                      Peta
+                    </th>
+                  )}
+
                   {/* ----- Detail Header ----- */}
                   {collapseComponent && (
                     <th className="sticky right-0 top-0 bg-white p-16 text-left">
@@ -91,7 +105,7 @@ export function Table<T, P>({
                   <Fragment key={rowIndex}>
                     <tr
                       className={clsx(
-                        'hover:bg-warning-tint-2 border-b-[1.6rem] border-transparent transition-all ease-in odd:bg-surface-disabled hover:cursor-pointer',
+                        'border-b-[1.6rem] border-transparent transition-all ease-in odd:bg-surface-disabled hover:cursor-pointer hover:bg-warning-tint-2',
                       )}
                       onClick={onItemClick ? () => onItemClick(row) : undefined}
                     >
@@ -120,6 +134,23 @@ export function Table<T, P>({
                             </span>
                             <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
                               <BarChart size={16} />
+                            </span>
+                          </div>
+                        </td>
+                      )}
+
+                      {/* ----- Lokasi ----- */}
+                      {isLokasi && (
+                        <td className="w-[10%] px-24 py-12 leading-medium">
+                          <div className="flex items-center gap-8">
+                            <span
+                              onClick={() => {
+                                setLokasiIsOpen(rowIndex)
+                                setIsShowLokasi(true)
+                              }}
+                              className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
+                            >
+                              <MapPin size={16} />
                             </span>
                           </div>
                         </td>
@@ -172,6 +203,14 @@ export function Table<T, P>({
                           </div>
                         </td>
                       </tr>
+                    )}
+
+                    {rowIndex === lokasiIsOpen && (
+                      <ModalLokasi
+                        isOpen={isShowLokasi}
+                        setIsOpen={setIsShowLokasi}
+                        row={row}
+                      />
                     )}
                   </Fragment>
                 ))}
