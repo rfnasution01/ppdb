@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 export default function Daptar() {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
+  const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
   useEffect(() => {
@@ -22,7 +23,11 @@ export default function Daptar() {
 
   return (
     <div className="flex w-full flex-col gap-32">
-      <DaptarHeader showJenjang={showJenjang} />
+      <DaptarHeader
+        kode={kodeParams}
+        jenjang={showJenjang?.toLowerCase()}
+        showJenjang={showJenjang}
+      />
       <DaptarContent showJenjang={showJenjang} />
     </div>
   )

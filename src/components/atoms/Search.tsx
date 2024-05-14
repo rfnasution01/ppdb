@@ -3,7 +3,7 @@ import { debounce } from 'lodash'
 import { Search } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 
-export function Searching({ width }: { width?: string }) {
+export function Searching({ width = 'w-full' }: { width?: string }) {
   const dispatch = useDispatch()
 
   const handleSearch = debounce((searchValue: string) => {
@@ -26,7 +26,7 @@ export function Searching({ width }: { width?: string }) {
     <div className="flex w-full">
       <input
         type="text"
-        className={`${width} w-full rounded-l-full border border-gray-300 px-24 py-16 text-[2.8rem] transition duration-150 focus:border-indigo-500 focus:shadow-2xl focus:outline-none focus:ring-indigo-500 phones:w-full phones:text-[2rem]`}
+        className={`${width} rounded-l-full border border-gray-300 px-24 py-16 text-[2.8rem] transition duration-150 focus:border-indigo-500 focus:shadow-2xl focus:outline-none focus:ring-indigo-500 phones:w-full phones:text-[2rem]`}
         placeholder="Search"
         style={{
           borderTopLeftRadius: '1rem',

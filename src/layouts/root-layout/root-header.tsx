@@ -135,7 +135,7 @@ export function RootHeader({
               menuliskan No. Pendaftaran / No. Peserta
             </p>
             <div className="flex-1 phones:w-full">
-              <Searching width="100%" />
+              <Searching />
             </div>
           </div>
         }

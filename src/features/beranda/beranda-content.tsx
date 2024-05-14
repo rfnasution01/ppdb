@@ -76,7 +76,7 @@ export function BerandaContent({
                     <span className="font-bold">
                       {dayjs(item?.tgl_pengumuman)
                         .locale('id')
-                        .format('DD MMMM YYYY hh:mm')}
+                        .format('DD MMMM YYYY hh:mm A')}
                     </span>
                   </p>
                 </div>
