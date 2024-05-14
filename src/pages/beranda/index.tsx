@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 export default function Beranda() {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
-  const kodeParams = searchParams.get('kode')
+  const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
   useEffect(() => {

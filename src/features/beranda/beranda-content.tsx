@@ -1,6 +1,9 @@
 import { NoData } from '@/components/atoms/NoData'
 import { SingleSkeleton } from '@/components/molecules/skeleton'
-import { SekilasType } from '@/libs/types'
+import { GelombangType, SekilasType } from '@/libs/types'
+import { useGetGelombangQuery } from '@/store/slices/gelombangAPI'
+import { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
 
 export function BerandaContent({
   showJenjang,
@@ -12,12 +15,76 @@ export function BerandaContent({
   isLoading: boolean
 }) {
   console.log(showJenjang)
+  // --- Gelombang ---
+  const [gelombang, setGekombang] = useState<GelombangType[]>([])
+  const {
+    data: getGelombang,
+    isLoading: isLoadingGelombang,
+    isFetching: isFetchingGelombang,
+  } = useGetGelombangQuery({
+    jenjang: showJenjang.toLowerCase(),
+  })
+
+  const isLoadingGetGelombang = isLoadingGelombang || isFetchingGelombang
+
+  useEffect(() => {
+    if (getGelombang?.data) {
+      setGekombang(getGelombang?.data)
+    }
+  }, [getGelombang?.data])
 
   return (
     <div
       className="flex flex-col gap-24 rounded-2xl border bg-white p-32 shadow-md"
       style={{ lineHeight: '130%' }}
     >
+      {/* --- Gelombang --- */}
+      <div className="grid grid-cols-12 gap-32">
+        {isLoadingGetGelombang ? (
+          <div className="col-span-4 flex flex-col gap-12 rounded-2xl p-24 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12">
+            <SingleSkeleton height="h-[3.2rem]" width="w-2/5" />
+            <SingleSkeleton height="h-[2.4rem]" />
+            <SingleSkeleton height="h-[2.4rem]" />
+          </div>
+        ) : gelombang?.length === 0 ? (
+          <div className="col-span-4 phones:col-span-12" />
+        ) : (
+          <>
+            {gelombang?.map((item, idx) => (
+              <div
+                className="col-span-4 flex items-center gap-24 rounded-2xl p-24 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
+                key={idx}
+              >
+                <div className="flex flex-1 flex-col">
+                  <p className="font-bold">{item?.nama}</p>
+                  <div className="text-[2rem] font-light phones:text-[2.4rem]">
+                    Pendaftaran:{' '}
+                    <span>
+                      {dayjs(item?.tgl_awal_daftar)
+                        .locale('id')
+                        .format('DD MMMM YYYY')}
+                    </span>{' '}
+                    -{' '}
+                    <span>
+                      {dayjs(item?.tgl_akhir_daftar)
+                        .locale('id')
+                        .format('DD MMMM YYYY')}
+                    </span>
+                  </div>
+                  <p className="text-[2rem] font-light phones:text-[2.4rem]">
+                    Pengumuman:{' '}
+                    <span className="font-bold">
+                      {dayjs(item?.tgl_pengumuman)
+                        .locale('id')
+                        .format('DD MMMM YYYY hh:mm')}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
       {isLoading ? (
         <SingleSkeleton />
       ) : getSekilas ? (

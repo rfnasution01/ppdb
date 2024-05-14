@@ -24,7 +24,7 @@ export function Accordion({
       </div>
       {isActive && (
         <div className="border-b border-l border-r bg-white px-32 py-16 text-[2.2rem] duration-300">
-          {content}
+          <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
       )}
     </div>
