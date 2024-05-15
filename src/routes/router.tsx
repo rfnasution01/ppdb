@@ -22,6 +22,7 @@ import {
   MainLayout,
   PendaftaranPage,
   ProfilPage,
+  ComingSoonPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -124,6 +125,22 @@ export const router = createBrowserRouter([
             element: <ProfilPage />,
           },
         ],
+      },
+      {
+        path: 'verifikasi',
+        element: <ComingSoonPage />,
+      },
+      {
+        path: 'pengumuman',
+        element: <ComingSoonPage />,
+      },
+      {
+        path: 'daftar-ulang',
+        element: <ComingSoonPage />,
+      },
+      {
+        path: 'kotak-masuk',
+        element: <ComingSoonPage />,
       },
     ],
   },

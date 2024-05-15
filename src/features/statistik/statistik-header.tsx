@@ -1,11 +1,33 @@
-export function StatistikHeader({ showJenjang }: { showJenjang: string }) {
+import { NoData } from '@/components/atoms/NoData'
+import { JudulSkeleton } from '@/components/molecules/skeleton'
+import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
+import { StatistikType } from '@/libs/types'
+
+export function StatistikHeader({
+  showJenjang,
+  getStatistik,
+  isLoading,
+}: {
+  showJenjang: string
+  getStatistik: StatistikType
+  isLoading: boolean
+}) {
+  console.log({ showJenjang })
+
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
-      <p className="text-[3.6rem]">Statistik Reguler</p>
-      <p className="font-nunito">
-        Halaman ini berisi statistik PPDB {showJenjang} reg di Kab. Batu Bara
-        Periode 2024 / 2025.
-      </p>
+      {isLoading ? (
+        <JudulSkeleton />
+      ) : getStatistik ? (
+        <>
+          <p className="text-[3.6rem]">
+            {capitalizeFirstLetterFromLowercase(getStatistik?.judul)}
+          </p>
+          <p className="font-nunito">{getStatistik?.deskripsi}</p>
+        </>
+      ) : (
+        <NoData />
+      )}
     </div>
   )
 }
