@@ -22,17 +22,20 @@ export const informasiPribadiSchema = zod.object({
     invalid_type_error: 'Format jenis kelamin tidak valid',
   }),
   nik: zod
-    .string()
-    .refine((value) => value.length === 16 && /^\d+$/.test(value), {
-      message:
-        'NIK harus terdiri dari 16 karakter dan hanya boleh berisi angka',
-      path: ['nik'],
+    .string({
+      required_error: 'NIK harus di isi',
+      invalid_type_error: 'Format NIK tidak valid',
+    })
+    .refine((value) => value.length === 16, {
+      message: 'NIK harus terdiri dari 16 angka',
     }),
   kk: zod
-    .string()
-    .refine((value) => value.length === 16 && /^\d+$/.test(value), {
-      message: 'KK harus terdiri dari 16 karakter dan hanya boleh berisi angka',
-      path: ['kk'],
+    .string({
+      required_error: 'KK harus di isi',
+      invalid_type_error: 'Format KK tidak valid',
+    })
+    .refine((value) => value.length === 16, {
+      message: 'KK harus terdiri dari 16 angka',
     }),
   no_hp: zod.string({
     required_error: 'No. Hp harus di isi',

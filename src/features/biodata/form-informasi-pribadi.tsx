@@ -1,31 +1,60 @@
 import { FormListAgama } from '@/components/molecules/form/formListAgama'
 import { FormListJenisKelamin } from '@/components/molecules/form/formListJenisKelamin'
-import { FormLabelInput } from '@/components/molecules/input'
 import { UseFormReturn } from 'react-hook-form'
+import { FormLabelComponent } from './form-label-component'
 
 export function FormBiodata({ form }: { form: UseFormReturn }) {
   return (
-    <div className="flex flex-col gap-12">
-      <FormLabelInput
+    <div className="flex flex-col gap-16 phones:gap-32">
+      <FormLabelComponent
         form={form}
-        label="Nama Lengkap*"
-        placeholder="Masukkan nama lengkap anda"
         name="nama_lengkap"
+        label="Nama Lengkap*"
+        placeHolder="Masukkan nama lengkap anda"
         type="text"
       />
-      <FormLabelInput
+
+      <FormLabelComponent
         form={form}
-        label="Tanggal Lahir*"
-        placeholder="Masukkan tanggal lahir anda"
         name="tgl_lahir"
+        label="Tanggal Lahir*"
+        placeHolder="Masukkan tanggal lahir anda anda"
         type="date"
       />
-      <FormLabelInput
+
+      <FormLabelComponent
         form={form}
-        label="Tempat Lahir*"
-        placeholder="Masukkan tempat lahir lengkap anda"
         name="tempat_lahir"
+        label="Tempat Lahir*"
+        placeHolder="Masukkan tempat lahir anda"
         type="text"
+      />
+
+      <FormLabelComponent
+        form={form}
+        name="nik"
+        label="NIK*"
+        placeHolder="Masukkan NIK anda"
+        type="text"
+        isNumber
+      />
+
+      <FormLabelComponent
+        form={form}
+        name="kk"
+        label="KK*"
+        placeHolder="Masukkan KK anda"
+        type="text"
+        isNumber
+      />
+
+      <FormLabelComponent
+        form={form}
+        name="no_hp"
+        label="No. Hp*"
+        placeHolder="Masukkan No. Hp anda"
+        type="text"
+        isNumber
       />
 
       <FormListJenisKelamin
@@ -40,30 +69,6 @@ export function FormBiodata({ form }: { form: UseFormReturn }) {
         placeholder="Pilih agama"
         headerLabel="Agama*"
         form={form}
-      />
-
-      <FormLabelInput
-        form={form}
-        label="NIK*"
-        placeholder="Masukkan NIK anda"
-        name="nik"
-        type="number"
-      />
-
-      <FormLabelInput
-        form={form}
-        label="No. KK*"
-        placeholder="Masukkan No. KK anda"
-        name="kk"
-        type="number"
-      />
-
-      <FormLabelInput
-        form={form}
-        label="No. Hp*"
-        placeholder="Masukkan No. Hp anda"
-        name="no_hp"
-        type="number"
       />
     </div>
   )

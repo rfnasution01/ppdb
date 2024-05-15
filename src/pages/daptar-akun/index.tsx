@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 export default function DaptarAkun() {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
+  const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function DaptarAkun() {
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
       <p className="text-[3.6rem]">Daftar Akun {showJenjang}</p>
       <hr className="w-full border" />
-      <FormDaptarAkun showJenjang={showJenjang} />
+      <FormDaptarAkun showJenjang={showJenjang} jalur={kodeParams} />
     </div>
   )
 }

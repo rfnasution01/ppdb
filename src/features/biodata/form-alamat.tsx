@@ -1,6 +1,6 @@
 import { FormListAgama } from '@/components/molecules/form/formListAgama'
-import { FormLabelInput } from '@/components/molecules/input'
 import { UseFormReturn } from 'react-hook-form'
+import { FormLabelComponent } from './form-label-component'
 
 export function FormAlamat({ form }: { form: UseFormReturn }) {
   return (
@@ -32,19 +32,19 @@ export function FormAlamat({ form }: { form: UseFormReturn }) {
         form={form}
       />
 
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
-        label="Dusun*"
-        placeholder="Masukkan dusun anda"
         name="dusun"
+        label="Dusun"
+        placeHolder="Masukkan nama dusun anda"
         type="text"
       />
 
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
-        label="Alamat*"
-        placeholder="Masukkan alamat anda"
         name="alamat"
+        label="Alamat*"
+        placeHolder="Masukkan alamat anda"
         type="text"
       />
     </div>

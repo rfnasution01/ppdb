@@ -99,7 +99,10 @@ export default function Pendaftaran() {
             {name === 'jalur-pendaftaran' ? (
               <BiodataJalur setName={setName} setActiveIndex={setActiveIndex} />
             ) : name === 'informasi-pribadi' ? (
-              <BiodataPribadi />
+              <BiodataPribadi
+                setName={setName}
+                setActiveIndex={setActiveIndex}
+              />
             ) : name === 'pendidikan-sebelumnya' ? (
               <BiodataPendidikan />
             ) : name === 'orang-tua' ? (

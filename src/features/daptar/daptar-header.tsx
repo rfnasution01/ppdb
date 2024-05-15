@@ -3,6 +3,9 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ModalDaptar } from './modal-lokasi'
 import { PilihSekolahType } from '@/pages/daptar'
+import { DaptarAkunType } from '@/libs/types/daptar-akun'
+import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
+import { SingleSkeleton } from '@/components/molecules/skeleton'
 
 export function DaptarHeader({
   jenjang,
@@ -10,24 +13,34 @@ export function DaptarHeader({
   showJenjang,
   pilihSekolah,
   setPilihSekolah,
+  getDaftarAkun,
+  isLoading,
 }: {
   jenjang: string
   kode: string
   showJenjang: string
   pilihSekolah: PilihSekolahType
   setPilihSekolah: Dispatch<SetStateAction<PilihSekolahType>>
+  getDaftarAkun: DaptarAkunType
+  isLoading: boolean
 }) {
   const [isShow, setIsShow] = useState<boolean>(false)
 
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
-      <p className="text-[3.6rem]">Pendaftaran Reguler</p>
-      <div className="flex items-center gap-64 phones:flex-col phones:gap-32">
-        <p className="font-nunito">
-          Berikut informasi mengenai pendaftaran PPDB {showJenjang} Reguler di
-          Dinas Pendidikan Pemuda dan Olahraga Kab. Batu Bara Periode 2024 /
-          2025.
+      {isLoading ? (
+        <SingleSkeleton height="h-[3.2rem]" width="w-2/6" />
+      ) : (
+        <p className="text-[3.6rem]">
+          {capitalizeFirstLetterFromLowercase(getDaftarAkun?.judul)}
         </p>
+      )}
+      <div className="flex items-center gap-64 phones:flex-col phones:gap-32">
+        {isLoading ? (
+          <SingleSkeleton height="h-[2.4rem]" />
+        ) : (
+          <p className="font-nunito">{getDaftarAkun?.deskripsi}</p>
+        )}
         <div className="flex w-full flex-col gap-y-16">
           <Link
             to="/daftar-akun"
