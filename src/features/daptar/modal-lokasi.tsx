@@ -181,8 +181,9 @@ export function ModalDaptar({
                         <p className="text-[2rem] font-bold">
                           {item?.nama_sekolah}
                         </p>
-                        <p>
-                          {item?.status} - {item?.npsn}
+                        <p className="text-[1.8rem] phones:text-[2.2rem]">
+                          <span className="uppercase">{item?.status}</span> -{' '}
+                          {item?.npsn}
                         </p>
                       </div>
                     </div>

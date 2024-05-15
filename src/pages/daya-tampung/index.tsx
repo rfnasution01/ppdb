@@ -1,4 +1,4 @@
-import { DayaTampungHeader } from '@/features/daya-tampung'
+import { DayaTampungContent, DayaTampungHeader } from '@/features/daya-tampung'
 import { DayaTampungType } from '@/libs/types'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetDayaTampungQuery } from '@/store/slices/dayaTampungAPI'
@@ -44,7 +44,7 @@ export default function DayaTampung() {
   return (
     <div className="flex h-full w-full flex-col gap-32">
       <DayaTampungHeader getDayaTampung={dayaTampung} isLoading={isLoading} />
-      {/* <DayaTampungContent /> */}
+      <DayaTampungContent getDayaTampung={dayaTampung} isLoading={isLoading} />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { Column } from '@/components/atoms/Table'
-import { JadwalIsiType, LokasiIsiType } from '../types'
+import { DayaTampungIsi, JadwalIsiType, LokasiIsiType } from '../types'
 
 type ListLokasiType = {
   lokasi: string
@@ -74,7 +74,7 @@ export const columnsListStatistik: Column<ListLokasiType>[] = [
   },
 ]
 
-export const columnsListDayaTampung: Column<ListLokasiType>[] = [
+export const columnsListDayaTampung: Column<DayaTampungIsi>[] = [
   {
     header: 'Sekolah',
     key: 'lokasi',
@@ -83,10 +83,10 @@ export const columnsListDayaTampung: Column<ListLokasiType>[] = [
       return (
         <div className="flex items-center gap-8">
           <div className="flex items-center justify-center rounded-2xl bg-white p-8">
-            <img src={rowData?.gambar} alt="Sekolah" className="w-[4rem]" />
+            <img src="/img/tutwuri.png" alt="Sekolah" className="w-[4rem]" />
           </div>
           <div className="flex flex-col gap-y-4">
-            <p className="font-semibold">{rowData?.lokasi}</p>
+            <p className="font-semibold">{rowData?.nama_sekolah}</p>
             <p className="text-[1.8rem]">{rowData?.npsn}</p>
             <p className="text-[2rem]">{rowData?.alamat}</p>
           </div>
@@ -99,7 +99,7 @@ export const columnsListDayaTampung: Column<ListLokasiType>[] = [
     key: 'total',
     width: '!w-[15%]',
     renderCell: (rowdata) => {
-      return <div>{rowdata?.total} Siswa</div>
+      return <div>{rowdata?.jumlah} Siswa</div>
     },
   },
 ]
