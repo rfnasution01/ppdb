@@ -1,28 +1,23 @@
 import clsx from 'clsx'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ModalDaptar } from './modal-lokasi'
-
-export type PilihSekolahType = {
-  id: string
-  name: string
-  status: string
-  npsn: string
-}
+import { PilihSekolahType } from '@/pages/daptar'
 
 export function DaptarHeader({
   jenjang,
   kode,
   showJenjang,
+  pilihSekolah,
+  setPilihSekolah,
 }: {
   jenjang: string
   kode: string
   showJenjang: string
+  pilihSekolah: PilihSekolahType
+  setPilihSekolah: Dispatch<SetStateAction<PilihSekolahType>>
 }) {
   const [isShow, setIsShow] = useState<boolean>(false)
-  const [pilihSekolah, setPilihSekolah] = useState<PilihSekolahType | null>(
-    null,
-  )
 
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
@@ -30,15 +25,15 @@ export function DaptarHeader({
       <div className="flex items-center gap-64 phones:flex-col phones:gap-32">
         <p className="font-nunito">
           Berikut informasi mengenai pendaftaran PPDB {showJenjang} Reguler di
-          Dinas Pendidikan Pemuda dan Olahraga Kab. Deli Serdang Periode 2024 /
+          Dinas Pendidikan Pemuda dan Olahraga Kab. Batu Bara Periode 2024 /
           2025.
         </p>
         <div className="flex w-full flex-col gap-y-16">
           <Link
-            to="/daptar-akun"
+            to="/daftar-akun"
             className="animate-bounce rounded-lg bg-emerald-700 px-24 py-12 text-white duration-300 hover:bg-emerald-900 phones:w-full"
           >
-            <p className="text-nowrap text-center">Daptar Akun</p>
+            <p className="text-nowrap text-center">Daftar Akun</p>
           </Link>
           <div
             onClick={() => setIsShow(true)}

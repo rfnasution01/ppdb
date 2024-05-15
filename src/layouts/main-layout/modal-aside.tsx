@@ -46,7 +46,7 @@ export function ModalAside({
       >
         <div className="flex flex-col gap-16">
           {/* --- Header --- */}
-          <div className="from-danger-300 to-danger-200 via-danger-100 flex items-center gap-32 bg-gradient-to-br p-32 text-white">
+          <div className="flex items-center gap-32 bg-gradient-to-br from-danger-300 via-danger-100 to-danger-200 p-32 text-white">
             {/* --- Logo --- */}
             <div className="rounded-lg bg-white p-16">
               <img
@@ -58,7 +58,7 @@ export function ModalAside({
             {/* --- Sekolah --- */}
             <div className="flex w-full flex-col gap-16">
               <p className="text-[2.8rem] font-bold uppercase">
-                kab. deli serdang
+                kab. Batu Bara
               </p>
               <hr className="w-full border border-white" />
               <p className="text-[2.4rem]">John Doe</p>

@@ -32,7 +32,7 @@ export const ListHeaderNavigation = [
     icon: <Activity size={32} />,
   },
   {
-    judul: 'Daptar',
+    judul: 'Daftar',
     icon: <Pencil size={24} />,
   },
   {

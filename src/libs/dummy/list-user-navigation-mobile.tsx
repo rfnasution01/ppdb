@@ -2,7 +2,7 @@ import { CalendarDays, Clipboard, Mail, User } from 'lucide-react'
 
 export const ListUserNavigationMobile = [
   {
-    title: 'Daptar',
+    title: 'Daftar',
     icon: <Clipboard size={16} />,
   },
   {

@@ -1,4 +1,4 @@
-import { StatistikContent, StatistikHeader } from '@/features/statistik'
+import { ComingSoonPage } from '@/routes/loadables'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -20,10 +20,13 @@ export default function Statistik() {
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
 
+  console.log(showJenjang)
+
   return (
-    <div className="flex w-full flex-col gap-32">
-      <StatistikHeader showJenjang={showJenjang} />
-      <StatistikContent />
+    <div className="flex h-full w-full flex-col gap-32">
+      <ComingSoonPage />
+      {/* <StatistikHeader showJenjang={showJenjang} />
+      <StatistikContent /> */}
     </div>
   )
 }

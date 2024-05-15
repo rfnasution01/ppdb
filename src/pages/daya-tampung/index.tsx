@@ -1,4 +1,4 @@
-import { DayaTampungContent, DayaTampungHeader } from '@/features/daya-tampung'
+import { ComingSoonPage } from '@/routes/loadables'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,9 +23,10 @@ export default function DayaTampung() {
   console.log(showJenjang)
 
   return (
-    <div className="flex w-full flex-col gap-32">
-      <DayaTampungHeader />
-      <DayaTampungContent />
+    <div className="flex h-full w-full flex-col gap-32">
+      {/* <DayaTampungHeader />
+      <DayaTampungContent /> */}
+      <ComingSoonPage />
     </div>
   )
 }

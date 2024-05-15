@@ -35,7 +35,7 @@ export function ModalAside({
         <div className="flex flex-col gap-32 p-32">
           <DialogHeader>
             <DialogTitle>
-              <p className="text-[2.4rem]">Daptar Akun</p>
+              <p className="text-[2.4rem]">Daftar Akun</p>
             </DialogTitle>
             <DialogPrimitive.Close className="focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute right-32 top-32 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
               <X size={18} />

@@ -14,7 +14,7 @@ export const ListUserNavigation = [
     icon: <Speech size={16} />,
   },
   {
-    title: 'Daptar Ulang',
+    title: 'Daftar Ulang',
     icon: <Scroll size={16} />,
   },
   {

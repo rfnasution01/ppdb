@@ -7,8 +7,8 @@ export function PesanHeader({ showJenjang }: { showJenjang: string }) {
       <div className="flex items-center gap-64 phones:flex-col phones:gap-32">
         <ol className="ml-24 list-disc font-nunito">
           {[
-            `Menu Pesan Anda ini adalah media interaksi online antara pengguna dengan penyelenggara/pengelola layanan PPDB ${showJenjang}} di Kab. Deli Serdang.`,
-            `Kirimkan pesan-pesan Anda baik berupa saran, kritik ataupun pertanyaan seputar PPDB ${showJenjang} di Kab. Deli Serdang.`,
+            `Menu Pesan Anda ini adalah media interaksi online antara pengguna dengan penyelenggara/pengelola layanan PPDB ${showJenjang}} di Kab. Batu Bara.`,
+            `Kirimkan pesan-pesan Anda baik berupa saran, kritik ataupun pertanyaan seputar PPDB ${showJenjang} di Kab. Batu Bara.`,
           ].map((item, idx) => (
             <li className="" key={idx}>
               {item}

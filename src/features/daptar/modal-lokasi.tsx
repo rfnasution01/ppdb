@@ -12,8 +12,9 @@ import { useGetLokasiQuery } from '@/store/slices/lokasiAPI'
 import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { debounce } from 'lodash'
 import { Pagination } from '@/components/atoms/Pagination'
-import { PilihSekolahType } from './daptar-header'
 import clsx from 'clsx'
+import { PilihSekolahType } from '@/pages/daptar'
+import { NoData } from '@/components/atoms/NoData'
 
 export function ModalDaptar({
   isOpen,
@@ -44,7 +45,7 @@ export function ModalDaptar({
     if (getSekolah?.data) {
       setSekolah(getSekolah?.data)
     }
-  }, [getSekolah?.data])
+  }, [getSekolah?.data, jenjang, kode])
 
   const dataPerPage = 9
   const [numberStart, setNumberStart] = useState<number>(0)
@@ -142,8 +143,10 @@ export function ModalDaptar({
               <div className="col-span-4 flex flex-col gap-12 rounded-2xl p-24 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12">
                 <MultiSkeleton />
               </div>
-            ) : filterData?.length === 0 ? (
-              <div className="col-span-4 phones:col-span-12" />
+            ) : filteredData?.length === 0 ? (
+              <div className="col-span-4 phones:col-span-12">
+                <NoData />
+              </div>
             ) : (
               <>
                 {filteredData
@@ -162,7 +165,7 @@ export function ModalDaptar({
                         'col-span-4 flex items-center gap-24 hover:cursor-pointer hover:text-primary-900 phones:col-span-12',
                         {
                           'text-primary':
-                            pilihSekolah?.id === item?.nama_sekolah,
+                            pilihSekolah?.name === item?.nama_sekolah,
                         },
                       )}
                       key={idx}

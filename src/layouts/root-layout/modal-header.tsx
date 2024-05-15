@@ -25,7 +25,7 @@ export function ModalHeader({
   const isActivePage = (item) => {
     if (
       convertToSlug(item) === firstPathname ||
-      (convertToSlug(item) === 'daptar' && firstPathname === 'daptar-akun')
+      (convertToSlug(item) === 'daftar' && firstPathname === 'daftar-akun')
     ) {
       return true
     }

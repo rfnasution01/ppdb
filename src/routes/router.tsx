@@ -57,11 +57,11 @@ export const router = createBrowserRouter([
         element: <AlurPage />,
       },
       {
-        path: 'daptar',
+        path: 'daftar',
         element: <DaptarPage />,
       },
       {
-        path: 'daptar-akun',
+        path: 'daftar-akun',
         element: <DaptarAkun />,
       },
       {

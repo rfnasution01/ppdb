@@ -32,7 +32,7 @@ export const ListHeaderNavigationMobile = [
     icon: <Activity size={16} />,
   },
   {
-    judul: 'Daptar',
+    judul: 'Daftar',
     icon: <Pencil size={16} />,
   },
   {

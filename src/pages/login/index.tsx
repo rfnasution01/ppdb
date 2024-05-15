@@ -16,22 +16,22 @@ export default function Login() {
         <div className="flex justify-between gap-32">
           <div className="flex flex-col gap-8">
             <Link
-              to="/daptar?jenjang=sd"
+              to="/daftar?jenjang=sd"
               onClick={() => {
                 dispatch(setStateJenjang({ tingkatan: 'sd' }))
               }}
               className="text-[1.8rem] text-blue-900 hover:cursor-pointer hover:text-blue-700"
             >
-              Daptar akun SD
+              Daftar akun SD
             </Link>
             <Link
-              to="/daptar?jenjang=smp"
+              to="/daftar?jenjang=smp"
               onClick={() => {
                 dispatch(setStateJenjang({ tingkatan: 'smp' }))
               }}
               className="text-[1.8rem] text-blue-900 hover:cursor-pointer hover:text-blue-700"
             >
-              Daptar akun SMP
+              Daftar akun SMP
             </Link>
           </div>
           <p className="text-right text-[1.8rem] text-blue-900 hover:cursor-pointer hover:text-blue-700">

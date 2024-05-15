@@ -46,7 +46,7 @@ export const ListAccordionData = [
       dolor ut sequi minus iste? Quas?`,
   },
   {
-    title: 'Pengumuman dan Daptar Ulang',
+    title: 'Pengumuman dan Daftar Ulang',
     content: `Sapiente expedita hic obcaecati, laboriosam similique omnis architecto ducimus magnam accusantium corrupti
       quam sint dolore pariatur perspiciatis, necessitatibus rem vel dignissimos
       dolor ut sequi minus iste? Quas?`,

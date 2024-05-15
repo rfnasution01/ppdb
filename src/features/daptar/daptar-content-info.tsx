@@ -1,4 +1,6 @@
-export function StatistikContentInfo() {
+import dayjs from 'dayjs'
+
+export function DaptarContentInfo() {
   return (
     <div className="flex flex-col gap-12 rounded-lg bg-warning-tint-2 p-24 text-[2rem]">
       <div className="flex w-full items-center gap-y-12">
@@ -13,11 +15,13 @@ export function StatistikContentInfo() {
       <div className="flex w-full items-center gap-y-12">
         <p className="flex-1">
           Hasil s/d tanggal:{' '}
-          <span className="text-orange-700">17 Mei 2018 10:06 WIB</span>
+          <span className="text-orange-700">
+            {dayjs().locale('id').format('DD MMMM YYYY hh:mm A')}
+          </span>
         </p>
         <p className="flex-1">
           Tanggal seleksi:{' '}
-          <span className="text-orange-700">11 Jun 2015 - 30 Jun 2016</span>
+          <span className="text-orange-700">05 June 2024 - 16 June 2024</span>
         </p>
       </div>
     </div>

@@ -21,7 +21,7 @@ export function IconComponent({
   const isActivePage = (item) => {
     if (
       convertToSlug(item) === firstPathname ||
-      (convertToSlug(item) === 'daptar' && firstPathname === 'daptar-akun')
+      (convertToSlug(item) === 'daftar' && firstPathname === 'daftar-akun')
     ) {
       return true
     }
@@ -45,7 +45,7 @@ export function IconComponent({
     >
       {icon}
       <p
-        className={`text-center ${title === 'Daptar' && 'rounded-full bg-yellow-300 px-16 py-8 text-[2rem] text-black'}`}
+        className={`text-center ${title === 'Daftar' && 'rounded-full bg-yellow-300 px-16 py-8 text-[2rem] text-black'}`}
       >
         {title}
       </p>

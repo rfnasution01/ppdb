@@ -22,7 +22,7 @@ export function IconComponent2({
     'jadwal',
     'lokasi',
     'alur',
-    'daptar',
+    'daftar',
     'seleksi',
     'statistik',
     'daya-tampung',
@@ -32,7 +32,7 @@ export function IconComponent2({
     if (
       convertToSlug(item) === firstPathname ||
       (item.toLowerCase() === 'beranda' && beranda.includes(firstPathname)) ||
-      (item.toLowerCase() === 'beranda' && firstPathname === 'daptar-akun')
+      (item.toLowerCase() === 'beranda' && firstPathname === 'daftar-akun')
     ) {
       return true
     }

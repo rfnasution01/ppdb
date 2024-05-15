@@ -24,7 +24,7 @@ export const ListAsideNavigationLogin = [
     icon: <Mail size={16} />,
   },
   {
-    title: 'Daptar Ulang',
+    title: 'Daftar Ulang',
     icon: <BookMarked size={16} />,
   },
 ]

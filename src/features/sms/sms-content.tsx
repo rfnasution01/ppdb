@@ -9,7 +9,7 @@ export function SMSContent() {
           <div className="flex flex-col gap-y-24">
             <p style={{ lineHeight: '130%' }}>
               Anda dapat mengakses layanan SMS PPDB untuk mengetahui
-              InformasiPenerimaan Peserta Didik Baru SMP di Kab. Deli Serdang
+              InformasiPenerimaan Peserta Didik Baru SMP di Kab. Batu Bara
               dengan cara mengirimkan pesan singkat (SMS) dengan format
             </p>
             <div className="text-[2..4 rem] flex flex-col gap-64 rounded-lg bg-background p-24">

@@ -28,7 +28,7 @@ export function HomeHeader() {
       )}
       {/* <p className="block phones:hidden" style={{ lineHeight: '130%' }}>
         Situs DEMO ini dipersiapkan sebagai pengganti pusat informasi dan
-        pengolahan seleksi data siswa peserta PPDB Kab. Deli Serdang Periode
+        pengolahan seleksi data siswa peserta PPDB Kab. Batu Bara Periode
         2024 / 2025 secara online real time process untuk pelaksanaan PPDB
         Online. Lihat Peserta PPDB di Kab / Kota lainnya
       </p> */}

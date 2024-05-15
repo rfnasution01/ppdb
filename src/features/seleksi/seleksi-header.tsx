@@ -8,8 +8,8 @@ export function SeleksiHeader({ showJenjang }: { showJenjang: string }) {
         <p className="font-nunito">
           Halaman ini berisi hasil seleksi Penerimaan Peserta Didik Baru{' '}
           {showJenjang}
-          Reguler di Dinas Pendidikan Pemuda dan Olahraga Kab. Deli Serdang
-          Periode 2024 / 2025.
+          Reguler di Dinas Pendidikan Pemuda dan Olahraga Kab. Batu Bara Periode
+          2024 / 2025.
         </p>
         <button
           type="button"

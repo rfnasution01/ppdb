@@ -58,7 +58,7 @@ export function ModalAside({
             {/* --- Sekolah --- */}
             <div className="flex w-full flex-col gap-16">
               <p className="text-[2.8rem] font-bold uppercase">
-                kab. deli serdang
+                kab. Batu Bara
               </p>
               <hr className="w-full border border-white" />
               <p className="text-[2.4rem]">John Doe</p>

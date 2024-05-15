@@ -1,4 +1,4 @@
-import { BeritaContent, BeritaHeader } from '@/features/berita'
+import { ComingSoonPage } from '@/routes/loadables'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -20,10 +20,13 @@ export default function Berita() {
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
 
+  console.log(showJenjang)
+
   return (
-    <div className="flex w-full flex-col gap-32">
-      <BeritaHeader showJenjang={showJenjang} />
-      <BeritaContent />
+    <div className="flex h-full w-full flex-col gap-32">
+      <ComingSoonPage />
+      {/* <BeritaHeader showJenjang={showJenjang} />
+      <BeritaContent /> */}
     </div>
   )
 }

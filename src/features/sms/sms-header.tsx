@@ -4,7 +4,7 @@ export function SMSHeader({ showJenjang }: { showJenjang: string }) {
       <p className="text-[3.6rem]">Informasi SMS</p>
       <p className="font-nunito">
         Halaman ini berisi petunjuk Penggunaan SMS Untuk Akses Info PPDB{' '}
-        {showJenjang} di Kab. Deli Serdang
+        {showJenjang} di Kab. Batu Bara
       </p>
     </div>
   )

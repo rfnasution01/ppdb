@@ -47,7 +47,7 @@ export function ModalAside({
     'jadwal',
     'lokasi',
     'alur',
-    'daptar',
+    'daftar',
     'seleksi',
     'statistik',
     'daya-tampung',
@@ -96,7 +96,7 @@ export function ModalAside({
             {/* --- Sekolah --- */}
             <div className="flex w-full flex-col gap-16">
               <p className="text-[2.8rem] font-bold uppercase">
-                kab. deli serdang
+                kab. Batu Bara
               </p>
               <hr className="w-full border border-white" />
               <div className="flex items-center gap-24">

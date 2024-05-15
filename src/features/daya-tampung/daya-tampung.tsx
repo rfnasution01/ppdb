@@ -4,7 +4,7 @@ export function DayaTampungHeader() {
       <p className="text-[3.6rem]">Daya Tampung Reguler</p>
       <p className="font-nunito">
         Halaman ini berisi Informasi daya tampung (Pagu) Penerimaan Peserta
-        Didik Baru di Kab. Deli Serdang Periode 2024.
+        Didik Baru di Kab. Batu Bara Periode 2024.
       </p>
     </div>
   )

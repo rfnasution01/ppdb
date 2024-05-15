@@ -22,7 +22,7 @@ export default function DaptarAkun() {
 
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
-      <p className="text-[3.6rem]">Daptar Akun {showJenjang}</p>
+      <p className="text-[3.6rem]">Daftar Akun {showJenjang}</p>
       <hr className="w-full border" />
       <FormDaptarAkun showJenjang={showJenjang} />
     </div>
