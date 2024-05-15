@@ -18,7 +18,7 @@ export function FormBiodata({ form }: { form: UseFormReturn }) {
         form={form}
         name="tgl_lahir"
         label="Tanggal Lahir*"
-        placeHolder="Masukkan tanggal lahir anda anda"
+        placeHolder="Masukkan tanggal lahir anda"
         type="date"
       />
 

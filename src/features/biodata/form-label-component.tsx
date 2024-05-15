@@ -20,7 +20,7 @@ export function FormLabelComponent({
   form: UseFormReturn
   label: string
   placeHolder: string
-  type: 'text' | 'date'
+  type: 'text' | 'date' | 'file'
   isNumber?: boolean
 }) {
   return (

@@ -5,8 +5,20 @@ import * as zod from 'zod'
 import { orangTuaSchema } from '@/libs/schema/biodata-schema'
 import { FormAyah } from './form-ayah'
 import { FormIbu } from './form-ibu'
+import { Dispatch, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setStateBiodata } from '@/store/reducer/stateBiodata'
 
-export function BiodataOrangTua() {
+export function BiodataOrangTua({
+  setName,
+  setActiveIndex,
+}: {
+  setName: Dispatch<SetStateAction<string>>
+  setActiveIndex: Dispatch<SetStateAction<number>>
+}) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   // --- Form Schema ---
   const form = useForm<zod.infer<typeof orangTuaSchema>>({
     resolver: zodResolver(orangTuaSchema),
@@ -15,6 +27,10 @@ export function BiodataOrangTua() {
 
   const handleFormLogin = (values) => {
     console.log(values)
+    setActiveIndex(4)
+    setName('kelengkapan-dokumen')
+    dispatch(setStateBiodata({ page: 'kelengkapan-dokumen' }))
+    navigate(`/main?page=${'kelengkapan-dokumen'}`)
   }
   return (
     <Form {...form}>
@@ -25,12 +41,12 @@ export function BiodataOrangTua() {
         <div className="flex flex-1 flex-col gap-32 pb-32">
           {/* --- Informasi Pribadi --- */}
           <div className="flex flex-col gap-24">
-            <p>Ayah</p>
+            <p className="font-bold">Ayah</p>
             <FormAyah form={form} />
           </div>
           {/* --- Alamat --- */}
           <div className="flex flex-col gap-24">
-            <p>Ibu</p>
+            <p className="font-bold">Ibu</p>
             <FormIbu form={form} />
           </div>
         </div>
@@ -41,6 +57,12 @@ export function BiodataOrangTua() {
             <button
               className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700"
               type="button"
+              onClick={() => {
+                setActiveIndex(2)
+                setName('pendidikan-sebelumnya')
+                dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
+                navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+              }}
             >
               Kembali
             </button>

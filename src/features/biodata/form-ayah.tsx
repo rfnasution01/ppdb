@@ -1,53 +1,47 @@
-import { FormLabelInput } from '@/components/molecules/input'
 import { UseFormReturn } from 'react-hook-form'
+import { FormLabelComponent } from './form-label-component'
 
 export function FormAyah({ form }: { form: UseFormReturn }) {
   return (
     <div className="flex flex-col gap-12">
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="Nama*"
-        placeholder="Masukkan nama anda"
+        placeHolder="Masukkan nama yah"
         name="nama_ayah"
         type="text"
       />
 
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="NIK*"
-        placeholder="Masukkan NIK anda"
+        placeHolder="Masukkan NIK ayah"
         name="nik_ayah"
         type="text"
+        isNumber
       />
 
-      <FormLabelInput
-        form={form}
-        label="Nama Sekolah*"
-        placeholder="Masukkan nama sekolah anda"
-        name="nama_sekolah_ayah"
-        type="text"
-      />
-
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="Telepon*"
-        placeholder="Masukkan telepon anda"
+        placeHolder="Masukkan telepon ayah"
         name="telepon_ayah"
         type="text"
+        isNumber
       />
 
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="Pendidikan Terakhir*"
-        placeholder="Masukkan pendidikan terakhir anda"
+        placeHolder="Masukkan pendidikan terakhir ayah"
         name="pendidikan_ayah"
         type="text"
       />
 
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="Pekerjaan*"
-        placeholder="Masukkan pekerjaan lulus anda"
+        placeHolder="Masukkan pekerjaan lulus ayah"
         name="pekerjaan_ayah"
         type="text"
       />

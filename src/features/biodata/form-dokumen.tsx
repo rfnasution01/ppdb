@@ -1,29 +1,29 @@
-import { FormLabelInput } from '@/components/molecules/input'
 import { UseFormReturn } from 'react-hook-form'
+import { FormLabelComponent } from './form-label-component'
 
 export function FormDokumen({ form }: { form: UseFormReturn }) {
   return (
     <div className="flex flex-col gap-12">
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="Pas Foto*"
-        placeholder="Unggah pas foto anda"
-        name="pas_photo"
+        placeHolder="Unggah pas foto anda"
+        name="pas_foto"
         type="file"
       />
 
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="KK*"
-        placeholder="Unggah kk anda"
+        placeHolder="Unggah kk anda"
         name="kk"
         type="file"
       />
 
-      <FormLabelInput
+      <FormLabelComponent
         form={form}
         label="Dokumen Lainnya*"
-        placeholder="Unggah dokumen anda"
+        placeHolder="Unggah dokumen anda"
         name="dokumen"
         type="file"
       />

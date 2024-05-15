@@ -24,7 +24,7 @@ export const daptarAkunSchema = zod
         invalid_type_error: 'Format NISN tidak valid',
       })
       .refine((value) => value.length === 10, {
-        message: 'NISN harus diisi',
+        message: 'NISN harus terdiri dari 10 angka',
       })
       .optional(),
     nama_lengkap: zod.string({

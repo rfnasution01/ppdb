@@ -4,8 +4,20 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { sekolahSchema } from '@/libs/schema/biodata-schema'
 import { FormSekolah } from './form-sekolah'
+import { Dispatch, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setStateBiodata } from '@/store/reducer/stateBiodata'
 
-export function BiodataSekolah() {
+export function BiodataSekolah({
+  setName,
+  setActiveIndex,
+}: {
+  setName: Dispatch<SetStateAction<string>>
+  setActiveIndex: Dispatch<SetStateAction<number>>
+}) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   // --- Form Schema ---
   const form = useForm<zod.infer<typeof sekolahSchema>>({
     resolver: zodResolver(sekolahSchema),
@@ -32,6 +44,12 @@ export function BiodataSekolah() {
             <button
               className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700"
               type="button"
+              onClick={() => {
+                setActiveIndex(4)
+                setName('kelengkapan-dokumen')
+                dispatch(setStateBiodata({ page: 'kelengkapan-dokumen' }))
+                navigate(`/main?page=${'kelengkapan-dokumen'}`)
+              }}
             >
               Kembali
             </button>

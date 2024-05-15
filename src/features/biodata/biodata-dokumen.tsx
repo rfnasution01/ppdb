@@ -4,8 +4,20 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { dokumenSchema } from '@/libs/schema/biodata-schema'
 import { FormDokumen } from './form-dokumen'
+import { Dispatch, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setStateBiodata } from '@/store/reducer/stateBiodata'
 
-export function BiodataDokumen() {
+export function BiodataDokumen({
+  setName,
+  setActiveIndex,
+}: {
+  setName: Dispatch<SetStateAction<string>>
+  setActiveIndex: Dispatch<SetStateAction<number>>
+}) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   // --- Form Schema ---
   const form = useForm<zod.infer<typeof dokumenSchema>>({
     resolver: zodResolver(dokumenSchema),
@@ -14,6 +26,10 @@ export function BiodataDokumen() {
 
   const handleFormLogin = (values) => {
     console.log(values)
+    setActiveIndex(5)
+    setName('pilih-sekolah')
+    dispatch(setStateBiodata({ page: 'pilih-sekolah' }))
+    navigate(`/main?page=${'pilih-sekolah'}`)
   }
   return (
     <Form {...form}>
@@ -32,6 +48,12 @@ export function BiodataDokumen() {
             <button
               className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700"
               type="button"
+              onClick={() => {
+                setActiveIndex(4)
+                setName('orang-tua')
+                dispatch(setStateBiodata({ page: 'orang-tua' }))
+                navigate(`/main?page=${'orang-tua'}`)
+              }}
             >
               Kembali
             </button>

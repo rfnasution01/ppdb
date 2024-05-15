@@ -104,13 +104,25 @@ export default function Pendaftaran() {
                 setActiveIndex={setActiveIndex}
               />
             ) : name === 'pendidikan-sebelumnya' ? (
-              <BiodataPendidikan />
+              <BiodataPendidikan
+                setName={setName}
+                setActiveIndex={setActiveIndex}
+              />
             ) : name === 'orang-tua' ? (
-              <BiodataOrangTua />
+              <BiodataOrangTua
+                setName={setName}
+                setActiveIndex={setActiveIndex}
+              />
             ) : name === 'kelengkapan-dokumen' ? (
-              <BiodataDokumen />
+              <BiodataDokumen
+                setName={setName}
+                setActiveIndex={setActiveIndex}
+              />
             ) : name === 'pilih-sekolah' ? (
-              <BiodataSekolah />
+              <BiodataSekolah
+                setName={setName}
+                setActiveIndex={setActiveIndex}
+              />
             ) : (
               <BiodataJalur setName={setName} setActiveIndex={setActiveIndex} />
             )}

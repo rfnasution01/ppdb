@@ -65,14 +65,23 @@ export const informasiPribadiSchema = zod.object({
 })
 
 export const sekolahSebelumnyaSchema = zod.object({
-  nisn: zod.string({
-    required_error: 'NISN harus di isi',
-    invalid_type_error: 'Format nisn tidak valid',
-  }),
-  npsn: zod.string({
-    required_error: 'NPSN harus di isi',
-    invalid_type_error: 'Format npsn tidak valid',
-  }),
+  nisn: zod
+    .string({
+      required_error: 'NISN harus di isi',
+      invalid_type_error: 'Format NISN tidak valid',
+    })
+    .refine((value) => value.length === 10, {
+      message: 'NISN harus terdiri dari 10 angka',
+    })
+    .optional(),
+  npsn: zod
+    .string({
+      required_error: 'NPSN harus di isi',
+      invalid_type_error: 'Format NPSN tidak valid',
+    })
+    .refine((value) => value.length === 10, {
+      message: 'NPSN harus terdiri dari 10 angka',
+    }),
   nama_sekolah: zod.string({
     required_error: 'Nama Sekolah harus di isi',
     invalid_type_error: 'Format nama sekolah tidak valid',
@@ -84,29 +93,33 @@ export const sekolahSebelumnyaSchema = zod.object({
 })
 
 export const orangTuaSchema = zod.object({
-  isHidupAyah: zod.boolean({
-    required_error: 'Harus di isi',
-    invalid_type_error: 'Format tidak valid',
-  }),
+  isHidupAyah: zod
+    .boolean({
+      required_error: 'Harus di isi',
+      invalid_type_error: 'Format tidak valid',
+    })
+    .optional(),
   nama_ayah: zod.string({
     required_error: 'Nama harus di isi',
     invalid_type_error: 'Format nama tidak valid',
   }),
   nik_ayah: zod
-    .string()
-    .refine((value) => value.length === 16, {
-      message: 'NIK harus terdiri dari 16 karakter',
-      path: ['nik'],
+    .string({
+      required_error: 'NIK harus di isi',
+      invalid_type_error: 'Format NIK tidak valid',
     })
-    .refine((value) => /^\d+$/.test(value), {
-      message: 'NIK hanya boleh berisi angka',
-      path: ['nik'],
+    .refine((value) => value.length === 16, {
+      message: 'NIK harus terdiri dari 16 angka',
     }),
 
-  telepon_ayah: zod.string({
-    required_error: 'Telepon harus di isi',
-    invalid_type_error: 'Format telepon tidak valid',
-  }),
+  telepon_ayah: zod
+    .string({
+      required_error: 'Telepon harus di isi',
+      invalid_type_error: 'Format telepon tidak valid',
+    })
+    .refine((value) => value.length > 0, {
+      message: 'Telepon harus diisi',
+    }),
   pendidikan_ayah: zod.string({
     required_error: 'Pendidikan harus di isi',
     invalid_type_error: 'Format pendidikan tidak valid',
@@ -120,20 +133,22 @@ export const orangTuaSchema = zod.object({
     invalid_type_error: 'Format nama tidak valid',
   }),
   nik_ibu: zod
-    .string()
-    .refine((value) => value.length === 16, {
-      message: 'NIK harus terdiri dari 16 karakter',
-      path: ['nik'],
+    .string({
+      required_error: 'NIK harus di isi',
+      invalid_type_error: 'Format NIK tidak valid',
     })
-    .refine((value) => /^\d+$/.test(value), {
-      message: 'NIK hanya boleh berisi angka',
-      path: ['nik'],
+    .refine((value) => value.length === 16, {
+      message: 'NIK harus terdiri dari 16 angka',
     }),
 
-  telepon_ibu: zod.string({
-    required_error: 'Telepon harus di isi',
-    invalid_type_error: 'Format telepon tidak valid',
-  }),
+  telepon_ibu: zod
+    .string({
+      required_error: 'Telepon harus di isi',
+      invalid_type_error: 'Format telepon tidak valid',
+    })
+    .refine((value) => value.length > 0, {
+      message: 'Telepon harus diisi',
+    }),
   pendidikan_ibu: zod.string({
     required_error: 'Pendidikan harus di isi',
     invalid_type_error: 'Format pendidikan tidak valid',
