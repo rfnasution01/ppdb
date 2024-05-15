@@ -11,18 +11,22 @@ import {
   ArrowRightFromLine,
   CircleAlert,
   CircleCheck,
-  Eye,
-  EyeOff,
-  Lock,
   UserCircle,
 } from 'lucide-react'
 import { Form } from '@/components/atoms/Form'
 import { FormLabelInput } from '@/components/molecules/input'
+import {
+  FormListBulan,
+  FormListTahun,
+  FormListTanggal,
+} from '@/components/molecules/form'
 
 export function LoginForm() {
-  const [isShow, setIsShow] = useState<boolean>(false)
   const [isUpdate, setIsUpdate] = useState<boolean>(false)
   const [isChange, setIsChange] = useState<boolean>(false)
+  const [tanggal, setTanggal] = useState<number>(1)
+  const [bulan, setBulan] = useState<string>('januari')
+  const [tahun, setTahun] = useState<number>(2024)
   const [msg, setMsg] = useState<string>('')
   const navigate = useNavigate()
   // --- Post API ---
@@ -85,6 +89,8 @@ export function LoginForm() {
     }
   }, [loginIsError, loginError])
 
+  console.log({ tanggal }, { bulan }, { tahun })
+
   return (
     <div className="flex flex-col gap-y-32">
       {disabled && <Loading />}
@@ -115,39 +121,19 @@ export function LoginForm() {
             {/* --- Username --- */}
             <FormLabelInput
               form={form}
-              label={
-                <div className="flex items-start gap-x-8">
-                  <span className="text-[2rem] phones:text-[3rem]">
-                    Username
-                  </span>
-                </div>
-              }
-              placeholder="Write your username"
+              placeholder="Masukkan NISN atau No. Peserta"
               name="username"
               prefix={<UserCircle size={16} />}
               type="text"
               className="col-span-6 phones:col-span-12"
               isDisabled={disabled}
             />
-            {/* --- Password --- */}
-            <FormLabelInput
-              form={form}
-              label={
-                <div className="flex items-start gap-x-8">
-                  <span className="text-[2rem] phones:text-[3rem]">
-                    Password
-                  </span>
-                </div>
-              }
-              placeholder="Write your password"
-              name="password"
-              prefix={<Lock size={16} />}
-              suffix={isShow ? <Eye size={16} /> : <EyeOff size={16} />}
-              handlerClick={() => setIsShow(!isShow)}
-              type={!isShow ? 'password' : 'text'}
-              className="col-span-6 phones:col-span-12"
-              isDisabled={disabled}
-            />
+            {/* --- Tanggal Lahir --- */}
+            <div className="flex items-center gap-32">
+              <FormListTanggal setTanggal={setTanggal} />
+              <FormListBulan setBulan={setBulan} />
+              <FormListTahun setTahun={setTahun} />
+            </div>
           </div>
           <div className="flex">
             <button
