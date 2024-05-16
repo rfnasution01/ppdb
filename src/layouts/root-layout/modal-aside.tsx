@@ -3,6 +3,7 @@ import { ListAsideNavigation } from '@/libs/dummy/list-aside-navigation'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
 import { getJenjangSlice, setStateJenjang } from '@/store/reducer/stateJenjang'
+import { setStatePilihSekolah } from '@/store/reducer/statePilihSekolah'
 import clsx from 'clsx'
 import Cookies from 'js-cookie'
 import { DoorClosed, DoorOpen, User2 } from 'lucide-react'
@@ -109,6 +110,14 @@ export function ModalAside({
                       )
                       setJenjang(item?.toLowerCase())
                       setIsOpen(false)
+                      dispatch(
+                        setStatePilihSekolah({
+                          id: null,
+                          name: null,
+                          status: null,
+                          npsn: null,
+                        }),
+                      )
                     }}
                     className={clsx('rounded-2xl border p-16 text-[2.4rem]', {
                       'bg-white text-danger-tint-4':

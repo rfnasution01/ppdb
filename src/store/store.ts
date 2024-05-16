@@ -4,6 +4,7 @@ import { api } from './api'
 import stateSearch from './reducer/stateSearch.ts'
 import stateJenjang from './reducer/stateJenjang.ts'
 import stateBiodata from './reducer/stateBiodata.ts'
+import statePilihSekolah from './reducer/statePilihSekolah.ts'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     stateSearch: stateSearch,
     stateJenjang: stateJenjang,
     stateBiodata: stateBiodata,
+    statePilihSekolah: statePilihSekolah,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

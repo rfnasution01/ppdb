@@ -1,16 +1,12 @@
-import { PilihSekolahType } from '@/pages/daptar'
 import clsx from 'clsx'
 import { DaptarContentHeader } from './daptar-content-header'
 import { DaptarContentInfo } from './daptar-content-info'
 import { NoData } from '@/components/atoms/NoData'
+import { useSelector } from 'react-redux'
+import { getPilihSekolahSlice } from '@/store/reducer/statePilihSekolah'
 
-export function DaptarContent({
-  showJenjang,
-  pilihSekolah,
-}: {
-  showJenjang: string
-  pilihSekolah: PilihSekolahType
-}) {
+export function DaptarContent({ showJenjang }: { showJenjang: string }) {
+  const pilihSekolah = useSelector(getPilihSekolahSlice)
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
       <button

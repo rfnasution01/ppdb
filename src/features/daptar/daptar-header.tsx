@@ -1,30 +1,28 @@
 import clsx from 'clsx'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ModalDaptar } from './modal-lokasi'
-import { PilihSekolahType } from '@/pages/daptar'
 import { DaptarAkunType } from '@/libs/types/daptar-akun'
 import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
 import { SingleSkeleton } from '@/components/molecules/skeleton'
+import { useSelector } from 'react-redux'
+import { getPilihSekolahSlice } from '@/store/reducer/statePilihSekolah'
 
 export function DaptarHeader({
   jenjang,
   kode,
   showJenjang,
-  pilihSekolah,
-  setPilihSekolah,
   getDaftarAkun,
   isLoading,
 }: {
   jenjang: string
   kode: string
   showJenjang: string
-  pilihSekolah: PilihSekolahType
-  setPilihSekolah: Dispatch<SetStateAction<PilihSekolahType>>
   getDaftarAkun: DaptarAkunType
   isLoading: boolean
 }) {
   const [isShow, setIsShow] = useState<boolean>(false)
+  const pilihSekolah = useSelector(getPilihSekolahSlice)
 
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
@@ -60,7 +58,7 @@ export function DaptarHeader({
               },
             )}
           >
-            {pilihSekolah ? (
+            {pilihSekolah?.id ? (
               <div className="flex items-center gap-24 p-16">
                 <div className="rounded-2xl bg-white p-4">
                   <img
@@ -88,7 +86,6 @@ export function DaptarHeader({
         kode={kode}
         jenjang={jenjang}
         pilihSekolah={pilihSekolah}
-        setPilihSekolah={setPilihSekolah}
       />
     </div>
   )

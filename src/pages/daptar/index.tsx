@@ -5,21 +5,11 @@ import { useGetAkunQuery } from '@/store/slices/daptarAkunAPI'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-export type PilihSekolahType = {
-  id: string
-  name: string
-  status: string
-  npsn: string
-}
-
 export default function Daptar() {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
-  const [pilihSekolah, setPilihSekolah] = useState<PilihSekolahType | null>(
-    null,
-  )
 
   useEffect(() => {
     if (stateJenjang) {
@@ -55,12 +45,10 @@ export default function Daptar() {
         kode={kodeParams}
         jenjang={showJenjang?.toLowerCase()}
         showJenjang={showJenjang}
-        pilihSekolah={pilihSekolah}
-        setPilihSekolah={setPilihSekolah}
         getDaftarAkun={daftarAkun}
         isLoading={isLoading}
       />
-      <DaptarContent showJenjang={showJenjang} pilihSekolah={pilihSekolah} />
+      <DaptarContent showJenjang={showJenjang} />
     </div>
   )
 }

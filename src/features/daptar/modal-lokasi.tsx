@@ -13,8 +13,12 @@ import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { debounce } from 'lodash'
 import { Pagination } from '@/components/atoms/Pagination'
 import clsx from 'clsx'
-import { PilihSekolahType } from '@/pages/daptar'
 import { NoData } from '@/components/atoms/NoData'
+import {
+  StatePilihSekolahType,
+  setStatePilihSekolah,
+} from '@/store/reducer/statePilihSekolah'
+import { useDispatch } from 'react-redux'
 
 export function ModalDaptar({
   isOpen,
@@ -22,15 +26,14 @@ export function ModalDaptar({
   jenjang,
   kode,
   pilihSekolah,
-  setPilihSekolah,
 }: {
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
   jenjang: string
   kode: string
-  pilihSekolah: PilihSekolahType
-  setPilihSekolah: Dispatch<SetStateAction<PilihSekolahType>>
+  pilihSekolah: StatePilihSekolahType
 }) {
+  const dispath = useDispatch()
   // --- Sekolah ---
   const [sekolah, setSekolah] = useState<LokasiType>()
   const {
@@ -83,7 +86,14 @@ export function ModalDaptar({
     status: string,
     npsn: string,
   ) => {
-    setPilihSekolah({ id, name, status, npsn })
+    dispath(
+      setStatePilihSekolah({
+        id: id,
+        name: name,
+        status: status,
+        npsn: npsn,
+      }),
+    )
     setIsOpen(false)
   }
 

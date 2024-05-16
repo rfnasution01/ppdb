@@ -7,6 +7,7 @@ import {
 } from '@/components/atoms/Menubar'
 import { usePathname } from '@/libs/hooks/usePathname'
 import { setStateJenjang } from '@/store/reducer/stateJenjang'
+import { setStatePilihSekolah } from '@/store/reducer/statePilihSekolah'
 import clsx from 'clsx'
 import { ChevronDown } from 'lucide-react'
 import { Dispatch, SetStateAction } from 'react'
@@ -57,6 +58,14 @@ export function AppJenjangSelect({
                   setJenjang(item?.toLowerCase())
                   navigate(
                     `/${firstPathname}?jenjang=${item.toLowerCase()}&kode=${kode}`,
+                  )
+                  dispatch(
+                    setStatePilihSekolah({
+                      id: null,
+                      name: null,
+                      status: null,
+                      npsn: null,
+                    }),
                   )
                 }
               }}
