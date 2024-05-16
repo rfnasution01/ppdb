@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import { TimeflowLoading } from './TimeflowLoading'
 import { ArrowDown01, BarChart, ChevronDown, MapPin } from 'lucide-react'
 import { ModalLokasi } from '@/features/lokasi/modal-lokasi'
+import Tooltips from './Tooltip'
+import { useNavigate } from 'react-router-dom'
 
 export type Column<T> = {
   header: string
@@ -23,8 +25,11 @@ type Props<T, P> = {
   checkbox?: boolean
   isStatistik?: boolean
   isLokasi?: boolean
+  isDayaTampung?: boolean
   latitude?: number
   longitude?: number
+  jenjang?: string
+  kode?: string
 }
 
 export function Table<T, P>({
@@ -39,7 +44,11 @@ export function Table<T, P>({
   checkbox,
   isStatistik,
   isLokasi,
+  isDayaTampung,
+  jenjang,
+  kode,
 }: Props<T, P>) {
+  const navigate = useNavigate()
   const [rowIsOpen, setRowIsOpen] = useState<number | null>(null)
   const [lokasiIsOpen, setLokasiIsOpen] = useState<number | null>(null)
 
@@ -87,6 +96,13 @@ export function Table<T, P>({
                   {isLokasi && (
                     <th className="sticky top-0 w-[10%] border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
                       Peta
+                    </th>
+                  )}
+
+                  {/* ----- Daya Tampung ----- */}
+                  {isDayaTampung && (
+                    <th className="sticky top-0 w-[10%] border-b-2 bg-background p-4 px-24 py-12 text-left uppercase uppercase">
+                      Tautan
                     </th>
                   )}
 
@@ -151,6 +167,48 @@ export function Table<T, P>({
                               className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
                             >
                               <MapPin size={16} />
+                            </span>
+                          </div>
+                        </td>
+                      )}
+
+                      {/* ----- Daya Tampung ----- */}
+                      {isDayaTampung && (
+                        <td className="w-[10%] px-24 py-12 leading-medium">
+                          <div className="flex items-center gap-8">
+                            <span
+                              onClick={() => {
+                                navigate(
+                                  `/seleksi?jenjang=${jenjang}&kode=${kode}`,
+                                )
+                              }}
+                              className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
+                            >
+                              <Tooltips
+                                triggerComponent={<ArrowDown01 size={16} />}
+                                tooltipContent={
+                                  <p className="text-left text-[2rem]">
+                                    Lihat Hasil Seleksi
+                                  </p>
+                                }
+                              />
+                            </span>
+                            <span
+                              onClick={() => {
+                                navigate(
+                                  `/statistik?jenjang=${jenjang}&kode=${kode}`,
+                                )
+                              }}
+                              className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
+                            >
+                              <Tooltips
+                                triggerComponent={<BarChart size={16} />}
+                                tooltipContent={
+                                  <p className="text-left text-[2rem]">
+                                    Lihat Statistik Sekolah
+                                  </p>
+                                }
+                              />
                             </span>
                           </div>
                         </td>

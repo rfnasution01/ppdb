@@ -44,7 +44,12 @@ export default function DayaTampung() {
   return (
     <div className="flex h-full w-full flex-col gap-32">
       <DayaTampungHeader getDayaTampung={dayaTampung} isLoading={isLoading} />
-      <DayaTampungContent getDayaTampung={dayaTampung} isLoading={isLoading} />
+      <DayaTampungContent
+        getDayaTampung={dayaTampung}
+        isLoading={isLoading}
+        jenjang={jenjangParams}
+        kode={kodeParams}
+      />
     </div>
   )
 }

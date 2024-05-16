@@ -11,9 +11,13 @@ import { Pagination } from '@/components/atoms/Pagination'
 export function DayaTampungContent({
   getDayaTampung,
   isLoading,
+  jenjang,
+  kode,
 }: {
   getDayaTampung: DayaTampungType
   isLoading: boolean
+  jenjang: string
+  kode: string
 }) {
   const [dataPerPage, setDataPerPage] = useState<number>(10)
   const [numberStart, setNumberStart] = useState<number>(0)
@@ -59,7 +63,10 @@ export function DayaTampungContent({
           data={filteredData?.slice(numberStart, numberStart + dataPerPage)}
           columns={columnsListDayaTampung}
           containerClasses="w-full"
-          loading={false}
+          loading={isLoading}
+          isDayaTampung
+          jenjang={jenjang}
+          kode={kode}
         />
       )}
 

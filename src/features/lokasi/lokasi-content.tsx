@@ -68,7 +68,7 @@ export default function LokasiContent({
           data={filteredData?.slice(numberStart, numberStart + dataPerPage)}
           columns={columnsListLokasi}
           containerClasses="w-full"
-          loading={false}
+          loading={isLoading}
           isLokasi
         />
       )}
