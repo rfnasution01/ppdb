@@ -97,9 +97,8 @@ export function RootHeader({
             </div>
           ) : (
             <Link
-              to="/"
-              // to="/login"
-              className="flex items-center gap-x-8 rounded-lg bg-primary-background px-24 py-12 text-white hover:cursor-not-allowed hover:bg-primary-700 hover:bg-opacity-90"
+              to="/login"
+              className="flex items-center gap-x-8 rounded-lg bg-primary-background px-24 py-12 text-white hover:cursor-pointer hover:bg-primary-700 hover:bg-opacity-90"
             >
               <DoorOpen size={16} /> <p>Login</p>{' '}
             </Link>

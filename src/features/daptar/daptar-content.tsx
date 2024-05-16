@@ -20,7 +20,7 @@ export function DaptarContent({ showJenjang }: { showJenjang: string }) {
       >
         Data Pendaftar
       </button>
-      {pilihSekolah ? (
+      {pilihSekolah?.id ? (
         <div className="flex flex-col gap-24">
           <DaptarContentHeader />
           <DaptarContentInfo />

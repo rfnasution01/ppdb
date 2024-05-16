@@ -182,9 +182,8 @@ export function ModalAside({
             </>
           ) : (
             <Link
-              // to="/login"
-              to="/"
-              className="flex items-center gap-16 border-b pl-16 hover:cursor-not-allowed"
+              to="/login"
+              className="flex items-center gap-16 border-b pl-16"
             >
               <div className="flex items-center gap-16 p-16">
                 <DoorClosed size={16} />

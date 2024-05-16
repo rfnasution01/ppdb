@@ -1,6 +1,4 @@
 export * from './formListAgama'
 export * from './formListDataPerPage'
 export * from './formListJenisKelamin'
-export * from './fornListTanggal'
-export * from './formListBulan'
-export * from './formListTahun'
+export * from './formListTanggal'

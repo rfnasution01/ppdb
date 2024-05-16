@@ -5,20 +5,16 @@ export const loginSchema = zod.object({
     required_error: 'NISN harus di isi',
     invalid_type_error: 'Format NISN tidak valid',
   }),
-
-  password: zod
-    .string({
-      required_error: 'Password harus di isi',
-      invalid_type_error:
-        'Format password tidak valid, terdiri dari minimal 6 karakter',
-    })
-    .refine(
-      (value) => {
-        // Validasi bahwa password memiliki minimal 6 karakter
-        return value.length >= 6
-      },
-      {
-        message: 'Password harus memiliki minimal 6 karakter',
-      },
-    ),
+  tanggal_lahir: zod.string({
+    required_error: 'Tanggal lahir harus di isi',
+    invalid_type_error: 'Format tanggal lahir tidak valid',
+  }),
+  bulan_lahir: zod.string({
+    required_error: 'Bulan lahir harus di isi',
+    invalid_type_error: 'Format bulan lahir tidak valid',
+  }),
+  tahun_lahir: zod.string({
+    required_error: 'Tahun lahir harus di isi',
+    invalid_type_error: 'Format tahun lahir tidak valid',
+  }),
 })

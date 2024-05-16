@@ -7,26 +7,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import Cookies from 'js-cookie'
 import Loading from '@/components/atoms/Loading'
-import {
-  ArrowRightFromLine,
-  CircleAlert,
-  CircleCheck,
-  UserCircle,
-} from 'lucide-react'
+import { CircleAlert, CircleCheck } from 'lucide-react'
 import { Form } from '@/components/atoms/Form'
-import { FormLabelInput } from '@/components/molecules/input'
-import {
-  FormListBulan,
-  FormListTahun,
-  FormListTanggal,
-} from '@/components/molecules/form'
+import { FormLabelComponent } from '../biodata/form-label-component'
+import { FormListTanggalLahir } from '@/components/molecules/form'
+import { ListBulan } from '@/libs/dummy/list-tanggal'
 
 export function LoginForm() {
   const [isUpdate, setIsUpdate] = useState<boolean>(false)
   const [isChange, setIsChange] = useState<boolean>(false)
-  const [tanggal, setTanggal] = useState<number>(1)
-  const [bulan, setBulan] = useState<string>('januari')
-  const [tahun, setTahun] = useState<number>(2024)
   const [msg, setMsg] = useState<string>('')
   const navigate = useNavigate()
   // --- Post API ---
@@ -89,7 +78,18 @@ export function LoginForm() {
     }
   }, [loginIsError, loginError])
 
-  console.log({ tanggal }, { bulan }, { tahun })
+  const ListTanggal = []
+
+  for (let i = 1; i <= 31; i++) {
+    ListTanggal.push({ value: i.toString(), label: String(i) })
+  }
+
+  const ListTahun = []
+  const tahunSekarang = new Date().getFullYear()
+
+  for (let i = tahunSekarang; i >= tahunSekarang - 30; i--) {
+    ListTahun.push({ value: i.toString(), label: String(i) })
+  }
 
   return (
     <div className="flex flex-col gap-y-32">
@@ -110,42 +110,59 @@ export function LoginForm() {
           {msg}
         </div>
       )}
-      <p className="font-helvetica text-[2.8rem] font-semibold">Login</p>
       {/* --- Form --- */}
       <Form {...form}>
         <form
           className="flex w-full flex-col gap-y-32"
           onSubmit={form.handleSubmit(handleFormLogin)}
         >
-          <div className="flex flex-col gap-y-24 text-black">
+          <div className="flex flex-col items-center gap-y-24 text-black">
             {/* --- Username --- */}
-            <FormLabelInput
+            <FormLabelComponent
               form={form}
-              placeholder="Masukkan NISN atau No. Peserta"
+              placeHolder="Masukkan NISN atau No. Peserta"
               name="username"
-              prefix={<UserCircle size={16} />}
               type="text"
-              className="col-span-6 phones:col-span-12"
-              isDisabled={disabled}
+              label="No. Peserta / NISN*"
             />
             {/* --- Tanggal Lahir --- */}
-            <div className="flex items-center gap-32">
-              <FormListTanggal setTanggal={setTanggal} />
-              <FormListBulan setBulan={setBulan} />
-              <FormListTahun setTahun={setTahun} />
-            </div>
+            <FormListTanggalLahir
+              name="tanggal_lahir"
+              placeholder="Pilih Tanggal Lahir"
+              headerLabel="Tanggal Lahir*"
+              form={form}
+              data={ListTanggal}
+            />
+
+            <FormListTanggalLahir
+              name="bulan_lahir"
+              placeholder="Pilih Bulan Lahir"
+              headerLabel="Bulan Lahir*"
+              form={form}
+              data={ListBulan}
+            />
+
+            <FormListTanggalLahir
+              name="tahun_lahir"
+              placeholder="Pilih Tahun Lahir"
+              headerLabel="Tahun Lahir*"
+              form={form}
+              data={ListTahun}
+            />
           </div>
-          <div className="flex">
-            <button
-              type="submit"
-              disabled={disabled}
-              className="hover:bg-primary-shade-700 disabled:hover:bg-primary-shade-500 flex w-full items-center justify-center gap-x-8 rounded-2xl bg-primary py-12 text-[2rem] text-white disabled:cursor-not-allowed"
-            >
-              <p>Login</p>
-              <span>
-                <ArrowRightFromLine size={16} />
-              </span>
-            </button>
+          <div className="flex items-center justify-center">
+            <div className="flex w-4/6 flex-col justify-center gap-12 phones:w-full">
+              <button
+                type="submit"
+                disabled={disabled}
+                className="flex w-full items-center justify-center gap-x-8 rounded-2xl bg-green-700 py-12 text-[2rem] text-white hover:bg-green-900 disabled:cursor-not-allowed disabled:bg-emerald-200 phones:w-full"
+              >
+                <p className="uppercase">Login</p>
+              </button>
+              <p className="text-right text-[1.8rem] text-blue-900 hover:cursor-pointer hover:text-blue-700">
+                Lupa Password?
+              </p>
+            </div>
           </div>
         </form>
       </Form>
