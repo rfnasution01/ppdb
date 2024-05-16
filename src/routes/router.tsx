@@ -101,15 +101,15 @@ export const router = createBrowserRouter([
   },
   {
     path: 'main',
-    // loader: async () => {
-    //   const jwtPayload = Cookies.get('token')
+    loader: async () => {
+      const jwtPayload = Cookies.get('token')
 
-    //   if (!jwtPayload) {
-    //     return redirect('/login')
-    //   }
+      if (!jwtPayload) {
+        return redirect('/login')
+      }
 
-    //   return null
-    // },
+      return null
+    },
     element: <MainLayout />,
     children: [
       {

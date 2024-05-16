@@ -1,12 +1,12 @@
 export type LoginType = {
   username: string
-  password: string
+  tanggal_lahir: string
 }
 
 export type ResponseLoginType = {
   token: string
-  change_password: boolean
-  update_profil: boolean
+  jenjang: string
+  jalur: string
 }
 
 export type ChangePasswordType = {

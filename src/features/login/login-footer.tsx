@@ -3,7 +3,7 @@ import { User, User2 } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-export function LoginFooter() {
+export function LoginFooter({ disabled }: { disabled: boolean }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -20,6 +20,7 @@ export function LoginFooter() {
         <div className="flex">
           <button
             type="button"
+            disabled={disabled}
             onClick={() => {
               dispatch(setStateJenjang({ tingkatan: 'sd' }))
               navigate('/')
@@ -31,6 +32,7 @@ export function LoginFooter() {
           </button>
           <button
             type="button"
+            disabled={disabled}
             onClick={() => {
               dispatch(setStateJenjang({ tingkatan: 'smp' }))
               navigate('/')

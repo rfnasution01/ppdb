@@ -1,87 +1,32 @@
-import { loginSchema } from '@/libs/schema/logins-schema'
-import { useCreateLoginMutation } from '@/store/slices/loginAPI'
-import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as zod from 'zod'
-import Cookies from 'js-cookie'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Loading from '@/components/atoms/Loading'
-import { CircleAlert, CircleCheck } from 'lucide-react'
+import { CircleAlert, CircleCheck, Loader2, Save } from 'lucide-react'
 import { Form } from '@/components/atoms/Form'
 import { FormLabelComponent } from '../biodata/form-label-component'
 import { FormListTanggalLahir } from '@/components/molecules/form'
 import { ListBulan } from '@/libs/dummy/list-tanggal'
+import { UseFormReturn } from 'react-hook-form'
 
-export function LoginForm() {
-  const [isUpdate, setIsUpdate] = useState<boolean>(false)
-  const [isChange, setIsChange] = useState<boolean>(false)
-  const [msg, setMsg] = useState<string>('')
-  const navigate = useNavigate()
-  // --- Post API ---
-  const [
-    createLogin,
-    {
-      isSuccess: loginIsSuccess,
-      isError: loginIsError,
-      error: loginError,
-      isLoading: loginIsLoading,
-    },
-  ] = useCreateLoginMutation()
-  const disabled = loginIsLoading
-
-  // --- Form Schema ---
-  const form = useForm<zod.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {},
-  })
-
-  // --- Handle Login ---
-  async function handleFormLogin(values) {
-    try {
-      const res = await createLogin({ data: values })
-      if ('data' in res) {
-        const token = res?.data?.data?.token
-        const updateProfile = res?.data?.data?.update_profil
-        const changePassword = res?.data?.data?.change_password
-        localStorage.setItem('isUpdate', updateProfile ? 'yes' : 'no')
-        setIsUpdate(updateProfile)
-        setIsChange(changePassword)
-        Cookies.set('token', token)
-      } else {
-        console.error('Error occurred:', res.error)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    if (loginIsSuccess) {
-      setMsg('Login Berhasil!')
-      setTimeout(() => {
-        navigate(
-          isUpdate ? '/update-profile' : isChange ? '/ganti-password' : '/main',
-        )
-      }, 1000)
-    }
-  }, [loginIsSuccess])
-
-  useEffect(() => {
-    if (loginIsError) {
-      const errorMsg = loginError as {
-        data?: {
-          message?: string
-        }
-      }
-      setMsg(errorMsg?.data?.message)
-    }
-  }, [loginIsError, loginError])
-
+export function LoginForm({
+  handleFormLogin,
+  disabled,
+  loginIsError,
+  loginIsSuccess,
+  msg,
+  form,
+}: {
+  handleFormLogin(values: any): Promise<void>
+  disabled: boolean
+  loginIsError: boolean
+  loginIsSuccess: boolean
+  msg: string
+  form: UseFormReturn
+}) {
   const ListTanggal = []
 
   for (let i = 1; i <= 31; i++) {
-    ListTanggal.push({ value: i.toString(), label: String(i) })
+    const formattedValue = i < 10 ? `0${i}` : i.toString()
+    ListTanggal.push({ value: formattedValue, label: formattedValue })
   }
 
   const ListTahun = []
@@ -155,9 +100,16 @@ export function LoginForm() {
               <button
                 type="submit"
                 disabled={disabled}
-                className="flex w-full items-center justify-center gap-x-8 rounded-2xl bg-green-700 py-12 text-[2rem] text-white hover:bg-green-900 disabled:cursor-not-allowed disabled:bg-emerald-200 phones:w-full"
+                className="flex w-full items-center justify-center gap-x-12 rounded-2xl bg-green-700 py-12 text-[2rem] text-white hover:bg-green-900 disabled:cursor-not-allowed disabled:bg-emerald-200 phones:w-full"
               >
                 <p className="uppercase">Login</p>
+                {disabled ? (
+                  <span className="animate-spin duration-300">
+                    <Loader2 size={16} />
+                  </span>
+                ) : (
+                  <Save size={16} />
+                )}
               </button>
               <p className="text-right text-[1.8rem] text-blue-900 hover:cursor-pointer hover:text-blue-700">
                 Lupa Password?
