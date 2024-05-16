@@ -1,12 +1,29 @@
+import { Table } from '@/components/atoms/Table'
+import { columnsListDayaTampung } from '@/libs/dummy/table'
+import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
+import { DayaTampungType } from '@/libs/types'
+import { useGetDayaTampungQuery } from '@/store/slices/dayaTampungAPI'
+import dayjs from 'dayjs'
 import { Printer, RefreshCcw } from 'lucide-react'
+import { useRef } from 'react'
+import ReactToPrint from 'react-to-print'
 
 export function DayaTampungContentHeader({
   onSearch,
   total,
+  jenjang,
+  kode,
+  getDayaTampung,
 }: {
   onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
   total: number
+  jenjang: string
+  kode: string
+  getDayaTampung: DayaTampungType
 }) {
+  const data = useGetDayaTampungQuery({ jenjang: jenjang, jalur: kode })
+  const ref = useRef<HTMLDivElement>()
+
   return (
     <div className="flex  items-center justify-between gap-32 rounded-lg bg-background p-24 text-[3rem] phones:flex-col phones:items-start">
       <p>Total {total} Sekolah</p>
@@ -17,13 +34,61 @@ export function DayaTampungContentHeader({
           placeholder="Search"
           onChange={(e) => onSearch(e)}
         />
-        <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
+        <span
+          onClick={data?.refetch}
+          className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
+        >
           <RefreshCcw size={16} />
         </span>
-        <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
-          <Printer size={16} />
-        </span>
+
+        <ReactToPrint
+          bodyClass="print-agreement"
+          content={() => ref.current}
+          trigger={() => (
+            <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
+              <Printer size={16} />
+            </span>
+          )}
+        />
       </div>
+      <section
+        className="absolute left-[-10000px] top-auto h-auto overflow-hidden"
+        aria-hidden
+        tabIndex={-1}
+      >
+        <div ref={ref}>
+          <div className="flex flex-col gap-32 p-32">
+            {/* --- Header --- */}
+            <div className="flex items-center justify-between">
+              <p>{dayjs().locale('id').format('DD/MM/YYYY hh:mm A')}</p>
+              <p>SIAP PPDB Online | Kab. Batu Bara</p>
+            </div>
+            {/* --- Logo --- */}
+            <div className="flex flex-col items-center justify-center gap-24">
+              <img src="/img/tutwuri.png" alt="PPDB" className="w-[15rem]" />
+              <p className="text-[5rem] font-bold uppercase">KAB. Batu bara</p>
+            </div>
+            {/* --- Content Header --- */}
+            <div className="flex flex-col gap-16 rounded-2xl border p-32">
+              <p className="text-[3.6rem]">
+                {capitalizeFirstLetterFromLowercase(getDayaTampung?.judul)}
+              </p>
+              <p className="font-nunito">{getDayaTampung?.deskripsi}</p>
+            </div>
+            {/* --- Table ---  */}
+            <div className="rounded-2xl border p-32">
+              <Table
+                data={getDayaTampung?.isi}
+                columns={columnsListDayaTampung}
+                containerClasses="w-full"
+                isDayaTampung
+                jenjang={jenjang}
+                kode={kode}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

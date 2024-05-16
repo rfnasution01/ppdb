@@ -54,6 +54,9 @@ export function DayaTampungContent({
       <DayaTampungContentHeader
         total={getDayaTampung?.isi?.length}
         onSearch={onSearch}
+        jenjang={jenjang}
+        kode={kode}
+        getDayaTampung={getDayaTampung}
       />
 
       {isLoading ? (
