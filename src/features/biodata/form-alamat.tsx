@@ -1,43 +1,79 @@
-import { FormListAgama } from '@/components/molecules/form/formListAgama'
 import { UseFormReturn } from 'react-hook-form'
 import { FormLabelComponent } from './form-label-component'
+import { FormListProvinsi } from '@/components/molecules/form/formListProvinsi'
+import { FormListKabupaten } from '@/components/molecules/form/formListKabupaten'
+import { FormListKecamatan } from '@/components/molecules/form/formListKecamatan'
+import { FormListDesa } from '@/components/molecules/form/formListDesa'
+import { FormListDusun } from '@/components/molecules/form/formListDusun'
+import { useEffect, useState } from 'react'
 
 export function FormAlamat({ form }: { form: UseFormReturn }) {
+  const provinsi = form.getValues('provinsi')
+  const kabupaten = form.getValues('kabupaten')
+  const kecamatan = form.getValues('kecamatan')
+  const desa = form.getValues('desa')
+  const [inputKeyKabupaten, setInputKeyKabupaten] = useState<number>(0)
+  const [inputKeyKecamatan, setInputKeyKecamatan] = useState<number>(0)
+  const [inputKeyDesa, setInputKeyDesa] = useState<number>(0)
+
+  useEffect(() => {
+    setInputKeyKabupaten(Math.random())
+  }, [provinsi])
+
+  useEffect(() => {
+    setInputKeyKecamatan(Math.random())
+  }, [kabupaten])
+
+  useEffect(() => {
+    setInputKeyDesa(Math.random())
+  }, [kecamatan])
+
+  console.log(inputKeyKecamatan)
+  console.log(inputKeyKabupaten)
+
   return (
     <div className="flex flex-col gap-12">
-      <FormListAgama
+      <FormListProvinsi
         name="provinsi"
-        placeholder="Pilih provinsi"
-        headerLabel="Provinsi*"
-        form={form}
+        useFormReturn={form}
+        headerLabel="Provinsi"
+        placeholder="Pilih Provinsi"
       />
-      <FormListAgama
+
+      <FormListKabupaten
         name="kabupaten"
-        placeholder="Pilih kabupaten"
-        headerLabel="Kabupaten*"
-        form={form}
+        key={provinsi}
+        useFormReturn={form}
+        headerLabel="Kabupaten"
+        placeholder="Pilih Kabupaten"
+        isDisabled={!provinsi}
       />
 
-      <FormListAgama
+      <FormListKecamatan
         name="kecamatan"
-        placeholder="Pilih kecamatan"
-        headerLabel="Kecamatan*"
-        form={form}
+        key={kabupaten}
+        useFormReturn={form}
+        headerLabel="Kecamatan"
+        placeholder="Pilih Kecamatan"
+        isDisabled={!kabupaten}
       />
 
-      <FormListAgama
+      <FormListDesa
         name="desa"
-        placeholder="Pilih desa"
-        headerLabel="Desa*"
-        form={form}
+        key={kecamatan}
+        useFormReturn={form}
+        headerLabel="Desa"
+        placeholder="Pilih Desa"
+        isDisabled={!kecamatan}
       />
 
-      <FormLabelComponent
-        form={form}
+      <FormListDusun
         name="dusun"
-        label="Dusun"
-        placeHolder="Masukkan nama dusun anda"
-        type="text"
+        key={inputKeyDesa}
+        useFormReturn={form}
+        headerLabel="Dusun"
+        placeholder="Pilih Dusun"
+        isDisabled={!desa}
       />
 
       <FormLabelComponent

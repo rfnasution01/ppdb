@@ -5,4 +5,5 @@ export const ListAgama = [
   { value: 'Buddha', label: 'Budha' },
   { value: 'Hindu', label: 'Hindu' },
   { value: 'Konghuchu', label: 'Konghuchu' },
+  { value: 'Lainnya', label: 'Lainnya' },
 ]

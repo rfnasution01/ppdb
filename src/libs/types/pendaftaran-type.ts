@@ -7,6 +7,12 @@ export type BiodataParams = {
   jenis_kelamin: string
   nomor_kk: string
   telepon: string
+  id_provinsi: string
+  id_kabupaten: string
+  id_kecamatan: string
+  id_desa: string
+  id_dusun: string
+  alamat_lengkap: string
 }
 
 export type AlamatParams = {
@@ -57,4 +63,10 @@ export type Alamat = {
 export type Orangtua = {
   ayah: null
   ibu: null
+}
+
+export type ProvinsiType = {
+  id: string
+  nama: string
+  default: boolean
 }

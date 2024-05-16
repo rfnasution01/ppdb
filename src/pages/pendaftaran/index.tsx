@@ -14,6 +14,7 @@ import {
   BiodataSekolah,
 } from '@/features/biodata'
 import { enumPendaftaran } from '@/libs/enum/enum-pendaftaran'
+import Cookies from 'js-cookie'
 
 export default function Pendaftaran() {
   const searchParams = new URLSearchParams(location.search)
@@ -46,6 +47,8 @@ export default function Pendaftaran() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const jalurParams = Cookies.get('jalur')
+  const jenjangParams = Cookies.get('jenjang')
 
   return (
     <div className="flex h-full flex-col gap-64">
@@ -97,7 +100,12 @@ export default function Pendaftaran() {
           </p>
           <div className="scrollbar h-full overflow-auto">
             {name === 'jalur-pendaftaran' ? (
-              <BiodataJalur setName={setName} setActiveIndex={setActiveIndex} />
+              <BiodataJalur
+                jalurParams={jalurParams}
+                jenjangParams={jenjangParams}
+                setName={setName}
+                setActiveIndex={setActiveIndex}
+              />
             ) : name === 'informasi-pribadi' ? (
               <BiodataPribadi
                 setName={setName}
@@ -124,7 +132,12 @@ export default function Pendaftaran() {
                 setActiveIndex={setActiveIndex}
               />
             ) : (
-              <BiodataJalur setName={setName} setActiveIndex={setActiveIndex} />
+              <BiodataJalur
+                jalurParams={jalurParams}
+                jenjangParams={jenjangParams}
+                setName={setName}
+                setActiveIndex={setActiveIndex}
+              />
             )}
           </div>
         </div>

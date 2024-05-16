@@ -5,10 +5,14 @@ import * as zod from 'zod'
 import { informasiPribadiSchema } from '@/libs/schema/biodata-schema'
 import { FormBiodata } from './form-informasi-pribadi'
 import { FormAlamat } from './form-alamat'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { Bounce, ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useCreateBiodataMutation } from '@/store/slices/pendaftaranAPI'
+import { Loader2, Save } from 'lucide-react'
 
 export function BiodataPribadi({
   setName,
@@ -23,21 +27,94 @@ export function BiodataPribadi({
   // --- Form Schema ---
   const form = useForm<zod.infer<typeof informasiPribadiSchema>>({
     resolver: zodResolver(informasiPribadiSchema),
-    defaultValues: {},
+    defaultValues: {
+      provinsi: '9cfb949a-0f74-48b0-80ba-fb7c37c53325',
+      kabupaten: '62716ac1-fc94-427b-bd30-342b3c946bd6',
+    },
   })
 
-  const handleFormLogin = (values) => {
-    console.log(values)
-    setActiveIndex(2)
-    setName('pendidikan-sebelumnya')
-    dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
-    navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+  // --- Create Biodata ---
+  const [
+    createBiodata,
+    {
+      isError: isErrorBiodata,
+      error: errorBiodata,
+      isLoading: isLoadingBiodata,
+      isSuccess: isSuccessBiodata,
+    },
+  ] = useCreateBiodataMutation()
+
+  const handleSubmit = (values) => {
+    const body = {
+      tempat_lahir: values?.tempat_lahir,
+      jenis_kelamin: values?.jenis_kelamin,
+      nomor_kk: values?.kk,
+      telepon: values?.no_hp,
+      agama: values?.agama,
+      id_provinsi: values?.provinsi,
+      id_kabupaten: values?.kabupaten,
+      id_kecamatan: values?.kecamatan,
+      id_desa: values?.desa,
+      id_dusun: values?.dusun,
+      alamat_lengkap: values?.alamat,
+    }
+
+    try {
+      createBiodata({ data: body })
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+  useEffect(() => {
+    if (isSuccessBiodata) {
+      toast.success(`Biodata berhasil disimpan!`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
+      setTimeout(() => {
+        setActiveIndex(2)
+        setName('pendidikan-sebelumnya')
+        dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
+        navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+      }, 2000)
+    }
+  }, [isSuccessBiodata])
+
+  useEffect(() => {
+    if (isErrorBiodata) {
+      const errorMsg = errorBiodata as {
+        data?: {
+          message?: string
+        }
+      }
+
+      toast.error(`${errorMsg?.data?.message ?? 'Terjadi Kesalahan'}`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
+    }
+  }, [isErrorBiodata, errorBiodata])
+
   return (
     <Form {...form}>
       <form
         className="flex w-full flex-col"
-        onSubmit={form.handleSubmit(handleFormLogin)}
+        onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="flex flex-1 flex-col gap-32 pb-32">
           {/* --- Informasi Pribadi --- */}
@@ -58,6 +135,7 @@ export function BiodataPribadi({
             <button
               className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700"
               type="button"
+              disabled={isLoadingBiodata}
               onClick={() => {
                 setActiveIndex(0)
                 setName('jalur-pendaftaran')
@@ -68,13 +146,22 @@ export function BiodataPribadi({
               Kembali
             </button>
             <button
-              className="rounded-2xl bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900"
+              disabled={isLoadingBiodata}
+              className="flex items-center gap-12 rounded-2xl bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900"
               type="submit"
             >
               Lanjut
+              {isLoadingBiodata ? (
+                <span className="animate-spin duration-300">
+                  <Loader2 size={16} />
+                </span>
+              ) : (
+                <Save size={16} />
+              )}
             </button>
           </div>
         </div>
+        <ToastContainer />
       </form>
     </Form>
   )

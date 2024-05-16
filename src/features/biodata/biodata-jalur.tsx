@@ -18,12 +18,14 @@ import 'react-toastify/dist/ReactToastify.css'
 export function BiodataJalur({
   setName,
   setActiveIndex,
+  jalurParams,
+  jenjangParams,
 }: {
   setName: Dispatch<SetStateAction<string>>
   setActiveIndex: Dispatch<SetStateAction<number>>
+  jalurParams: string
+  jenjangParams: string
 }) {
-  const jalurParams = Cookies.get('jalur')
-  const jenjangParams = Cookies.get('jenjang')
   const [jalur, setJalur] = useState(jalurParams.toLowerCase())
   const dispatch = useDispatch()
   const navigate = useNavigate()
