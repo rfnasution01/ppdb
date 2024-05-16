@@ -30,6 +30,13 @@ export function DayaTampungContent({
     handleSearch(value)
   }
 
+  const handleClick = () => {
+    const inputElement = document.querySelector(
+      'input[type="text"]',
+    ) as HTMLInputElement
+    handleSearch(inputElement.value)
+  }
+
   const handleSearch = debounce((searchValue: string) => {
     setSearch(searchValue)
   }, 300)
@@ -57,6 +64,7 @@ export function DayaTampungContent({
         jenjang={jenjang}
         kode={kode}
         getDayaTampung={getDayaTampung}
+        handleClick={handleClick}
       />
 
       {isLoading ? (

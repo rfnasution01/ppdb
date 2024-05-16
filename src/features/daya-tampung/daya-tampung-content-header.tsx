@@ -4,7 +4,7 @@ import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
 import { DayaTampungType } from '@/libs/types'
 import { useGetDayaTampungQuery } from '@/store/slices/dayaTampungAPI'
 import dayjs from 'dayjs'
-import { Printer, RefreshCcw } from 'lucide-react'
+import { Printer, RefreshCcw, Search } from 'lucide-react'
 import { useRef } from 'react'
 import ReactToPrint from 'react-to-print'
 
@@ -14,26 +14,41 @@ export function DayaTampungContentHeader({
   jenjang,
   kode,
   getDayaTampung,
+  handleClick,
 }: {
   onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
   total: number
   jenjang: string
   kode: string
   getDayaTampung: DayaTampungType
+  handleClick: () => void
 }) {
   const data = useGetDayaTampungQuery({ jenjang: jenjang, jalur: kode })
   const ref = useRef<HTMLDivElement>()
 
   return (
-    <div className="flex  items-center justify-between gap-32 rounded-lg bg-background p-24 text-[3rem] phones:flex-col phones:items-start">
+    <div className="flex items-center justify-between gap-32 rounded-lg bg-background p-24 text-[3rem] phones:flex-col phones:items-start phones:gap-16">
       <p>Total {total} Sekolah</p>
       <div className="flex items-center gap-16">
-        <input
-          type="text"
-          className="h-1/2 w-full rounded-lg border border-gray-300 p-16 text-[2rem] focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 phones:w-full"
-          placeholder="Search"
-          onChange={(e) => onSearch(e)}
-        />
+        <div className="flex">
+          <input
+            type="text"
+            className="h-1/2 w-full rounded-lg border border-gray-300 p-16 text-[2rem] focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 phones:w-full"
+            placeholder="Search"
+            onChange={(e) => onSearch(e)}
+          />
+          <button
+            className="bg-success px-12 text-white"
+            type="button"
+            style={{
+              borderTopRightRadius: '1rem',
+              borderBottomRightRadius: '1rem',
+            }}
+            onClick={() => handleClick()}
+          >
+            <Search size={20} />
+          </button>
+        </div>
         <span
           onClick={data?.refetch}
           className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
