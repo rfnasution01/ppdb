@@ -36,80 +36,43 @@ export default function Breadcrumb({
 
   const menuSD = menu?.filter((item) => item !== 'Pendidikan Sebelumnya')
 
+  const filteredMenu = jenjang.toLowerCase() === 'sd' ? menuSD : menu
+
   return (
     <div className="breadcrumb scrollbar flex overflow-auto text-center">
-      {jenjang.toLowerCase() === 'sd' ? (
-        <>
-          {menuSD.map((item, idx) => (
-            <a
-              href="#"
-              className={clsx('', {
-                'breadcrumb__step--active breadcrumb__step': activeIndex >= idx,
-                'breadcrumb__status--active breadcrumb__status':
-                  !(activeIndex >= idx) &&
-                  getProfil?.biodata?.status === true &&
-                  idx <= indexInformasiDataIsTrue,
-                'breadcrumb__step hover:cursor-not-allowed':
-                  !(activeIndex >= idx) &&
-                  !(
-                    getProfil?.biodata?.status === true &&
-                    idx <= indexInformasiDataIsTrue
-                  ),
-              })}
-              key={idx}
-              onClick={() => {
-                if (
-                  activeIndex > idx ||
-                  (getProfil?.biodata?.status === true &&
-                    idx <= indexInformasiDataIsTrue)
-                ) {
-                  setActiveIndex(idx)
-                  setName(convertToSlug(item))
-                  dispatch(setStateBiodata({ page: convertToSlug(item) }))
-                  navigate(`/main?page=${convertToSlug(item)}`)
-                }
-              }}
-            >
-              <p className="text-nowrap">{item}</p>
-            </a>
-          ))}
-        </>
-      ) : (
-        <>
-          {menu.map((item, idx) => (
-            <a
-              href="#"
-              className={clsx('breadcrumb__step', {
-                'breadcrumb__step--active':
-                  activeIndex >= idx ||
-                  (getProfil?.biodata?.status === true &&
-                    idx <= indexInformasiDataIsTrue),
-                'hover:cursor-not-allowed':
-                  !(activeIndex >= idx) &&
-                  !(
-                    getProfil?.biodata?.status === true &&
-                    idx <= indexInformasiDataIsTrue
-                  ),
-              })}
-              key={idx}
-              onClick={() => {
-                if (
-                  activeIndex > idx ||
-                  (getProfil?.biodata?.status === true &&
-                    idx <= indexInformasiDataIsTrue)
-                ) {
-                  setActiveIndex(idx)
-                  setName(convertToSlug(item))
-                  dispatch(setStateBiodata({ page: convertToSlug(item) }))
-                  navigate(`/main?page=${convertToSlug(item)}`)
-                }
-              }}
-            >
-              <p className="text-nowrap">{item}</p>
-            </a>
-          ))}
-        </>
-      )}
+      {filteredMenu.map((item, idx) => (
+        <a
+          href="#"
+          className={clsx('', {
+            'breadcrumb__step--active breadcrumb__step': activeIndex === idx,
+            'breadcrumb__status--active breadcrumb__status':
+              !(activeIndex === idx) &&
+              getProfil?.biodata?.status === true &&
+              idx <= indexInformasiDataIsTrue,
+            'breadcrumb__step hover:cursor-not-allowed':
+              !(activeIndex === idx) &&
+              !(
+                getProfil?.biodata?.status === true &&
+                idx <= indexInformasiDataIsTrue
+              ),
+          })}
+          key={idx}
+          onClick={() => {
+            if (
+              activeIndex > idx ||
+              (getProfil?.biodata?.status === true &&
+                idx <= indexInformasiDataIsTrue)
+            ) {
+              setActiveIndex(idx)
+              setName(convertToSlug(item))
+              dispatch(setStateBiodata({ page: convertToSlug(item) }))
+              navigate(`/main?page=${convertToSlug(item)}`)
+            }
+          }}
+        >
+          <p className="text-nowrap">{item}</p>
+        </a>
+      ))}
     </div>
   )
 }

@@ -1,10 +1,8 @@
 import Breadcrumb from './Breadcrumbs'
-import { useDispatch, useSelector } from 'react-redux'
-import { getBiodataSlice, setStateBiodata } from '@/store/reducer/stateBiodata'
+import { useSelector } from 'react-redux'
+import { getBiodataSlice } from '@/store/reducer/stateBiodata'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { convertSlugToText, convertToSlug } from '@/libs/helpers/format-text'
-import clsx from 'clsx'
+import { convertSlugToText } from '@/libs/helpers/format-text'
 import {
   BiodataDokumen,
   BiodataJalur,
@@ -47,8 +45,6 @@ export default function Pendaftaran() {
     }
   }, [stateBiodata])
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   const jalurParams = Cookies.get('jalur')
   const jenjangParams = Cookies.get('jenjang')
 
@@ -72,44 +68,72 @@ export default function Pendaftaran() {
     <div className="flex h-full flex-col gap-64">
       {/* --- Header --- */}
       <div>
-        <div className="phones:hidden">
-          <Breadcrumb
-            setName={setName}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-            getProfil={profil}
-          />
-        </div>
-        <div className="hidden phones:block">
+        <Breadcrumb
+          setName={setName}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          getProfil={profil}
+        />
+        {/* <div className="hidden phones:block">
           <div className="scrollbar flex flex-shrink items-center gap-12 overflow-auto">
-            {[
-              'Jalur Pendaftaran',
-              'Informasi Pribadi',
-              'Pendidikan Sebelumnya',
-              'Orang Tua',
-              'Kelengkapan Dokumen',
-              'Pilih Sekolah',
-            ].map((item, idx) => (
-              <div
-                onClick={() => {
-                  setName(convertToSlug(item))
-                  dispatch(setStateBiodata({ page: convertToSlug(item) }))
-                  navigate(`/main?page=${convertToSlug(item)}`)
-                }}
-                className={clsx('flex cursor-pointer items-center p-32 ', {
-                  'bg-primary-200': convertToSlug(item) === name,
-                  'bg-white text-black hover:bg-primary-50':
-                    convertToSlug(item) !== name,
-                })}
-                key={idx}
-              >
-                <p className="text-nowrap text-[2rem]">
-                  {idx + 1}. {item}
-                </p>
-              </div>
-            ))}
+            {jenjangParams.toLowerCase() === 'sd' ? (
+              <>
+                {menuSD.map((item, idx) => (
+                  <div
+                    onClick={() => {
+                      if (
+                        activeIndex > idx ||
+                        (profil?.biodata?.status === true && idx <= 2)
+                      ) {
+                        setActiveIndex(idx)
+                        setName(convertToSlug(item))
+                        dispatch(setStateBiodata({ page: convertToSlug(item) }))
+                        navigate(`/main?page=${convertToSlug(item)}`)
+                      }
+                    }}
+                    className={clsx('flex cursor-pointer items-center p-32 ', {
+                      'bg-primary': activeIndex === idx,
+                      'bg-danger-100':
+                        !(activeIndex === idx) &&
+                        profil?.biodata?.status === true &&
+                        idx <= 2,
+                      'bg-white text-black hover:bg-primary-50':
+                        !(activeIndex === idx) &&
+                        !(profil?.biodata?.status === true && idx <= 2),
+                    })}
+                    key={idx}
+                  >
+                    <p className="text-nowrap text-[2rem]">
+                      {idx + 1}. {item}
+                    </p>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                {menu.map((item, idx) => (
+                  <div
+                    onClick={() => {
+                      setName(convertToSlug(item))
+                      dispatch(setStateBiodata({ page: convertToSlug(item) }))
+                      navigate(`/main?page=${convertToSlug(item)}`)
+                    }}
+                    className={clsx('flex cursor-pointer items-center p-32 ', {
+                      'bg-primary-200': convertToSlug(item) === name,
+                      'bg-white text-black hover:bg-primary-50':
+                        convertToSlug(item) !== name,
+                    })}
+                    key={idx}
+                  >
+                    <p className="text-nowrap text-[2rem]">
+                      {idx + 1}. {item}
+                    </p>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
-        </div>
+        </div> */}
       </div>
       {/* --- Content --- */}
       <div className="scrollbar flex h-full flex-1 justify-center overflow-auto">

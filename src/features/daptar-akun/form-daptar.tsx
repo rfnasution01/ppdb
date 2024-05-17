@@ -33,7 +33,7 @@ export function FormDaptar({
         {/* --- NISN --- */}
         {showJenjang.toLowerCase() === 'smp' && (
           <FormField
-            name="nisn*"
+            name="nisn"
             control={form.control}
             render={({ field }) => (
               <FormItem className="flex flex-col gap-8">

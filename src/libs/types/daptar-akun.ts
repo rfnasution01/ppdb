@@ -1,4 +1,5 @@
 export type DaptarAkunParams = {
+  nisn?: string
   nik: string
   nama: string
   tanggal_lahir: string
