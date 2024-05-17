@@ -153,7 +153,7 @@ export function FormListDesa({
                   onChange={(optionSelected) => {
                     field.onChange(optionSelected.value)
                     useFormReturn.setValue('desa', optionSelected.value)
-                    useFormReturn.setValue('dusun', null)
+                    useFormReturn.setValue('dusun', '')
                   }}
                   isDisabled={isDisabled}
                   isLoading={isFetching || isLoading}

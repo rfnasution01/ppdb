@@ -1,13 +1,29 @@
 import { UseFormReturn } from 'react-hook-form'
 import { FormLabelComponent } from './form-label-component'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
+import { useEffect } from 'react'
 
-export function FormAPendidkan({ form }: { form: UseFormReturn }) {
+export function FormAPendidkan({
+  form,
+  getProfil,
+}: {
+  form: UseFormReturn
+  getProfil: ProfilData
+}) {
+  useEffect(() => {
+    if (getProfil?.sekolah) {
+      form.setValue('npsn', getProfil?.sekolah?.npsn)
+      form.setValue('nama_sekolah', getProfil?.sekolah?.nama_sekolah)
+      form.setValue('tahun_lulus', getProfil?.sekolah?.tahun_lulus)
+    }
+  }, [getProfil])
+
   return (
     <div className="flex flex-col gap-12">
       <FormLabelComponent
         form={form}
         name="nisn"
-        label="NISN*"
+        label="NISN"
         placeHolder="Masukkan NISN anda"
         type="text"
         isNumber

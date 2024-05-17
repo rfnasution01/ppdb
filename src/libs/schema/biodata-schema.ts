@@ -70,8 +70,8 @@ export const sekolahSebelumnyaSchema = zod.object({
       required_error: 'NISN harus di isi',
       invalid_type_error: 'Format NISN tidak valid',
     })
-    .refine((value) => value.length === 10, {
-      message: 'NISN harus terdiri dari 10 angka',
+    .refine((value) => value.length === 8, {
+      message: 'NISN harus terdiri dari 8 angka',
     })
     .optional(),
   npsn: zod
@@ -79,8 +79,8 @@ export const sekolahSebelumnyaSchema = zod.object({
       required_error: 'NPSN harus di isi',
       invalid_type_error: 'Format NPSN tidak valid',
     })
-    .refine((value) => value.length === 10, {
-      message: 'NPSN harus terdiri dari 10 angka',
+    .refine((value) => value.length === 8, {
+      message: 'NPSN harus terdiri dari 8 angka',
     }),
   nama_sekolah: zod.string({
     required_error: 'Nama Sekolah harus di isi',

@@ -31,8 +31,8 @@ export function BiodataPribadi({
   const form = useForm<zod.infer<typeof informasiPribadiSchema>>({
     resolver: zodResolver(informasiPribadiSchema),
     defaultValues: {
-      // provinsi: '9cfb949a-0f74-48b0-80ba-fb7c37c53325',
-      // kabupaten: '62716ac1-fc94-427b-bd30-342b3c946bd6',
+      provinsi: '9cfb949a-0f74-48b0-80ba-fb7c37c53325',
+      kabupaten: '62716ac1-fc94-427b-bd30-342b3c946bd6',
     },
   })
 

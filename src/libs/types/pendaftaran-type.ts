@@ -24,12 +24,6 @@ export type AlamatParams = {
   alamat_lengkap: string
 }
 
-export type SekolahParams = {
-  npsn: string
-  nama_sekolah: string
-  tahun_lulus: string
-}
-
 export type ProvinsiType = {
   id: string
   nama: string
@@ -67,8 +61,15 @@ export type OrangTuaType = {
 export type ProfilData = {
   jalur: string
   biodata: BiodataType
-  sekolah: null // Assuming school data or null if not available
+  sekolah: SekolahParams // Assuming school data or null if not available
   orangtua: OrangTuaType
   dokumen: null // Assuming array of document data
   pilihan: null // Assuming array of choices
+}
+
+export type SekolahParams = {
+  nisn?: string
+  npsn: string
+  nama_sekolah: string
+  tahun_lulus: string
 }

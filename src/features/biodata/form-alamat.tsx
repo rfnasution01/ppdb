@@ -21,7 +21,7 @@ export function FormAlamat({
   const desa = form.watch('desa')
 
   useEffect(() => {
-    if (getProfil) {
+    if (getProfil?.biodata?.status === true) {
       form.setValue('provinsi', getProfil?.biodata?.id_provinsi)
       form.setValue('kabupaten', getProfil?.biodata?.id_kabupaten)
       form.setValue('kecamatan', getProfil?.biodata?.id_kecamatan)

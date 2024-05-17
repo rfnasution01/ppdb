@@ -4,17 +4,24 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { sekolahSebelumnyaSchema } from '@/libs/schema/biodata-schema'
 import { FormAPendidkan } from './form-pendidikan'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
+import { useCreateSekolahMutation } from '@/store/slices/pendaftaranAPI'
+import { Bounce, ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Loader2, Save } from 'lucide-react'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
 
 export function BiodataPendidikan({
   setName,
   setActiveIndex,
+  getProfil,
 }: {
   setName: Dispatch<SetStateAction<string>>
   setActiveIndex: Dispatch<SetStateAction<number>>
+  getProfil: ProfilData
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -24,22 +31,84 @@ export function BiodataPendidikan({
     defaultValues: {},
   })
 
-  const handleFormLogin = (values) => {
-    console.log(values)
-    setActiveIndex(3)
-    setName('orang-tua')
-    dispatch(setStateBiodata({ page: 'orang-tua' }))
-    navigate(`/main?page=${'orang-tua'}`)
+  // --- Create Pendidikan ---
+  const [
+    createPendidikan,
+    {
+      isError: isErrorPendidikan,
+      error: errorPendidikan,
+      isLoading: isLoadingPendidikan,
+      isSuccess: isSuccessPendidikan,
+    },
+  ] = useCreateSekolahMutation()
+
+  const handleSubmit = (values) => {
+    const body = {
+      npsn: values?.npsn,
+      nama_sekolah: values?.nama_sekolah,
+      tahun_lulus: values?.tahun_lulus,
+    }
+
+    try {
+      createPendidikan({ data: body })
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+  useEffect(() => {
+    if (isSuccessPendidikan) {
+      toast.success(`Pendidikan Sebelumnya berhasil disimpan!`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
+      setTimeout(() => {
+        setActiveIndex(3)
+        setName('orang-tua')
+        dispatch(setStateBiodata({ page: 'orang-tua' }))
+        navigate(`/main?page=${'orang-tua'}`)
+      }, 2000)
+    }
+  }, [isSuccessPendidikan])
+
+  useEffect(() => {
+    if (isErrorPendidikan) {
+      const errorMsg = errorPendidikan as {
+        data?: {
+          message?: string
+        }
+      }
+
+      toast.error(`${errorMsg?.data?.message ?? 'Terjadi Kesalahan'}`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
+    }
+  }, [isErrorPendidikan, errorPendidikan])
+
   return (
     <Form {...form}>
       <form
         className="scrollbar flex h-full w-full flex-col overflow-auto"
-        onSubmit={form.handleSubmit(handleFormLogin)}
+        onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="scrollbar flex h-full flex-1 flex-col gap-32 overflow-auto pb-32">
           {/* --- Informasi Pribadi --- */}
-          <FormAPendidkan form={form} />
+          <FormAPendidkan form={form} getProfil={getProfil} />
         </div>
         {/* --- button --- */}
         <div className="flex items-center justify-between bg-primary-50 p-32">
@@ -48,6 +117,7 @@ export function BiodataPendidikan({
             <button
               className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700"
               type="button"
+              disabled={isLoadingPendidikan}
               onClick={() => {
                 setActiveIndex(1)
                 setName('informasi-pribadi')
@@ -58,13 +128,22 @@ export function BiodataPendidikan({
               Kembali
             </button>
             <button
-              className="rounded-2xl bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900"
+              disabled={isLoadingPendidikan}
+              className="flex items-center gap-12 rounded-2xl bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900"
               type="submit"
             >
               Lanjut
+              {isLoadingPendidikan ? (
+                <span className="animate-spin duration-300">
+                  <Loader2 size={16} />
+                </span>
+              ) : (
+                <Save size={16} />
+              )}
             </button>
           </div>
         </div>
+        <ToastContainer />
       </form>
     </Form>
   )
