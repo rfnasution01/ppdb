@@ -1,8 +1,11 @@
 :root {
-  --breadcrumb-theme-1: #e91e63;
+  --breadcrumb-theme-1: #28a6f4;
   --breadcrumb-theme-2: #fff;
-  --breadcrumb-theme-3: #d80d52;
-  --breadcrumb-theme-4: #c70041;
+  --breadcrumb-theme-3: #1c5eb7;
+  --breadcrumb-theme-4: #0891e6;
+  --breadcrumb-status-1: #e91e63;
+  --breadcrumb-status-3: #d80d52;
+  --breadcrumb-status-4: #c70041;
 }
 
 .breadcrumb {
@@ -76,14 +79,82 @@
 .breadcrumb__step--active::after {
   background: var(--breadcrumb-theme-1);
 }
-/* .breadcrumb__step:hover {
+
+.breadcrumb__status {
+  text-decoration: none;
+  outline: none;
+  display: block;
+  float: left;
+  font-size: 12px;
+  line-height: 36px;
+  padding: 0 10px 0 60px;
+  position: relative;
+  background: var(--breadcrumb-theme-2);
+  color: var(--breadcrumb-status-1);
+  transition: background 0.5s;
+}
+.breadcrumb__status:first-child {
+  padding-left: 46px;
+  border-radius: 5px 0 0 5px;
+}
+.breadcrumb__status:first-child::before {
+  left: 14px;
+}
+.breadcrumb__status:last-child {
+  border-radius: 0 5px 5px 0;
+  padding-right: 20px;
+}
+.breadcrumb__status:last-child::after {
+  content: none;
+}
+.breadcrumb__status::before {
+  content: counter(flag);
+  counter-increment: flag;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin: 8px 0;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  font-weight: bold;
+  background: var(--breadcrumb-theme-2);
+  box-shadow: 0 0 0 1px var(--breadcrumb-status-1);
+}
+.breadcrumb__status::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  transform: scale(0.707) rotate(45deg);
+  z-index: 1;
+  border-radius: 0 5px 0 50px;
+  background: var(--breadcrumb-theme-2);
+  transition: background 0.5s;
+  box-shadow: 2px -2px 0 2px var(--breadcrumb-status-4);
+}
+.breadcrumb__status--active {
   color: var(--breadcrumb-theme-2);
-  background: var(--breadcrumb-theme-3);
+  background: var(--breadcrumb-status-1);
 }
-.breadcrumb__step:hover::before {
-  color: var(--breadcrumb-theme-1);
+.breadcrumb__status--active::before {
+  color: var(--breadcrumb-status-1);
 }
-.breadcrumb__step:hover::after {
-  color: var(--breadcrumb-theme-1);
-  background: var(--breadcrumb-theme-3);
-} */
+.breadcrumb__status--active::after {
+  background: var(--breadcrumb-status-1);
+}
+
+.breadcrumb__status:hover {
+  color: var(--breadcrumb-theme-2);
+  background: var(--breadcrumb-status-3);
+}
+.breadcrumb__status:hover::before {
+  color: var(--breadcrumb-status-1);
+}
+.breadcrumb__status:hover::after {
+  color: var(--breadcrumb-status-1);
+  background: var(--breadcrumb-status-3);
+}

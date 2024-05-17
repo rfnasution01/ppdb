@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useCreateBiodataMutation } from '@/store/slices/pendaftaranAPI'
 import { Loader2, Save } from 'lucide-react'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
+import Cookies from 'js-cookie'
 
 export function BiodataPribadi({
   setName,
@@ -26,6 +27,8 @@ export function BiodataPribadi({
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const jenjang = Cookies.get('jenjang') ?? 'sd'
 
   // --- Form Schema ---
   const form = useForm<zod.infer<typeof informasiPribadiSchema>>({
@@ -83,10 +86,17 @@ export function BiodataPribadi({
         transition: Bounce,
       })
       setTimeout(() => {
-        setActiveIndex(2)
-        setName('pendidikan-sebelumnya')
-        dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
-        navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+        if (jenjang.toLowerCase() === 'sd') {
+          setActiveIndex(3)
+          setName('orang-tua')
+          dispatch(setStateBiodata({ page: 'orang-tua' }))
+          navigate(`/main?page=${'orang-tua'}`)
+        } else {
+          setActiveIndex(2)
+          setName('pendidikan-sebelumnya')
+          dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
+          navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+        }
       }, 2000)
     }
   }, [isSuccessBiodata])

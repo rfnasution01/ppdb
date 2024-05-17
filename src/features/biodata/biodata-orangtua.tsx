@@ -9,6 +9,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
+import Cookies from 'js-cookie'
 
 export function BiodataOrangTua({
   setName,
@@ -19,6 +20,8 @@ export function BiodataOrangTua({
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const jenjang = Cookies.get('jenjang') ?? 'sd'
+
   // --- Form Schema ---
   const form = useForm<zod.infer<typeof orangTuaSchema>>({
     resolver: zodResolver(orangTuaSchema),
@@ -58,10 +61,17 @@ export function BiodataOrangTua({
               className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700"
               type="button"
               onClick={() => {
-                setActiveIndex(2)
-                setName('pendidikan-sebelumnya')
-                dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
-                navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+                if (jenjang.toLowerCase() === 'sd') {
+                  setActiveIndex(1)
+                  setName('informasi-pribadi')
+                  dispatch(setStateBiodata({ page: 'informasi-pribadi' }))
+                  navigate(`/main?page=${'informasi-pribadi'}`)
+                } else {
+                  setActiveIndex(2)
+                  setName('pendidikan-sebelumnya')
+                  dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
+                  navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+                }
               }}
             >
               Kembali
