@@ -5,6 +5,8 @@ import { JalurMasukType } from '@/libs/types'
 import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
 import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { NoData } from '@/components/atoms/NoData'
+import { setStateJenjang } from '@/store/reducer/stateJenjang'
+import { useDispatch } from 'react-redux'
 
 export function JalurMasukMapping({ jenjang }: { jenjang: 'sd' | 'smp' }) {
   const [jalurMasuk, setJalurMasuk] = useState<JalurMasukType[]>([])
@@ -20,6 +22,8 @@ export function JalurMasukMapping({ jenjang }: { jenjang: 'sd' | 'smp' }) {
       setJalurMasuk(getJalurMasuk?.data)
     }
   }, [getJalurMasuk?.data])
+
+  const dispatch = useDispatch()
 
   return (
     <div
@@ -63,7 +67,14 @@ export function JalurMasukMapping({ jenjang }: { jenjang: 'sd' | 'smp' }) {
           ) : (
             <>
               {jalurMasuk?.map((item, idx) => (
-                <div key={idx}>
+                <div
+                  key={idx}
+                  onClick={() => {
+                    dispatch(
+                      setStateJenjang({ tingkatan: jenjang.toLowerCase() }),
+                    )
+                  }}
+                >
                   <IconComponent
                     title={item?.nama}
                     icon={<GraduationCap size={16} />}

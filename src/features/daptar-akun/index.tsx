@@ -76,7 +76,7 @@ export function FormDaptarAkun({
         transition: Bounce,
       })
       setTimeout(() => {
-        navigate('/')
+        navigate('/login')
       }, 3000)
     }
   }, [isSuccessAkun])
