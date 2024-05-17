@@ -15,6 +15,8 @@ import {
 } from '@/features/biodata'
 import { enumPendaftaran } from '@/libs/enum/enum-pendaftaran'
 import Cookies from 'js-cookie'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
+import { useGetProfilQuery } from '@/store/slices/pendaftaranAPI'
 
 export default function Pendaftaran() {
   const searchParams = new URLSearchParams(location.search)
@@ -50,6 +52,22 @@ export default function Pendaftaran() {
   const jalurParams = Cookies.get('jalur')
   const jenjangParams = Cookies.get('jenjang')
 
+  // --- Profil ---
+  const [profil, setProfil] = useState<ProfilData>()
+  const {
+    data: getProfil,
+    isLoading: isLoadingProfil,
+    isFetching: isFetchingProfil,
+  } = useGetProfilQuery()
+
+  const isLoading = isFetchingProfil || isLoadingProfil
+
+  useEffect(() => {
+    if (getProfil?.data) {
+      setProfil(getProfil?.data)
+    }
+  }, [getProfil?.data])
+
   return (
     <div className="flex h-full flex-col gap-64">
       {/* --- Header --- */}
@@ -59,6 +77,7 @@ export default function Pendaftaran() {
             setName={setName}
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
+            getProfil={profil}
           />
         </div>
         <div className="hidden phones:block">
@@ -101,15 +120,18 @@ export default function Pendaftaran() {
           <div className="scrollbar h-full overflow-auto">
             {name === 'jalur-pendaftaran' ? (
               <BiodataJalur
+                getProfile={profil}
                 jalurParams={jalurParams}
                 jenjangParams={jenjangParams}
                 setName={setName}
                 setActiveIndex={setActiveIndex}
+                isLoading={isLoading}
               />
             ) : name === 'informasi-pribadi' ? (
               <BiodataPribadi
                 setName={setName}
                 setActiveIndex={setActiveIndex}
+                getProfil={profil}
               />
             ) : name === 'pendidikan-sebelumnya' ? (
               <BiodataPendidikan
@@ -133,10 +155,12 @@ export default function Pendaftaran() {
               />
             ) : (
               <BiodataJalur
+                getProfile={profil}
                 jalurParams={jalurParams}
                 jenjangParams={jenjangParams}
                 setName={setName}
                 setActiveIndex={setActiveIndex}
+                isLoading={isLoading}
               />
             )}
           </div>

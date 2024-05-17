@@ -2,8 +2,29 @@ import { FormListAgama } from '@/components/molecules/form/formListAgama'
 import { FormListJenisKelamin } from '@/components/molecules/form/formListJenisKelamin'
 import { UseFormReturn } from 'react-hook-form'
 import { FormLabelComponent } from './form-label-component'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
+import { useEffect } from 'react'
 
-export function FormBiodata({ form }: { form: UseFormReturn }) {
+export function FormBiodata({
+  form,
+  getProfil,
+}: {
+  form: UseFormReturn
+  getProfil: ProfilData
+}) {
+  useEffect(() => {
+    if (getProfil) {
+      form?.setValue('nama_lengkap', getProfil?.biodata?.nama)
+      form?.setValue('tgl_lahir', getProfil?.biodata?.tanggal_lahir)
+      form?.setValue('tempat_lahir', getProfil?.biodata?.tempat_lahir)
+      form?.setValue('nik', getProfil?.biodata?.nik)
+      form?.setValue('kk', getProfil?.biodata?.nomor_kk)
+      form?.setValue('no_hp', getProfil?.biodata?.telepon)
+      form?.setValue('jenis_kelamin', getProfil?.biodata?.jenis_kelamin)
+      form?.setValue('agama', getProfil?.biodata?.agama)
+    }
+  }, [getProfil])
+
   return (
     <div className="flex flex-col gap-16 phones:gap-32">
       <FormLabelComponent
@@ -12,10 +33,12 @@ export function FormBiodata({ form }: { form: UseFormReturn }) {
         label="Nama Lengkap*"
         placeHolder="Masukkan nama lengkap anda"
         type="text"
+        isDisabled
       />
 
       <FormLabelComponent
         form={form}
+        isDisabled
         name="tgl_lahir"
         label="Tanggal Lahir*"
         placeHolder="Masukkan tanggal lahir anda"
@@ -31,6 +54,7 @@ export function FormBiodata({ form }: { form: UseFormReturn }) {
       />
 
       <FormLabelComponent
+        isDisabled
         form={form}
         name="nik"
         label="NIK*"

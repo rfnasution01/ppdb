@@ -159,6 +159,8 @@ export function FormListKecamatan({
                   onChange={(optionSelected) => {
                     field.onChange(optionSelected.value)
                     useFormReturn.setValue('kecamatan', optionSelected.value)
+                    useFormReturn.setValue('desa', null)
+                    useFormReturn.setValue('dusun', null)
                   }}
                   isDisabled={isDisabled}
                   isLoading={isFetching || isLoading}

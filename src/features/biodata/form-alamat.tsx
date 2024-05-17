@@ -5,35 +5,35 @@ import { FormListKabupaten } from '@/components/molecules/form/formListKabupaten
 import { FormListKecamatan } from '@/components/molecules/form/formListKecamatan'
 import { FormListDesa } from '@/components/molecules/form/formListDesa'
 import { FormListDusun } from '@/components/molecules/form/formListDusun'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
 
-export function FormAlamat({ form }: { form: UseFormReturn }) {
-  const provinsi = form.getValues('provinsi')
-  const kabupaten = form.getValues('kabupaten')
-  const kecamatan = form.getValues('kecamatan')
-  const desa = form.getValues('desa')
-  const [inputKeyKabupaten, setInputKeyKabupaten] = useState<number>(0)
-  const [inputKeyKecamatan, setInputKeyKecamatan] = useState<number>(0)
-  const [inputKeyDesa, setInputKeyDesa] = useState<number>(0)
-
-  useEffect(() => {
-    setInputKeyKabupaten(Math.random())
-  }, [provinsi])
-
-  useEffect(() => {
-    setInputKeyKecamatan(Math.random())
-  }, [kabupaten])
+export function FormAlamat({
+  form,
+  getProfil,
+}: {
+  form: UseFormReturn
+  getProfil: ProfilData
+}) {
+  const provinsi = form.watch('provinsi')
+  const kabupaten = form.watch('kabupaten')
+  const kecamatan = form.watch('kecamatan')
+  const desa = form.watch('desa')
 
   useEffect(() => {
-    setInputKeyDesa(Math.random())
-  }, [kecamatan])
-
-  console.log(inputKeyKecamatan)
-  console.log(inputKeyKabupaten)
+    if (getProfil) {
+      form.setValue('provinsi', getProfil?.biodata?.id_provinsi)
+      form.setValue('kabupaten', getProfil?.biodata?.id_kabupaten)
+      form.setValue('kecamatan', getProfil?.biodata?.id_kecamatan)
+      form.setValue('desa', getProfil?.biodata?.id_desa)
+      form.setValue('alamat', getProfil?.biodata?.alamat_lengkap)
+    }
+  }, [getProfil])
 
   return (
     <div className="flex flex-col gap-12">
       <FormListProvinsi
+        key={`provinsi-${provinsi}`}
         name="provinsi"
         useFormReturn={form}
         headerLabel="Provinsi"
@@ -41,8 +41,8 @@ export function FormAlamat({ form }: { form: UseFormReturn }) {
       />
 
       <FormListKabupaten
+        key={`kabupaten-${provinsi}-${kabupaten}`}
         name="kabupaten"
-        key={provinsi}
         useFormReturn={form}
         headerLabel="Kabupaten"
         placeholder="Pilih Kabupaten"
@@ -50,26 +50,25 @@ export function FormAlamat({ form }: { form: UseFormReturn }) {
       />
 
       <FormListKecamatan
+        key={`kecamatan-${provinsi}-${kabupaten}-${kecamatan}`}
         name="kecamatan"
-        key={kabupaten}
         useFormReturn={form}
         headerLabel="Kecamatan"
         placeholder="Pilih Kecamatan"
-        isDisabled={!kabupaten}
+        isDisabled={!provinsi || !kabupaten}
       />
 
       <FormListDesa
+        key={`desa-${provinsi}-${kabupaten}-${kecamatan}-${desa}`}
         name="desa"
-        key={kecamatan}
         useFormReturn={form}
         headerLabel="Desa"
         placeholder="Pilih Desa"
-        isDisabled={!kecamatan}
+        isDisabled={!provinsi || !kabupaten || !kecamatan}
       />
 
       <FormListDusun
         name="dusun"
-        key={inputKeyDesa}
         useFormReturn={form}
         headerLabel="Dusun"
         placeholder="Pilih Dusun"

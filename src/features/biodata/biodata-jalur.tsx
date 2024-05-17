@@ -4,6 +4,7 @@ import {
   convertToSlug,
 } from '@/libs/helpers/format-text'
 import { JalurMasukType } from '@/libs/types'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
 import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
 import { useCreateJalurMutation } from '@/store/slices/pendaftaranAPI'
@@ -20,13 +21,18 @@ export function BiodataJalur({
   setActiveIndex,
   jalurParams,
   jenjangParams,
+  getProfile,
+  isLoading,
 }: {
   setName: Dispatch<SetStateAction<string>>
   setActiveIndex: Dispatch<SetStateAction<number>>
   jalurParams: string
   jenjangParams: string
+  getProfile: ProfilData
+  isLoading: boolean
 }) {
-  const [jalur, setJalur] = useState(jalurParams.toLowerCase())
+  const getJalur = getProfile?.jalur
+  const [jalur, setJalur] = useState(getJalur ?? jalurParams.toLowerCase())
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -111,8 +117,8 @@ export function BiodataJalur({
     }
   }, [isErrorJalur, errorJalur])
 
-  const isLoading =
-    isFetchingJalurmasuk || isLoadingJalurMasuk || isLoadingJalur
+  const isLoadingButton =
+    isFetchingJalurmasuk || isLoadingJalurMasuk || isLoadingJalur || isLoading
 
   return (
     <div className="flex h-full flex-col gap-32">
@@ -162,7 +168,7 @@ export function BiodataJalur({
             onClick={() => {
               handleSubmit()
             }}
-            disabled={isLoading}
+            disabled={isLoadingButton}
           >
             Lanjut
           </button>

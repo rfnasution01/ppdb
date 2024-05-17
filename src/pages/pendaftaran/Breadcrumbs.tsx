@@ -5,18 +5,23 @@ import { useDispatch } from 'react-redux'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
 import clsx from 'clsx'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
 
 export default function Breadcrumb({
   setName,
   activeIndex,
   setActiveIndex,
+  getProfil,
 }: {
   setName: Dispatch<SetStateAction<string>>
   activeIndex: number
   setActiveIndex: Dispatch<SetStateAction<number>>
+  getProfil: ProfilData
 }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  console.log(getProfil)
 
   return (
     <div className="breadcrumb scrollbar flex overflow-auto text-center">

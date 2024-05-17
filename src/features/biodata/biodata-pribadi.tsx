@@ -13,13 +13,16 @@ import { Bounce, ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useCreateBiodataMutation } from '@/store/slices/pendaftaranAPI'
 import { Loader2, Save } from 'lucide-react'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
 
 export function BiodataPribadi({
   setName,
   setActiveIndex,
+  getProfil,
 }: {
   setName: Dispatch<SetStateAction<string>>
   setActiveIndex: Dispatch<SetStateAction<number>>
+  getProfil: ProfilData
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -28,8 +31,8 @@ export function BiodataPribadi({
   const form = useForm<zod.infer<typeof informasiPribadiSchema>>({
     resolver: zodResolver(informasiPribadiSchema),
     defaultValues: {
-      provinsi: '9cfb949a-0f74-48b0-80ba-fb7c37c53325',
-      kabupaten: '62716ac1-fc94-427b-bd30-342b3c946bd6',
+      // provinsi: '9cfb949a-0f74-48b0-80ba-fb7c37c53325',
+      // kabupaten: '62716ac1-fc94-427b-bd30-342b3c946bd6',
     },
   })
 
@@ -55,7 +58,7 @@ export function BiodataPribadi({
       id_kabupaten: values?.kabupaten,
       id_kecamatan: values?.kecamatan,
       id_desa: values?.desa,
-      id_dusun: values?.dusun,
+      id_dusun: values?.dusun ?? '',
       alamat_lengkap: values?.alamat,
     }
 
@@ -120,12 +123,12 @@ export function BiodataPribadi({
           {/* --- Informasi Pribadi --- */}
           <div className="flex flex-col gap-24">
             <p className="font-bold">Informasi Pribadi</p>
-            <FormBiodata form={form} />
+            <FormBiodata form={form} getProfil={getProfil} />
           </div>
           {/* --- Alamat --- */}
           <div className="flex flex-col gap-24">
             <p className="font-bold">Alamat</p>
-            <FormAlamat form={form} />
+            <FormAlamat form={form} getProfil={getProfil} />
           </div>
         </div>
         {/* --- button --- */}

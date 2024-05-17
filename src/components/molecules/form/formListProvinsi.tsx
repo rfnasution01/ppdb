@@ -150,6 +150,10 @@ export function FormListProvinsi({
                   onChange={(optionSelected) => {
                     field.onChange(optionSelected.value)
                     useFormReturn.setValue('provinsi', optionSelected.value)
+                    useFormReturn.setValue('kabupaten', null)
+                    useFormReturn.setValue('kecamatan', null)
+                    useFormReturn.setValue('desa', null)
+                    useFormReturn.setValue('dusun', null)
                   }}
                   isDisabled={isDisabled}
                   isLoading={isFetching || isLoading}

@@ -23,7 +23,7 @@ export function JalurMasukMapping({ jenjang }: { jenjang: 'sd' | 'smp' }) {
 
   return (
     <div
-      className="col-span-4 bg-white phones:col-span-12"
+      className="w-1/3 bg-white phones:w-full"
       style={{
         borderBottomLeftRadius: '1rem',
         borderBottomRightRadius: '1rem',

@@ -61,7 +61,7 @@ export const informasiPribadiSchema = zod.object({
     required_error: 'Alamat harus di isi',
     invalid_type_error: 'Format alamat tidak valid',
   }),
-  dusun: zod.string().optional(),
+  dusun: zod.string().optional().default(''),
 })
 
 export const sekolahSebelumnyaSchema = zod.object({

@@ -155,6 +155,9 @@ export function FormListKabupaten({
                   onChange={(optionSelected) => {
                     field.onChange(optionSelected.value)
                     useFormReturn.setValue('kabupaten', optionSelected.value)
+                    useFormReturn.setValue('kecamatan', null)
+                    useFormReturn.setValue('desa', null)
+                    useFormReturn.setValue('dusun', null)
                   }}
                   isDisabled={isDisabled}
                   isLoading={isFetching || isLoading}

@@ -15,6 +15,7 @@ export function FormLabelComponent({
   placeHolder,
   type,
   isNumber,
+  isDisabled,
 }: {
   name: string
   form: UseFormReturn
@@ -22,6 +23,7 @@ export function FormLabelComponent({
   placeHolder: string
   type: 'text' | 'date' | 'file'
   isNumber?: boolean
+  isDisabled?: boolean
 }) {
   return (
     <FormField
@@ -39,6 +41,7 @@ export function FormLabelComponent({
                 className={`${type === 'date' ? 'w-1/2' : 'w-full'} phones:w-full`}
                 placeholder={placeHolder}
                 type={type}
+                disabled={isDisabled}
                 onInput={(e) => {
                   if (isNumber && type === 'text') {
                     const inputValue = (e.target as HTMLInputElement).value

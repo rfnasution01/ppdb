@@ -30,43 +30,45 @@ export type SekolahParams = {
   tahun_lulus: string
 }
 
-export type ProfilData = {
-  jalur: string
-  biodata: Biodata
-  alamat: Alamat
-  sekolah: null | string
-  orangtua: Orangtua
-}
-
-export type Biodata = {
-  nama: string
-  tempat_lahir: string | null
-  tanggal_lahir: string
-  jenis_kelamin: string | null
-  nik: string
-  nomor_kk: string | null
-  telepon: string | null
-}
-
-export type Alamat = {
-  id_provinsi: string | null
-  provinsi: string | null
-  id_kabupaten: string | null
-  kabupaten: string | null
-  id_desa: string | null
-  desa: string | null
-  id_dusun: string | null
-  dusun: string | null
-  alamat_lengkap: string | null
-}
-
-export type Orangtua = {
-  ayah: null
-  ibu: null
-}
-
 export type ProvinsiType = {
   id: string
   nama: string
   default: boolean
+}
+
+export type BiodataType = {
+  nama: string
+  tempat_lahir: string
+  tanggal_lahir: string
+  jenis_kelamin: string
+  agama: string
+  nik: string
+  nomor_kk: string
+  telepon: string
+  id_provinsi: string
+  provinsi: string
+  id_kabupaten: string
+  kabupaten: string
+  id_kecamatan: string
+  kecamatan: string
+  id_desa: string
+  desa: string
+  id_dusun: string | null
+  dusun: string | null
+  alamat_lengkap: string
+  status: boolean
+}
+
+export type OrangTuaType = {
+  ayah: null // Assuming array of data for father
+  ibu: null // Assuming array of data for mother
+}
+
+export type ProfilData = {
+  jalur: string
+  biodata: BiodataType
+  sekolah: null // Assuming school data or null if not available
+  orangtua: OrangTuaType
+  dokumen: null // Assuming array of document data
+  pilihan: null // Assuming array of choices
 }
