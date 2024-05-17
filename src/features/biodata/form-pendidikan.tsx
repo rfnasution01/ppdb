@@ -12,6 +12,7 @@ export function FormAPendidkan({
 }) {
   useEffect(() => {
     if (getProfil?.sekolah) {
+      form.setValue('nisn', getProfil?.sekolah?.nisn)
       form.setValue('npsn', getProfil?.sekolah?.npsn)
       form.setValue('nama_sekolah', getProfil?.sekolah?.nama_sekolah)
       form.setValue('tahun_lulus', getProfil?.sekolah?.tahun_lulus)
