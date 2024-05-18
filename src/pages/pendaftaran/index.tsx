@@ -165,12 +165,14 @@ export default function Pendaftaran() {
                 setName={setName}
                 setActiveIndex={setActiveIndex}
                 getProfil={profil}
+                isLoading={isLoading}
               />
             ) : name === 'pendidikan-sebelumnya' ? (
               <BiodataPendidikan
                 setName={setName}
                 setActiveIndex={setActiveIndex}
                 getProfil={profil}
+                isLoading={isLoading}
               />
             ) : name === 'orang-tua' ? (
               <BiodataOrangTua
@@ -190,6 +192,8 @@ export default function Pendaftaran() {
               <BiodataSekolah
                 setName={setName}
                 setActiveIndex={setActiveIndex}
+                getProfil={profil}
+                isLoading={isLoading}
               />
             ) : (
               <BiodataJalur

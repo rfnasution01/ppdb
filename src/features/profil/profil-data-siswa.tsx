@@ -2,6 +2,9 @@ import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { ProfilAlamat } from './profil-alamat'
 import { ProfilSekolah } from './profil-sekolah'
 import Cookies from 'js-cookie'
+import { ProfilOrangTua } from './profil-data-orang-tua'
+import { ProfilDokumen } from './profil-data-dokumen'
+import { ProfilPilihan } from './profil-data-pilihan'
 
 export function ProfilDataSiswa({
   profil,
@@ -13,11 +16,11 @@ export function ProfilDataSiswa({
   const jenjang = Cookies.get('jenjang')
   return (
     <div
-      className="scrollbar h-full flex-1 overflow-auto phones:h-full phones:overflow-visible"
+      className="scrollbar flex-1 overflow-auto bg-white phones:overflow-visible"
       style={{ borderTopRightRadius: '1rem', borderBottomRightRadius: '1rem' }}
     >
       <div
-        className="flex h-full flex-col bg-white phones:h-full"
+        className="flex h-full flex-col bg-white"
         style={{
           borderTopRightRadius: '1rem',
           borderBottomRightRadius: '1rem',
@@ -32,6 +35,9 @@ export function ProfilDataSiswa({
           {jenjang.toLowerCase() === 'smp' && (
             <ProfilSekolah profil={profil} isLoading={isLoading} />
           )}
+          <ProfilOrangTua profil={profil} isLoading={isLoading} />
+          <ProfilDokumen profil={profil} isLoading={isLoading} />
+          <ProfilPilihan profil={profil} isLoading={isLoading} />
         </div>
       </div>
     </div>

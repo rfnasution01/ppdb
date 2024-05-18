@@ -15,6 +15,7 @@ import { Bounce, ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useCreateOrangTuaMutation } from '@/store/slices/pendaftaranAPI'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
+import Loading from '@/components/atoms/Loading'
 
 export function BiodataOrangTua({
   setName,
@@ -132,21 +133,39 @@ export function BiodataOrangTua({
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="flex flex-1 flex-col gap-32 pb-32">
-          {/* --- Ayah --- */}
-          <div className="flex flex-col gap-24">
-            <p className="font-bold">Ayah</p>
-            <FormAyah form={form} isLoading={isLoading} getProfil={getProfil} />
-          </div>
-          {/* --- Ibu --- */}
-          <div className="flex flex-col gap-24">
-            <p className="font-bold">Ibu</p>
-            <FormIbu form={form} isLoading={isLoading} getProfil={getProfil} />
-          </div>
-          {/* --- Wali --- */}
-          <div className="flex flex-col gap-24">
-            <p className="font-bold">Wali</p>
-            <FormWali form={form} isLoading={isLoading} getProfil={getProfil} />
-          </div>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {/* --- Ayah --- */}
+              <div className="flex flex-col gap-24">
+                <p className="font-bold">Ayah</p>
+                <FormAyah
+                  form={form}
+                  isLoading={isLoading}
+                  getProfil={getProfil}
+                />
+              </div>
+              {/* --- Ibu --- */}
+              <div className="flex flex-col gap-24">
+                <p className="font-bold">Ibu</p>
+                <FormIbu
+                  form={form}
+                  isLoading={isLoading}
+                  getProfil={getProfil}
+                />
+              </div>
+              {/* --- Wali --- */}
+              <div className="flex flex-col gap-24">
+                <p className="font-bold">Wali</p>
+                <FormWali
+                  form={form}
+                  isLoading={isLoading}
+                  getProfil={getProfil}
+                />
+              </div>
+            </>
+          )}
         </div>
         {/* --- button --- */}
         <div className="flex items-center justify-between bg-primary-50 p-32">

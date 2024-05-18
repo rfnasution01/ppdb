@@ -36,6 +36,7 @@ export default function Breadcrumb({
 
   const filteredMenu = jenjang.toLowerCase() === 'sd' ? menuSD : menu
 
+  const isDokumen = getProfil?.dokumen?.status
   const isOrangtua = getProfil?.orangtua?.status
   const isSekolah = getProfil?.sekolah?.status
   const isBiodata = getProfil?.biodata?.status
@@ -63,7 +64,9 @@ export default function Breadcrumb({
   }
 
   const menuCondition = (idx: number) => {
-    if (isOrangtua) {
+    if (isDokumen) {
+      return isOrangtua && idx <= isSD(5)
+    } else if (isOrangtua) {
       return isOrangtua && idx <= isSD(4)
     } else if (isSekolah) {
       return isSekolah && idx <= isSD(3)

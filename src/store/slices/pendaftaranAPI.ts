@@ -5,6 +5,7 @@ import {
   OrangTuaParams,
   PendaftaranParams,
   PendidikanType,
+  PilihanSekolahParams,
   ProfilData,
   ProvinsiType,
   SekolahParams,
@@ -113,6 +114,17 @@ export const PendaftaranEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['profil'],
     }),
+    createPilihanSekolah: builder.mutation<
+      void,
+      { data: PilihanSekolahParams }
+    >({
+      query: ({ data }) => ({
+        url: `profil/pilihan`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['profil'],
+    }),
   }),
 })
 
@@ -123,6 +135,7 @@ export const {
   useCreateSekolahMutation,
   useCreateOrangTuaMutation,
   useCreateUploadFileMutation,
+  useCreatePilihanSekolahMutation,
   useGetProvinsiQuery,
   useGetKabupatenQuery,
   useGetKecamatanQuery,

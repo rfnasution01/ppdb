@@ -4,17 +4,26 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { sekolahSchema } from '@/libs/schema/biodata-schema'
 import { FormSekolah } from './form-sekolah'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
+import { Bounce, ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useCreatePilihanSekolahMutation } from '@/store/slices/pendaftaranAPI'
+import Loading from '@/components/atoms/Loading'
 
 export function BiodataSekolah({
   setName,
   setActiveIndex,
+  getProfil,
+  isLoading,
 }: {
   setName: Dispatch<SetStateAction<string>>
   setActiveIndex: Dispatch<SetStateAction<number>>
+  getProfil: ProfilData
+  isLoading: boolean
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -24,18 +33,90 @@ export function BiodataSekolah({
     defaultValues: {},
   })
 
-  const handleFormLogin = (values) => {
-    console.log(values)
+  // --- Create Pilihan ---
+  const [
+    createPilihan,
+    {
+      isError: isErrorPilihan,
+      error: errorPilihan,
+      isLoading: isLoadingPilihan,
+      isSuccess: isSuccessPilihan,
+    },
+  ] = useCreatePilihanSekolahMutation()
+
+  const handleSubmit = (values) => {
+    const body = {
+      pilihan1: values?.tujuan_pertama,
+      pilihan2: values?.tujuan_kedua ?? null,
+    }
+
+    try {
+      createPilihan({ data: body })
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+  useEffect(() => {
+    if (isSuccessPilihan) {
+      toast.success(`Pilihan sekolah berhasil disimpan!`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
+      setTimeout(() => {
+        navigate(`/main/biodata`)
+      }, 2000)
+    }
+  }, [isSuccessPilihan])
+
+  useEffect(() => {
+    if (isErrorPilihan) {
+      const errorMsg = errorPilihan as {
+        data?: {
+          message?: string
+        }
+      }
+
+      toast.error(`${errorMsg?.data?.message ?? 'Terjadi Kesalahan'}`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
+    }
+  }, [isErrorPilihan, errorPilihan])
+
   return (
     <Form {...form}>
       <form
         className="scrollbar flex h-full w-full flex-col overflow-auto"
-        onSubmit={form.handleSubmit(handleFormLogin)}
+        onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="scrollbar flex h-full flex-1 flex-col gap-32 overflow-auto pb-32">
-          {/* --- Informasi Pribadi --- */}
-          <FormSekolah form={form} />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {/* --- Informasi Pribadi --- */}
+              <FormSekolah
+                form={form}
+                isLoading={isLoading || isLoadingPilihan}
+                getProfil={getProfil}
+              />
+            </>
+          )}
         </div>
         {/* --- button --- */}
         <div className="flex items-center justify-between bg-primary-50 p-32">
@@ -61,6 +142,7 @@ export function BiodataSekolah({
             </button>
           </div>
         </div>
+        <ToastContainer />
       </form>
     </Form>
   )

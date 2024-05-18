@@ -13,15 +13,18 @@ import { Bounce, ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Loader2, Save } from 'lucide-react'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
+import Loading from '@/components/atoms/Loading'
 
 export function BiodataPendidikan({
   setName,
   setActiveIndex,
   getProfil,
+  isLoading,
 }: {
   setName: Dispatch<SetStateAction<string>>
   setActiveIndex: Dispatch<SetStateAction<number>>
   getProfil: ProfilData
+  isLoading: boolean
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -107,8 +110,18 @@ export function BiodataPendidikan({
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="scrollbar flex h-full flex-1 flex-col gap-32 overflow-auto pb-32">
-          {/* --- Informasi Pribadi --- */}
-          <FormAPendidkan form={form} getProfil={getProfil} />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {/* --- Informasi Pribadi --- */}
+              <FormAPendidkan
+                form={form}
+                getProfil={getProfil}
+                isLoading={isLoading}
+              />
+            </>
+          )}
         </div>
         {/* --- button --- */}
         <div className="flex items-center justify-between bg-primary-50 p-32">

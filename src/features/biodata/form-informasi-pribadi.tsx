@@ -8,9 +8,11 @@ import { useEffect } from 'react'
 export function FormBiodata({
   form,
   getProfil,
+  isLoading,
 }: {
   form: UseFormReturn
   getProfil: ProfilData
+  isLoading: boolean
 }) {
   useEffect(() => {
     if (getProfil) {
@@ -51,6 +53,7 @@ export function FormBiodata({
         label="Tempat Lahir*"
         placeHolder="Masukkan tempat lahir anda"
         type="text"
+        isDisabled={isLoading}
       />
 
       <FormLabelComponent
@@ -70,6 +73,7 @@ export function FormBiodata({
         placeHolder="Masukkan KK anda"
         type="text"
         isNumber
+        isDisabled={isLoading}
       />
 
       <FormLabelComponent
@@ -79,6 +83,7 @@ export function FormBiodata({
         placeHolder="Masukkan No. Hp anda"
         type="text"
         isNumber
+        isDisabled={isLoading}
       />
 
       <FormListJenisKelamin
@@ -86,6 +91,7 @@ export function FormBiodata({
         placeholder="Pilih jenis kelamin"
         headerLabel="Jenis Kelamin*"
         form={form}
+        isDisabled={isLoading}
       />
 
       <FormListAgama
@@ -93,6 +99,7 @@ export function FormBiodata({
         placeholder="Pilih agama"
         headerLabel="Agama*"
         form={form}
+        isDisabled={isLoading}
       />
     </div>
   )

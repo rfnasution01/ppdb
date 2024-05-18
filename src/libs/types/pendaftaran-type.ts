@@ -77,7 +77,20 @@ export type ProfilData = {
   sekolah: SekolahParams // Assuming school data or null if not available
   orangtua: OrangTuaType
   dokumen: DokumenType // Assuming array of document data
-  pilihan: null // Assuming array of choices
+  pilihan: PilihanType // Assuming array of choices
+}
+
+export type PilihanType = {
+  pilihan1: {
+    id_sekolah: string
+    nama_sekolah: string
+    skor: number
+  }
+  pilihan2: {
+    id_sekolah: string
+    nama_sekolah: string
+    skor: number
+  }
 }
 
 export type DokumenType = {
@@ -133,3 +146,8 @@ export type OrangTuaParams = {
 }
 
 export type DokumenParams = { id_dokumen: string; berkas: File }
+
+export type PilihanSekolahParams = {
+  pilihan1: string
+  pilihan2?: string
+}

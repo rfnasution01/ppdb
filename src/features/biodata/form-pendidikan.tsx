@@ -6,9 +6,11 @@ import { useEffect } from 'react'
 export function FormAPendidkan({
   form,
   getProfil,
+  isLoading,
 }: {
   form: UseFormReturn
   getProfil: ProfilData
+  isLoading: boolean
 }) {
   useEffect(() => {
     if (getProfil?.sekolah) {
@@ -28,6 +30,7 @@ export function FormAPendidkan({
         placeHolder="Masukkan NISN anda"
         type="text"
         isNumber
+        isDisabled={isLoading}
       />
 
       <FormLabelComponent
@@ -37,6 +40,7 @@ export function FormAPendidkan({
         placeHolder="Masukkan NPSN anda"
         type="text"
         isNumber
+        isDisabled={isLoading}
       />
 
       <FormLabelComponent
@@ -45,6 +49,7 @@ export function FormAPendidkan({
         label="Nama Sekolah*"
         placeHolder="Masukkan nama sekolah anda"
         type="text"
+        isDisabled={isLoading}
       />
 
       <FormLabelComponent
@@ -54,6 +59,7 @@ export function FormAPendidkan({
         placeHolder="Masukkan Tahun Lulus anda"
         type="text"
         isNumber
+        isDisabled={isLoading}
       />
     </div>
   )

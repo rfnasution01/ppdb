@@ -11,6 +11,10 @@ export function ProfilDataPenting({
   profil: ProfilData
   isLoading: boolean
 }) {
+  const pasPhoto = profil?.dokumen?.data?.find(
+    (item) => item?.nama === 'Pas Photo',
+  )?.dok_siswa
+
   return (
     <div
       className="scrollbar h-full overflow-auto phones:h-full phones:overflow-visible"
@@ -30,7 +34,7 @@ export function ProfilDataPenting({
             {/* --- Image --- */}
             <div className="flex items-center justify-center">
               <img
-                src="/img/smp.png"
+                src={pasPhoto ?? '/img/smp.png'}
                 alt="PPDB"
                 className="h-[28rem] w-[28rem] rounded-full shadow-md"
               />

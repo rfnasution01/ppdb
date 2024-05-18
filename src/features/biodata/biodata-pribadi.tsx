@@ -15,15 +15,18 @@ import { useCreateBiodataMutation } from '@/store/slices/pendaftaranAPI'
 import { Loader2, Save } from 'lucide-react'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import Cookies from 'js-cookie'
+import Loading from '@/components/atoms/Loading'
 
 export function BiodataPribadi({
   setName,
   setActiveIndex,
   getProfil,
+  isLoading,
 }: {
   setName: Dispatch<SetStateAction<string>>
   setActiveIndex: Dispatch<SetStateAction<number>>
   getProfil: ProfilData
+  isLoading?: boolean
 }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -130,16 +133,30 @@ export function BiodataPribadi({
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="flex flex-1 flex-col gap-32 pb-32">
-          {/* --- Informasi Pribadi --- */}
-          <div className="flex flex-col gap-24">
-            <p className="font-bold">Informasi Pribadi</p>
-            <FormBiodata form={form} getProfil={getProfil} />
-          </div>
-          {/* --- Alamat --- */}
-          <div className="flex flex-col gap-24">
-            <p className="font-bold">Alamat</p>
-            <FormAlamat form={form} getProfil={getProfil} />
-          </div>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {/* --- Informasi Pribadi --- */}
+              <div className="flex flex-col gap-24">
+                <p className="font-bold">Informasi Pribadi</p>
+                <FormBiodata
+                  form={form}
+                  getProfil={getProfil}
+                  isLoading={isLoading}
+                />
+              </div>
+              {/* --- Alamat --- */}
+              <div className="flex flex-col gap-24">
+                <p className="font-bold">Alamat</p>
+                <FormAlamat
+                  form={form}
+                  getProfil={getProfil}
+                  isLoading={isLoading}
+                />
+              </div>
+            </>
+          )}
         </div>
         {/* --- button --- */}
         <div className="flex items-center justify-between bg-primary-50 p-32">

@@ -223,10 +223,13 @@ export const sekolahSchema = zod.object({
     required_error: 'Tujuan sekolah harus di isi',
     invalid_type_error: 'Format tujuan sekolah tidak valid',
   }),
-  tujuan_kedua: zod.string({
-    required_error: 'Tujuan sekolah harus di isi',
-    invalid_type_error: 'Format tujuan sekolah tidak valid',
-  }),
+  tujuan_kedua: zod
+    .string({
+      required_error: 'Tujuan sekolah harus di isi',
+      invalid_type_error: 'Format tujuan sekolah tidak valid',
+    })
+    .optional()
+    .nullable(),
 })
 
 export const dokumenSchema = zod.object({
