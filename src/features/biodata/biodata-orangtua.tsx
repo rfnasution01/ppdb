@@ -92,7 +92,7 @@ export function BiodataOrangTua({
         transition: Bounce,
       })
       setTimeout(() => {
-        setActiveIndex(jenjang.toLowerCase() === 'sd' ? 3 : 4)
+        setActiveIndex(4)
         setName('kelengkapan-dokumen')
         dispatch(setStateBiodata({ page: 'kelengkapan-dokumen' }))
         navigate(`/main?page=${'kelengkapan-dokumen'}`)

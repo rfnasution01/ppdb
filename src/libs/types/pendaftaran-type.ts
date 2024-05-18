@@ -85,6 +85,7 @@ export type SekolahParams = {
   npsn: string
   nama_sekolah: string
   tahun_lulus: string
+  status: boolean
 }
 
 export type PendidikanType = {

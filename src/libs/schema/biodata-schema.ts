@@ -120,19 +120,22 @@ export const orangTuaSchema = zod.object({
     .refine((value) => value.length > 0, {
       message: 'Telepon harus diisi',
     })
-    .optional(),
+    .optional()
+    .nullable(),
   pendidikan_ayah: zod
     .string({
       required_error: 'Pendidikan harus di isi',
       invalid_type_error: 'Format pendidikan tidak valid',
     })
-    .optional(),
+    .optional()
+    .nullable(),
   pekerjaan_ayah: zod
     .string({
       required_error: 'Pekerjaan harus di isi',
       invalid_type_error: 'Format pekerjaan tidak valid',
     })
-    .optional(),
+    .optional()
+    .nullable(),
   isHidupIbu: zod
     .boolean({
       required_error: 'Harus di isi',
@@ -160,26 +163,30 @@ export const orangTuaSchema = zod.object({
     .refine((value) => value.length > 0, {
       message: 'Telepon harus diisi',
     })
-    .optional(),
+    .optional()
+    .nullable(),
   pendidikan_ibu: zod
     .string({
       required_error: 'Pendidikan harus di isi',
       invalid_type_error: 'Format pendidikan tidak valid',
     })
-    .optional(),
+    .optional()
+    .nullable(),
   pekerjaan_ibu: zod
     .string({
       required_error: 'Pekerjaan harus di isi',
       invalid_type_error: 'Format pekerjaan tidak valid',
     })
-    .optional(),
+    .optional()
+    .nullable(),
 
   nama_wali: zod
     .string({
       required_error: 'Nama harus di isi',
       invalid_type_error: 'Format nama tidak valid',
     })
-    .optional(),
+    .optional()
+    .nullable(),
   nik_wali: zod
     .string({
       required_error: 'NIK harus di isi',
@@ -200,13 +207,15 @@ export const orangTuaSchema = zod.object({
       required_error: 'Pendidikan harus di isi',
       invalid_type_error: 'Format pendidikan tidak valid',
     })
-    .optional(),
+    .optional()
+    .nullable(),
   pekerjaan_wali: zod
     .string({
       required_error: 'Pekerjaan harus di isi',
       invalid_type_error: 'Format pekerjaan tidak valid',
     })
-    .optional(),
+    .optional()
+    .nullable(),
 })
 
 export const sekolahSchema = zod.object({

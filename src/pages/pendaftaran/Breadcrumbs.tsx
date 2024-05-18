@@ -23,8 +23,6 @@ export default function Breadcrumb({
   const dispatch = useDispatch()
   const jenjang = Cookies.get('jenjang') ?? 'sd'
 
-  const indexInformasiDataIsTrue = 2
-
   const menu = [
     'Jalur Pendaftaran',
     'Informasi Pribadi',
@@ -38,32 +36,61 @@ export default function Breadcrumb({
 
   const filteredMenu = jenjang.toLowerCase() === 'sd' ? menuSD : menu
 
+  const isOrangtua = getProfil?.orangtua?.status
+  const isSekolah = getProfil?.sekolah?.status
+  const isBiodata = getProfil?.biodata?.status
+
+  const isSD = (id: number) => {
+    if (
+      (jenjang.toLowerCase() === 'sd' && id === 3) ||
+      (jenjang.toLowerCase() === 'sd' && id === 4) ||
+      (jenjang.toLowerCase() === 'sd' && id === 5)
+    ) {
+      return id - 1
+    }
+    return id
+  }
+
+  const isSDOnClick = (id: number) => {
+    if (
+      (jenjang.toLowerCase() === 'sd' && id === 3) ||
+      (jenjang.toLowerCase() === 'sd' && id === 4) ||
+      (jenjang.toLowerCase() === 'sd' && id === 5)
+    ) {
+      return id + 1
+    }
+    return id
+  }
+
+  const menuCondition = (idx: number) => {
+    if (isOrangtua) {
+      return isOrangtua && idx <= isSD(4)
+    } else if (isSekolah) {
+      return isSekolah && idx <= isSD(3)
+    } else if (isBiodata) {
+      return isBiodata && idx <= isSD(2)
+    } else {
+      return idx < 2
+    }
+  }
+
   return (
     <div className="breadcrumb scrollbar flex overflow-auto text-center">
       {filteredMenu.map((item, idx) => (
         <a
           href="#"
           className={clsx('', {
-            'breadcrumb__step--active breadcrumb__step': activeIndex === idx,
+            'breadcrumb__step--active breadcrumb__step':
+              isSD(activeIndex) === idx,
             'breadcrumb__status--active breadcrumb__status':
-              !(activeIndex === idx) &&
-              getProfil?.biodata?.status === true &&
-              idx <= indexInformasiDataIsTrue,
+              !(isSD(activeIndex) === idx) && menuCondition(idx),
             'breadcrumb__step hover:cursor-not-allowed':
-              !(activeIndex === idx) &&
-              !(
-                getProfil?.biodata?.status === true &&
-                idx <= indexInformasiDataIsTrue
-              ),
+              !(isSD(activeIndex) === idx) && !menuCondition(idx),
           })}
           key={idx}
           onClick={() => {
-            if (
-              activeIndex > idx ||
-              (getProfil?.biodata?.status === true &&
-                idx <= indexInformasiDataIsTrue)
-            ) {
-              setActiveIndex(idx)
+            if (activeIndex > idx || menuCondition(idx)) {
+              setActiveIndex(isSDOnClick(idx))
               setName(convertToSlug(item))
               dispatch(setStateBiodata({ page: convertToSlug(item) }))
               navigate(`/main?page=${convertToSlug(item)}`)
