@@ -28,7 +28,7 @@ export function LoginFooter({ disabled }: { disabled: boolean }) {
             className="flex w-full items-center justify-center gap-x-8 bg-danger-100 py-12 text-[2rem] text-white hover:bg-danger-300 disabled:cursor-not-allowed disabled:bg-danger-tint-1 phones:w-full"
           >
             <User size={16} />
-            <p>Daptar Akun SD</p>
+            <p>Daftar Akun SD</p>
           </button>
           <button
             type="button"
@@ -40,7 +40,7 @@ export function LoginFooter({ disabled }: { disabled: boolean }) {
             className="flex w-full items-center justify-center gap-x-8 bg-primary py-12 text-[2rem] text-white hover:bg-primary-700 disabled:cursor-not-allowed disabled:bg-primary-400 phones:w-full"
           >
             <User2 size={16} />
-            <p>Daptar Akun SMP</p>
+            <p>Daftar Akun SMP</p>
           </button>
         </div>
       </div>
