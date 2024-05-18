@@ -15,6 +15,7 @@ import { enumPendaftaran } from '@/libs/enum/enum-pendaftaran'
 import Cookies from 'js-cookie'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { useGetProfilQuery } from '@/store/slices/pendaftaranAPI'
+import clsx from 'clsx'
 
 export default function Pendaftaran() {
   const searchParams = new URLSearchParams(location.search)
@@ -137,7 +138,15 @@ export default function Pendaftaran() {
       </div>
       {/* --- Content --- */}
       <div className="scrollbar flex h-full flex-1 justify-center overflow-auto">
-        <div className="flex w-4/6 flex-col gap-32 rounded-2xl bg-white p-32 shadow-md phones:w-full">
+        <div
+          className={clsx(
+            'flex flex-col gap-32 rounded-2xl bg-white p-32 shadow-md phones:w-full',
+            {
+              'w-full': name === 'kelengkapan-dokumen',
+              'w-4/6': name !== 'kelengkapan-dokumen',
+            },
+          )}
+        >
           <p className="border-b-2 pb-16 text-[3rem]">
             {name === 'informasi-pribadi' ? 'Biodata' : convertSlugToText(name)}
           </p>
@@ -174,6 +183,8 @@ export default function Pendaftaran() {
               <BiodataDokumen
                 setName={setName}
                 setActiveIndex={setActiveIndex}
+                getProfil={profil}
+                isLoading={isLoading}
               />
             ) : name === 'pilih-sekolah' ? (
               <BiodataSekolah

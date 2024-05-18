@@ -105,6 +105,14 @@ export const PendaftaranEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['profil'],
     }),
+    createUploadFile: builder.mutation<void, { data: FormData }>({
+      query: ({ data }) => ({
+        url: `dokumen`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['profil'],
+    }),
   }),
 })
 
@@ -114,6 +122,7 @@ export const {
   useCreateAlamatMutation,
   useCreateSekolahMutation,
   useCreateOrangTuaMutation,
+  useCreateUploadFileMutation,
   useGetProvinsiQuery,
   useGetKabupatenQuery,
   useGetKecamatanQuery,

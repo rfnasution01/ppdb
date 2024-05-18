@@ -76,8 +76,27 @@ export type ProfilData = {
   biodata: BiodataType
   sekolah: SekolahParams // Assuming school data or null if not available
   orangtua: OrangTuaType
-  dokumen: null // Assuming array of document data
+  dokumen: DokumenType // Assuming array of document data
   pilihan: null // Assuming array of choices
+}
+
+export type DokumenType = {
+  data: DokumenList[]
+  status: boolean
+}
+
+export type DokumenList = {
+  id: string
+  nama: string
+  keterangan: string
+  status: string
+  format: string
+  pasfoto: number
+  dok_siswa?: string
+  status_verifikasi: number
+  verifikasi_on?: string
+  petugas?: string
+  komentar?: string
 }
 
 export type SekolahParams = {
@@ -85,7 +104,7 @@ export type SekolahParams = {
   npsn: string
   nama_sekolah: string
   tahun_lulus: string
-  status: boolean
+  status?: boolean
 }
 
 export type PendidikanType = {
@@ -112,3 +131,5 @@ export type OrangTuaParams = {
   pendidikan_wali: string
   pekerjaan_wali: string
 }
+
+export type DokumenParams = { id_dokumen: string; berkas: File }
