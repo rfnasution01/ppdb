@@ -167,6 +167,8 @@ export default function Pendaftaran() {
               <BiodataOrangTua
                 setName={setName}
                 setActiveIndex={setActiveIndex}
+                getProfil={profil}
+                isLoadingProfil={isLoading}
               />
             ) : name === 'kelengkapan-dokumen' ? (
               <BiodataDokumen

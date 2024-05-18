@@ -119,15 +119,26 @@ export const orangTuaSchema = zod.object({
     })
     .refine((value) => value.length > 0, {
       message: 'Telepon harus diisi',
-    }),
-  pendidikan_ayah: zod.string({
-    required_error: 'Pendidikan harus di isi',
-    invalid_type_error: 'Format pendidikan tidak valid',
-  }),
-  pekerjaan_ayah: zod.string({
-    required_error: 'Pekerjaan harus di isi',
-    invalid_type_error: 'Format pekerjaan tidak valid',
-  }),
+    })
+    .optional(),
+  pendidikan_ayah: zod
+    .string({
+      required_error: 'Pendidikan harus di isi',
+      invalid_type_error: 'Format pendidikan tidak valid',
+    })
+    .optional(),
+  pekerjaan_ayah: zod
+    .string({
+      required_error: 'Pekerjaan harus di isi',
+      invalid_type_error: 'Format pekerjaan tidak valid',
+    })
+    .optional(),
+  isHidupIbu: zod
+    .boolean({
+      required_error: 'Harus di isi',
+      invalid_type_error: 'Format tidak valid',
+    })
+    .optional(),
   nama_ibu: zod.string({
     required_error: 'Nama harus di isi',
     invalid_type_error: 'Format nama tidak valid',
@@ -148,15 +159,54 @@ export const orangTuaSchema = zod.object({
     })
     .refine((value) => value.length > 0, {
       message: 'Telepon harus diisi',
-    }),
-  pendidikan_ibu: zod.string({
-    required_error: 'Pendidikan harus di isi',
-    invalid_type_error: 'Format pendidikan tidak valid',
-  }),
-  pekerjaan_ibu: zod.string({
-    required_error: 'Pekerjaan harus di isi',
-    invalid_type_error: 'Format pekerjaan tidak valid',
-  }),
+    })
+    .optional(),
+  pendidikan_ibu: zod
+    .string({
+      required_error: 'Pendidikan harus di isi',
+      invalid_type_error: 'Format pendidikan tidak valid',
+    })
+    .optional(),
+  pekerjaan_ibu: zod
+    .string({
+      required_error: 'Pekerjaan harus di isi',
+      invalid_type_error: 'Format pekerjaan tidak valid',
+    })
+    .optional(),
+
+  nama_wali: zod
+    .string({
+      required_error: 'Nama harus di isi',
+      invalid_type_error: 'Format nama tidak valid',
+    })
+    .optional(),
+  nik_wali: zod
+    .string({
+      required_error: 'NIK harus di isi',
+      invalid_type_error: 'Format NIK tidak valid',
+    })
+    .optional()
+    .nullable(),
+
+  telepon_wali: zod
+    .string({
+      required_error: 'Telepon harus di isi',
+      invalid_type_error: 'Format telepon tidak valid',
+    })
+    .optional()
+    .nullable(),
+  pendidikan_wali: zod
+    .string({
+      required_error: 'Pendidikan harus di isi',
+      invalid_type_error: 'Format pendidikan tidak valid',
+    })
+    .optional(),
+  pekerjaan_wali: zod
+    .string({
+      required_error: 'Pekerjaan harus di isi',
+      invalid_type_error: 'Format pekerjaan tidak valid',
+    })
+    .optional(),
 })
 
 export const sekolahSchema = zod.object({

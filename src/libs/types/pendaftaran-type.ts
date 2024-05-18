@@ -54,8 +54,21 @@ export type BiodataType = {
 }
 
 export type OrangTuaType = {
-  ayah: null // Assuming array of data for father
-  ibu: null // Assuming array of data for mother
+  ayah: DataOrangTuaType
+  ibu: DataOrangTuaType
+  wali: DataOrangTuaType
+  status: boolean
+}
+
+export type DataOrangTuaType = {
+  status?: string
+  nama: string
+  nik: string
+  hp: string
+  id_pekerjaan: string
+  id_pendidikan: string
+  pekerjaan: string
+  pendidikan: string
 }
 
 export type ProfilData = {
@@ -72,4 +85,29 @@ export type SekolahParams = {
   npsn: string
   nama_sekolah: string
   tahun_lulus: string
+}
+
+export type PendidikanType = {
+  id: string
+  nama: string
+}
+
+export type OrangTuaParams = {
+  status_ayah: string
+  nik_ayah: string
+  nama_ayah: string
+  hp_ayah: string
+  pendidikan_ayah: string
+  pekerjaan_ayah: string
+  status_ibu: string
+  nik_ibu: string
+  nama_ibu: string
+  hp_ibu: string
+  pendidikan_ibu: string
+  pekerjaan_ibu: string
+  nik_wali: string
+  nama_wali: string
+  hp_wali: string
+  pendidikan_wali: string
+  pekerjaan_wali: string
 }

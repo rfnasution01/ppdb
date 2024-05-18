@@ -2,7 +2,9 @@ import { Res, api } from '../api'
 import {
   AlamatParams,
   BiodataParams,
+  OrangTuaParams,
   PendaftaranParams,
+  PendidikanType,
   ProfilData,
   ProvinsiType,
   SekolahParams,
@@ -53,6 +55,16 @@ export const PendaftaranEndpoints = api.injectEndpoints({
         },
       }),
     }),
+    getPendidikan: builder.query<Res<PendidikanType[]>, void>({
+      query: () => ({
+        url: `referensi/pendidikan`,
+      }),
+    }),
+    getPekerjaan: builder.query<Res<PendidikanType[]>, void>({
+      query: () => ({
+        url: `referensi/pekerjaan`,
+      }),
+    }),
     createJalur: builder.mutation<void, { data: PendaftaranParams }>({
       query: ({ data }) => ({
         url: `profil/jalur`,
@@ -85,6 +97,14 @@ export const PendaftaranEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['profil'],
     }),
+    createOrangTua: builder.mutation<void, { data: OrangTuaParams }>({
+      query: ({ data }) => ({
+        url: `profil/orangtua`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['profil'],
+    }),
   }),
 })
 
@@ -93,10 +113,13 @@ export const {
   useCreateBiodataMutation,
   useCreateAlamatMutation,
   useCreateSekolahMutation,
+  useCreateOrangTuaMutation,
   useGetProvinsiQuery,
   useGetKabupatenQuery,
   useGetKecamatanQuery,
   useGetDesaQuery,
   useGetDusunQuery,
   useGetProfilQuery,
+  useGetPekerjaanQuery,
+  useGetPendidikanQuery,
 } = PendaftaranEndpoints

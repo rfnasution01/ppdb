@@ -8,22 +8,20 @@ import {
 import { Input } from '@/components/molecules/input'
 import { UseFormReturn } from 'react-hook-form'
 
-export function FormLabelComponent({
+export function FormLabelCheckBox({
   name,
   form,
   label,
   placeHolder,
-  type,
-  isNumber,
   isDisabled,
+  isChecked,
 }: {
   name: string
   form: UseFormReturn
   label: string
   placeHolder: string
-  type: 'text' | 'date' | 'file' | 'checkbox'
-  isNumber?: boolean
   isDisabled?: boolean
+  isChecked: boolean
 }) {
   return (
     <FormField
@@ -34,26 +32,31 @@ export function FormLabelComponent({
           <div className="w-2/6 text-right text-emerald-900 phones:w-full phones:text-left">
             <FormLabel>{label}</FormLabel>
           </div>
-          <div className="w-2/6 phones:w-full">
+          <div className="flex w-2/6 items-center gap-8 phones:w-full">
             <FormControl>
               <Input
                 {...field}
-                className={`${type === 'date' ? 'w-1/2' : 'w-full'} phones:w-full`}
+                className="h-[2.4rem] w-[2.4rem]"
                 placeholder={placeHolder}
-                type={type}
+                type="checkbox"
                 disabled={isDisabled}
-                onInput={(e) => {
-                  if (isNumber && type === 'text') {
-                    const inputValue = (e.target as HTMLInputElement).value
-                    ;(e.target as HTMLInputElement).value = inputValue.replace(
-                      /[^\d]/g,
-                      '',
-                    )
-                    field.onChange((e.target as HTMLInputElement).value)
+                checked={isChecked}
+                onChange={(e) => {
+                  form.setValue(name, e.target.checked)
+                  if (name === 'isHidupAyah') {
+                    form.setValue('telepon_ayah', undefined)
+                    form.setValue('pendidikan_ayah', undefined)
+                    form.setValue('pekerjaan_ayah', undefined)
+                  }
+                  if (name === 'isHidupIbu') {
+                    form.setValue('telepon_ibu', undefined)
+                    form.setValue('pendidikan_ibu', undefined)
+                    form.setValue('pekerjaan_ibu', undefined)
                   }
                 }}
               />
             </FormControl>
+            <p>Ya</p>
           </div>
           <FormMessage />
         </FormItem>
