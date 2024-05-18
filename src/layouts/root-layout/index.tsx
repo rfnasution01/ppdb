@@ -8,6 +8,7 @@ import { InstansiData } from '@/libs/types'
 import { useGetIdentitasQuery } from '@/store/slices/identitasAPI'
 import Loading from '@/components/atoms/Loading'
 import { LoadingCandles } from '@/components/molecules/buttons'
+import { Banner } from './banner'
 
 export default function RootLayout() {
   const { firstPathname } = usePathname()
@@ -18,8 +19,6 @@ export default function RootLayout() {
     isFetching: isFetchingIdentitas,
     isLoading: isLoadingIdentitas,
   } = useGetIdentitasQuery()
-
-  const isLoading = isFetchingIdentitas || isLoadingIdentitas
 
   useEffect(() => {
     if (getIdentitas?.data) {
@@ -38,6 +37,8 @@ export default function RootLayout() {
     return () => clearTimeout(timer)
   }, [])
 
+  const isLoading = isFetchingIdentitas || isLoadingIdentitas
+
   return (
     <main className="scrollbar flex h-screen flex-col overflow-auto text-[2.4rem] text-slate-700 phones:text-[2.8rem]">
       {loading ? (
@@ -54,11 +55,7 @@ export default function RootLayout() {
                   <Loading />
                 </div>
               ) : (
-                <img
-                  src={identitas?.background}
-                  alt="ppdb"
-                  className="h-[40vh] w-full object-cover phones:h-[30vh]"
-                />
+                <Banner />
               )}
 
               <div className="scrollbar flex flex-col gap-64 overflow-auto">
