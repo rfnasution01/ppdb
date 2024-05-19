@@ -16,6 +16,7 @@ import { Loader2, Save } from 'lucide-react'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import Cookies from 'js-cookie'
 import Loading from '@/components/atoms/Loading'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 
 export function BiodataPribadi({
   setName,
@@ -126,6 +127,8 @@ export function BiodataPribadi({
     }
   }, [isErrorBiodata, errorBiodata])
 
+  const isValidasi = getProfil?.validasi?.status === enumValidasi?.SUDAHVALIDASI
+
   return (
     <Form {...form}>
       <form
@@ -144,6 +147,7 @@ export function BiodataPribadi({
                   form={form}
                   getProfil={getProfil}
                   isLoading={isLoading}
+                  disabled={isValidasi}
                 />
               </div>
               {/* --- Alamat --- */}
@@ -153,6 +157,7 @@ export function BiodataPribadi({
                   form={form}
                   getProfil={getProfil}
                   isLoading={isLoading}
+                  disabled={isValidasi}
                 />
               </div>
             </>

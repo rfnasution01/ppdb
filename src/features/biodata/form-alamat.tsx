@@ -12,10 +12,12 @@ export function FormAlamat({
   form,
   getProfil,
   isLoading,
+  disabled,
 }: {
   form: UseFormReturn
   getProfil: ProfilData
   isLoading: boolean
+  disabled: boolean
 }) {
   const provinsi = form.watch('provinsi')
   const kabupaten = form.watch('kabupaten')
@@ -40,7 +42,7 @@ export function FormAlamat({
         useFormReturn={form}
         headerLabel="Provinsi"
         placeholder="Pilih Provinsi"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormListKabupaten
@@ -49,7 +51,7 @@ export function FormAlamat({
         useFormReturn={form}
         headerLabel="Kabupaten"
         placeholder="Pilih Kabupaten"
-        isDisabled={!provinsi || isLoading}
+        isDisabled={!provinsi || isLoading || disabled}
       />
 
       <FormListKecamatan
@@ -58,7 +60,7 @@ export function FormAlamat({
         useFormReturn={form}
         headerLabel="Kecamatan"
         placeholder="Pilih Kecamatan"
-        isDisabled={!provinsi || !kabupaten || isLoading}
+        isDisabled={!provinsi || !kabupaten || isLoading || disabled}
       />
 
       <FormListDesa
@@ -67,15 +69,18 @@ export function FormAlamat({
         useFormReturn={form}
         headerLabel="Desa"
         placeholder="Pilih Desa"
-        isDisabled={!provinsi || !kabupaten || !kecamatan || isLoading}
+        isDisabled={
+          !provinsi || !kabupaten || !kecamatan || isLoading || disabled
+        }
       />
 
       <FormListDusun
+        key={`dusun-${desa}-${provinsi}-${kabupaten}-${kecamatan}-${desa}`}
         name="dusun"
         useFormReturn={form}
         headerLabel="Dusun"
         placeholder="Pilih Dusun"
-        isDisabled={!desa || isLoading}
+        isDisabled={!desa || isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -84,7 +89,7 @@ export function FormAlamat({
         label="Alamat*"
         placeHolder="Masukkan alamat anda"
         type="text"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
     </div>
   )

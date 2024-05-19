@@ -11,10 +11,12 @@ export function FormWali({
   form,
   isLoading,
   getProfil,
+  disabled,
 }: {
   form: UseFormReturn
   isLoading?: boolean
   getProfil: ProfilData
+  disabled: boolean
 }) {
   useEffect(() => {
     if (getProfil?.orangtua?.wali) {
@@ -33,7 +35,7 @@ export function FormWali({
         placeHolder="Masukkan nama wali"
         name="nama_wali"
         type="text"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -43,7 +45,7 @@ export function FormWali({
         name="nik_wali"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -53,7 +55,7 @@ export function FormWali({
         name="telepon_wali"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormListPendidikan
@@ -61,7 +63,7 @@ export function FormWali({
         useFormReturn={form}
         headerLabel="Pendidikan Terakhir*"
         placeholder="Pilih Pendidikan Terakhir"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormListPekerjaan
@@ -69,7 +71,7 @@ export function FormWali({
         useFormReturn={form}
         headerLabel="Pekerjaan*"
         placeholder="Pilih Pekerjaan"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
     </div>
   )

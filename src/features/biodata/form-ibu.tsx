@@ -12,10 +12,12 @@ export function FormIbu({
   form,
   isLoading,
   getProfil,
+  disabled,
 }: {
   form: UseFormReturn
   isLoading?: boolean
   getProfil: ProfilData
+  disabled: boolean
 }) {
   useEffect(() => {
     if (getProfil?.orangtua?.ibu) {
@@ -41,7 +43,7 @@ export function FormIbu({
         placeHolder="Ya"
         name="isHidupIbu"
         isChecked={isChecked}
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -50,7 +52,7 @@ export function FormIbu({
         placeHolder="Masukkan nama ibu"
         name="nama_ibu"
         type="text"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -60,7 +62,7 @@ export function FormIbu({
         name="nik_ibu"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       {isChecked && (
@@ -72,7 +74,7 @@ export function FormIbu({
             name="telepon_ibu"
             type="text"
             isNumber
-            isDisabled={isLoading}
+            isDisabled={isLoading || disabled}
           />
 
           <FormListPendidikan
@@ -80,7 +82,7 @@ export function FormIbu({
             useFormReturn={form}
             headerLabel="Pendidikan Terakhir*"
             placeholder="Pilih Pendidikan Terakhir"
-            isDisabled={isLoading}
+            isDisabled={isLoading || disabled}
           />
 
           <FormListPekerjaan
@@ -88,7 +90,7 @@ export function FormIbu({
             useFormReturn={form}
             headerLabel="Pekerjaan*"
             placeholder="Pilih Pekerjaan"
-            isDisabled={isLoading}
+            isDisabled={isLoading || disabled}
           />
         </>
       )}

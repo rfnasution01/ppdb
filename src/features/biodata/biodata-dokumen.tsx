@@ -6,6 +6,7 @@ import { ProfilData } from '@/libs/types/pendaftaran-type'
 import FileUploadForm from './form-upload'
 import Cookies from 'js-cookie'
 import Loading from '@/components/atoms/Loading'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 
 export function BiodataDokumen({
   setName,
@@ -22,6 +23,11 @@ export function BiodataDokumen({
   const navigate = useNavigate()
 
   const jenjang = Cookies.get('jenjang')
+  const isWajibDiIsiSemua = getProfil?.dokumen?.data?.some(
+    (item) => item.status === 'Wajib' && item.dok_siswa === null,
+  )
+
+  const isValidasi = getProfil?.validasi?.status === enumValidasi?.SUDAHVALIDASI
 
   return (
     <div className="flex w-full flex-col">
@@ -49,7 +55,7 @@ export function BiodataDokumen({
                   <th className="sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
                     Tampilkan
                   </th>
-                  <th className="sticky right-0 top-0 text-nowrap border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
+                  <th className="sticky top-0 text-nowrap border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
                     Status Verifikasi
                   </th>
                 </tr>
@@ -89,6 +95,7 @@ export function BiodataDokumen({
                         format={item?.pasfoto}
                         status_verifikasi={item?.status_verifikasi}
                         isLoading={isLoading}
+                        disabled={isValidasi}
                       />
                     </td>
                     <td className="px-24 py-12 leading-medium">
@@ -104,7 +111,7 @@ export function BiodataDokumen({
                         'File belum diupload'
                       )}
                     </td>
-                    <td className="sticky right-0 bg-white px-24 py-12 leading-medium">
+                    <td className="px-24 py-12 leading-medium">
                       <div className="flex flex-col gap-8">
                         {item?.status_verifikasi === 1 ? (
                           <p className="rounded-full bg-emerald-100 px-24 py-8 text-[1.8rem] text-emerald-700 phones:text-[2.2rem]">
@@ -135,11 +142,14 @@ export function BiodataDokumen({
         )}
       </div>
       {/* --- button --- */}
-      <div className="flex items-center justify-between bg-primary-50 p-32">
-        <p className="text-[1.8rem] text-emerald-800">* Wajib Diisi</p>
-        <div className="flex items-center gap-16 text-[2rem]">
+      <div className="flex items-center justify-between bg-primary-50 p-32 phones:flex-col">
+        <p className="text-[1.8rem] text-emerald-800">
+          <span className="font-bold">Informasi!</span> Pastikan semua file
+          dengan status wajib sudah terisi
+        </p>
+        <div className="flex items-center gap-16 text-[2rem] phones:w-full phones:flex-col">
           <button
-            className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700"
+            className="rounded-2xl bg-primary-background px-24 py-12 text-white hover:bg-primary-700 phones:w-full"
             type="button"
             disabled={isLoading}
             onClick={() => {
@@ -152,8 +162,8 @@ export function BiodataDokumen({
             Kembali
           </button>
           <button
-            disabled={isLoading}
-            className="rounded-2xl bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900"
+            disabled={isLoading || isWajibDiIsiSemua}
+            className="rounded-2xl bg-emerald-700 px-24 py-12 text-white hover:bg-emerald-900 disabled:cursor-not-allowed phones:w-full"
             type="submit"
             onClick={() => {
               setActiveIndex(5)

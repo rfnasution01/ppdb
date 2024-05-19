@@ -9,10 +9,12 @@ export function FormBiodata({
   form,
   getProfil,
   isLoading,
+  disabled,
 }: {
   form: UseFormReturn
   getProfil: ProfilData
   isLoading: boolean
+  disabled: boolean
 }) {
   useEffect(() => {
     if (getProfil) {
@@ -53,7 +55,7 @@ export function FormBiodata({
         label="Tempat Lahir*"
         placeHolder="Masukkan tempat lahir anda"
         type="text"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -73,7 +75,7 @@ export function FormBiodata({
         placeHolder="Masukkan KK anda"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -83,7 +85,7 @@ export function FormBiodata({
         placeHolder="Masukkan No. Hp anda"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormListJenisKelamin
@@ -91,7 +93,7 @@ export function FormBiodata({
         placeholder="Pilih jenis kelamin"
         headerLabel="Jenis Kelamin*"
         form={form}
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormListAgama
@@ -99,7 +101,7 @@ export function FormBiodata({
         placeholder="Pilih agama"
         headerLabel="Agama*"
         form={form}
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
     </div>
   )

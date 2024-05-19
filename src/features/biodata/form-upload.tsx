@@ -7,11 +7,13 @@ const FileUploadForm = ({
   format,
   status_verifikasi,
   isLoading,
+  disabled,
 }: {
   id_dokumen: string
   format?: number
   status_verifikasi?: number
   isLoading?: boolean
+  disabled: boolean
 }) => {
   const [file, setFile] = useState()
   const [errorMessage, setErrorMessage] = useState('')
@@ -104,8 +106,10 @@ const FileUploadForm = ({
         disabled={isLoadingUpload || status_verifikasi === 1 || isLoading}
       />
       <button
-        className="text-nowrap rounded-lg bg-primary p-8 text-[2rem] text-white hover:bg-primary-background"
-        disabled={isLoadingUpload || status_verifikasi === 1 || isLoading}
+        className="text-nowrap rounded-lg bg-primary p-8 text-[2rem] text-white hover:bg-primary-background disabled:cursor-not-allowed"
+        disabled={
+          isLoadingUpload || status_verifikasi === 1 || isLoading || disabled
+        }
         onClick={handleSubmit}
       >
         Unggah File

@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Loader2, Save } from 'lucide-react'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import Loading from '@/components/atoms/Loading'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 
 export function BiodataPendidikan({
   setName,
@@ -103,6 +104,8 @@ export function BiodataPendidikan({
     }
   }, [isErrorPendidikan, errorPendidikan])
 
+  const isValidasi = getProfil?.validasi?.status === enumValidasi?.SUDAHVALIDASI
+
   return (
     <Form {...form}>
       <form
@@ -119,6 +122,7 @@ export function BiodataPendidikan({
                 form={form}
                 getProfil={getProfil}
                 isLoading={isLoading}
+                disabled={isValidasi}
               />
             </>
           )}

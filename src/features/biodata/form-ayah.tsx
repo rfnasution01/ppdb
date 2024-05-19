@@ -12,10 +12,12 @@ export function FormAyah({
   form,
   isLoading,
   getProfil,
+  disabled,
 }: {
   form: UseFormReturn
   isLoading?: boolean
   getProfil: ProfilData
+  disabled
 }) {
   useEffect(() => {
     if (getProfil?.orangtua?.ayah) {
@@ -41,7 +43,7 @@ export function FormAyah({
         placeHolder="Ya"
         name="isHidupAyah"
         isChecked={isChecked}
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -50,7 +52,7 @@ export function FormAyah({
         placeHolder="Masukkan nama ayah"
         name="nama_ayah"
         type="text"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -60,7 +62,7 @@ export function FormAyah({
         name="nik_ayah"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       {isChecked && (
@@ -72,7 +74,7 @@ export function FormAyah({
             name="telepon_ayah"
             type="text"
             isNumber
-            isDisabled={isLoading}
+            isDisabled={isLoading || disabled}
           />
 
           <FormListPendidikan
@@ -80,7 +82,7 @@ export function FormAyah({
             useFormReturn={form}
             headerLabel="Pendidikan Terakhir*"
             placeholder="Pilih Pendidikan Terakhir"
-            isDisabled={isLoading}
+            isDisabled={isLoading || disabled}
           />
 
           <FormListPekerjaan
@@ -88,7 +90,7 @@ export function FormAyah({
             useFormReturn={form}
             headerLabel="Pekerjaan*"
             placeholder="Pilih Pekerjaan"
-            isDisabled={isLoading}
+            isDisabled={isLoading || disabled}
           />
         </>
       )}

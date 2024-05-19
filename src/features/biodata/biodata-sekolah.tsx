@@ -13,6 +13,7 @@ import { Bounce, ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useCreatePilihanSekolahMutation } from '@/store/slices/pendaftaranAPI'
 import Loading from '@/components/atoms/Loading'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 
 export function BiodataSekolah({
   setName,
@@ -98,6 +99,8 @@ export function BiodataSekolah({
     }
   }, [isErrorPilihan, errorPilihan])
 
+  const isValidasi = getProfil?.validasi?.status === enumValidasi?.SUDAHVALIDASI
+
   return (
     <Form {...form}>
       <form
@@ -114,6 +117,7 @@ export function BiodataSekolah({
                 form={form}
                 isLoading={isLoading || isLoadingPilihan}
                 getProfil={getProfil}
+                disabled={isValidasi}
               />
             </>
           )}

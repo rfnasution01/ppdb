@@ -74,10 +74,25 @@ export type DataOrangTuaType = {
 export type ProfilData = {
   jalur: string
   biodata: BiodataType
-  sekolah: SekolahParams // Assuming school data or null if not available
+  sekolah: SekolahParams
   orangtua: OrangTuaType
-  dokumen: DokumenType // Assuming array of document data
-  pilihan: PilihanType // Assuming array of choices
+  dokumen: DokumenType
+  pilihan: PilihanType
+  validasi: ValidasiType
+  verifikasi: VerifikasiType
+}
+
+export type ValidasiType = {
+  status: number
+  tanggal_daftar: string
+  tanggal_validasi: string
+}
+
+export type VerifikasiType = {
+  status: number
+  tanggal_verifikasi: string
+  petugas: string
+  komentar: string
 }
 
 export type PilihanType = {
@@ -91,6 +106,7 @@ export type PilihanType = {
     nama_sekolah: string
     skor: number
   }
+  status: boolean
 }
 
 export type DokumenType = {
@@ -150,4 +166,8 @@ export type DokumenParams = { id_dokumen: string; berkas: File }
 export type PilihanSekolahParams = {
   pilihan1: string
   pilihan2?: string
+}
+
+export type ValidasiParams = {
+  validasi: boolean
 }

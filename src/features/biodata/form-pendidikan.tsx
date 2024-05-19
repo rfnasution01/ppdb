@@ -7,10 +7,12 @@ export function FormAPendidkan({
   form,
   getProfil,
   isLoading,
+  disabled,
 }: {
   form: UseFormReturn
   getProfil: ProfilData
   isLoading: boolean
+  disabled
 }) {
   useEffect(() => {
     if (getProfil?.sekolah) {
@@ -30,7 +32,7 @@ export function FormAPendidkan({
         placeHolder="Masukkan NISN anda"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -40,7 +42,7 @@ export function FormAPendidkan({
         placeHolder="Masukkan NPSN anda"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -49,7 +51,7 @@ export function FormAPendidkan({
         label="Nama Sekolah*"
         placeHolder="Masukkan nama sekolah anda"
         type="text"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormLabelComponent
@@ -59,7 +61,7 @@ export function FormAPendidkan({
         placeHolder="Masukkan Tahun Lulus anda"
         type="text"
         isNumber
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
     </div>
   )

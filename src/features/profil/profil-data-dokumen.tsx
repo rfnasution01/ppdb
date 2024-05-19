@@ -25,7 +25,7 @@ export function ProfilDokumen({
                 className="col-span-4 flex flex-col gap-12 p-12 shadow phones:col-span-12"
                 key={idx}
               >
-                <div className="flex items-center gap-12 phones:flex-col">
+                <div className="flex items-center gap-12 phones:flex-col phones:items-start">
                   <p
                     className={clsx(
                       'border-l-2 p-12 text-[1.8rem] phones:text-[2.2rem]',

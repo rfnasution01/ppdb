@@ -1,4 +1,5 @@
 import Loading from '@/components/atoms/Loading'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 import {
   capitalizeFirstLetterFromLowercase,
   convertToSlug,
@@ -117,6 +118,9 @@ export function BiodataJalur({
     }
   }, [isErrorJalur, errorJalur])
 
+  const isValidasi =
+    getProfile?.validasi?.status === enumValidasi?.SUDAHVALIDASI
+
   const isLoadingButton =
     isFetchingJalurmasuk || isLoadingJalurMasuk || isLoadingJalur || isLoading
 
@@ -130,14 +134,20 @@ export function BiodataJalur({
             {jalurMasuk.map((item, idx) => (
               <div
                 className={clsx(
-                  'flex items-center gap-12 border p-16 hover:cursor-pointer hover:shadow',
+                  'flex items-center gap-12 border p-16 hover:shadow',
                   {
                     'bg-danger-100 text-danger-tint-1':
                       convertToSlug(item?.kode?.toLowerCase()) === jalur,
+                    'hover:cursor-not-allowed': isValidasi,
+                    'hover:cursor-pointer': !isValidasi,
                   },
                 )}
                 key={idx}
-                onClick={() => setJalur(convertToSlug(item?.kode))}
+                onClick={() => {
+                  if (!isValidasi) {
+                    setJalur(convertToSlug(item?.kode))
+                  }
+                }}
               >
                 <div
                   className={clsx('h-[2rem] w-[2rem] border', {

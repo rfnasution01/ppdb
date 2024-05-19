@@ -9,6 +9,7 @@ import {
   ProfilData,
   ProvinsiType,
   SekolahParams,
+  ValidasiParams,
 } from '@/libs/types/pendaftaran-type'
 
 export const PendaftaranEndpoints = api.injectEndpoints({
@@ -125,6 +126,14 @@ export const PendaftaranEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['profil'],
     }),
+    createValidasi: builder.mutation<void, { data: ValidasiParams }>({
+      query: ({ data }) => ({
+        url: `profil/validasi`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['profil'],
+    }),
   }),
 })
 
@@ -136,6 +145,7 @@ export const {
   useCreateOrangTuaMutation,
   useCreateUploadFileMutation,
   useCreatePilihanSekolahMutation,
+  useCreateValidasiMutation,
   useGetProvinsiQuery,
   useGetKabupatenQuery,
   useGetKecamatanQuery,

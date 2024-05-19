@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useCreateOrangTuaMutation } from '@/store/slices/pendaftaranAPI'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import Loading from '@/components/atoms/Loading'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 
 export function BiodataOrangTua({
   setName,
@@ -126,6 +127,8 @@ export function BiodataOrangTua({
 
   const isLoading = isLoadingOrangTua || isLoadingProfil
 
+  const isValidasi = getProfil?.validasi?.status === enumValidasi?.SUDAHVALIDASI
+
   return (
     <Form {...form}>
       <form
@@ -144,6 +147,7 @@ export function BiodataOrangTua({
                   form={form}
                   isLoading={isLoading}
                   getProfil={getProfil}
+                  disabled={isValidasi}
                 />
               </div>
               {/* --- Ibu --- */}
@@ -153,6 +157,7 @@ export function BiodataOrangTua({
                   form={form}
                   isLoading={isLoading}
                   getProfil={getProfil}
+                  disabled={isValidasi}
                 />
               </div>
               {/* --- Wali --- */}
@@ -162,6 +167,7 @@ export function BiodataOrangTua({
                   form={form}
                   isLoading={isLoading}
                   getProfil={getProfil}
+                  disabled={isValidasi}
                 />
               </div>
             </>

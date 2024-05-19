@@ -7,10 +7,12 @@ export function FormSekolah({
   form,
   isLoading,
   getProfil,
+  disabled,
 }: {
   form: UseFormReturn
   isLoading?: boolean
   getProfil?: ProfilData
+  disabled: boolean
 }) {
   useEffect(() => {
     if (getProfil?.pilihan) {
@@ -26,7 +28,7 @@ export function FormSekolah({
         useFormReturn={form}
         headerLabel="Pilihan 1*"
         placeholder="Pilih Sekolah"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
 
       <FormListDayaTampung
@@ -34,7 +36,7 @@ export function FormSekolah({
         useFormReturn={form}
         headerLabel="Pilihan 2"
         placeholder="Pilih Sekolah"
-        isDisabled={isLoading}
+        isDisabled={isLoading || disabled}
       />
     </div>
   )
