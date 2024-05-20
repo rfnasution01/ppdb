@@ -51,7 +51,7 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
             </div>
             {/* --- Content Header --- */}
             <div className="flex flex-col items-center gap-12 text-[4rem] font-bold uppercase">
-              <p>bukti pendaftaran</p>
+              <p>Hasil Verifikasi Pendaftaran</p>
               <p className="text-center">
                 PPDB DINAS pendidikan kabupaten batubara
               </p>
@@ -63,7 +63,10 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
             {/* --- Data Pendaftar --- */}
             <div className="flex gap-32 text-[2.4rem]">
               <div className="flex flex-1 flex-col gap-12">
-                <DataComponent2 label="No. Pendaftar" value="-" />
+                <DataComponent2
+                  label="No. Pendaftar"
+                  value={profil?.biodata?.nomor_peserta ?? '-'}
+                />
                 <DataComponent2
                   label="NIK"
                   value={profil?.biodata?.nik ?? '-'}

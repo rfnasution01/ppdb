@@ -64,7 +64,10 @@ export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
             {/* --- Data Pendaftar --- */}
             <div className="flex gap-32 text-[2.4rem]">
               <div className="flex flex-1 flex-col gap-12">
-                <DataComponent2 label="No. Pendaftar" value="-" />
+                <DataComponent2
+                  label="No. Pendaftar"
+                  value={profil?.biodata?.nomor_peserta ?? '-'}
+                />
                 <DataComponent2
                   label="NIK"
                   value={profil?.biodata?.nik ?? '-'}

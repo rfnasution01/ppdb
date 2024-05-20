@@ -31,6 +31,7 @@ export type ProvinsiType = {
 }
 
 export type BiodataType = {
+  nomor_peserta: string
   nama: string
   tempat_lahir: string
   tanggal_lahir: string

@@ -5,7 +5,7 @@ export function DaptarContentInfo() {
     <div className="flex flex-col gap-12 rounded-lg bg-warning-tint-2 p-24 text-[2rem]">
       <div className="flex w-full items-center gap-y-12">
         <p className="flex-1">
-          Status Data: <span className="text-orange-700">Sementata</span>
+          Status Data: <span className="text-orange-700">Sementara</span>
         </p>
         <p className="flex-1">
           Wilayah Seleksi:{' '}

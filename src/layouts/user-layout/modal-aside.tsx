@@ -61,7 +61,6 @@ export function ModalAside({
                 kab. Batu Bara
               </p>
               <hr className="w-full border border-white" />
-              <p className="text-[2.4rem]">John Doe</p>
             </div>
           </div>
           {/* --- Navigasi --- */}
