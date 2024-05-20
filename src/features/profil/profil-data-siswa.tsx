@@ -5,13 +5,14 @@ import Cookies from 'js-cookie'
 import { ProfilOrangTua } from './profil-data-orang-tua'
 import { ProfilDokumen } from './profil-data-dokumen'
 import { ProfilPilihan } from './profil-data-pilihan'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { ModalValidasi } from './modal-validasi'
-import { AlertCircle, Printer } from 'lucide-react'
+import { AlertCircle } from 'lucide-react'
 import { enumValidasi } from '@/libs/enum/enum-validasi'
 import clsx from 'clsx'
 import { enumVerifikasi } from '@/libs/enum/enum-verifikasi'
+import { CetakBuktiPendaftaran } from './cetak-bukti-pendaftaran'
 
 export function ProfilDataSiswa({
   profil,
@@ -40,12 +41,12 @@ export function ProfilDataSiswa({
           borderBottomRightRadius: '1rem',
         }}
       >
-        <div className="flex items-center justify-between gap-32 p-32">
-          <div className="flex items-center gap-32 phones:flex-col phones:gap-12">
+        <div className="flex items-center justify-between gap-32 p-32 phones:flex-col phones:items-start">
+          <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
             <p className="font-roboto text-[2.8rem] font-bold uppercase phones:text-[3.2rem]">
               {profil?.biodata?.nama ?? '-'}
             </p>
-            <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
+            <div className="flex items-center gap-12 phones:flex-col phones:items-start phones:gap-12">
               <p
                 className={clsx(
                   'rounded-full px-24 py-12 text-[2rem] phones:text-[2.4rem]',
@@ -90,9 +91,18 @@ export function ProfilDataSiswa({
             </div>
           </div>
           {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
-            <span>
-              <Printer />
-            </span>
+            <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
+              <CetakBuktiPendaftaran profil={profil} />
+              {profil?.verifikasi?.status !==
+                enumVerifikasi.MENUNGGUVERIFIKASI && (
+                <Link
+                  to="/main/verifikasi"
+                  className="rounded-full bg-primary px-24 py-12 text-[2rem] text-primary-50 hover:bg-primary-background"
+                >
+                  Lihat Hasil Verifikasi
+                </Link>
+              )}
+            </div>
           )}
         </div>
         <hr className="border" />

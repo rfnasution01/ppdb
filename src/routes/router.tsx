@@ -23,6 +23,7 @@ import {
   PendaftaranPage,
   ProfilPage,
   ComingSoonPage,
+  VerifikasiPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -128,7 +129,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'verifikasi',
-        element: <ComingSoonPage />,
+        element: <VerifikasiPage />,
       },
       {
         path: 'pengumuman',
