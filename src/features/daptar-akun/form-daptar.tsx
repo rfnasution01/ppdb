@@ -27,6 +27,9 @@ export function FormDaptar({
     setIsShow(true)
   }
 
+  const defaultValues =
+    showJenjang?.toLowerCase() === 'sd' ? '2018-01-01' : '2012-01-01'
+
   return (
     <div className="flex flex-col gap-32">
       <div className="grid grid-cols-2 grid-rows-3 gap-32 text-[2rem] phones:grid-cols-1">
@@ -126,6 +129,7 @@ export function FormDaptar({
           placeholder="Masukkan tanggal lahir anda"
           name="tgl_lahir"
           type="date"
+          defaultValue={defaultValues}
         />
         <FormLabelInput
           form={form}
@@ -133,6 +137,7 @@ export function FormDaptar({
           placeholder="Masukkan tanggal lahir anda"
           name="konfirmasi_tgl_lahir"
           type="date"
+          defaultValue={defaultValues}
         />
       </div>
 

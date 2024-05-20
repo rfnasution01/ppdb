@@ -20,6 +20,7 @@ export function FormLabelInput({
   handlerClick,
   className,
   isDisabled,
+  defaultValue,
 }: {
   form: UseFormReturn | undefined | any
   label?: string | ReactNode
@@ -31,6 +32,7 @@ export function FormLabelInput({
   handlerClick?: () => void
   className?: string
   isDisabled?: boolean
+  defaultValue?: string
 }) {
   return (
     <FormField
@@ -47,6 +49,7 @@ export function FormLabelInput({
             type={type}
             placeholder={placeholder}
             value={field.value}
+            defaultValue={defaultValue}
             prefix={prefix}
             suffix={suffix}
             handlerClick={handlerClick}

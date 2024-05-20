@@ -28,7 +28,7 @@ export function AppHeaderNavigasi({
   return (
     <div
       className={clsx(
-        'flex items-center gap-32 px-[20rem] text-white phones:px-32',
+        'scrollbar flex items-center gap-32 overflow-auto px-[20rem] text-white phones:px-32',
         {
           'bg-primary': isSMP,
           'bg-danger-100': isSD,

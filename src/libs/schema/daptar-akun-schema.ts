@@ -32,11 +32,11 @@ export const daptarAkunSchema = zod
       invalid_type_error: 'Format nama tidak valid',
     }),
     tgl_lahir: zod.string({
-      required_error: 'Tanggal lahit harus di isi',
+      required_error: 'Tanggal lahir harus di isi',
       invalid_type_error: 'Format tanggal lahir tidak valid',
     }),
     konfirmasi_tgl_lahir: zod.string({
-      required_error: 'Tanggal lahit harus di isi',
+      required_error: 'Tanggal lahir harus di isi',
       invalid_type_error: 'Format tanggal lahir tidak valid',
     }),
     isChecked: zod
