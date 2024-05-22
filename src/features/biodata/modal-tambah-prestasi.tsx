@@ -18,6 +18,11 @@ import {
 } from '@/components/atoms/Dialog'
 import { Form } from '@/components/atoms/Form'
 import { FormLabelComponent2 } from './form-label-component2'
+import {
+  FormListJuara,
+  FormListKelas,
+  FormListTingkat,
+} from '@/components/molecules/form'
 
 export function ModalTambahPrestasi({
   isOpen,
@@ -157,13 +162,11 @@ export function ModalTambahPrestasi({
             >
               <div className="flex flex-col gap-24">
                 <div className="flex items-center gap-32 phones:flex-col phones:gap-32">
-                  <FormLabelComponent2
-                    form={form}
-                    label="Tingkat"
-                    placeHolder="Masukkan Tingkat"
+                  <FormListTingkat
                     name="tingkat"
-                    type="text"
-                    isOperator
+                    placeholder="Pilih Tingkat"
+                    headerLabel="Tingkat"
+                    form={form}
                     isDisabled={isLoadingTambahPrestasi}
                   />
                   <FormLabelComponent2
@@ -177,22 +180,18 @@ export function ModalTambahPrestasi({
                   />
                 </div>
                 <div className="flex items-center gap-32 phones:flex-col phones:gap-32">
-                  <FormLabelComponent2
-                    form={form}
-                    label="Juara"
-                    placeHolder="Masukkan Juara"
+                  <FormListJuara
                     name="juara"
-                    type="text"
-                    isOperator
+                    placeholder="Pilih Juara"
+                    headerLabel="Juara"
+                    form={form}
                     isDisabled={isLoadingTambahPrestasi}
                   />
-                  <FormLabelComponent2
-                    form={form}
-                    label="Kelas"
-                    placeHolder="Masukkan Kelas"
+                  <FormListKelas
                     name="kelas"
-                    type="text"
-                    isOperator
+                    placeholder="Pilih Kelas"
+                    headerLabel="Kelas"
+                    form={form}
                     isDisabled={isLoadingTambahPrestasi}
                   />
                 </div>
