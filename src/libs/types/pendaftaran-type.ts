@@ -81,6 +81,26 @@ export type ProfilData = {
   pilihan: PilihanType
   validasi: ValidasiType
   verifikasi: VerifikasiType
+  prestasi: PrestasiType
+}
+
+export type PrestasiType = {
+  jalur_prestasi: boolean
+  data: ListPrestasiType[]
+}
+
+export type ListPrestasiType = {
+  id: string
+  nama_prestasi: string
+  tingkat: string
+  juara: string
+  kelas: string
+  penyelenggara: string
+  sertifikat: string
+  validasi: number
+  tgl_validasi?: string
+  user_validasi?: string
+  catatan?: string
 }
 
 export type RekomendasiType = {

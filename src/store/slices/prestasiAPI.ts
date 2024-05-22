@@ -1,15 +1,8 @@
-import { LokasiType, JenjangParams } from '@/libs/types'
-import { Res, api } from '../api'
-import { AddPrestasiParams } from '@/libs/types/prestasi-type'
+import { api } from '../api'
 
 export const PrestasiEndpoints = api.injectEndpoints({
   endpoints: (builder) => ({
-    getPrestasi: builder.query<Res<LokasiType>, JenjangParams>({
-      query: ({ jenjang, jalur }) => ({
-        url: `prestasi/${jenjang}/${jalur}`,
-      }),
-    }),
-    createAddPrestasi: builder.mutation<void, { data: AddPrestasiParams }>({
+    createAddPrestasi: builder.mutation<void, { data: FormData }>({
       query: ({ data }) => ({
         url: `prestasi/tambah`,
         method: 'POST',
@@ -17,7 +10,7 @@ export const PrestasiEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['profil', 'prestasi'],
     }),
-    createEditPrestasi: builder.mutation<void, { data: AddPrestasiParams }>({
+    createEditPrestasi: builder.mutation<void, { data: FormData }>({
       query: ({ data }) => ({
         url: `prestasi/edit`,
         method: 'POST',
@@ -25,18 +18,18 @@ export const PrestasiEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['profil', 'prestasi'],
     }),
-    deletePrestasi: builder.mutation<
-      void,
-      { data: AddPrestasiParams; id: string }
-    >({
-      query: ({ data, id }) => ({
+    deletePrestasi: builder.mutation<void, { id: string }>({
+      query: ({ id }) => ({
         url: `prestasi/${id}`,
         method: 'DELETE',
-        body: data,
       }),
       invalidatesTags: ['profil', 'prestasi'],
     }),
   }),
 })
 
-export const { useGetPrestasiQuery } = PrestasiEndpoints
+export const {
+  useCreateAddPrestasiMutation,
+  useCreateEditPrestasiMutation,
+  useDeletePrestasiMutation,
+} = PrestasiEndpoints
