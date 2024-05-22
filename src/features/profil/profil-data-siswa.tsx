@@ -68,22 +68,18 @@ export function ProfilDataSiswa({
                     'rounded-full px-24 py-12 text-[2rem] phones:text-[2.4rem]',
                     {
                       'bg-orange-200 text-orange-700':
-                        profil?.verifikasi?.status ===
-                        enumVerifikasi?.MENUNGGUVERIFIKASI,
+                        profil?.verifikasi?.status === enumVerifikasi?.DIPROSES,
                       'bg-emerald-200 text-emerald-700':
                         profil?.verifikasi?.status ===
-                        enumVerifikasi?.VERIFIKASIDITERIMA,
+                        enumVerifikasi?.DISETUJUI,
                       'bg-red-200 text-red-700':
-                        profil?.verifikasi?.status ===
-                        enumVerifikasi?.VERIFIKASIDITOLAK,
+                        profil?.verifikasi?.status === enumVerifikasi?.DITOLAK,
                     },
                   )}
                 >
-                  {profil?.verifikasi?.status ===
-                  enumVerifikasi?.VERIFIKASIDITERIMA
+                  {profil?.verifikasi?.status === enumVerifikasi?.DISETUJUI
                     ? 'Sudah Verifikasi'
-                    : profil?.verifikasi?.status ===
-                        enumVerifikasi?.VERIFIKASIDITOLAK
+                    : profil?.verifikasi?.status === enumVerifikasi?.DITOLAK
                       ? 'Verifikasi Ditolak'
                       : 'Menunggu Verifikasi'}
                 </p>
@@ -93,8 +89,7 @@ export function ProfilDataSiswa({
           {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
             <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
               <CetakBuktiPendaftaran profil={profil} />
-              {profil?.verifikasi?.status !==
-                enumVerifikasi.MENUNGGUVERIFIKASI && (
+              {profil?.verifikasi?.status !== enumVerifikasi.DIPROSES && (
                 <Link
                   to="/main/verifikasi"
                   className="rounded-full bg-primary px-24 py-12 text-[2rem] text-primary-50 hover:bg-primary-background"

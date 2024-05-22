@@ -33,7 +33,7 @@ export function BiodataJalur({
   isLoading: boolean
 }) {
   const getJalur = getProfile?.jalur
-  const [jalur, setJalur] = useState(getJalur ?? jalurParams.toLowerCase())
+  const [jalur, setJalur] = useState(getJalur ?? jalurParams?.toLowerCase())
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

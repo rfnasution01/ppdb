@@ -1,5 +1,7 @@
 export const enumVerifikasi = {
-  MENUNGGUVERIFIKASI: 0,
-  VERIFIKASIDITERIMA: 1,
-  VERIFIKASIDITOLAK: 2,
+  DIAJUKAN: 0,
+  DIPROSES: 1,
+  DISETUJUI: 2,
+  DITOLAK: 3,
+  DIRESET: 4,
 } as const

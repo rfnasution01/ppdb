@@ -2,11 +2,15 @@ import { JalurMasukMapping } from './jalur-masuk'
 
 export function HomeContent() {
   return (
-    <div className="flex items-center justify-center gap-32 phones:flex-col">
+    <div className="flex h-full justify-center gap-32 phones:flex-col">
       {/* --- SD --- */}
-      <JalurMasukMapping jenjang="sd" />
+      <div className="w-1/3 phones:w-full">
+        <JalurMasukMapping jenjang="sd" />
+      </div>
       {/* --- SMP --- */}
-      <JalurMasukMapping jenjang="smp" />
+      <div className="w-1/3 phones:w-full">
+        <JalurMasukMapping jenjang="smp" />
+      </div>
     </div>
   )
 }

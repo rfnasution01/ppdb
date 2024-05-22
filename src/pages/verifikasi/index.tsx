@@ -30,7 +30,7 @@ export default function Verifikasi() {
       {/* --- Header --- */}
       <div className="flex items-center justify-between gap-32">
         <p className="font-bold">Verifikasi</p>
-        {profil?.verifikasi?.status === enumVerifikasi?.VERIFIKASIDITERIMA && (
+        {profil?.verifikasi?.status === enumVerifikasi?.DISETUJUI && (
           <CetakHasilVerifikasi profil={profil} />
         )}
       </div>
@@ -42,8 +42,7 @@ export default function Verifikasi() {
           <>
             {profil?.validasi?.status === enumValidasi.BELUMVALIDASI ? (
               <NoData title="Data Belum Divalidasi" />
-            ) : profil?.verifikasi?.status ===
-              enumVerifikasi?.MENUNGGUVERIFIKASI ? (
+            ) : profil?.verifikasi?.status <= enumVerifikasi?.DIPROSES ? (
               <NoData title="Menunggu Verifikasi" />
             ) : (
               <>
@@ -54,24 +53,21 @@ export default function Verifikasi() {
                       {
                         'border-red-100 bg-red-50 bg-opacity-40 text-red-700':
                           profil?.verifikasi?.status ===
-                          enumVerifikasi?.VERIFIKASIDITOLAK,
+                          enumVerifikasi?.DITOLAK,
                         'border-green-100 bg-green-50 bg-opacity-40 text-green-700':
                           profil?.verifikasi?.status ===
-                          enumVerifikasi?.VERIFIKASIDITERIMA,
+                          enumVerifikasi?.DISETUJUI,
                         'border-yellow-100 bg-yellow-50 bg-opacity-40 text-yellow-700':
-                          profil?.verifikasi?.status ===
-                          enumVerifikasi?.MENUNGGUVERIFIKASI,
+                          profil?.verifikasi?.status <=
+                          enumVerifikasi?.DIPROSES,
                       },
                     )}
                   >
-                    {profil?.verifikasi?.status ===
-                    enumVerifikasi?.VERIFIKASIDITERIMA
+                    {profil?.verifikasi?.status === enumVerifikasi?.DISETUJUI
                       ? 'Verifikasi Diterima'
-                      : profil?.verifikasi?.status ===
-                          enumVerifikasi?.VERIFIKASIDITOLAK
+                      : profil?.verifikasi?.status === enumVerifikasi?.DITOLAK
                         ? 'Verifikasi Ditolak'
-                        : profil?.verifikasi?.status ===
-                            enumVerifikasi?.MENUNGGUVERIFIKASI
+                        : profil?.verifikasi?.status <= enumVerifikasi?.DIPROSES
                           ? 'Menunggu Verifikasi'
                           : 'Belum Unggah'}
                   </p>

@@ -145,13 +145,11 @@ export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
             {/* --- Divider --- */}
             <p className="bg-background p-24 text-[3rem] font-bold">
               Status Verifikasi Sekolah:{' '}
-              {profil?.verifikasi?.status === enumVerifikasi?.MENUNGGUVERIFIKASI
+              {profil?.verifikasi?.status <= enumVerifikasi?.DIPROSES
                 ? 'Menunggu Verifikasi dari salah satu sekolah pilihan anda!'
-                : profil?.verifikasi?.status ===
-                    enumVerifikasi?.VERIFIKASIDITERIMA
+                : profil?.verifikasi?.status === enumVerifikasi?.DISETUJUI
                   ? 'Data anda sudah di verifikasi'
-                  : profil?.verifikasi?.status ===
-                      enumVerifikasi?.VERIFIKASIDITOLAK
+                  : profil?.verifikasi?.status === enumVerifikasi?.DITOLAK
                     ? 'Verifikasi data anda ditolak'
                     : 'Menunggu Verifikasi dari salah satu sekolah pilihan anda!'}
             </p>

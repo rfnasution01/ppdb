@@ -1,4 +1,11 @@
-import { GraduationCap } from 'lucide-react'
+import {
+  Accessibility,
+  Backpack,
+  BringToFront,
+  GraduationCap,
+  MapPin,
+  Trophy,
+} from 'lucide-react'
 import { IconComponent } from './IconComponent'
 import { useEffect, useState } from 'react'
 import { JalurMasukType } from '@/libs/types'
@@ -7,6 +14,7 @@ import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { NoData } from '@/components/atoms/NoData'
 import { setStateJenjang } from '@/store/reducer/stateJenjang'
 import { useDispatch } from 'react-redux'
+import { enumJalur } from '@/libs/enum/enum-jalur'
 
 export function JalurMasukMapping({ jenjang }: { jenjang: 'sd' | 'smp' }) {
   const [jalurMasuk, setJalurMasuk] = useState<JalurMasukType[]>([])
@@ -27,13 +35,13 @@ export function JalurMasukMapping({ jenjang }: { jenjang: 'sd' | 'smp' }) {
 
   return (
     <div
-      className="w-1/3 bg-white phones:w-full"
+      className="h-full w-full bg-white phones:w-full"
       style={{
         borderBottomLeftRadius: '1rem',
         borderBottomRightRadius: '1rem',
       }}
     >
-      <div className="flex flex-col">
+      <div className="flex h-full flex-col">
         {/* --- Header --- */}
         <div className={`relative`}>
           <img
@@ -77,7 +85,23 @@ export function JalurMasukMapping({ jenjang }: { jenjang: 'sd' | 'smp' }) {
                 >
                   <IconComponent
                     title={item?.nama}
-                    icon={<GraduationCap size={16} />}
+                    icon={
+                      item?.kode?.toUpperCase() === enumJalur.ZONASI ? (
+                        <MapPin size={16} />
+                      ) : item?.kode?.toUpperCase() === enumJalur.AFIRMASI ? (
+                        <Backpack size={16} />
+                      ) : item?.kode?.toUpperCase() === enumJalur.PRESTASI ? (
+                        <Trophy size={16} />
+                      ) : item?.kode?.toUpperCase() ===
+                        enumJalur.PINDAHTUGAS ? (
+                        <BringToFront size={16} />
+                      ) : item?.kode?.toUpperCase() ===
+                        enumJalur.DISABILITAS ? (
+                        <Accessibility size={16} />
+                      ) : (
+                        <GraduationCap size={16} />
+                      )
+                    }
                     link={`/beranda?jenjang=${jenjang}&kode=${item?.kode.toLowerCase()}`}
                     informasi={item?.informasi}
                     isSD

@@ -3,4 +3,5 @@ export const enumJalur = {
   AFIRMASI: 'AFR',
   PRESTASI: 'PR',
   PINDAHTUGAS: 'TR',
+  DISABILITAS: 'AFRD',
 } as const
