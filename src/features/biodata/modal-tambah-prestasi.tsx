@@ -205,11 +205,19 @@ export function ModalTambahPrestasi({
                     isOperator
                     isDisabled={isLoadingTambahPrestasi}
                   />
-                  <input
-                    type="file"
-                    onChange={handleFileChange}
-                    disabled={isLoadingTambahPrestasi}
-                  />
+
+                  <div className="flex w-1/2 items-center gap-32 text-[2rem] phones:w-full phones:flex-col phones:items-start phones:gap-12 phones:text-[2.4rem]">
+                    <p className="w-2/6 text-left phones:w-full phones:text-left">
+                      File
+                    </p>
+                    <div className="w-4/6 phones:w-full">
+                      <input
+                        type="file"
+                        onChange={handleFileChange}
+                        disabled={isLoadingTambahPrestasi}
+                      />
+                    </div>
+                  </div>
                 </div>
                 {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               </div>
