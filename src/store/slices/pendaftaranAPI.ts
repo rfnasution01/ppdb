@@ -51,7 +51,7 @@ export const PendaftaranEndpoints = api.injectEndpoints({
     }),
     getDusun: builder.query<Res<ProvinsiType[]>, { id_desa: string }>({
       query: ({ id_desa }) => ({
-        url: `referensi/desa`,
+        url: `referensi/dusun`,
         params: {
           id_desa: id_desa,
         },

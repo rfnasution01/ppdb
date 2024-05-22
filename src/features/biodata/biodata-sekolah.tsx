@@ -121,6 +121,18 @@ export function BiodataSekolah({
               />
             </>
           )}
+          <div className="flex flex-col gap-24">
+            <p className="font-bold">Rekomendasi</p>
+            <div className="flex flex-col gap-12">
+              {getProfil?.pilihan?.rekomendasi.map((item, idx) => (
+                <div className="flex items-center gap-12" key={idx}>
+                  <p>{idx + 1}</p>
+                  <p>{item?.nama_sekolah}</p>
+                  <p>({item?.skor})</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         {/* --- button --- */}
         <div className="flex items-center justify-between bg-primary-50 p-32">

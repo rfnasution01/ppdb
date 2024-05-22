@@ -31,6 +31,7 @@ export function FormAlamat({
       form.setValue('kecamatan', getProfil?.biodata?.id_kecamatan)
       form.setValue('desa', getProfil?.biodata?.id_desa)
       form.setValue('alamat', getProfil?.biodata?.alamat_lengkap)
+      form.setValue('dusun', getProfil?.biodata?.id_dusun)
     }
   }, [getProfil])
 

@@ -83,6 +83,12 @@ export type ProfilData = {
   verifikasi: VerifikasiType
 }
 
+export type RekomendasiType = {
+  npsn: string
+  nama_sekolah: string
+  skor: number
+}
+
 export type ValidasiType = {
   status: number
   tanggal_daftar: string
@@ -108,6 +114,7 @@ export type PilihanType = {
     skor: number
   }
   status: boolean
+  rekomendasi: RekomendasiType[]
 }
 
 export type DokumenType = {
