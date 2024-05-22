@@ -2,10 +2,10 @@ import { NoData } from '@/components/atoms/NoData'
 import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import clsx from 'clsx'
-import { Scroll } from 'lucide-react'
+import { Medal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-export function ProfilDokumen({
+export function ProfilPrestaasi({
   profil,
   isLoading,
 }: {
@@ -14,20 +14,20 @@ export function ProfilDokumen({
 }) {
   return (
     <div className="flex items-start gap-16">
-      <Scroll size={18} />
+      <Medal size={18} />
       <div className="flex w-full flex-col gap-12">
-        <p className="font-bold">Dokumen</p>
+        <p className="font-bold">Prestasi</p>
         {isLoading ? (
           <MultiSkeleton />
         ) : (
           <div className="grid grid-cols-12 gap-24">
-            {profil?.dokumen?.data?.length === 0 ? (
+            {profil?.prestasi?.data?.length === 0 ? (
               <div className="col-span-12">
                 <NoData />
               </div>
             ) : (
               <>
-                {profil?.dokumen?.data?.map((item, idx) => (
+                {profil?.prestasi?.data?.map((item, idx) => (
                   <div
                     className="col-span-4 flex flex-col gap-12 p-12 shadow phones:col-span-12"
                     key={idx}
@@ -38,44 +38,44 @@ export function ProfilDokumen({
                           'border-l-2 p-12 text-[1.8rem] phones:text-[2.2rem]',
                           {
                             'border-red-100 bg-red-50 bg-opacity-40 text-red-700':
-                              !item?.dok_siswa,
+                              !item?.sertifikat,
                             'border-green-100 bg-green-50 bg-opacity-40 text-green-700':
-                              item?.dok_siswa,
+                              item?.sertifikat,
                           },
                         )}
                       >
-                        {item?.dok_siswa ? 'Sudah Unggah' : 'Belum Unggah'}
+                        {item?.sertifikat ? 'Sudah Unggah' : 'Belum Unggah'}
                       </p>
                       <p
                         className={clsx(
                           'border-l-2 p-12 text-[1.8rem] phones:text-[2.2rem]',
                           {
                             'border-red-100 bg-red-50 bg-opacity-40 text-red-700':
-                              item?.dok_siswa && item?.status_verifikasi === 2,
+                              item?.sertifikat && item?.validasi === 2,
                             'border-green-100 bg-green-50 bg-opacity-40 text-green-700':
-                              item?.dok_siswa && item?.status_verifikasi === 1,
+                              item?.sertifikat && item?.validasi === 1,
                             'border-yellow-100 bg-yellow-50 bg-opacity-40 text-yellow-700':
-                              item?.dok_siswa && item?.status_verifikasi === 0,
+                              item?.sertifikat && item?.validasi === 0,
                             'border-slate-100 bg-slate-50 bg-opacity-40 text-slate-700':
-                              !item?.dok_siswa,
+                              !item?.sertifikat,
                           },
                         )}
                       >
-                        {item?.status_verifikasi === 1
+                        {item?.validasi === 1
                           ? 'Sudah Verifikasi'
-                          : item?.status_verifikasi === 2
+                          : item?.validasi === 2
                             ? 'Verifikasi Ditolak'
-                            : item?.dok_siswa
+                            : item?.validasi
                               ? 'Menunggu Persetujuan'
                               : 'Belum Unggah'}
                       </p>
                     </div>
                     <p className="flex-1 text-[2rem]  font-bold phones:text-[2.4rem]">
-                      {item?.nama ?? '-'}
+                      {item?.nama_prestasi ?? '-'}
                     </p>
-                    {item?.dok_siswa ? (
+                    {item?.sertifikat ? (
                       <Link
-                        to={item?.dok_siswa}
+                        to={item?.sertifikat}
                         target="_blank"
                         className="text-[2rem]  text-primary phones:text-[2.4rem]"
                       >

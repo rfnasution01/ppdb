@@ -13,6 +13,7 @@ import { enumValidasi } from '@/libs/enum/enum-validasi'
 import clsx from 'clsx'
 import { enumVerifikasi } from '@/libs/enum/enum-verifikasi'
 import { CetakBuktiPendaftaran } from './cetak-bukti-pendaftaran'
+import { ProfilPrestaasi } from './profil-data-prestasi'
 
 export function ProfilDataSiswa({
   profil,
@@ -108,6 +109,7 @@ export function ProfilDataSiswa({
           )}
           <ProfilOrangTua profil={profil} isLoading={isLoading} />
           <ProfilDokumen profil={profil} isLoading={isLoading} />
+          <ProfilPrestaasi profil={profil} isLoading={isLoading} />
           <ProfilPilihan profil={profil} isLoading={isLoading} />
           <div className="flex items-center justify-between gap-32 text-[2rem] phones:flex-col phones:text-[2.4rem]">
             <div className="flex items-center gap-12 text-danger-300">
