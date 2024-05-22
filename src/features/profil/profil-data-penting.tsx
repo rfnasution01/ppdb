@@ -64,9 +64,9 @@ export function ProfilDataPenting({
               <DataComponent
                 label="Jenis Kelamin"
                 value={
-                  profil?.biodata?.jenis_kelamin.toUpperCase() === 'L'
+                  profil?.biodata?.jenis_kelamin?.toUpperCase() === 'L'
                     ? 'Laki-laki'
-                    : profil?.biodata?.jenis_kelamin.toUpperCase() === 'P'
+                    : profil?.biodata?.jenis_kelamin?.toUpperCase() === 'P'
                       ? 'Perempuan'
                       : '-'
                 }
