@@ -68,7 +68,7 @@ export function ProfilDataSiswa({
                     'rounded-full px-24 py-12 text-[2rem] phones:text-[2.4rem]',
                     {
                       'bg-orange-200 text-orange-700':
-                        profil?.verifikasi?.status === enumVerifikasi?.DIPROSES,
+                        profil?.verifikasi?.status <= enumVerifikasi?.DIPROSES,
                       'bg-emerald-200 text-emerald-700':
                         profil?.verifikasi?.status ===
                         enumVerifikasi?.DISETUJUI,
