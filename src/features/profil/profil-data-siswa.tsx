@@ -14,6 +14,8 @@ import clsx from 'clsx'
 import { enumVerifikasi } from '@/libs/enum/enum-verifikasi'
 import { CetakBuktiPendaftaran } from './cetak-bukti-pendaftaran'
 import { ProfilPrestaasi } from './profil-data-prestasi'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export function ProfilDataSiswa({
   profil,
@@ -148,6 +150,7 @@ export function ProfilDataSiswa({
         </div>
       </div>
       <ModalValidasi isOpen={show} setIsOpen={setIsShow} />
+      <ToastContainer />
     </div>
   )
 }

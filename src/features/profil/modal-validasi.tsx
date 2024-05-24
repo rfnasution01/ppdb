@@ -2,7 +2,7 @@ import { Dialog, DialogContent } from '@/components/atoms/Dialog'
 import { useCreateValidasiMutation } from '@/store/slices/pendaftaranAPI'
 import clsx from 'clsx'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { Bounce, ToastContainer, toast } from 'react-toastify'
+import { Bounce, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export function ModalValidasi({
@@ -134,7 +134,6 @@ export function ModalValidasi({
               </button>
             </div>
           </div>
-          <ToastContainer />
         </div>
       </DialogContent>
     </Dialog>
