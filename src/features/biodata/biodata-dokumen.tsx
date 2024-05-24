@@ -39,9 +39,9 @@ export function BiodataDokumen({
         {isLoading ? (
           <Loading />
         ) : (
-          <>
+          <div className="w-full overflow-x-auto">
             {/* --- Dokumen --- */}
-            <table className="flex-1 border-collapse text-[2.4rem]">
+            <table className="w-full flex-1 border-collapse text-[2.4rem]">
               <thead className="relative z-10 align-top leading-medium">
                 <tr className="border-b-[1.6rem] border-transparent">
                   <th className="sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
@@ -154,7 +154,7 @@ export function BiodataDokumen({
                 )}
               </tbody>
             </table>
-          </>
+          </div>
         )}
       </div>
       {/* --- Prestasi --- */}

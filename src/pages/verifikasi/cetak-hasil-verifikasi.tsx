@@ -148,7 +148,10 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
                 Status Verifikasi Sekolah
               </p>
               <div className="flex flex-col gap-12 border-b border-l border-r border-black p-24">
-                <p>Diverifikasi/Disetujui oleh: -</p>
+                <p>
+                  Diverifikasi/Disetujui oleh:{' '}
+                  {profil?.verifikasi?.sekolah_verifikasi}
+                </p>
                 <p>Petugas Verifikasi: {profil?.verifikasi?.petugas ?? '-'}</p>
                 <p>
                   Tanggal Verifikasi:{' '}

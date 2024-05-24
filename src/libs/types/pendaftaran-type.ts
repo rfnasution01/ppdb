@@ -120,6 +120,7 @@ export type VerifikasiType = {
   tanggal_verifikasi: string
   petugas: string
   komentar: string
+  sekolah_verifikasi: string
 }
 
 export type PilihanType = {
