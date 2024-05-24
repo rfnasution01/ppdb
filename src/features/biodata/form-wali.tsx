@@ -19,7 +19,7 @@ export function FormWali({
   disabled: boolean
 }) {
   useEffect(() => {
-    if (getProfil?.orangtua?.wali) {
+    if (getProfil?.orangtua?.status === true) {
       form.setValue('nama_wali', getProfil?.orangtua?.wali?.nama)
       form.setValue('nik_wali', getProfil?.orangtua?.wali?.nik)
       form.setValue('telepon_wali', getProfil?.orangtua?.wali?.hp)

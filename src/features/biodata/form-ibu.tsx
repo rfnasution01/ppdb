@@ -20,7 +20,7 @@ export function FormIbu({
   disabled: boolean
 }) {
   useEffect(() => {
-    if (getProfil?.orangtua?.ibu) {
+    if (getProfil?.orangtua?.status === true) {
       form.setValue(
         'isHidupIbu',
         getProfil?.orangtua?.ibu?.status === 'Hidup' ? true : false,

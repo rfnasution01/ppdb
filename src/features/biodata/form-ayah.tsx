@@ -20,7 +20,7 @@ export function FormAyah({
   disabled
 }) {
   useEffect(() => {
-    if (getProfil?.orangtua?.ayah) {
+    if (getProfil?.orangtua?.status === true) {
       form.setValue(
         'isHidupAyah',
         getProfil?.orangtua?.ayah?.status === 'Hidup' ? true : false,
