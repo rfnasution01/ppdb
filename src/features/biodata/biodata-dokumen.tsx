@@ -9,6 +9,8 @@ import Loading from '@/components/atoms/Loading'
 import { enumValidasi } from '@/libs/enum/enum-validasi'
 import { BiodataPrestasi } from './biodata-prestasi'
 import { NoData } from '@/components/atoms/NoData'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export function BiodataDokumen({
   setName,
@@ -198,6 +200,7 @@ export function BiodataDokumen({
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

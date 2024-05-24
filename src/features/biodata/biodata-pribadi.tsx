@@ -9,8 +9,7 @@ import { Dispatch, SetStateAction, useEffect } from 'react'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Bounce, ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { Bounce, toast } from 'react-toastify'
 import { useCreateBiodataMutation } from '@/store/slices/pendaftaranAPI'
 import { Loader2, Save } from 'lucide-react'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
@@ -196,7 +195,6 @@ export function BiodataPribadi({
             </button>
           </div>
         </div>
-        <ToastContainer />
       </form>
     </Form>
   )

@@ -17,7 +17,7 @@ export function FormSekolah({
   useEffect(() => {
     if (getProfil?.pilihan) {
       form.setValue('tujuan_pertama', getProfil?.pilihan?.pilihan1?.id_sekolah)
-      form.setValue('tujuan_kedua', getProfil?.pilihan?.pilihan2?.nama_sekolah)
+      form.setValue('tujuan_kedua', getProfil?.pilihan?.pilihan2?.id_sekolah)
     }
   }, [getProfil])
 
