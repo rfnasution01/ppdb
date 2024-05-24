@@ -41,7 +41,7 @@ export function DaptarHeader({
         )}
         <div className="flex w-full flex-col gap-y-16">
           <Link
-            to="/daftar-akun"
+            to={`/daftar-akun?jenjang=${showJenjang?.toLowerCase()}&kode=${kode}`}
             className="animate-bounce rounded-lg bg-emerald-700 px-24 py-12 text-white duration-300 hover:bg-emerald-900 phones:w-full"
           >
             <p className="text-nowrap text-center">Daftar Akun</p>

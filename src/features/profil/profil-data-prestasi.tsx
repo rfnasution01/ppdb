@@ -65,7 +65,7 @@ export function ProfilPrestaasi({
                           ? 'Sudah Verifikasi'
                           : item?.validasi === 2
                             ? 'Verifikasi Ditolak'
-                            : item?.validasi
+                            : item?.validasi === 0
                               ? 'Menunggu Persetujuan'
                               : 'Belum Unggah'}
                       </p>

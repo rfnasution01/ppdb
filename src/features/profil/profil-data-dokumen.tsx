@@ -65,7 +65,7 @@ export function ProfilDokumen({
                           ? 'Sudah Verifikasi'
                           : item?.status_verifikasi === 2
                             ? 'Verifikasi Ditolak'
-                            : item?.dok_siswa
+                            : item?.status_verifikasi === 0
                               ? 'Menunggu Persetujuan'
                               : 'Belum Unggah'}
                       </p>
