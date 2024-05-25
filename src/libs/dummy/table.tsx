@@ -3,6 +3,7 @@ import {
   DayaTampungIsi,
   JadwalIsiType,
   LokasiIsiType,
+  PendaftarStatistik,
   PendaftarType,
 } from '../types'
 
@@ -27,8 +28,8 @@ export const columnsListLokasi: Column<LokasiIsiType>[] = [
   { header: 'Telepon', key: 'telepon', width: '!min-w-[12rem]' },
 ]
 
-export const columnsListStatistik: Column<ListLokasiType>[] = [
-  { header: 'Nama Sekolah', key: 'lokasi', width: '!min-w-[12rem]' },
+export const columnsListStatistik: Column<PendaftarStatistik>[] = [
+  { header: 'Nama Sekolah', key: 'nama_sekolah', width: '!min-w-[12rem]' },
   {
     header: 'Terendah',
     key: 'terendah',
@@ -40,7 +41,7 @@ export const columnsListStatistik: Column<ListLokasiType>[] = [
             className="h-full rounded-2xl bg-danger-tint-2"
             style={{ width: `${rowData?.terendah}%` }}
           />
-          <p>{rowData?.terendah}</p>
+          <p>{Math.round(Number(rowData?.terendah))}</p>
         </div>
       )
     },
@@ -56,23 +57,23 @@ export const columnsListStatistik: Column<ListLokasiType>[] = [
             className="h-full rounded-2xl bg-emerald-500"
             style={{ width: `${rowData?.tertinggi}%` }}
           />
-          <p>{rowData?.tertinggi}</p>
+          <p>{Math.round(Number(rowData?.tertinggi))}</p>
         </div>
       )
     },
   },
   {
     header: 'Rata-rata',
-    key: 'rata_rata',
+    key: 'rata2',
     width: '!min-w-[12rem]',
     renderCell: (rowData) => {
       return (
         <div className="flex h-[4rem] items-center rounded-2xl border bg-background">
           <div
             className="h-full rounded-2xl bg-sky-500"
-            style={{ width: `${rowData?.rata_rata}%` }}
+            style={{ width: `${rowData?.rata2}%` }}
           />
-          <p>{rowData?.rata_rata}</p>
+          <p>{Math.round(Number(rowData?.rata2))}</p>
         </div>
       )
     },

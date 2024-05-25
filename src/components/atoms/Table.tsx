@@ -145,10 +145,24 @@ export function Table<T, P>({
                       {isStatistik && (
                         <td className="w-[10%] px-24 py-12 leading-medium">
                           <div className="flex items-center gap-8">
-                            <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
+                            <span
+                              onClick={() => {
+                                navigate(
+                                  `/seleksi?jenjang=${jenjang}&kode=${kode}`,
+                                )
+                              }}
+                              className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
+                            >
                               <ArrowDown01 size={16} />
                             </span>
-                            <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
+                            <span
+                              onClick={() => {
+                                navigate(
+                                  `/daya-tampung?jenjang=${jenjang}&kode=${kode}`,
+                                )
+                              }}
+                              className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300"
+                            >
                               <BarChart size={16} />
                             </span>
                           </div>

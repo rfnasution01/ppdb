@@ -1,5 +1,5 @@
-import { StatistikHeader } from '@/features/statistik'
-import { StatistikType } from '@/libs/types'
+import { StatistikContent, StatistikHeader } from '@/features/statistik'
+import { HeaderType, PendaftarStatistik, StatistikType } from '@/libs/types'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetStatistikQuery } from '@/store/slices/statistikAPI'
 import { useEffect, useState } from 'react'
@@ -23,10 +23,11 @@ export default function Statistik() {
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
 
-  console.log(showJenjang)
-
   // --- Statistik ---
   const [statistik, setStatistik] = useState<StatistikType>()
+  const [pendaftar, setPendaftar] = useState<PendaftarStatistik[]>([])
+  const [headerPendaftar, setHeaderPendaftar] = useState<HeaderType>()
+
   const {
     data: getStatistik,
     isLoading: isLoadingStatistik,
@@ -36,10 +37,12 @@ export default function Statistik() {
   const isLoading = isFetchingStatistik || isLoadingStatistik
 
   useEffect(() => {
-    if (getStatistik?.data) {
+    if (getStatistik) {
       setStatistik(getStatistik?.data)
+      setPendaftar(getStatistik?.statistik)
+      setHeaderPendaftar(getStatistik?.header)
     }
-  }, [getStatistik?.data])
+  }, [getStatistik])
 
   return (
     <div className="flex h-full w-full flex-col gap-32">
@@ -48,7 +51,14 @@ export default function Statistik() {
         getStatistik={statistik}
         isLoading={isLoading}
       />
-      {/* <StatistikContent />  */}
+      <StatistikContent
+        showJenjang={showJenjang}
+        pendaftar={pendaftar}
+        header={headerPendaftar}
+        isLoading={isLoading}
+        kodeParams={kodeParams}
+        getStatistik={statistik}
+      />
     </div>
   )
 }
