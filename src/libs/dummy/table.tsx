@@ -1,5 +1,10 @@
 import { Column } from '@/components/atoms/Table'
-import { DayaTampungIsi, JadwalIsiType, LokasiIsiType } from '../types'
+import {
+  DayaTampungIsi,
+  JadwalIsiType,
+  LokasiIsiType,
+  PendaftarType,
+} from '../types'
 
 type ListLokasiType = {
   lokasi: string
@@ -101,6 +106,29 @@ export const columnsListDayaTampung: Column<DayaTampungIsi>[] = [
     renderCell: (rowdata) => {
       return <div>{rowdata?.jumlah} Siswa</div>
     },
+  },
+]
+
+export const columnsListPendaftar: Column<PendaftarType>[] = [
+  {
+    header: 'Nama',
+    key: 'nama',
+    width: '!w-[28rem]',
+  },
+  {
+    header: 'No Peserta',
+    key: 'nomor_peserta',
+    width: '!w-[15%]',
+  },
+  {
+    header: 'Asal Sekolah',
+    key: 'asal_sekolah',
+    width: '!w-[15%]',
+  },
+  {
+    header: 'Skor',
+    key: 'skor',
+    width: '!w-[15%]',
   },
 ]
 

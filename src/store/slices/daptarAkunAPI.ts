@@ -5,8 +5,11 @@ import { JenjangParams } from '@/libs/types'
 export const DaptarAkunEndpoints = api.injectEndpoints({
   endpoints: (builder) => ({
     getAkun: builder.query<Res<DaptarAkunType>, JenjangParams>({
-      query: ({ jenjang, jalur }) => ({
+      query: ({ jenjang, jalur, id_sekolah }) => ({
         url: `daftar/${jenjang}/${jalur}`,
+        params: {
+          id_sekolah: id_sekolah,
+        },
       }),
       providesTags: ['daptar-akun'],
     }),

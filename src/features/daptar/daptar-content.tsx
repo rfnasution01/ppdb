@@ -1,30 +1,48 @@
 import clsx from 'clsx'
 import { DaptarContentHeader } from './daptar-content-header'
 import { DaptarContentInfo } from './daptar-content-info'
-import { NoData } from '@/components/atoms/NoData'
 import { useSelector } from 'react-redux'
 import { getPilihSekolahSlice } from '@/store/reducer/statePilihSekolah'
+import { HeaderType, PendaftarType } from '@/libs/types'
+import { MappingPendaftar } from './mapping-pendaftar'
+import { useState } from 'react'
 
-export function DaptarContent({ showJenjang }: { showJenjang: string }) {
+export function DaptarContent({
+  showJenjang,
+  pendaftar,
+  header,
+  isLoading,
+  kodeParams,
+}: {
+  showJenjang: string
+  pendaftar: PendaftarType[]
+  header: HeaderType
+  isLoading: boolean
+  kodeParams: string
+}) {
   const pilihSekolah = useSelector(getPilihSekolahSlice)
+  const [numberStart, setNumberStart] = useState<number>(0)
+  const [search, setSearch] = useState<string>('')
+
   return (
     <div className="flex flex-col gap-24 rounded-lg border bg-white p-32 shadow-md">
-      <button
-        type="button"
-        className={clsx('rounded-2xl py-16 text-white', {
-          'bg-primary hover:bg-primary-700':
-            showJenjang.toLowerCase() === 'smp',
-          'bg-danger-100 hover:bg-danger-300':
-            showJenjang.toLowerCase() === 'sd',
-        })}
-      >
-        Data Pendaftar
-      </button>
       {pilihSekolah?.id ? (
         <div className="flex flex-col gap-24">
-          <DaptarContentHeader />
-          <DaptarContentInfo />
-          <NoData />
+          <DaptarContentHeader
+            setNumberStart={setNumberStart}
+            setSearch={setSearch}
+            jenjang={showJenjang?.toLowerCase()}
+            kodeParams={kodeParams}
+            idSekolah={pilihSekolah?.id}
+          />
+          <DaptarContentInfo header={header} />
+          <MappingPendaftar
+            pendaftar={pendaftar}
+            isLoading={isLoading}
+            search={search}
+            numberStart={numberStart}
+            setNumberStart={setNumberStart}
+          />
         </div>
       ) : (
         <p

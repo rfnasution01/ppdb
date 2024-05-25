@@ -1,3 +1,4 @@
+import { HeaderType, PendaftarType } from '@/libs/types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import Cookies from 'js-cookie'
 
@@ -15,6 +16,9 @@ export type Res<T, M = undefined> = {
   related: T
   meta: Meta
   mapped?: M
+  pendaftar?: PendaftarType[]
+  header?: HeaderType
+  statistik?: PendaftarType[]
 }
 
 const baseURL = import.meta.env.VITE_BASE_URL

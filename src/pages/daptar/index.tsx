@@ -1,6 +1,11 @@
 import { DaptarContent, DaptarHeader } from '@/features/daptar'
-import { DaptarAkunType } from '@/libs/types/daptar-akun'
+import {
+  DaptarAkunType,
+  HeaderType,
+  PendaftarType,
+} from '@/libs/types/daptar-akun'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
+import { getPilihSekolahSlice } from '@/store/reducer/statePilihSekolah'
 import { useGetAkunQuery } from '@/store/slices/daptarAkunAPI'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -22,22 +27,32 @@ export default function Daptar() {
   )
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
+  const pilihSekolah = useSelector(getPilihSekolahSlice)
 
   // --- Daptar Akun ---
   const [daftarAkun, setDaftarAkun] = useState<DaptarAkunType>()
+  const [pendaftar, setPendaftar] = useState<PendaftarType[]>([])
+  const [headerPendaftar, setHeaderPendaftar] = useState<HeaderType>()
+
   const {
     data: getDaftarAkun,
     isLoading: isLoadingDaftarAkun,
     isFetching: isFetchingDaftarAkun,
-  } = useGetAkunQuery({ jenjang: jenjang, jalur: kodeParams })
+  } = useGetAkunQuery({
+    jenjang: jenjang,
+    jalur: kodeParams,
+    id_sekolah: pilihSekolah?.id,
+  })
 
   const isLoading = isFetchingDaftarAkun || isLoadingDaftarAkun
 
   useEffect(() => {
-    if (getDaftarAkun?.data) {
+    if (getDaftarAkun) {
       setDaftarAkun(getDaftarAkun?.data)
+      setPendaftar(getDaftarAkun?.pendaftar)
+      setHeaderPendaftar(getDaftarAkun?.header)
     }
-  }, [getDaftarAkun?.data])
+  }, [getDaftarAkun])
 
   return (
     <div className="flex w-full flex-col gap-32">
@@ -48,7 +63,13 @@ export default function Daptar() {
         getDaftarAkun={daftarAkun}
         isLoading={isLoading}
       />
-      <DaptarContent showJenjang={showJenjang} />
+      <DaptarContent
+        showJenjang={showJenjang}
+        pendaftar={pendaftar}
+        header={headerPendaftar}
+        isLoading={isLoading}
+        kodeParams={kodeParams}
+      />
     </div>
   )
 }
