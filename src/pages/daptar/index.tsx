@@ -4,6 +4,7 @@ import {
   HeaderType,
   PendaftarType,
 } from '@/libs/types/daptar-akun'
+import { getJalurSlice } from '@/store/reducer/stateJalur'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { getPilihSekolahSlice } from '@/store/reducer/statePilihSekolah'
 import { useGetAkunQuery } from '@/store/slices/daptarAkunAPI'
@@ -15,6 +16,7 @@ export default function Daptar() {
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+  const stateKode = useSelector(getJalurSlice)?.kode
 
   useEffect(() => {
     if (stateJenjang) {
@@ -22,9 +24,17 @@ export default function Daptar() {
     }
   }, [stateJenjang])
 
+  useEffect(() => {
+    if (stateKode) {
+      setKode(stateKode)
+    }
+  }, [stateKode])
+
   const [jenjang, setJenjang] = useState<string>(
     jenjangParams ?? stateJenjang ?? 'sd',
   )
+
+  const [kode, setKode] = useState<string>(kodeParams ?? stateKode ?? 'sd')
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
   const pilihSekolah = useSelector(getPilihSekolahSlice)
@@ -40,7 +50,7 @@ export default function Daptar() {
     isFetching: isFetchingDaftarAkun,
   } = useGetAkunQuery({
     jenjang: jenjang,
-    jalur: kodeParams,
+    jalur: kode,
     id_sekolah: pilihSekolah?.id,
   })
 
@@ -57,7 +67,7 @@ export default function Daptar() {
   return (
     <div className="flex w-full flex-col gap-32">
       <DaptarHeader
-        kode={kodeParams}
+        kode={kode}
         jenjang={showJenjang?.toLowerCase()}
         showJenjang={showJenjang}
         getDaftarAkun={daftarAkun}
@@ -68,7 +78,7 @@ export default function Daptar() {
         pendaftar={pendaftar}
         header={headerPendaftar}
         isLoading={isLoading}
-        kodeParams={kodeParams}
+        kodeParams={kode}
       />
     </div>
   )

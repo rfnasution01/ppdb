@@ -1,5 +1,6 @@
 import { StatistikContent, StatistikHeader } from '@/features/statistik'
 import { HeaderType, PendaftarStatistik, StatistikType } from '@/libs/types'
+import { getJalurSlice } from '@/store/reducer/stateJalur'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetStatistikQuery } from '@/store/slices/statistikAPI'
 import { useEffect, useState } from 'react'
@@ -10,6 +11,7 @@ export default function Statistik() {
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+  const stateKode = useSelector(getJalurSlice)?.kode
 
   useEffect(() => {
     if (stateJenjang) {
@@ -17,9 +19,17 @@ export default function Statistik() {
     }
   }, [stateJenjang])
 
+  useEffect(() => {
+    if (stateKode) {
+      setKode(stateKode)
+    }
+  }, [stateKode])
+
   const [jenjang, setJenjang] = useState<string>(
     jenjangParams ?? stateJenjang ?? 'sd',
   )
+
+  const [kode, setKode] = useState<string>(kodeParams ?? stateKode ?? 'sd')
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
 
@@ -32,7 +42,7 @@ export default function Statistik() {
     data: getStatistik,
     isLoading: isLoadingStatistik,
     isFetching: isFetchingStatistik,
-  } = useGetStatistikQuery({ jenjang: jenjang, jalur: kodeParams })
+  } = useGetStatistikQuery({ jenjang: jenjang, jalur: kode })
 
   const isLoading = isFetchingStatistik || isLoadingStatistik
 
@@ -56,7 +66,7 @@ export default function Statistik() {
         pendaftar={pendaftar}
         header={headerPendaftar}
         isLoading={isLoading}
-        kodeParams={kodeParams}
+        kodeParams={kode}
         getStatistik={statistik}
       />
     </div>

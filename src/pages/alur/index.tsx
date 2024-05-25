@@ -1,5 +1,6 @@
 import { AlurContent, AlurHeader } from '@/features/alur'
 import { AlurType } from '@/libs/types'
+import { getJalurSlice } from '@/store/reducer/stateJalur'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetAlurQuery } from '@/store/slices/alurAPI'
 import { useEffect, useState } from 'react'
@@ -10,6 +11,7 @@ export default function Alur() {
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+  const stateKode = useSelector(getJalurSlice)?.kode
 
   useEffect(() => {
     if (stateJenjang) {
@@ -17,9 +19,17 @@ export default function Alur() {
     }
   }, [stateJenjang])
 
+  useEffect(() => {
+    if (stateKode) {
+      setKode(stateKode)
+    }
+  }, [stateKode])
+
   const [jenjang, setJenjang] = useState<string>(
     jenjangParams ?? stateJenjang ?? 'sd',
   )
+
+  const [kode, setKode] = useState<string>(kodeParams ?? stateKode ?? 'sd')
 
   // --- Alur ---
   const [alur, setAlur] = useState<AlurType>()
@@ -27,7 +37,7 @@ export default function Alur() {
     data: getAlur,
     isLoading: isLoadingAlur,
     isFetching: isFetchingAlur,
-  } = useGetAlurQuery({ jenjang: jenjang, jalur: kodeParams })
+  } = useGetAlurQuery({ jenjang: jenjang, jalur: kode })
 
   const isLoading = isFetchingAlur || isLoadingAlur
 

@@ -10,11 +10,14 @@ import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import Loading from '@/components/atoms/Loading'
 import { JalurMasukType } from '@/libs/types'
 import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
+import { AppJalurSelect } from './app-jalur-select'
+import { getJalurSlice } from '@/store/reducer/stateJalur'
 export default function AppLayout({ children }: { children: ReactNode }) {
   const searchParams = new URLSearchParams(location.search)
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+  const stateKode = useSelector(getJalurSlice)?.kode
 
   useEffect(() => {
     if (stateJenjang) {
@@ -22,9 +25,17 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     }
   }, [stateJenjang])
 
+  useEffect(() => {
+    if (stateKode) {
+      setKode(stateKode)
+    }
+  }, [stateKode])
+
   const [jenjang, setJenjang] = useState<string>(
     jenjangParams ?? stateJenjang ?? 'sd',
   )
+
+  const [kode, setKode] = useState<string>(kodeParams ?? stateKode ?? 'zn')
 
   const isSD = jenjang?.toLowerCase() === 'sd'
   const isSMP = jenjang?.toLowerCase() === 'smp'
@@ -40,7 +51,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   }, [getJalurMasuk?.data])
 
   const kodeSekarang = jalurMasuk.find(
-    (item) => item?.kode.toLowerCase() === kodeParams,
+    (item) => item?.kode.toLowerCase() === kode,
   )?.nama
 
   return (
@@ -59,7 +70,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           isSD={isSD}
           isSMP={isSMP}
           jenjang={jenjang}
-          kode={kodeParams}
+          kode={kode}
         />
       </div>
       {/* --- Content --- */}
@@ -80,8 +91,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
               <AppJenjangSelect
                 jenjang={jenjang}
                 setJenjang={setJenjang}
-                kode={kodeParams}
+                kode={kode}
               />
+              <AppJalurSelect jenjang={jenjang} setKode={setKode} kode={kode} />
             </div>
             {/* --- Navigasi --- */}
             <div className="flex flex-col gap-0">
@@ -90,7 +102,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                   <IconComponent2
                     icon={item?.icon}
                     title={item?.title}
-                    link={`/${convertToSlug(item?.title)}?jenjang=${jenjang}&kode=${kodeParams}`}
+                    link={`/${convertToSlug(item?.title)}?jenjang=${jenjang}&kode=${kode}`}
                     isSD={isSD}
                     isSMP={isSMP}
                   />

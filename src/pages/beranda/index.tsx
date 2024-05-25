@@ -1,5 +1,6 @@
 import { BerandaContent, BerandaHeader } from '@/features/beranda'
 import { JalurMasukType, SekilasType } from '@/libs/types'
+import { getJalurSlice } from '@/store/reducer/stateJalur'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
 import { useGetSekilasQuery } from '@/store/slices/sekilasAPI'
@@ -11,6 +12,7 @@ export default function Beranda() {
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+  const stateKode = useSelector(getJalurSlice)?.kode
 
   useEffect(() => {
     if (stateJenjang) {
@@ -18,9 +20,17 @@ export default function Beranda() {
     }
   }, [stateJenjang])
 
+  useEffect(() => {
+    if (stateKode) {
+      setKode(stateKode)
+    }
+  }, [stateKode])
+
   const [jenjang, setJenjang] = useState<string>(
     jenjangParams ?? stateJenjang ?? 'sd',
   )
+
+  const [kode, setKode] = useState<string>(kodeParams ?? stateKode ?? 'sd')
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
 
@@ -30,7 +40,7 @@ export default function Beranda() {
     data: getSekilas,
     isLoading: isLoadingSekilas,
     isFetching: isFetchingSekilas,
-  } = useGetSekilasQuery({ jenjang: jenjang, jalur: kodeParams })
+  } = useGetSekilasQuery({ jenjang: jenjang, jalur: kode })
 
   const isLoading = isFetchingSekilas || isLoadingSekilas
 
@@ -51,7 +61,7 @@ export default function Beranda() {
   }, [getJalurMasuk?.data])
 
   const kodeSekarang = jalurMasuk.find(
-    (item) => item?.kode.toLowerCase() === kodeParams,
+    (item) => item?.kode.toLowerCase() === kode,
   )?.nama
 
   return (

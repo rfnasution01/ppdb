@@ -1,5 +1,6 @@
 import { JadwalContent, JadwalHeader } from '@/features/jadwal'
 import { JadwalType } from '@/libs/types'
+import { getJalurSlice } from '@/store/reducer/stateJalur'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetJadwalQuery } from '@/store/slices/jadwalAPI'
 import { useEffect, useState } from 'react'
@@ -10,6 +11,7 @@ export default function Jadwal() {
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+  const stateKode = useSelector(getJalurSlice)?.kode
 
   useEffect(() => {
     if (stateJenjang) {
@@ -17,13 +19,17 @@ export default function Jadwal() {
     }
   }, [stateJenjang])
 
+  useEffect(() => {
+    if (stateKode) {
+      setKode(stateKode)
+    }
+  }, [stateKode])
+
   const [jenjang, setJenjang] = useState<string>(
     jenjangParams ?? stateJenjang ?? 'sd',
   )
 
-  const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
-
-  console.log(showJenjang)
+  const [kode, setKode] = useState<string>(kodeParams ?? stateKode ?? 'sd')
 
   // --- Jadwal ---
   const [jadwal, setJadwal] = useState<JadwalType>()
@@ -31,7 +37,7 @@ export default function Jadwal() {
     data: getJadwal,
     isLoading: isLoadingJadwal,
     isFetching: isFetchingJadwal,
-  } = useGetJadwalQuery({ jenjang: jenjang, jalur: kodeParams })
+  } = useGetJadwalQuery({ jenjang: jenjang, jalur: kode })
 
   const isLoading = isFetchingJadwal || isLoadingJadwal
 

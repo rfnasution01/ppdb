@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { api } from './api'
 import stateSearch from './reducer/stateSearch.ts'
 import stateJenjang from './reducer/stateJenjang.ts'
+import stateJalur from './reducer/stateJalur.ts'
 import stateBiodata from './reducer/stateBiodata.ts'
 import statePilihSekolah from './reducer/statePilihSekolah.ts'
 
@@ -11,6 +12,7 @@ export const store = configureStore({
     [api.reducerPath]: api.reducer,
     stateSearch: stateSearch,
     stateJenjang: stateJenjang,
+    stateJalur: stateJalur,
     stateBiodata: stateBiodata,
     statePilihSekolah: statePilihSekolah,
   },

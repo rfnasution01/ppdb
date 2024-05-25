@@ -1,5 +1,6 @@
 import { AturanContent, AturanHeader } from '@/features/aturan'
 import { AturanType } from '@/libs/types'
+import { getJalurSlice } from '@/store/reducer/stateJalur'
 import { getJenjangSlice } from '@/store/reducer/stateJenjang'
 import { useGetAturanQuery } from '@/store/slices/aturanAPI'
 import { useEffect, useState } from 'react'
@@ -10,6 +11,7 @@ export default function Aturan() {
   const jenjangParams = searchParams.get('jenjang')
   const kodeParams = searchParams.get('kode') ?? 'zn'
   const stateJenjang = useSelector(getJenjangSlice)?.tingkatan
+  const stateKode = useSelector(getJalurSlice)?.kode
 
   useEffect(() => {
     if (stateJenjang) {
@@ -17,9 +19,17 @@ export default function Aturan() {
     }
   }, [stateJenjang])
 
+  useEffect(() => {
+    if (stateKode) {
+      setKode(stateKode)
+    }
+  }, [stateKode])
+
   const [jenjang, setJenjang] = useState<string>(
     jenjangParams ?? stateJenjang ?? 'sd',
   )
+
+  const [kode, setKode] = useState<string>(kodeParams ?? stateKode ?? 'sd')
 
   const showJenjang = jenjang?.toLowerCase() === 'sd' ? 'SD' : 'SMP'
 
@@ -31,7 +41,7 @@ export default function Aturan() {
     data: getAturan,
     isLoading: isLoadingAturan,
     isFetching: isFetchingAturan,
-  } = useGetAturanQuery({ jenjang: jenjang, jalur: kodeParams })
+  } = useGetAturanQuery({ jenjang: jenjang, jalur: kode })
 
   const isLoading = isFetchingAturan || isLoadingAturan
 
