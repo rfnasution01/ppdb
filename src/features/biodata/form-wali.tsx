@@ -31,7 +31,7 @@ export function FormWali({
     <div className="flex flex-col gap-12">
       <FormLabelComponent
         form={form}
-        label="Nama*"
+        label="Nama"
         placeHolder="Masukkan nama wali"
         name="nama_wali"
         type="text"
@@ -40,7 +40,7 @@ export function FormWali({
 
       <FormLabelComponent
         form={form}
-        label="NIK*"
+        label="NIK"
         placeHolder="Masukkan NIK wali"
         name="nik_wali"
         type="text"
@@ -50,7 +50,7 @@ export function FormWali({
 
       <FormLabelComponent
         form={form}
-        label="Telepon*"
+        label="Telepon"
         placeHolder="Masukkan telepon wali"
         name="telepon_wali"
         type="text"
@@ -61,7 +61,7 @@ export function FormWali({
       <FormListPendidikan
         name="pendidikan_wali"
         useFormReturn={form}
-        headerLabel="Pendidikan Terakhir*"
+        headerLabel="Pendidikan Terakhir"
         placeholder="Pilih Pendidikan Terakhir"
         isDisabled={isLoading || disabled}
       />
@@ -69,7 +69,7 @@ export function FormWali({
       <FormListPekerjaan
         name="pekerjaan_wali"
         useFormReturn={form}
-        headerLabel="Pekerjaan*"
+        headerLabel="Pekerjaan"
         placeholder="Pilih Pekerjaan"
         isDisabled={isLoading || disabled}
       />
