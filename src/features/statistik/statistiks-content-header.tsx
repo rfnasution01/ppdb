@@ -1,4 +1,7 @@
-import { StatistikType } from '@/libs/types'
+import { Table } from '@/components/atoms/Table'
+import { columnsListStatistik } from '@/libs/dummy/table'
+import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
+import { PendaftarStatistik, StatistikType } from '@/libs/types'
 import { useGetStatistikQuery } from '@/store/slices/statistikAPI'
 import dayjs from 'dayjs'
 import { debounce } from 'lodash'
@@ -6,19 +9,24 @@ import { Printer, RefreshCcw, Search } from 'lucide-react'
 import { Dispatch, SetStateAction, useRef } from 'react'
 import ReactToPrint from 'react-to-print'
 
-export function StatistikContentHeader({
+export function StatistiksContentHeader({
   setNumberStart,
   setSearch,
   jenjang,
-  kodeParams,
   getStatistik,
+  pendaftar,
+  kode,
 }: {
   setNumberStart: Dispatch<SetStateAction<number>>
   setSearch: Dispatch<SetStateAction<string>>
   jenjang: string
-  kodeParams: string
   getStatistik: StatistikType
+  pendaftar: PendaftarStatistik[]
+  kode: string
 }) {
+  const data = useGetStatistikQuery({ jenjang: jenjang, jalur: kode })
+  const ref = useRef<HTMLDivElement>()
+
   // --- Filter ---
   const handleSearch = debounce((searchValue: string) => {
     setSearch(searchValue)
@@ -36,12 +44,6 @@ export function StatistikContentHeader({
     ) as HTMLInputElement
     handleSearch(inputElement.value)
   }
-
-  const data = useGetStatistikQuery({
-    jenjang: jenjang,
-    jalur: kodeParams,
-  })
-  const ref = useRef<HTMLDivElement>()
 
   return (
     <div className="flex items-center justify-between gap-32 rounded-lg bg-background p-24 text-[3rem] phones:flex-col phones:items-start phones:gap-16">
@@ -103,21 +105,21 @@ export function StatistikContentHeader({
             {/* --- Content Header --- */}
             <div className="flex flex-col gap-16 rounded-2xl border p-32">
               <p className="text-[3.6rem]">
-                {/* {capitalizeFirstLetterFromLowercase(getDayaTampung?.judul)} */}
+                {capitalizeFirstLetterFromLowercase(getStatistik?.judul)}
               </p>
-              {/* <p className="font-nunito">{getDayaTampung?.deskripsi}</p> */}
+              <p className="font-nunito">{getStatistik?.deskripsi}</p>
             </div>
             {/* --- Table ---  */}
-            {/* <div className="rounded-2xl border p-32">
+            <div className="rounded-2xl border p-32">
               <Table
-                data={getDayaTampung?.isi}
-                columns={columnsListDayaTampung}
+                data={pendaftar}
+                columns={columnsListStatistik}
                 containerClasses="w-full"
                 isDayaTampung
                 jenjang={jenjang}
                 kode={kode}
               />
-            </div> */}
+            </div>
           </div>
         </div>
       </section>
