@@ -49,7 +49,7 @@ export default function HubungiKami() {
 
   return (
     <div className="flex w-full flex-col gap-32">
-      <p className="text-[2.4rem] font-bold phones:text-[2.8rem]">
+      <p className="text-[3.2rem] font-bold phones:text-[3.6rem]">
         Hubungi Kami
       </p>
       <HubungiKamiContent getLokasi={lokasi} isLoading={isLoading} />

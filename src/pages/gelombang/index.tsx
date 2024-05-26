@@ -27,7 +27,7 @@ export default function Gelombang() {
   }, [getGelombang?.data])
   return (
     <div className="flex h-full w-full flex-col gap-32">
-      <p className="text-[2.4rem] font-bold phones:text-[2.8rem]">
+      <p className="text-[3.2rem] font-bold phones:text-[3.6rem]">
         Jadwal Pendaftaran
       </p>
       <div className="grid grid-cols-12 gap-32">
@@ -43,7 +43,7 @@ export default function Gelombang() {
           <>
             {gelombang?.map((item, idx) => (
               <div
-                className="col-span-4 flex items-center gap-24 rounded-2xl bg-white p-24 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
+                className="col-span-6 flex items-center gap-24 rounded-2xl bg-white p-24 shadow-md hover:cursor-pointer hover:shadow-lg phones:col-span-12"
                 key={idx}
               >
                 <div className="flex flex-1 flex-col gap-12">
@@ -59,13 +59,18 @@ export default function Gelombang() {
                       value1={item?.tgl_awal_daftar}
                       value2={item?.batas_verifikasi}
                     />
-                    <div className="text-[2rem] font-light phones:text-[2.4rem]">
-                      Pengumuman Kelulusan:{' '}
-                      <span>
-                        {dayjs(item?.tgl_pengumuman)
-                          .locale('id')
-                          .format('DD MMMM YYYY hh:mm:ss A')}
-                      </span>
+                    <div className="flex w-full text-[2rem] font-light phones:text-[2.4rem]">
+                      <p className="w-1/3 phones:w-1/2">
+                        Pengumuman Kelulusan:
+                      </p>{' '}
+                      <p className="w-2/3 phones:w-1/2">
+                        <span>
+                          :{' '}
+                          {dayjs(item?.tgl_pengumuman)
+                            .locale('id')
+                            .format('DD MMMM YYYY hh:mm:ss A')}
+                        </span>
+                      </p>
                     </div>
                     <DataComponent
                       label="Daptar Ulang"

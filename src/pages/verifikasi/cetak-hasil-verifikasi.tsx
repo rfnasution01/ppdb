@@ -102,7 +102,7 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
                   value={profil?.biodata?.alamat_lengkap ?? '-'}
                 />
               </div>
-              <div className="flex flex-1 flex-col gap-12">
+              <div className="flex w-full flex-1 flex-col gap-12">
                 <DataComponent2
                   label="Jalur Pendaftaran"
                   value={

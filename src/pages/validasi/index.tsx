@@ -28,7 +28,7 @@ export default function Validasi() {
     <div className="flex h-full flex-col gap-32">
       {/* --- Header --- */}
       <div className="flex items-center justify-between gap-32">
-        <p className="font-bold">Validasi</p>
+        <p className="text-[3.2rem] font-bold phones:text-[3.6rem]">Validasi</p>
         {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI &&
           !isLoadingProfil &&
           profil && <CetakBuktiPendaftaran profil={profil} />}

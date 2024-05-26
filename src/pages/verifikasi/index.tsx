@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { NoData } from '@/components/atoms/NoData'
 import { enumValidasi } from '@/libs/enum/enum-validasi'
+import { DataComponent } from './data-component'
 
 export default function Verifikasi() {
   // --- Profil ---
@@ -29,7 +30,9 @@ export default function Verifikasi() {
     <div className="flex h-full flex-col gap-32">
       {/* --- Header --- */}
       <div className="flex items-center justify-between gap-32">
-        <p className="font-bold">Verifikasi</p>
+        <p className="text-[3.2rem] font-bold phones:text-[3.6rem]">
+          Verifikasi
+        </p>
         {profil?.verifikasi?.status === enumVerifikasi?.DISETUJUI && (
           <CetakHasilVerifikasi profil={profil} />
         )}
@@ -72,20 +75,25 @@ export default function Verifikasi() {
                           : 'Belum Unggah'}
                   </p>
                 </div>
-                <p className="text-[2rem]">
-                  Tanggal Verifikasi:{' '}
-                  {profil?.verifikasi?.tanggal_verifikasi
-                    ? dayjs(profil?.verifikasi?.tanggal_verifikasi)
-                        .locale('id')
-                        .format('DD MMMM YYYY hh:mm:ss A')
-                    : '-'}
-                </p>
-                <p className="text-[2rem]">
-                  Petugas Verifikasi: {profil?.verifikasi?.petugas ?? '-'}
-                </p>
-                <p className="text-[2rem]">
-                  Komentar: {profil?.verifikasi?.komentar ?? '-'}
-                </p>
+                <DataComponent
+                  label="Tanggal Verifikasi"
+                  value={
+                    profil?.verifikasi?.tanggal_verifikasi
+                      ? dayjs(profil?.verifikasi?.tanggal_verifikasi)
+                          .locale('id')
+                          .format('DD MMMM YYYY hh:mm:ss A')
+                      : '-'
+                  }
+                />
+                <DataComponent
+                  label="Petugas Verifikasi"
+                  value={profil?.verifikasi?.petugas ?? '-'}
+                />
+
+                <DataComponent
+                  label="Komentar"
+                  value={profil?.verifikasi?.komentar ?? '-'}
+                />
               </>
             )}
           </>

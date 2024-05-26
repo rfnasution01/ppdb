@@ -24,7 +24,7 @@ export function FormDokumen({
             File
           </th>
           <th className="upload sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
-            Upload
+            Unggah
           </th>
           <th className="status sticky top-0 text-nowrap border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
             Status Verifikasi
