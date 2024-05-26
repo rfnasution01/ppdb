@@ -25,7 +25,7 @@ export function FormSekolah({
   const jenjang = Cookies.get('jenjang')
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-32">
       <FormListDayaTampung
         name="tujuan_pertama"
         useFormReturn={form}

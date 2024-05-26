@@ -75,66 +75,6 @@ export default function Pendaftaran() {
           setActiveIndex={setActiveIndex}
           getProfil={profil}
         />
-        {/* <div className="hidden phones:block">
-          <div className="scrollbar flex flex-shrink items-center gap-12 overflow-auto">
-            {jenjangParams.toLowerCase() === 'sd' ? (
-              <>
-                {menuSD.map((item, idx) => (
-                  <div
-                    onClick={() => {
-                      if (
-                        activeIndex > idx ||
-                        (profil?.biodata?.status === true && idx <= 2)
-                      ) {
-                        setActiveIndex(idx)
-                        setName(convertToSlug(item))
-                        dispatch(setStateBiodata({ page: convertToSlug(item) }))
-                        navigate(`/main?page=${convertToSlug(item)}`)
-                      }
-                    }}
-                    className={clsx('flex cursor-pointer items-center p-32 ', {
-                      'bg-primary': activeIndex === idx,
-                      'bg-danger-100':
-                        !(activeIndex === idx) &&
-                        profil?.biodata?.status === true &&
-                        idx <= 2,
-                      'bg-white text-black hover:bg-primary-50':
-                        !(activeIndex === idx) &&
-                        !(profil?.biodata?.status === true && idx <= 2),
-                    })}
-                    key={idx}
-                  >
-                    <p className="text-nowrap text-[2rem]">
-                      {idx + 1}. {item}
-                    </p>
-                  </div>
-                ))}
-              </>
-            ) : (
-              <>
-                {menu.map((item, idx) => (
-                  <div
-                    onClick={() => {
-                      setName(convertToSlug(item))
-                      dispatch(setStateBiodata({ page: convertToSlug(item) }))
-                      navigate(`/main?page=${convertToSlug(item)}`)
-                    }}
-                    className={clsx('flex cursor-pointer items-center p-32 ', {
-                      'bg-primary-200': convertToSlug(item) === name,
-                      'bg-white text-black hover:bg-primary-50':
-                        convertToSlug(item) !== name,
-                    })}
-                    key={idx}
-                  >
-                    <p className="text-nowrap text-[2rem]">
-                      {idx + 1}. {item}
-                    </p>
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
-        </div> */}
       </div>
       {/* --- Content --- */}
       <div className="scrollbar flex h-full flex-1 justify-center overflow-auto">
