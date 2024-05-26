@@ -28,7 +28,7 @@ export default function Gelombang() {
   return (
     <div className="flex h-full w-full flex-col gap-32">
       <p className="text-[3.2rem] font-bold phones:text-[3.6rem]">
-        Jadwal Pendaftaran
+        Jadwal Pendaftaran PPDB Online Tahun 2024
       </p>
       <div className="grid grid-cols-12 gap-32">
         {isLoadingGetGelombang ? (
@@ -47,19 +47,23 @@ export default function Gelombang() {
                 key={idx}
               >
                 <div className="flex flex-1 flex-col gap-12">
-                  <p className="font-bold">{item?.nama}</p>
+                  <p className="bg-[#FF0000] p-16 font-bold text-white">
+                    {item?.nama}
+                  </p>
                   <div className="flex flex-col gap-8">
                     <DataComponent
                       label="Pendaftaran Online"
                       value1={item?.tgl_awal_daftar}
                       value2={item?.tgl_akhir_daftar}
+                      title="daftar"
                     />
                     <DataComponent
                       label="Verifikasi Sesuai Tujuan"
                       value1={item?.tgl_awal_daftar}
                       value2={item?.batas_verifikasi}
+                      title="verifikasi"
                     />
-                    <div className="flex w-full text-[2rem] font-light phones:text-[2.4rem]">
+                    <div className="flex w-full bg-[#C0E6F5] px-16 py-12 text-[2rem] font-light phones:text-[2.4rem]">
                       <p className="w-1/3 phones:w-1/2">
                         Pengumuman Kelulusan:
                       </p>{' '}
@@ -73,11 +77,12 @@ export default function Gelombang() {
                       </p>
                     </div>
                     <DataComponent
-                      label="Daptar Ulang"
+                      label="Daftar Ulang"
                       value1={dayjs(item?.tgl_akhir_daftar)
                         .add(1, 'day')
                         .format()}
                       value2={item?.batas_daftar_ulang}
+                      title="daftar-ulang"
                     />
                   </div>
                 </div>
