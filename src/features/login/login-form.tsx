@@ -68,7 +68,7 @@ export function LoginForm({
               placeHolder="Masukkan NISN atau No. Peserta"
               name="username"
               type="text"
-              label="No. Peserta / NISN*"
+              label="NIK / NISN*"
             />
             {/* --- Tanggal Lahir --- */}
             <FormListTanggalLahir
