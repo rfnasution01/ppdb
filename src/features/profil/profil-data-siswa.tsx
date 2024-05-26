@@ -100,7 +100,7 @@ export function ProfilDataSiswa({
               )}
               {profil?.verifikasi?.status !== enumVerifikasi.DIPROSES && (
                 <Link
-                  to="/main/verifikasi"
+                  to="/main/verifikasi-sekolah"
                   className="rounded-full bg-primary px-24 py-12 text-[2rem] text-primary-50 hover:bg-primary-background"
                 >
                   Lihat Hasil Verifikasi

@@ -136,7 +136,7 @@ export const router = createBrowserRouter([
         element: <ValidasiPage />,
       },
       {
-        path: 'verifikasi',
+        path: 'verifikasi-sekolah',
         element: <VerifikasiPage />,
       },
       {

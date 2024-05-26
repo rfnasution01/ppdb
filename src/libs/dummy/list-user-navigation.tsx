@@ -23,7 +23,7 @@ export const ListUserNavigation = [
     icon: <ShieldEllipsis size={16} />,
   },
   {
-    title: 'Verifikasi',
+    title: 'Verifikasi Sekolah',
     icon: <ShieldCheck size={16} />,
   },
   {
