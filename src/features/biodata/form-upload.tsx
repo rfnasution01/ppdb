@@ -1,6 +1,7 @@
 import { useCreateUploadFileMutation } from '@/store/slices/pendaftaranAPI'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const FileUploadForm = ({
   id_dokumen,
@@ -8,12 +9,14 @@ const FileUploadForm = ({
   status_verifikasi,
   isLoading,
   disabled,
+  dok_siswa,
 }: {
   id_dokumen: string
   format?: number
   status_verifikasi?: number
   isLoading?: boolean
   disabled: boolean
+  dok_siswa: string
 }) => {
   const [file, setFile] = useState()
   const [errorMessage, setErrorMessage] = useState('')
@@ -99,31 +102,53 @@ const FileUploadForm = ({
   }, [isSuccessUpload, isErrorUpload])
 
   return (
-    <div className="flex items-center justify-between gap-48">
+    <div
+      className={clsx(
+        'flex flex-col justify-between gap-48 rounded-2xl border p-32',
+        {
+          'bg-green-50': dok_siswa !== null,
+          'bg-white': dok_siswa === null,
+        },
+      )}
+    >
       <input
+        className="w-full"
         type="file"
         onChange={handleFileChange}
         disabled={isLoadingUpload || status_verifikasi === 1 || isLoading}
       />
-      <button
-        className="text-nowrap rounded-lg bg-primary p-8 text-[2rem] text-white hover:bg-primary-background disabled:cursor-not-allowed"
-        disabled={
-          isLoadingUpload || status_verifikasi === 1 || isLoading || disabled
-        }
-        onClick={handleSubmit}
-      >
-        Unggah File
-      </button>
-      {errorMessage && (
-        <p
-          className={clsx('text-[2rem]', {
-            'text-danger': isErrorUpload,
-            'text-emerald-700': isSuccessUpload,
-          })}
+      <div className="flex flex-col gap-8">
+        <button
+          className="text-nowrap rounded-lg bg-primary p-8 text-[2rem] text-white hover:bg-primary-background disabled:cursor-not-allowed"
+          disabled={
+            isLoadingUpload || status_verifikasi === 1 || isLoading || disabled
+          }
+          onClick={handleSubmit}
         >
-          {errorMessage}
-        </p>
-      )}
+          {status_verifikasi !== 0 ? 'Ganti File' : 'Unggah File'}
+        </button>
+        {errorMessage && (
+          <p
+            className={clsx('text-[2rem]', {
+              'text-danger': isErrorUpload,
+              'text-emerald-700': isSuccessUpload,
+            })}
+          >
+            {errorMessage}
+          </p>
+        )}
+        {dok_siswa ? (
+          <Link
+            to={dok_siswa}
+            className="text-nowrap rounded-lg bg-primary p-8 text-center text-[2rem] text-white hover:bg-primary-background disabled:cursor-not-allowed"
+            target="_blank"
+          >
+            Lihat Gambar
+          </Link>
+        ) : (
+          'File belum diupload'
+        )}
+      </div>
     </div>
   )
 }

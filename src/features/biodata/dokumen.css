@@ -1,0 +1,15 @@
+th.no {
+  width: 5% !important;
+}
+
+th.file {
+  width: 50% !important;
+}
+
+th.upload {
+  width: 30% !important;
+}
+
+th.status {
+  width: 15% !important;
+}
