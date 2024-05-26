@@ -6,6 +6,7 @@ import { FormLabelComponent } from '../biodata/form-label-component'
 import { FormListTanggalLahir } from '@/components/molecules/form'
 import { ListBulan } from '@/libs/dummy/list-tanggal'
 import { UseFormReturn } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 export function LoginForm({
   handleFormLogin,
@@ -111,9 +112,12 @@ export function LoginForm({
                   <Save size={16} />
                 )}
               </button>
-              <p className="text-right text-[1.8rem] text-blue-900 hover:cursor-pointer hover:text-blue-700">
-                Lupa Password?
-              </p>
+              <Link
+                to="/"
+                className="text-right text-[1.8rem] text-blue-900 hover:cursor-pointer hover:text-blue-700"
+              >
+                Kembali ke Home
+              </Link>
             </div>
           </div>
         </form>
