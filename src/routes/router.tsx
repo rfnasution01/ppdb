@@ -25,6 +25,7 @@ import {
   ComingSoonPage,
   VerifikasiPage,
   KotakMasukPage,
+  GelombangPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -143,6 +144,10 @@ export const router = createBrowserRouter([
       {
         path: 'kotak-masuk',
         element: <KotakMasukPage />,
+      },
+      {
+        path: 'jadwal',
+        element: <GelombangPage />,
       },
     ],
   },

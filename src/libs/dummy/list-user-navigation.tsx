@@ -1,9 +1,20 @@
-import { Layout, Mail, Scroll, ShieldCheck, Speech } from 'lucide-react'
+import {
+  CalendarClock,
+  Layout,
+  Mail,
+  Scroll,
+  ShieldCheck,
+  Speech,
+} from 'lucide-react'
 
 export const ListUserNavigation = [
   {
     title: 'Beranda',
     icon: <Layout size={16} />,
+  },
+  {
+    title: 'Jadwal',
+    icon: <CalendarClock size={16} />,
   },
   {
     title: 'Verifikasi',

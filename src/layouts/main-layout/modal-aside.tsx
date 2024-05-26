@@ -41,7 +41,7 @@ export function ModalAside({
   const isValidasi = profil?.validasi?.status === enumValidasi.SUDAHVALIDASI
 
   const listNotValidasi = ListUserNavigation.filter(
-    (item) => item?.title === 'Beranda',
+    (item) => item?.title === 'Beranda' || item?.title === 'Jadwal',
   )
 
   const list = isValidasi ? ListUserNavigation : listNotValidasi
