@@ -24,7 +24,6 @@ import {
   ProfilPage,
   ComingSoonPage,
   VerifikasiPage,
-  KotakMasukPage,
   GelombangPage,
   ValidasiPage,
   HubungiKamiPage,
@@ -132,7 +131,7 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: 'validasi',
+        path: 'status-pendaftaran',
         element: <ValidasiPage />,
       },
       {
@@ -147,12 +146,16 @@ export const router = createBrowserRouter([
         path: 'daftar-ulang',
         element: <ComingSoonPage />,
       },
+      // {
+      //   path: 'kotak-masuk',
+      //   element: <KotakMasukPage />,
+      // },
       {
-        path: 'kotak-masuk',
-        element: <KotakMasukPage />,
+        path: 'pertanyaan',
+        element: <ComingSoonPage />,
       },
       {
-        path: 'jadwal',
+        path: 'jadwal-ppdb',
         element: <GelombangPage />,
       },
       {

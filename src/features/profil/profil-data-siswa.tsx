@@ -64,7 +64,7 @@ export function ProfilDataSiswa({
                 )}
               >
                 {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI ? (
-                  <Link to="/main/validasi">Sudah Validasi</Link>
+                  <Link to="/main/status-pendaftaran">Sudah Validasi</Link>
                 ) : (
                   'Belum Validasi'
                 )}

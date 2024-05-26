@@ -1,7 +1,7 @@
 import {
   CalendarClock,
+  HelpCircle,
   Layout,
-  Mail,
   Phone,
   Scroll,
   ShieldCheck,
@@ -15,11 +15,11 @@ export const ListUserNavigation = [
     icon: <Layout size={16} />,
   },
   {
-    title: 'Jadwal',
+    title: 'Jadwal PPDB',
     icon: <CalendarClock size={16} />,
   },
   {
-    title: 'Validasi',
+    title: 'Status Pendaftaran',
     icon: <ShieldEllipsis size={16} />,
   },
   {
@@ -35,8 +35,8 @@ export const ListUserNavigation = [
     icon: <Scroll size={16} />,
   },
   {
-    title: 'Kotak Masuk',
-    icon: <Mail size={16} />,
+    title: 'Pertanyaan',
+    icon: <HelpCircle size={16} />,
   },
   {
     title: 'Hubungi Kami',
