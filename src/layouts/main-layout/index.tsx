@@ -5,9 +5,39 @@ import { ModalAside } from './modal-aside'
 import { MainHeader } from './main-header'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { useGetProfilQuery } from '@/store/slices/pendaftaranAPI'
+import Cookies from 'js-cookie'
+import { ModalWelcome } from './modal-welcome'
 
 export default function MainLayout() {
   const [isShow, setIsShow] = useState<boolean>(false)
+
+  // Fungsi untuk mengkonversi nilai cookie menjadi boolean
+  const parseBoolean = (value: string | undefined): boolean => {
+    return value === 'true'
+  }
+
+  // Mendapatkan nilai cookie isWelcome atau setel nilai awal ke 'true' jika belum ada
+  const isWelcomeCookie = Cookies.get('isWelcome')
+  if (isWelcomeCookie === undefined) {
+    Cookies.set('isWelcome', 'true')
+  }
+
+  // Inisialisasi state berdasarkan nilai cookie
+  const [isShowWelcome, setIsShowWelcome] = useState<boolean>(
+    parseBoolean(isWelcomeCookie) || true,
+  )
+
+  useEffect(() => {
+    if (isWelcomeCookie !== undefined) {
+      setIsShowWelcome(parseBoolean(isWelcomeCookie))
+    }
+  }, [isWelcomeCookie])
+
+  // Fungsi untuk menangani penutupan pesan selamat datang
+  const handleCloseWelcome = () => {
+    setIsShowWelcome(false)
+    Cookies.set('isWelcome', 'false')
+  }
 
   // --- Profil ---
   const [profil, setProfil] = useState<ProfilData>()
@@ -43,6 +73,11 @@ export default function MainLayout() {
         </div>
       </section>
       <ModalAside setIsOpen={setIsShow} isOpen={isShow} profil={profil} />
+      <ModalWelcome
+        setIsOpen={setIsShowWelcome}
+        isOpen={isShowWelcome}
+        handleCloseWelcome={handleCloseWelcome}
+      />
     </main>
   )
 }
