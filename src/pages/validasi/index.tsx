@@ -15,10 +15,7 @@ export default function Validasi() {
     data: getProfil,
     isLoading: isLoadingProfil,
     isFetching: isFetchingProfil,
-    refetch, // Tambahkan refetch untuk memanggil ulang secara manual jika diperlukan
-  } = useGetProfilQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  })
+  } = useGetProfilQuery()
 
   const isLoading = isFetchingProfil || isLoadingProfil
 
@@ -34,11 +31,7 @@ export default function Validasi() {
         <p className="font-bold">Validasi</p>
         {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI &&
           !isLoadingProfil &&
-          profil && (
-            <div onClick={refetch}>
-              <CetakBuktiPendaftaran profil={profil} />
-            </div>
-          )}
+          profil && <CetakBuktiPendaftaran profil={profil} />}
       </div>
       {/* --- Content --- */}
       <div className="flex w-1/2 flex-col gap-12 rounded-2xl bg-white p-32 phones:w-full">

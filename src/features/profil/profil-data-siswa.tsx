@@ -17,15 +17,14 @@ import { CetakBuktiPendaftaran } from './cetak-bukti-pendaftaran'
 import { ProfilPrestaasi } from './profil-data-prestasi'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { enumJalur } from '@/libs/enum/enum-jalur'
 
 export function ProfilDataSiswa({
   profil,
   isLoading,
-  refetch,
 }: {
   profil: ProfilData
   isLoading: boolean
-  refetch: any
 }) {
   const jenjang = Cookies.get('jenjang')
   const navigate = useNavigate()
@@ -47,7 +46,7 @@ export function ProfilDataSiswa({
           borderBottomRightRadius: '1rem',
         }}
       >
-        <div className="flex items-center justify-between gap-32 p-32 phones:flex-col phones:items-start">
+        <div className="flex items-center justify-between gap-32 px-32 pb-8 pt-32 phones:flex-col phones:items-start">
           <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
             <p className="font-roboto text-[2.8rem] font-bold uppercase phones:text-[3.2rem]">
               {profil?.biodata?.nama ?? '-'}
@@ -97,9 +96,7 @@ export function ProfilDataSiswa({
           {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
             <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
               {!isLoading && profil && (
-                <div onClick={refetch}>
-                  <CetakBuktiPendaftaran profil={profil} />
-                </div>
+                <CetakBuktiPendaftaran profil={profil} />
               )}
               {profil?.verifikasi?.status !== enumVerifikasi.DIPROSES && (
                 <Link
@@ -112,6 +109,18 @@ export function ProfilDataSiswa({
             </div>
           )}
         </div>
+        <p className="px-32 pb-32 pt-8">
+          Jalur{' '}
+          {profil?.jalur === enumJalur.ZONASI
+            ? 'Zonasi'
+            : profil?.jalur === enumJalur.DISABILITAS
+              ? 'Afirmasi Penyandang Disabilitas'
+              : profil?.jalur === enumJalur.PINDAHTUGAS
+                ? 'Pindah Tugas Orang Tua'
+                : profil?.jalur === enumJalur.PRESTASI
+                  ? 'Prestasi'
+                  : 'Zonasi'}
+        </p>
         <hr className="border" />
         <div className="flex flex-col gap-32 p-32">
           <ProfilAlamat profil={profil} isLoading={isLoading} />
