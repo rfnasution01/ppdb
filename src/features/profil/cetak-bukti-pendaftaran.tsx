@@ -7,9 +7,11 @@ import dayjs from 'dayjs'
 import { enumVerifikasi } from '@/libs/enum/enum-verifikasi'
 import { Link } from 'react-router-dom'
 import { enumJalur } from '@/libs/enum/enum-jalur'
+import Cookies from 'js-cookie'
 
 export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
   const ref = useRef<HTMLDivElement>()
+  const jenjang = Cookies.get('jenjang')
 
   return (
     <>
@@ -124,14 +126,16 @@ export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
                       : '-'
                   }
                 />
-                <DataComponent2
-                  label="Pilihan 2"
-                  value={
-                    profil?.pilihan?.pilihan2?.nama_sekolah
-                      ? `${profil?.pilihan?.pilihan2.nama_sekolah} (Skor Sementara: ${profil?.pilihan?.pilihan2?.skor})`
-                      : '-'
-                  }
-                />
+                {jenjang.toLowerCase() === 'smp' && (
+                  <DataComponent2
+                    label="Pilihan 2"
+                    value={
+                      profil?.pilihan?.pilihan2?.nama_sekolah
+                        ? `${profil?.pilihan?.pilihan2.nama_sekolah} (Skor Sementara: ${profil?.pilihan?.pilihan2?.skor})`
+                        : '-'
+                    }
+                  />
+                )}
                 <DataComponent2
                   label="Tanggal Pendaftaran"
                   value={

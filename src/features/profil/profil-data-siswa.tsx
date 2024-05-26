@@ -96,7 +96,7 @@ export function ProfilDataSiswa({
           </div>
           {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
             <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
-              {!isLoading && (
+              {!isLoading && profil && (
                 <div onClick={refetch}>
                   <CetakBuktiPendaftaran profil={profil} />
                 </div>

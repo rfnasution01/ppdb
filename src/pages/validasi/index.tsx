@@ -33,7 +33,8 @@ export default function Validasi() {
       <div className="flex items-center justify-between gap-32">
         <p className="font-bold">Validasi</p>
         {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI &&
-          !isLoadingProfil && (
+          !isLoadingProfil &&
+          profil && (
             <div onClick={refetch}>
               <CetakBuktiPendaftaran profil={profil} />
             </div>
