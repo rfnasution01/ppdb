@@ -11,6 +11,7 @@ import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
 import { useCreateJalurMutation } from '@/store/slices/pendaftaranAPI'
 import clsx from 'clsx'
 import Cookies from 'js-cookie'
+import { Check } from 'lucide-react'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -154,7 +155,13 @@ export function BiodataJalur({
                     'border-transparent bg-white':
                       convertToSlug(item?.kode?.toLowerCase()) === jalur,
                   })}
-                />
+                >
+                  {convertToSlug(item?.kode?.toLowerCase()) === jalur && (
+                    <span className="flex h-full w-full items-center justify-center text-green-700">
+                      <Check size={14} />
+                    </span>
+                  )}
+                </div>
                 {capitalizeFirstLetterFromLowercase(item?.nama?.toLowerCase())}
               </div>
             ))}
