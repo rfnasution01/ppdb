@@ -1,12 +1,14 @@
 import { ListUserNavigation } from '@/libs/dummy/list-user-navigation'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
 import clsx from 'clsx'
 import Cookies from 'js-cookie'
 import { Trash2 } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 
-export function MainHeader() {
+export function MainHeader({ profil }: { profil: ProfilData }) {
   const { secondPathname } = usePathname()
   const navigate = useNavigate()
 
@@ -26,6 +28,14 @@ export function MainHeader() {
     navigate('/login')
   }
 
+  const isValidasi = profil?.validasi?.status === enumValidasi.SUDAHVALIDASI
+
+  const listNotValidasi = ListUserNavigation.filter(
+    (item) => item?.title === 'Beranda',
+  )
+
+  const list = isValidasi ? ListUserNavigation : listNotValidasi
+
   return (
     <div className="flex h-full flex-col gap-64">
       {/* --- Logo --- */}
@@ -36,7 +46,7 @@ export function MainHeader() {
       <div className="flex flex-1 flex-col justify-between">
         {/* --- Navigasi --- */}
         <div className="flex flex-col gap-12">
-          {ListUserNavigation.map((item, idx) => (
+          {list?.map((item, idx) => (
             <Link
               to={
                 item?.title === 'Beranda'

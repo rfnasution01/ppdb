@@ -1,7 +1,9 @@
 import { Dialog, DialogContent } from '@/components/atoms/Dialog'
 import { ListUserNavigation } from '@/libs/dummy/list-user-navigation'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 import { convertToSlug } from '@/libs/helpers/format-text'
 import { usePathname } from '@/libs/hooks/usePathname'
+import { ProfilData } from '@/libs/types/pendaftaran-type'
 import clsx from 'clsx'
 import Cookies from 'js-cookie'
 import { DoorClosed, DoorOpen } from 'lucide-react'
@@ -11,9 +13,11 @@ import { Link, useNavigate } from 'react-router-dom'
 export function ModalAside({
   isOpen,
   setIsOpen,
+  profil,
 }: {
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
+  profil?: ProfilData
 }) {
   const { secondPathname } = usePathname()
   const token = Cookies.get('token')
@@ -33,6 +37,14 @@ export function ModalAside({
     }
     return false
   }
+
+  const isValidasi = profil?.validasi?.status === enumValidasi.SUDAHVALIDASI
+
+  const listNotValidasi = ListUserNavigation.filter(
+    (item) => item?.title === 'Beranda',
+  )
+
+  const list = isValidasi ? ListUserNavigation : listNotValidasi
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -65,7 +77,7 @@ export function ModalAside({
           </div>
           {/* --- Navigasi --- */}
           <div className="flex flex-col gap-16 pl-16">
-            {ListUserNavigation.map((item, idx) => (
+            {list.map((item, idx) => (
               <Link
                 to={
                   item?.title?.toLowerCase() === 'beranda'
