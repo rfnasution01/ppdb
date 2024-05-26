@@ -2,6 +2,7 @@ import {
   CalendarClock,
   Layout,
   Mail,
+  Phone,
   Scroll,
   ShieldCheck,
   ShieldEllipsis,
@@ -36,5 +37,9 @@ export const ListUserNavigation = [
   {
     title: 'Kotak Masuk',
     icon: <Mail size={16} />,
+  },
+  {
+    title: 'Hubungi Kami',
+    icon: <Phone size={16} />,
   },
 ]

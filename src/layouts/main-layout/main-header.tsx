@@ -31,7 +31,10 @@ export function MainHeader({ profil }: { profil: ProfilData }) {
   const isValidasi = profil?.validasi?.status === enumValidasi.SUDAHVALIDASI
 
   const listNotValidasi = ListUserNavigation.filter(
-    (item) => item?.title === 'Beranda' || item?.title === 'Jadwal',
+    (item) =>
+      item?.title === 'Beranda' ||
+      item?.title === 'Jadwal' ||
+      item?.title === 'Hubungi Kami',
   )
 
   const list = isValidasi ? ListUserNavigation : listNotValidasi

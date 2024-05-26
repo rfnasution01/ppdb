@@ -28,6 +28,13 @@ export const columnsListLokasi: Column<LokasiIsiType>[] = [
   { header: 'Telepon', key: 'telepon', width: '!min-w-[12rem]' },
 ]
 
+export const columnsListHubungiKami: Column<LokasiIsiType>[] = [
+  { header: 'NPSN', key: 'npsn', width: '!min-w-[12rem]' },
+  { header: 'Sekolah', key: 'nama_sekolah', width: '!min-w-[12rem]' },
+  { header: 'Alamat', key: 'alamat', width: '!min-w-[12rem]' },
+  { header: 'Telepon', key: 'telepon', width: '!min-w-[12rem]' },
+]
+
 export const columnsListStatistik: Column<PendaftarStatistik>[] = [
   { header: 'Nama Sekolah', key: 'nama_sekolah', width: '!min-w-[12rem]' },
   {
