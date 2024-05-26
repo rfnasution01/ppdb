@@ -5,6 +5,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { StepBack, StepForward, X } from 'lucide-react'
 import { ListData } from './list-data'
 import { UseFormReturn } from 'react-hook-form'
+import dayjs from 'dayjs'
 
 export function ModalAside({
   isOpen,
@@ -47,7 +48,12 @@ export function ModalAside({
             {values?.nisn && <ListData label="NISN" desc={values?.nisn} />}
             <ListData label="NIK" desc={values?.nik} />
             <ListData label="Nama Lengkap" desc={values?.nama_lengkap} />
-            <ListData label="Tanggal Lahir" desc={values?.tgl_lahir} />
+            <ListData
+              label="Tanggal Lahir"
+              desc={dayjs(values?.tgl_lahir)
+                .locale('id')
+                .format('DD MMMM YYYY')}
+            />
           </div>
           <p className="text-[2rem]">
             Saya yakin data yang saya masukkan sudah benar
