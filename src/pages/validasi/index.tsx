@@ -54,19 +54,22 @@ export default function Validasi() {
                       },
                     )}
                   >
-                    {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI
-                      ? 'Sudah Validasi'
-                      : 'Belum Validasis'}
+                    {profil?.validasi?.status ===
+                    enumValidasi?.SUDAHVALIDASI ? (
+                      <p className="text-[2rem]">
+                        Terima Kasih, anda sudah memvalidasi data pendaftaran
+                        anda pada tanggal:{' '}
+                        {profil?.validasi?.tanggal_validasi
+                          ? dayjs(profil?.validasi?.tanggal_validasi)
+                              .locale('id')
+                              .format('DD MMMM YYYY HH:mm:ss')
+                          : '-'}
+                      </p>
+                    ) : (
+                      'Belum Validasi'
+                    )}
                   </p>
                 </div>
-                <p className="text-[2rem]">
-                  Tanggal Validasi:{' '}
-                  {profil?.validasi?.tanggal_validasi
-                    ? dayjs(profil?.validasi?.tanggal_validasi)
-                        .locale('id')
-                        .format('DD MMMM YYYY hh:mm:ss A')
-                    : '-'}
-                </p>
               </>
             )}
           </>
