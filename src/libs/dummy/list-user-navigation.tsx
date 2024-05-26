@@ -4,6 +4,7 @@ import {
   Mail,
   Scroll,
   ShieldCheck,
+  ShieldEllipsis,
   Speech,
 } from 'lucide-react'
 
@@ -15,6 +16,10 @@ export const ListUserNavigation = [
   {
     title: 'Jadwal',
     icon: <CalendarClock size={16} />,
+  },
+  {
+    title: 'Validasi',
+    icon: <ShieldEllipsis size={16} />,
   },
   {
     title: 'Verifikasi',

@@ -26,6 +26,7 @@ import {
   VerifikasiPage,
   KotakMasukPage,
   GelombangPage,
+  ValidasiPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -128,6 +129,10 @@ export const router = createBrowserRouter([
             element: <ProfilPage />,
           },
         ],
+      },
+      {
+        path: 'validasi',
+        element: <ValidasiPage />,
       },
       {
         path: 'verifikasi',

@@ -50,7 +50,7 @@ export function ProfilDataSiswa({
               {profil?.biodata?.nama ?? '-'}
             </p>
             <div className="flex items-center gap-12 phones:flex-col phones:items-start phones:gap-12">
-              <p
+              <div
                 className={clsx(
                   'rounded-full px-24 py-12 text-[2rem] phones:text-[2.4rem]',
                   {
@@ -61,10 +61,12 @@ export function ProfilDataSiswa({
                   },
                 )}
               >
-                {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI
-                  ? 'Sudah Validasi'
-                  : 'Belum Validasi'}
-              </p>
+                {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI ? (
+                  <Link to="/main/validasi">Sudah Validasi</Link>
+                ) : (
+                  'Belum Validasi'
+                )}
+              </div>
               {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
                 <p
                   className={clsx(
