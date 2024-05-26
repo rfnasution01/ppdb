@@ -56,7 +56,7 @@ export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
             <div className="flex flex-col items-center gap-12 text-[4rem] font-bold uppercase">
               <p>bukti pendaftaran</p>
               <p className="text-center">
-                PPDB DINAS pendidikan kabupaten batubara
+                jenjang {jenjang?.toUpperCase()} PPDB Online tahun 2024
               </p>
             </div>
             {/* --- Divider --- */}
@@ -74,10 +74,12 @@ export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
                   label="NIK"
                   value={profil?.biodata?.nik ?? '-'}
                 />
-                <DataComponent2
-                  label="NISN"
-                  value={profil?.sekolah?.nisn ?? '-'}
-                />
+                {jenjang?.toLowerCase() === 'smp' && (
+                  <DataComponent2
+                    label="NISN"
+                    value={profil?.sekolah?.nisn ?? '-'}
+                  />
+                )}
                 <DataComponent2
                   label="Nama Lengkap"
                   value={profil?.biodata?.nama ?? '-'}
