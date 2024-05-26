@@ -6,11 +6,14 @@ import { ProfilData } from '@/libs/types/pendaftaran-type'
 import clsx from 'clsx'
 import Cookies from 'js-cookie'
 import { Trash2 } from 'lucide-react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { ModalLogout } from '../root-layout/modal-logout'
 
 export function MainHeader({ profil }: { profil: ProfilData }) {
   const { secondPathname } = usePathname()
   const navigate = useNavigate()
+  const [isShowLogout, setisShowLogout] = useState<boolean>(false)
 
   const isActivePage = (item: string) => {
     if (
@@ -75,7 +78,7 @@ export function MainHeader({ profil }: { profil: ProfilData }) {
         </div>
         <div
           onClick={() => {
-            handleLogout()
+            setisShowLogout(true)
           }}
           className="flex items-center gap-16 border-l-2 border-transparent px-24 py-8 hover:cursor-pointer hover:border-danger-300 hover:bg-danger-tint-1 hover:bg-opacity-20 hover:text-danger-300"
         >
@@ -83,6 +86,11 @@ export function MainHeader({ profil }: { profil: ProfilData }) {
           <p>Keluar</p>
         </div>
       </div>
+      <ModalLogout
+        isOpen={isShowLogout}
+        setIsOpen={setisShowLogout}
+        handleLogout={handleLogout}
+      />
     </div>
   )
 }

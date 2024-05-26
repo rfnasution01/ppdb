@@ -14,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ModalHeader } from './modal-header'
 import Cookies from 'js-cookie'
 import { InstansiData } from '@/libs/types'
+import { ModalLogout } from './modal-logout'
 
 export function RootHeader({
   getIdentitas,
@@ -25,6 +26,7 @@ export function RootHeader({
   const [isShow, setIsShow] = useState<boolean>(false)
   const [isShowAside, setIsShowAside] = useState<boolean>(false)
   const [isShowHeader, setIsShowHeader] = useState<boolean>(false)
+  const [isShowLogout, setisShowLogout] = useState<boolean>(false)
 
   const token = Cookies.get('token')
   const navigate = useNavigate()
@@ -89,7 +91,7 @@ export function RootHeader({
           {token ? (
             <div
               onClick={() => {
-                handleLogout()
+                setisShowLogout(true)
               }}
               className="flex items-center gap-x-8 rounded-lg bg-primary-background px-24 py-12 text-white hover:cursor-pointer hover:bg-primary-700 hover:bg-opacity-90"
             >
@@ -142,6 +144,11 @@ export function RootHeader({
       />
       <ModalAside setIsOpen={setIsShowAside} isOpen={isShowAside} />
       <ModalHeader setIsOpen={setIsShowHeader} isOpen={isShowHeader} />
+      <ModalLogout
+        setIsOpen={setisShowLogout}
+        isOpen={isShowLogout}
+        handleLogout={handleLogout}
+      />
     </header>
   )
 }
