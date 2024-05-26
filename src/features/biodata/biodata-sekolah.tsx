@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useCreatePilihanSekolahMutation } from '@/store/slices/pendaftaranAPI'
 import Loading from '@/components/atoms/Loading'
 import { enumValidasi } from '@/libs/enum/enum-validasi'
+import { NoData } from '@/components/atoms/NoData'
 
 export function BiodataSekolah({
   setName,
@@ -124,13 +125,19 @@ export function BiodataSekolah({
           <div className="flex flex-col gap-24">
             <p className="font-bold">Rekomendasi</p>
             <div className="flex flex-col gap-12">
-              {getProfil?.pilihan?.rekomendasi.map((item, idx) => (
-                <div className="flex items-center gap-12" key={idx}>
-                  <p>{idx + 1}</p>
-                  <p>{item?.nama_sekolah}</p>
-                  <p>({item?.skor})</p>
-                </div>
-              ))}
+              {getProfil?.pilihan?.rekomendasi?.length === 0 ? (
+                <NoData />
+              ) : (
+                <>
+                  {getProfil?.pilihan?.rekomendasi.map((item, idx) => (
+                    <div className="flex items-center gap-12" key={idx}>
+                      <p>{idx + 1}</p>
+                      <p>{item?.nama_sekolah}</p>
+                      <p>({item?.skor})</p>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>

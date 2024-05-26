@@ -10,7 +10,10 @@ export default function Profil() {
     data: getProfil,
     isLoading: isLoadingProfil,
     isFetching: isFetchingProfil,
-  } = useGetProfilQuery()
+    refetch, // Tambahkan refetch untuk memanggil ulang secara manual jika diperlukan
+  } = useGetProfilQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  })
 
   const isLoading = isFetchingProfil || isLoadingProfil
 
@@ -24,7 +27,11 @@ export default function Profil() {
     <div className="scrollbar flex h-full w-full overflow-auto phones:flex-col phones:gap-32">
       {/* --- Informasi Penting --- */}
       <ProfilDataPenting profil={profil} isLoading={isLoading} />
-      <ProfilDataSiswa profil={profil} isLoading={isLoading} />
+      <ProfilDataSiswa
+        profil={profil}
+        isLoading={isLoading}
+        refetch={refetch}
+      />
     </div>
   )
 }

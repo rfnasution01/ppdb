@@ -5,9 +5,11 @@ import { School } from 'lucide-react'
 export function ProfilPilihan({
   profil,
   isLoading,
+  jenjang,
 }: {
   profil: ProfilData
   isLoading?: boolean
+  jenjang?: string
 }) {
   return (
     <div className="flex items-start gap-16">
@@ -27,15 +29,17 @@ export function ProfilPilihan({
                 </p>
               </div>
             </div>
-            <div className="flex flex-1 flex-col gap-12">
-              <p className="font-bold">Pilihan 2</p>
-              <div className="flex flex-col gap-12 rounded-lg border p-12">
-                <p>{profil?.pilihan?.pilihan2?.nama_sekolah ?? '-'}</p>
-                <p className="font-bold text-primary">
-                  Skor: {profil?.pilihan?.pilihan2.skor ?? '-'}
-                </p>
+            {jenjang.toLowerCase() === 'smp' && (
+              <div className="flex flex-1 flex-col gap-12">
+                <p className="font-bold">Pilihan 2</p>
+                <div className="flex flex-col gap-12 rounded-lg border p-12">
+                  <p>{profil?.pilihan?.pilihan2?.nama_sekolah ?? '-'}</p>
+                  <p className="font-bold text-primary">
+                    Skor: {profil?.pilihan?.pilihan2.skor ?? '-'}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
       </div>

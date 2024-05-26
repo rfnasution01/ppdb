@@ -1,5 +1,6 @@
 import { FormListDayaTampung } from '@/components/molecules/form'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
+import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { UseFormReturn } from 'react-hook-form'
 
@@ -21,6 +22,8 @@ export function FormSekolah({
     }
   }, [getProfil])
 
+  const jenjang = Cookies.get('jenjang')
+
   return (
     <div className="flex flex-col gap-12">
       <FormListDayaTampung
@@ -31,13 +34,15 @@ export function FormSekolah({
         isDisabled={isLoading || disabled}
       />
 
-      <FormListDayaTampung
-        name="tujuan_kedua"
-        useFormReturn={form}
-        headerLabel="Pilihan 2"
-        placeholder="Pilih Sekolah"
-        isDisabled={isLoading || disabled}
-      />
+      {jenjang.toLowerCase() === 'smp' && (
+        <FormListDayaTampung
+          name="tujuan_kedua"
+          useFormReturn={form}
+          headerLabel="Pilihan 2"
+          placeholder="Pilih Sekolah"
+          isDisabled={isLoading || disabled}
+        />
+      )}
     </div>
   )
 }

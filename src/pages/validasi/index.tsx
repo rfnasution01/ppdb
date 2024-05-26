@@ -15,7 +15,10 @@ export default function Validasi() {
     data: getProfil,
     isLoading: isLoadingProfil,
     isFetching: isFetchingProfil,
-  } = useGetProfilQuery()
+    refetch, // Tambahkan refetch untuk memanggil ulang secara manual jika diperlukan
+  } = useGetProfilQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  })
 
   const isLoading = isFetchingProfil || isLoadingProfil
 
@@ -29,9 +32,12 @@ export default function Validasi() {
       {/* --- Header --- */}
       <div className="flex items-center justify-between gap-32">
         <p className="font-bold">Validasi</p>
-        {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
-          <CetakBuktiPendaftaran profil={profil} />
-        )}
+        {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI &&
+          !isLoadingProfil && (
+            <div onClick={refetch}>
+              <CetakBuktiPendaftaran profil={profil} />
+            </div>
+          )}
       </div>
       {/* --- Content --- */}
       <div className="flex w-1/2 flex-col gap-12 rounded-2xl bg-white p-32 phones:w-full">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { ProfilAlamat } from './profil-alamat'
 import { ProfilSekolah } from './profil-sekolah'
@@ -20,9 +21,11 @@ import 'react-toastify/dist/ReactToastify.css'
 export function ProfilDataSiswa({
   profil,
   isLoading,
+  refetch,
 }: {
   profil: ProfilData
   isLoading: boolean
+  refetch: any
 }) {
   const jenjang = Cookies.get('jenjang')
   const navigate = useNavigate()
@@ -93,7 +96,11 @@ export function ProfilDataSiswa({
           </div>
           {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
             <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
-              <CetakBuktiPendaftaran profil={profil} />
+              {!isLoading && (
+                <div onClick={refetch}>
+                  <CetakBuktiPendaftaran profil={profil} />
+                </div>
+              )}
               {profil?.verifikasi?.status !== enumVerifikasi.DIPROSES && (
                 <Link
                   to="/main/verifikasi"
@@ -113,8 +120,14 @@ export function ProfilDataSiswa({
           )}
           <ProfilOrangTua profil={profil} isLoading={isLoading} />
           <ProfilDokumen profil={profil} isLoading={isLoading} />
-          <ProfilPrestaasi profil={profil} isLoading={isLoading} />
-          <ProfilPilihan profil={profil} isLoading={isLoading} />
+          {profil?.jalur.toLowerCase() === 'pr' && (
+            <ProfilPrestaasi profil={profil} isLoading={isLoading} />
+          )}
+          <ProfilPilihan
+            profil={profil}
+            isLoading={isLoading}
+            jenjang={jenjang}
+          />
           <div className="flex items-center justify-between gap-32 text-[2rem] phones:flex-col phones:text-[2.4rem]">
             <div className="flex items-center gap-12 text-danger-300">
               <span className="hidden phones:block">
