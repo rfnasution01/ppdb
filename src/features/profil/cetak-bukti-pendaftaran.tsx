@@ -1,5 +1,5 @@
 import { Printer } from 'lucide-react'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import ReactToPrint from 'react-to-print'
 import { DataComponent2 } from './data-component-2'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
@@ -10,26 +10,20 @@ import { enumJalur } from '@/libs/enum/enum-jalur'
 import Cookies from 'js-cookie'
 
 export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement | null>(null)
   const jenjang = Cookies.get('jenjang')
+
+  const [isDataReady, setIsDataReady] = useState(false)
+
+  useEffect(() => {
+    if (profil) {
+      setIsDataReady(true)
+    }
+  }, [profil])
 
   return (
     <>
-      <ReactToPrint
-        bodyClass="print-agreement"
-        content={() => ref.current}
-        trigger={() => (
-          <div className="flex items-center gap-12 hover:cursor-pointer">
-            <span className="phones:hidden">
-              <Printer />
-            </span>
-            <p className="rounded-full bg-slate-200 px-24 py-12 text-[2rem] text-slate-700 phones:text-[2.4rem]">
-              Cetak Bukti Pendaftaran
-            </p>
-          </div>
-        )}
-      />
-      {ref && (
+      {isDataReady && (
         <section
           className="absolute left-[-10000px] top-auto h-auto overflow-hidden"
           aria-hidden
@@ -134,7 +128,7 @@ export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
                         : '-'
                     }
                   />
-                  {jenjang.toLowerCase() === 'smp' && (
+                  {jenjang?.toLowerCase() === 'smp' && (
                     <DataComponent2
                       label="Pilihan 2"
                       value={
@@ -188,6 +182,20 @@ export function CetakBuktiPendaftaran({ profil }: { profil: ProfilData }) {
           </div>
         </section>
       )}
+      <ReactToPrint
+        bodyClass="print-agreement"
+        content={() => ref.current}
+        trigger={() => (
+          <div className="flex items-center gap-12 hover:cursor-pointer">
+            <span className="phones:hidden">
+              <Printer />
+            </span>
+            <p className="rounded-full bg-slate-200 px-24 py-12 text-[2rem] text-slate-700 phones:text-[2.4rem]">
+              Cetak Bukti Pendaftaran
+            </p>
+          </div>
+        )}
+      />
     </>
   )
 }
