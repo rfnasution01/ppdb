@@ -170,6 +170,11 @@ export type PendidikanType = {
   nama: string
 }
 
+export type PernyataanType = {
+  siswa: string
+  operator: string
+}
+
 export type OrangTuaParams = {
   status_ayah: string
   nik_ayah: string

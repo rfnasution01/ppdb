@@ -1,5 +1,9 @@
 import { Dialog, DialogContent } from '@/components/atoms/Dialog'
-import { useCreateValidasiMutation } from '@/store/slices/pendaftaranAPI'
+import { PernyataanType } from '@/libs/types/pendaftaran-type'
+import {
+  useCreateValidasiMutation,
+  useGetPernyataanQuery,
+} from '@/store/slices/pendaftaranAPI'
 import clsx from 'clsx'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Bounce, toast } from 'react-toastify'
@@ -13,6 +17,16 @@ export function ModalValidasi({
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }) {
   const [isCheck, setIsCheck] = useState<boolean>(false)
+
+  // --- Pernyataan ---
+  const [Pernyataan, setPernyataan] = useState<PernyataanType>()
+  const { data } = useGetPernyataanQuery()
+
+  useEffect(() => {
+    if (data?.data) {
+      setPernyataan(data?.data)
+    }
+  }, [data?.data])
 
   // --- Create Validasi ---
   const [
@@ -96,10 +110,7 @@ export function ModalValidasi({
           </div>
           {/* --- Content --- */}
           <div className="flex flex-col gap-12 p-32">
-            <p className="text-[2rem] phones:text-[2.4rem]">
-              Apakah anda yakin data sudah benar? Setelah melakukan validasi,
-              data <span className="font-bold">tidak</span> akan bisa diubah
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: Pernyataan?.siswa }} />
             <div
               className="flex items-center gap-12 hover:cursor-pointer"
               onClick={() => {
