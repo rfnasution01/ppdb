@@ -10,7 +10,13 @@ import { MenubarPrestasi } from './menubar-prestasi'
 import { ModalEditPrestasi } from './modal-edit-prestasi'
 import { ModalDeletePrestasi } from './modal-delete-prestasi'
 
-export function BiodataPrestasi({ getProfil }: { getProfil: ProfilData }) {
+export function BiodataPrestasi({
+  getProfil,
+  isValidasi,
+}: {
+  getProfil: ProfilData
+  isValidasi: boolean
+}) {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [show, setShow] = useState<boolean>(false)
   const [name, setName] = useState('')
@@ -24,6 +30,7 @@ export function BiodataPrestasi({ getProfil }: { getProfil: ProfilData }) {
           <button
             type="button"
             onClick={() => setIsShow(true)}
+            disabled={isValidasi}
             className="flex items-center gap-12 rounded-lg bg-green-700 px-24 py-12 text-white hover:bg-green-900"
           >
             <Plus size={16} /> Tambah
@@ -32,7 +39,7 @@ export function BiodataPrestasi({ getProfil }: { getProfil: ProfilData }) {
 
         {/* --- Dokumen --- */}
         <div className="w-full overflow-x-auto">
-          <table className="flex-1 border-collapse text-[2.4rem]">
+          <table className="w-full flex-1 border-collapse text-[2.4rem]">
             <thead className="relative z-10 align-top leading-medium">
               <tr className="border-b-[1.6rem] border-transparent">
                 <th className="sticky top-0 border-b-2 bg-background p-4 px-24 py-12 text-left uppercase">
@@ -134,6 +141,7 @@ export function BiodataPrestasi({ getProfil }: { getProfil: ProfilData }) {
                         <MenubarPrestasi
                           setName={setName}
                           setIsShow={setShow}
+                          isValidasi={isValidasi}
                         />
                       </td>
                       {idx === modalIsOpen && name === 'Edit' && (

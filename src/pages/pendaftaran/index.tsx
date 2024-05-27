@@ -16,6 +16,7 @@ import Cookies from 'js-cookie'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { useGetProfilQuery } from '@/store/slices/pendaftaranAPI'
 import clsx from 'clsx'
+import { useNavigate } from 'react-router-dom'
 
 export default function Pendaftaran() {
   const searchParams = new URLSearchParams(location.search)
@@ -55,15 +56,29 @@ export default function Pendaftaran() {
     data: getProfil,
     isLoading: isLoadingProfil,
     isFetching: isFetchingProfil,
+    isError,
+    error,
   } = useGetProfilQuery()
 
   const isLoading = isFetchingProfil || isLoadingProfil
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (getProfil?.data) {
       setProfil(getProfil?.data)
     }
-  }, [getProfil?.data])
+    const errorMsg = error as {
+      data?: {
+        message?: string
+      }
+    }
+
+    if (errorMsg?.data?.message === 'Token Tidak Sesuai') {
+      Cookies.remove('token')
+      navigate('/login')
+    }
+  }, [getProfil?.data, error, isError])
 
   return (
     <div className="flex h-full flex-col gap-64">

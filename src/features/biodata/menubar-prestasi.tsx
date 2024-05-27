@@ -17,9 +17,11 @@ import { Dispatch, SetStateAction } from 'react'
 export function MenubarPrestasi({
   setIsShow,
   setName,
+  isValidasi,
 }: {
   setIsShow: Dispatch<SetStateAction<boolean>>
   setName: Dispatch<SetStateAction<string>>
+  isValidasi: boolean
 }) {
   return (
     <Menubar className="px-4 shadow-[-1.2rem_0_0.8rem_rgb(255,255,255)]">
@@ -41,8 +43,10 @@ export function MenubarPrestasi({
                 )}
                 key={idx}
                 onClick={() => {
-                  setName(item)
-                  setIsShow(true)
+                  if (!isValidasi) {
+                    setName(item)
+                    setIsShow(true)
+                  }
                 }}
               >
                 {item === 'Edit' ? (

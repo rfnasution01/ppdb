@@ -78,14 +78,14 @@ export function FormListPrestasi({
         return (
           <FormItem
             className={cn(
-              'flex items-center gap-32 text-[2rem] phones:flex-col phones:items-start phones:gap-12 phones:text-[2.4rem]',
+              'flex w-1/2 items-center gap-32 text-[2rem] phones:w-full phones:flex-col phones:items-start phones:gap-12 phones:text-[2.4rem]',
               className,
             )}
           >
-            <div className="w-2/6 text-right text-emerald-900 phones:w-full phones:text-left">
+            <div className="w-2/6 text-left phones:w-full phones:text-left">
               <FormLabel>{headerLabel}</FormLabel>
             </div>
-            <div className="w-2/6 phones:w-full">
+            <div className="w-4/6 phones:w-full">
               <FormControl>
                 <Select
                   {...field}

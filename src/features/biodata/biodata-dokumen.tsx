@@ -53,7 +53,7 @@ export function BiodataDokumen({
       {/* --- Prestasi --- */}
       {jalur.toLowerCase() === 'pr' && jenjang.toLowerCase() === 'smp' && (
         <div className="flex flex-1 flex-col gap-32 pb-32">
-          <BiodataPrestasi getProfil={getProfil} />
+          <BiodataPrestasi getProfil={getProfil} isValidasi={isValidasi} />
         </div>
       )}
       {/* --- button --- */}
