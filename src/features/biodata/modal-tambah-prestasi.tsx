@@ -23,6 +23,7 @@ import {
   FormListKelas,
   FormListTingkat,
 } from '@/components/molecules/form'
+import { FormListPrestasi } from '@/components/molecules/form/formListPrestasi'
 
 export function ModalTambahPrestasi({
   isOpen,
@@ -169,7 +170,15 @@ export function ModalTambahPrestasi({
                     form={form}
                     isDisabled={isLoadingTambahPrestasi}
                   />
-                  <FormLabelComponent2
+
+                  <FormListPrestasi
+                    name="nama_prestasi"
+                    useFormReturn={form}
+                    headerLabel="Nama Prestasi"
+                    placeholder="Masukkan Nama Prestasi"
+                    isDisabled={isLoadingTambahPrestasi}
+                  />
+                  {/* <FormLabelComponent2
                     form={form}
                     label="Nama Prestasi"
                     placeHolder="Masukkan Nama Prestasi"
@@ -177,7 +186,7 @@ export function ModalTambahPrestasi({
                     type="text"
                     isOperator
                     isDisabled={isLoadingTambahPrestasi}
-                  />
+                  /> */}
                 </div>
                 <div className="flex items-center gap-32 phones:flex-col phones:gap-32">
                   <FormListJuara

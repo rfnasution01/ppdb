@@ -111,13 +111,13 @@ export function ProfilDataSiswa({
         </div>
         <p className="px-32 pb-32 pt-8">
           Jalur{' '}
-          {profil?.jalur === enumJalur.ZONASI
+          {profil?.jalur === enumJalur.ZONASI.toLowerCase()
             ? 'Zonasi'
-            : profil?.jalur === enumJalur.DISABILITAS
+            : profil?.jalur === enumJalur.DISABILITAS.toLowerCase()
               ? 'Afirmasi Penyandang Disabilitas'
-              : profil?.jalur === enumJalur.PINDAHTUGAS
+              : profil?.jalur === enumJalur.PINDAHTUGAS.toLowerCase()
                 ? 'Pindah Tugas Orang Tua'
-                : profil?.jalur === enumJalur.PRESTASI
+                : profil?.jalur === enumJalur.PRESTASI.toLowerCase()
                   ? 'Prestasi'
                   : 'Zonasi'}
         </p>

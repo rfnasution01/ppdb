@@ -24,6 +24,7 @@ import {
   FormListKelas,
   FormListTingkat,
 } from '@/components/molecules/form'
+import { FormListPrestasi } from '@/components/molecules/form/formListPrestasi'
 
 export function ModalEditPrestasi({
   isOpen,
@@ -185,13 +186,20 @@ export function ModalEditPrestasi({
                     isDisabled={isLoadingEditPrestasi}
                   />
 
-                  <FormLabelComponent2
+                  {/* <FormLabelComponent2
                     form={form}
                     label="Nama Prestasi"
                     placeHolder="Masukkan Nama Prestasi"
                     name="nama_prestasi"
                     type="text"
                     isOperator
+                    isDisabled={isLoadingEditPrestasi}
+                  /> */}
+                  <FormListPrestasi
+                    name="nama_prestasi"
+                    useFormReturn={form}
+                    headerLabel="Nama Prestasi"
+                    placeholder="Masukkan Nama Prestasi"
                     isDisabled={isLoadingEditPrestasi}
                   />
                 </div>

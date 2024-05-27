@@ -55,7 +55,7 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
             <div className="flex flex-col items-center gap-12 text-[4rem] font-bold uppercase">
               <p>Hasil Verifikasi Pendaftaran</p>
               <p className="text-center">
-                PPDB DINAS pendidikan kabupaten batubara
+                PPDB Jenjang {jenjang.toUpperCase()} Tahun Pelajaran 2024/2025
               </p>
             </div>
             {/* --- Divider --- */}
@@ -93,10 +93,12 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
                       : 'Perempuan' ?? '-'
                   }
                 />
-                <DataComponent2
-                  label="Asal Sekolah"
-                  value={profil?.sekolah?.nama_sekolah ?? '-'}
-                />
+                {jenjang?.toLowerCase() === 'smp' && (
+                  <DataComponent2
+                    label="Asal Sekolah"
+                    value={profil?.sekolah?.nama_sekolah ?? '-'}
+                  />
+                )}
                 <DataComponent2
                   label="Alamat"
                   value={profil?.biodata?.alamat_lengkap ?? '-'}
@@ -121,7 +123,7 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
                   label="Pilihan 1"
                   value={
                     profil?.pilihan?.pilihan1?.nama_sekolah
-                      ? `${profil?.pilihan?.pilihan1?.nama_sekolah} (Skor Sementara: ${profil?.pilihan?.pilihan1?.skor})`
+                      ? `${profil?.pilihan?.pilihan1?.nama_sekolah} (Skor: ${profil?.pilihan?.pilihan1?.skor})`
                       : '-'
                   }
                 />
@@ -130,7 +132,7 @@ export function CetakHasilVerifikasi({ profil }: { profil: ProfilData }) {
                     label="Pilihan 2"
                     value={
                       profil?.pilihan?.pilihan2?.nama_sekolah
-                        ? `${profil?.pilihan?.pilihan2.nama_sekolah} (Skor Sementara: ${profil?.pilihan?.pilihan2?.skor})`
+                        ? `${profil?.pilihan?.pilihan2.nama_sekolah} (Skor: ${profil?.pilihan?.pilihan2?.skor})`
                         : '-'
                     }
                   />
