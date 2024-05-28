@@ -92,6 +92,10 @@ export const sekolahSebelumnyaSchema = zod.object({
   }),
 })
 
+export const UploadSchema = zod.object({
+  file: zod.string().optional(),
+})
+
 export const orangTuaSchema = zod.object({
   isHidupAyah: zod
     .boolean({
