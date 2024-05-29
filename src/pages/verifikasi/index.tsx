@@ -1,7 +1,6 @@
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { useGetProfilQuery } from '@/store/slices/pendaftaranAPI'
 import { useEffect, useState } from 'react'
-import { CetakHasilVerifikasi } from './cetak-hasil-verifikasi'
 import { enumVerifikasi } from '@/libs/enum/enum-verifikasi'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
@@ -9,8 +8,11 @@ import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { NoData } from '@/components/atoms/NoData'
 import { enumValidasi } from '@/libs/enum/enum-validasi'
 import { DataComponent } from './data-component'
+import { HasilPendaftaran } from './cetak-hasil'
+import Cookies from 'js-cookie'
 
 export default function Verifikasi() {
+  const jenjang = Cookies.get('jenjang')
   // --- Profil ---
   const [profil, setProfil] = useState<ProfilData>()
   const {
@@ -35,7 +37,7 @@ export default function Verifikasi() {
           Verifikasi
         </p>
         {profil?.verifikasi?.status === enumVerifikasi?.DISETUJUI && (
-          <CetakHasilVerifikasi profil={profil} />
+          <HasilPendaftaran jenjang={jenjang} profil={profil} />
         )}
       </div>
       {/* --- Content --- */}

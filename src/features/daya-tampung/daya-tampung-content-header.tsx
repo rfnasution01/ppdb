@@ -4,9 +4,8 @@ import { capitalizeFirstLetterFromLowercase } from '@/libs/helpers/format-text'
 import { DayaTampungType } from '@/libs/types'
 import { useGetDayaTampungQuery } from '@/store/slices/dayaTampungAPI'
 import dayjs from 'dayjs'
-import { Printer, RefreshCcw, Search } from 'lucide-react'
+import { RefreshCcw, Search } from 'lucide-react'
 import { useRef } from 'react'
-import ReactToPrint from 'react-to-print'
 
 export function DayaTampungContentHeader({
   onSearch,
@@ -55,16 +54,6 @@ export function DayaTampungContentHeader({
         >
           <RefreshCcw size={16} />
         </span>
-
-        <ReactToPrint
-          bodyClass="print-agreement"
-          content={() => ref.current}
-          trigger={() => (
-            <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
-              <Printer size={16} />
-            </span>
-          )}
-        />
       </div>
       <section
         className="absolute left-[-10000px] top-auto h-auto overflow-hidden"

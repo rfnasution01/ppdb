@@ -13,11 +13,11 @@ import { AlertCircle } from 'lucide-react'
 import { enumValidasi } from '@/libs/enum/enum-validasi'
 import clsx from 'clsx'
 import { enumVerifikasi } from '@/libs/enum/enum-verifikasi'
-import { CetakBuktiPendaftaran } from './cetak-bukti-pendaftaran'
 import { ProfilPrestaasi } from './profil-data-prestasi'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { enumJalur } from '@/libs/enum/enum-jalur'
+import { BuktiPendaftaran } from './cetak-bukti'
 
 export function ProfilDataSiswa({
   profil,
@@ -96,7 +96,7 @@ export function ProfilDataSiswa({
           {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI && (
             <div className="flex items-center gap-32 phones:flex-col phones:items-start phones:gap-12">
               {!isLoading && profil && (
-                <CetakBuktiPendaftaran profil={profil} />
+                <BuktiPendaftaran profil={profil} jenjang={jenjang} />
               )}
               {profil?.verifikasi?.status !== enumVerifikasi.DIPROSES && (
                 <Link

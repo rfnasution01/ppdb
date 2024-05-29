@@ -5,9 +5,8 @@ import { PendaftarStatistik, StatistikType } from '@/libs/types'
 import { useGetStatistikQuery } from '@/store/slices/statistikAPI'
 import dayjs from 'dayjs'
 import { debounce } from 'lodash'
-import { Printer, RefreshCcw, Search } from 'lucide-react'
+import { RefreshCcw, Search } from 'lucide-react'
 import { Dispatch, SetStateAction, useRef } from 'react'
-import ReactToPrint from 'react-to-print'
 
 export function StatistiksContentHeader({
   setNumberStart,
@@ -74,16 +73,6 @@ export function StatistiksContentHeader({
         >
           <RefreshCcw size={16} />
         </span>
-
-        <ReactToPrint
-          bodyClass="print-agreement"
-          content={() => ref.current}
-          trigger={() => (
-            <span className="flex items-center justify-center rounded-lg border bg-white px-16 py-12 hover:cursor-pointer hover:bg-stone-300">
-              <Printer size={16} />
-            </span>
-          )}
-        />
       </div>
       <section
         className="absolute left-[-10000px] top-auto h-auto overflow-hidden"

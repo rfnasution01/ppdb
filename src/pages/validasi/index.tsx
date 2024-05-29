@@ -6,9 +6,12 @@ import dayjs from 'dayjs'
 import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { NoData } from '@/components/atoms/NoData'
 import { enumValidasi } from '@/libs/enum/enum-validasi'
-import { CetakBuktiPendaftaran } from '@/features/profil/cetak-bukti-pendaftaran'
+import { BuktiPendaftaran } from '@/features/profil/cetak-bukti'
+import Cookies from 'js-cookie'
 
 export default function Validasi() {
+  const jenjang = Cookies.get('jenjang')
+
   // --- Profil ---
   const [profil, setProfil] = useState<ProfilData>()
   const {
@@ -31,7 +34,7 @@ export default function Validasi() {
         <p className="text-[3.2rem] font-bold phones:text-[3.6rem]">Validasi</p>
         {profil?.validasi?.status === enumValidasi?.SUDAHVALIDASI &&
           !isLoadingProfil &&
-          profil && <CetakBuktiPendaftaran profil={profil} />}
+          profil && <BuktiPendaftaran jenjang={jenjang} profil={profil} />}
       </div>
       {/* --- Content --- */}
       <div className="flex w-1/2 flex-col gap-12 rounded-2xl bg-white p-32 phones:w-full">

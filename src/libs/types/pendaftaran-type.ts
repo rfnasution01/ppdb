@@ -38,6 +38,7 @@ export type BiodataType = {
   jenis_kelamin: string
   agama: string
   nik: string
+  nisn?: string
   nomor_kk: string
   telepon: string
   id_provinsi: string
