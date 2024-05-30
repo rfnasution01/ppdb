@@ -73,7 +73,7 @@ export function BiodataSekolah({
         transition: Bounce,
       })
       setTimeout(() => {
-        navigate(`/main/biodata`)
+        navigate(`/main/profil/biodata`)
       }, 2000)
     }
   }, [isSuccessPilihan])
