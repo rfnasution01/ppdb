@@ -4,6 +4,7 @@ import { enumJalur } from '@/libs/enum/enum-jalur'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
+import { Printer } from 'lucide-react'
 
 export function HasilPendaftaran({
   profil,
@@ -228,9 +229,10 @@ export function HasilPendaftaran({
           e.stopPropagation()
           handlePrint()
         }}
-        className="text-nowrap text-[2rem] hover:text-danger-100 phones:text-[2.4rem]"
+        className="flex items-center justify-center gap-12 text-nowrap text-[2rem] hover:text-danger-100 phones:text-[2.4rem]"
       >
-        Hasil Verifikasi
+        <Printer size={16} />
+        Cetak Hasil Verifikasi
       </button>
     </>
   )
