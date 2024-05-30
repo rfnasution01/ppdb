@@ -8,6 +8,9 @@ export const RootLayout = loadable(() => import('@/layouts/root-layout'))
 export const AppLayout = loadable(() => import('@/layouts/app-layout'))
 export const UserLayout = loadable(() => import('@/layouts/user-layout'))
 export const MainLayout = loadable(() => import('@/layouts/main-layout'))
+export const TiketLayout = loadable(
+  () => import('@/layouts/main-layout/tiket-layout'),
+)
 
 // ------------------
 // ----- Pages -----
@@ -40,3 +43,12 @@ export const ValidasiPage = loadable(() => import('@/pages/validasi'))
 export const KotakMasukPage = loadable(() => import('@/pages/kotak-masuk'))
 export const GelombangPage = loadable(() => import('@/pages/gelombang'))
 export const HubungiKamiPage = loadable(() => import('@/pages/hubungi-kami'))
+export const EditTiketPage = loadable(
+  () => import('@/pages/kotak-masuk/edit-tiket'),
+)
+export const TambahTiketPage = loadable(
+  () => import('@/pages/kotak-masuk/tambah-tiket'),
+)
+export const DetailTiketPage = loadable(
+  () => import('@/pages/kotak-masuk/detail-tiket'),
+)

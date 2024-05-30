@@ -1,5 +1,9 @@
 import { Res, api } from '../api'
-import { TiketType } from '@/libs/types/tiket-type'
+import {
+  TiketChatParams,
+  TiketParams,
+  TiketType,
+} from '@/libs/types/tiket-type'
 
 export const TiketEndpoints = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -9,7 +13,19 @@ export const TiketEndpoints = api.injectEndpoints({
       }),
       providesTags: ['tiket'],
     }),
-    createTiket: builder.mutation<void, { data: FormData }>({
+    getTiketDetail: builder.query<Res<TiketType>, { id: string }>({
+      query: ({ id }) => ({
+        url: `layanan${id}`,
+      }),
+      providesTags: ['detail-tiket'],
+    }),
+    getTiketNotifikasi: builder.query<Res<TiketType>, void>({
+      query: () => ({
+        url: `notifikasi`,
+      }),
+      providesTags: ['notifikasi'],
+    }),
+    createTiket: builder.mutation<void, { data: TiketParams }>({
       query: ({ data }) => ({
         url: `layanan`,
         method: 'POST',
@@ -17,7 +33,23 @@ export const TiketEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['tiket'],
     }),
-    editTiket: builder.mutation<void, { data: FormData }>({
+    createTiketChat: builder.mutation<void, { data: TiketParams }>({
+      query: ({ data }) => ({
+        url: `layanan_chat`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['tiket', 'detail-tiket'],
+    }),
+    createTiketBaca: builder.mutation<void, { data: TiketChatParams }>({
+      query: ({ data }) => ({
+        url: `layanan_baca`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['tiket', 'detail-tiket'],
+    }),
+    editTiket: builder.mutation<void, { data: TiketParams }>({
       query: ({ data }) => ({
         url: `layanan/edit`,
         method: 'POST',
@@ -25,11 +57,24 @@ export const TiketEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: ['tiket'],
     }),
+    createFile: builder.mutation<{ url: string }, FormData>({
+      query: (foto) => ({
+        url: 'upload',
+        method: 'POST',
+        body: foto,
+        formData: true,
+      }),
+    }),
   }),
 })
 
 export const {
   useGetTiketQuery,
+  useGetTiketDetailQuery,
+  useGetTiketNotifikasiQuery,
   useCreateTiketMutation,
+  useCreateFileMutation,
+  useCreateTiketChatMutation,
+  useCreateTiketBacaMutation,
   useEditTiketMutation,
 } = TiketEndpoints

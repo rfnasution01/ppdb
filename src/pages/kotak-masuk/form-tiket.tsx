@@ -4,93 +4,93 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from '@/components/atoms/Form'
 import { FormLabelInput, Input } from '@/components/molecules/input'
+import Tiptap from '@/components/molecules/tiptap'
 import { TiketType } from '@/libs/types/tiket-type'
-import { Loader2, Save } from 'lucide-react'
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { useCreateFileMutation } from '@/store/slices/tiketAPI'
+import { Image, Loader2, Save, Trash, Upload } from 'lucide-react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { UseFormReturn } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
 import { Bounce, toast } from 'react-toastify'
 
 export function FormTiket({
   form,
-  setIsShowTiket,
-  setIsShowEditTiket,
   isEdit,
   data,
   handleSubmit,
   handleSubmitEdit,
   isLoadingEdit,
   isLoadingUpload,
-  setFile,
+  setUrls,
 }: {
   form: UseFormReturn
-  setIsShowTiket: Dispatch<SetStateAction<boolean>>
-  setIsShowEditTiket: Dispatch<SetStateAction<boolean>>
-  setFile: Dispatch<SetStateAction<File | null>>
   isEdit?: boolean
   data?: TiketType
-  handleSubmitEdit: (values: any) => Promise<void>
-  handleSubmit: (values: any) => Promise<void>
-  isLoadingUpload: boolean
-  isLoadingEdit: boolean
+  handleSubmitEdit?: (values: any) => Promise<void>
+  handleSubmit?: (values: any) => Promise<void>
+  isLoadingUpload?: boolean
+  isLoadingEdit?: boolean
+  setUrls: Dispatch<SetStateAction<string[]>>
 }) {
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0]
-    const allowedTypesAll = ['image/jpeg', 'image/png']
+  const navigate = useNavigate()
 
-    const maxSize = 5 * 1024 * 1024 // 5MB
+  const [uploadFileMutation] = useCreateFileMutation()
 
-    if (
-      selectedFile &&
-      allowedTypesAll.includes(selectedFile.type) &&
-      selectedFile.size <= maxSize
-    ) {
-      setFile(selectedFile)
-    } else {
-      setFile(null)
+  const handleUploadFoto = async (file: File) => {
+    const formatData = new FormData()
+    formatData.append('berkas', file)
 
-      if (!allowedTypesAll.includes(selectedFile?.type || '')) {
-        toast.error(
-          `Type file tidak valid. Upload file dengan type ${allowedTypesAll}`,
-          {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-            transition: Bounce,
-          },
-        )
-      } else if (selectedFile?.size > maxSize) {
-        toast.error(
-          `Ukuran file terlalu besar. Upload file dengan ukuran <5 MB`,
-          {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-            transition: Bounce,
-          },
-        )
-      }
+    try {
+      const res = await uploadFileMutation(formatData)
+      setDir([...dir, res?.data?.url])
+    } catch (e) {
+      console.error(e)
+      toast.error(`Data gagal disimpan`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
     }
   }
 
+  const [dir, setDir] = useState(form.watch('berkas') ?? [])
+
   useEffect(() => {
-    if (isEdit && data) {
+    if (dir && dir.length > 0) {
+      setUrls(dir)
+    }
+  }, [dir])
+
+  useEffect(() => {
+    if (isEdit) {
       form.setValue('judul', data?.judul)
       form.setValue('keterangan', data?.keterangan)
+      form.setValue('berkas', data?.lampiran)
+      setDir(data?.lampiran?.map((item) => item?.dokumen))
     }
-  }, [isEdit, data])
+  }, [data])
+
+  useEffect(() => {
+    if (dir) {
+      form.setValue('berkas', dir)
+    }
+  }, [dir])
+
+  const handleRemoveItem = (indexToRemove) => {
+    setDir((prevMultiImg) => {
+      return prevMultiImg.filter((_, index) => index !== indexToRemove)
+    })
+  }
 
   return (
     <Form {...form}>
@@ -108,35 +108,111 @@ export function FormTiket({
           placeholder="Masukkan Judul"
           name="judul"
           type="text"
-          isDisabled={isLoadingUpload}
+          isDisabled={isLoadingUpload || isLoadingEdit}
         />
-        <FormLabelInput
-          form={form}
-          label="Keterangan"
-          placeholder="Masukkan Keterangan"
+
+        <FormField
+          control={form?.control}
           name="keterangan"
-          type="text"
-          isDisabled={isLoadingUpload}
+          render={({ field }) => (
+            <FormItem
+              className={`flex flex-col gap-y-8 text-[2rem] text-black`}
+            >
+              <FormLabel>Keterangan</FormLabel>
+              <FormControl>
+                <Tiptap
+                  content={field.value}
+                  placeholder="Masukkan Keterangan"
+                  update={field.onChange}
+                  toolbarClassName="gap-4 p-4"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
 
         <FormField
           name="berkas"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="flex w-full items-center  text-[2rem] phones:flex-col phones:items-start phones:gap-12 phones:text-[2.4rem]">
-              <div className="flex w-full flex-col gap-12 phones:w-full">
-                <FormControl>
+            <FormItem className="flex flex-col space-y-2">
+              <FormControl>
+                <div>
                   <Input
+                    className="absolute -z-[1] h-[0.1px] w-[0.1px] overflow-hidden opacity-0"
+                    {...field}
+                    id="berkas"
                     type="file"
-                    className="bg-white"
-                    disabled={isLoadingUpload}
+                    value={''}
+                    disabled={isLoadingEdit || isLoadingUpload}
+                    placeholder="Lampiran"
                     onChange={(e) => {
-                      field.onChange(e)
-                      handleFileChange(e)
+                      if (e.target.files[0].size > 5 * 1000000) {
+                        return toast.error(
+                          `File terlalu besar. Maksimal 5 MB`,
+                          {
+                            position: 'bottom-right',
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: 'light',
+                            transition: Bounce,
+                          },
+                        )
+                      } else {
+                        if (e.target.files[0] != null) {
+                          handleUploadFoto(e.target.files[0])
+                        }
+                      }
                     }}
                   />
-                </FormControl>
-              </div>
+                  <div className="flex gap-32 phones:flex-col">
+                    <label
+                      className="flex w-1/2 flex-col items-center gap-24 rounded-lg border-2 border-dashed border-primary p-48 text-primary hover:cursor-pointer phones:w-full"
+                      htmlFor="berkas"
+                    >
+                      <span>
+                        <Upload size={32} />
+                      </span>
+                      Unggah File
+                    </label>
+
+                    <div className="flex w-1/2 flex-col whitespace-nowrap phones:w-full">
+                      {dir && dir.length > 0 ? (
+                        dir?.map((name, idx) => (
+                          <div
+                            className="flex items-center justify-between gap-16 p-8 hover:cursor-pointer hover:text-primary"
+                            key={idx}
+                          >
+                            <Link
+                              to={name}
+                              className="flex flex-1 items-center gap-12"
+                              target="_blank"
+                            >
+                              <Image size={16} />{' '}
+                              <p className="limited-text">{name}</p>
+                            </Link>
+                            <Trash
+                              size={15}
+                              className="hover:cursor-pointer"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleRemoveItem(idx)
+                              }}
+                            />
+                          </div>
+                        ))
+                      ) : (
+                        <div>Belum ada file di upload</div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -148,14 +224,10 @@ export function FormTiket({
             className="rounded-lg bg-rose-700 px-24 py-12 text-center text-white hover:bg-rose-900"
             type="button"
             onClick={() => {
-              if (isEdit) {
-                setIsShowEditTiket(false)
-              } else {
-                setIsShowTiket(false)
-              }
+              navigate('/main/pertanyaan')
             }}
           >
-            Tidak
+            Kembali
           </button>
           <button
             disabled={isLoadingUpload || isLoadingEdit}

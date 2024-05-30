@@ -1,0 +1,74 @@
+.Toolbar {
+  display: flex;
+}
+
+.icon {
+  border-radius: 5px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+}
+
+.icon:disabled {
+  color: rgba(#333333, 0.5);
+  pointer-events: none;
+}
+
+.icon:hover {
+  background: #333333;
+  color: #ffffff;
+  cursor: pointer;
+}
+.is-active {
+  background: #333333;
+  color: #ffffff;
+}
+
+.icon + .icon {
+  margin-left: 4px;
+}
+
+.tiptap {
+  height: 98px;
+}
+
+/* Placeholder (at the top) */
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+ul {
+  padding: 0 1rem;
+  list-style-type: disc;
+}
+ol {
+  padding: 0 1rem;
+  list-style-type: decimal;
+}
+h1 {
+  display: block;
+  font-size: 3.6rem;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+h2 {
+  display: block;
+  font-size: 3.2rem;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+h3 {
+  display: block;
+  font-size: 2.4rem;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}

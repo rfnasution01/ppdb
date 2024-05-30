@@ -28,6 +28,10 @@ import {
   ValidasiPage,
   HubungiKamiPage,
   KotakMasukPage,
+  TiketLayout,
+  EditTiketPage,
+  TambahTiketPage,
+  DetailTiketPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -149,7 +153,25 @@ export const router = createBrowserRouter([
       },
       {
         path: 'pertanyaan',
-        element: <KotakMasukPage />,
+        element: <TiketLayout />,
+        children: [
+          {
+            path: '',
+            element: <KotakMasukPage />,
+          },
+          {
+            path: 'edit',
+            element: <EditTiketPage />,
+          },
+          {
+            path: 'tambah',
+            element: <TambahTiketPage />,
+          },
+          {
+            path: 'detail',
+            element: <DetailTiketPage />,
+          },
+        ],
       },
       {
         path: 'jadwal-ppdb',

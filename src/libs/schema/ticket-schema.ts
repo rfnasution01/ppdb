@@ -9,5 +9,5 @@ export const tiketSchema = zod.object({
     required_error: 'Keterangan harus di isi',
     invalid_type_error: 'Format keterangan tidak valid',
   }),
-  berkas: zod.string().optional().nullable().nullish(),
+  berkas: zod.array(zod.string()).optional().nullable().nullish(),
 })
