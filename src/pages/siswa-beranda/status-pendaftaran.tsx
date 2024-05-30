@@ -78,10 +78,10 @@ export function StatusPendaftaran({
                 {
                   'h-[5rem] w-[5rem]':
                     item?.status_pendaftaran?.validasi === 1 &&
-                    item?.status_pendaftaran?.verifikasi !== 0,
+                    item?.status_pendaftaran?.verifikasi > 1,
                   'h-[2rem] w-[2rem]': !(
                     item?.status_pendaftaran?.validasi === 1 &&
-                    item?.status_pendaftaran?.verifikasi !== 0
+                    item?.status_pendaftaran?.verifikasi > 1
                   ),
                 },
                 {
@@ -144,29 +144,32 @@ export function StatusPendaftaran({
                 {
                   'h-[5rem] w-[5rem]':
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1,
                   'h-[2rem] w-[2rem]': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1
                   ),
                 },
                 {
-                  'bg-[#ffd800]': !(
+                  'bg-slate-300 ': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
-                    item?.status_pendaftaran?.pengumuman === 1
+                    item?.status_pendaftaran?.verifikasi === 2
                   ),
+                  'bg-[#ffd800]':
+                    item?.status_pendaftaran?.validasi !== 0 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
+                    item?.status_pendaftaran?.pengumuman === 0,
                   'bg-green-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1,
                 },
               )}
             >
               {item?.status_pendaftaran?.validasi !== 0 &&
-              item?.status_pendaftaran?.verifikasi === 1 &&
+              item?.status_pendaftaran?.verifikasi === 2 &&
               item?.status_pendaftaran?.pengumuman === 1 ? (
                 <Check size={20} />
               ) : (
@@ -177,11 +180,11 @@ export function StatusPendaftaran({
               className={clsx('flex-1 border-2', {
                 'border-[#ffd800]':
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1,
                 'border[#efefef]': !(
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1
                 ),
               })}
@@ -193,11 +196,11 @@ export function StatusPendaftaran({
               className={clsx('flex-1 border-2', {
                 'border-[#ffd800]':
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1,
                 'border[#efefef]': !(
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1
                 ),
               })}
@@ -208,12 +211,12 @@ export function StatusPendaftaran({
                 {
                   'h-[5rem] w-[5rem]':
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1,
                   'h-[2rem] w-[2rem]': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1
                   ),
@@ -221,30 +224,30 @@ export function StatusPendaftaran({
                 {
                   'bg-slate-300': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1
                   ),
                   'bg-green-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1,
                   'bg-red-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 2,
                 },
               )}
             >
               {item?.status_pendaftaran?.validasi !== 0 &&
-              item?.status_pendaftaran?.verifikasi === 1 &&
+              item?.status_pendaftaran?.verifikasi === 2 &&
               item?.status_pendaftaran?.pengumuman === 1 &&
               item?.status_pendaftaran?.lulus === 1 ? (
                 <Check size={20} />
               ) : item?.status_pendaftaran?.validasi !== 0 &&
-                item?.status_pendaftaran?.verifikasi === 1 &&
+                item?.status_pendaftaran?.verifikasi === 2 &&
                 item?.status_pendaftaran?.pengumuman === 1 &&
                 item?.status_pendaftaran?.lulus === 2 ? (
                 <X size={20} />
@@ -256,12 +259,12 @@ export function StatusPendaftaran({
               className={clsx('flex-1 border-2', {
                 'border-[#ffd800]':
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
                   item?.status_pendaftaran?.lulus === 1,
                 'border[#efefef]': !(
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
                   item?.status_pendaftaran?.lulus === 1
                 ),
@@ -274,12 +277,12 @@ export function StatusPendaftaran({
               className={clsx('flex-1 border-2', {
                 'border-[#ffd800]':
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
                   item?.status_pendaftaran?.lulus === 1,
                 'border[#efefef]': !(
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
                   item?.status_pendaftaran?.lulus === 1
                 ),
@@ -291,13 +294,13 @@ export function StatusPendaftaran({
                 {
                   'h-[5rem] w-[5rem]':
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1 &&
                     item?.status_pendaftaran?.registrasi_ulang === 1,
                   'h-[2rem] w-[2rem]': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1 &&
                     item?.status_pendaftaran?.registrasi_ulang === 1
@@ -306,14 +309,14 @@ export function StatusPendaftaran({
                 {
                   'bg-slate-300': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1 &&
                     item?.status_pendaftaran?.registrasi_ulang === 1
                   ),
                   'bg-green-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
-                    item?.status_pendaftaran?.verifikasi === 1 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1 &&
                     item?.status_pendaftaran?.registrasi_ulang === 1,
@@ -321,7 +324,7 @@ export function StatusPendaftaran({
               )}
             >
               {item?.status_pendaftaran?.validasi !== 0 &&
-              item?.status_pendaftaran?.verifikasi === 1 &&
+              item?.status_pendaftaran?.verifikasi === 2 &&
               item?.status_pendaftaran?.pengumuman === 1 &&
               item?.status_pendaftaran?.lulus === 1 &&
               item?.status_pendaftaran?.registrasi_ulang === 1 ? (
@@ -334,12 +337,12 @@ export function StatusPendaftaran({
               className={clsx('flex-1 border-2', {
                 'border-[#ffd800]':
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
                   item?.status_pendaftaran?.lulus === 1,
                 'border[#efefef]': !(
                   item?.status_pendaftaran?.validasi !== 0 &&
-                  item?.status_pendaftaran?.verifikasi === 1 &&
+                  item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
                   item?.status_pendaftaran?.lulus === 1
                 ),
