@@ -32,3 +32,12 @@ export function convertSlugToText(slug = '') {
 
   return text
 }
+
+export function getInitials(name) {
+  const initials = name
+    ?.split(' ')
+    ?.map((word) => word.charAt(0))
+    ?.join('')
+    ?.toUpperCase()
+  return initials
+}

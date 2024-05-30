@@ -9,6 +9,22 @@ export type TiketType = {
   status_at: string
 }
 
+export type TiketDetailType = {
+  ticket: TiketType
+  chat: TiketChatType[]
+}
+
+export type TiketChatType = {
+  id: string
+  jenis_chat: string
+  isi: string
+  baca: string
+  lampiran: LampiranType[]
+  user: string
+  tanggal: string
+  photo: string
+}
+
 export type LampiranType = {
   id: string
   dokumen: string

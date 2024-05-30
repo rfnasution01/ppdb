@@ -1,6 +1,7 @@
 import { Res, api } from '../api'
 import {
   TiketChatParams,
+  TiketDetailType,
   TiketParams,
   TiketType,
 } from '@/libs/types/tiket-type'
@@ -13,9 +14,12 @@ export const TiketEndpoints = api.injectEndpoints({
       }),
       providesTags: ['tiket'],
     }),
-    getTiketDetail: builder.query<Res<TiketType>, { id: string }>({
+    getTiketDetail: builder.query<Res<TiketDetailType>, { id: string }>({
       query: ({ id }) => ({
-        url: `layanan${id}`,
+        url: `layanan_detail`,
+        params: {
+          id: id,
+        },
       }),
       providesTags: ['detail-tiket'],
     }),

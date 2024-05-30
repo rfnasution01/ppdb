@@ -83,13 +83,25 @@ export function MappingLayanan({ data }: { data: TiketType[] }) {
       <div className="hidden phones:block">
         <div className="flex flex-col gap-24">
           {data?.map((item, idx) => (
-            <div className="flex w-full flex-col gap-12" key={idx}>
+            <div
+              className="flex w-full flex-col gap-12"
+              key={idx}
+              onClick={() => {
+                navigate(`/main/pertanyaan/detail?id=${item?.id}`)
+              }}
+            >
               <div className="itemsc-center flex w-full gap-32">
                 <div className="w-1/12">
-                  <MenubarLayanan
-                    isDisabled={item?.status !== enumTicket.TICKETBARU}
-                    id={item?.id}
-                  />
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                    }}
+                  >
+                    <MenubarLayanan
+                      isDisabled={item?.status !== enumTicket.TICKETBARU}
+                      id={item?.id}
+                    />
+                  </button>
                 </div>
                 <div className="w-8/12 truncate font-bold">{item?.judul}</div>
                 <div className="w-3/12 text-right">
