@@ -93,12 +93,12 @@ export function BiodataPribadi({
           setActiveIndex(3)
           setName('orang-tua')
           dispatch(setStateBiodata({ page: 'orang-tua' }))
-          navigate(`/main?page=${'orang-tua'}`)
+          navigate(`/main/profil?page=${'orang-tua'}`)
         } else {
           setActiveIndex(2)
           setName('pendidikan-sebelumnya')
           dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
-          navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+          navigate(`/main/profil?page=${'pendidikan-sebelumnya'}`)
         }
       }, 2000)
     }
@@ -174,7 +174,7 @@ export function BiodataPribadi({
                 setActiveIndex(0)
                 setName('jalur-pendaftaran')
                 dispatch(setStateBiodata({ page: 'jalur-pendaftaran' }))
-                navigate(`/main?page=${'jalur-pendaftaran'}`)
+                navigate(`/main/profil?page=${'jalur-pendaftaran'}`)
               }}
             >
               Kembali

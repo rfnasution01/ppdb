@@ -71,7 +71,7 @@ export function BiodataDokumen({
               setActiveIndex(jenjang.toLowerCase() === 'sd' ? 3 : 4)
               setName('orang-tua')
               dispatch(setStateBiodata({ page: 'orang-tua' }))
-              navigate(`/main?page=${'orang-tua'}`)
+              navigate(`/main/profil?page=${'orang-tua'}`)
             }}
           >
             Kembali
@@ -84,7 +84,7 @@ export function BiodataDokumen({
               setActiveIndex(5)
               setName('pilih-sekolah')
               dispatch(setStateBiodata({ page: 'pilih-sekolah' }))
-              navigate(`/main?page=${'pilih-sekolah'}`)
+              navigate(`/main/profil?page=${'pilih-sekolah'}`)
             }}
           >
             Lanjut

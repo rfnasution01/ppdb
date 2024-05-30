@@ -43,6 +43,7 @@ export const ValidasiPage = loadable(() => import('@/pages/validasi'))
 export const KotakMasukPage = loadable(() => import('@/pages/kotak-masuk'))
 export const GelombangPage = loadable(() => import('@/pages/gelombang'))
 export const HubungiKamiPage = loadable(() => import('@/pages/hubungi-kami'))
+export const SiswaBerandaPage = loadable(() => import('@/pages/siswa-beranda'))
 export const EditTiketPage = loadable(
   () => import('@/pages/kotak-masuk/edit-tiket'),
 )

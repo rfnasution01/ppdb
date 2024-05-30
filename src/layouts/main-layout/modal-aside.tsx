@@ -31,7 +31,8 @@ export function ModalAside({
   const isActivePage = (item: string) => {
     if (
       convertToSlug(item) === secondPathname ||
-      (item.toLowerCase() === 'beranda' && secondPathname === undefined)
+      (item.toLowerCase() === 'beranda' && secondPathname === undefined) ||
+      (secondPathname === 'biodata' && item === 'profil')
     ) {
       return true
     }
@@ -42,8 +43,8 @@ export function ModalAside({
 
   const listNotValidasi = ListUserNavigation.filter(
     (item) =>
-      item?.title === 'Beranda' ||
-      item?.title === 'Jadwal' ||
+      item?.title === 'Profil' ||
+      item?.title === 'Jadwal PPDB' ||
       item?.title === 'Hubungi Kami',
   )
 

@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ModalLogout } from '../root-layout/modal-logout'
 
 export function MainHeader({ profil }: { profil: ProfilData }) {
-  const { secondPathname } = usePathname()
+  const { secondPathname, thirdPathname } = usePathname()
   const navigate = useNavigate()
   const [isShowLogout, setisShowLogout] = useState<boolean>(false)
 
@@ -19,7 +19,10 @@ export function MainHeader({ profil }: { profil: ProfilData }) {
     if (
       convertToSlug(item) === secondPathname ||
       (item.toLowerCase() === 'beranda' && secondPathname === undefined) ||
-      (secondPathname === 'biodata' && item === 'beranda')
+      (secondPathname === 'profil' && item === 'profil') ||
+      (secondPathname === 'profil' &&
+        thirdPathname === 'biodata' &&
+        item === 'profil')
     ) {
       return true
     }
@@ -35,8 +38,8 @@ export function MainHeader({ profil }: { profil: ProfilData }) {
 
   const listNotValidasi = ListUserNavigation.filter(
     (item) =>
-      item?.title === 'Beranda' ||
-      item?.title === 'Jadwal' ||
+      item?.title === 'Profil' ||
+      item?.title === 'Jadwal PPDB' ||
       item?.title === 'Hubungi Kami',
   )
 

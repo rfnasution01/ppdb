@@ -1,18 +1,23 @@
 import {
   CalendarClock,
   HelpCircle,
-  Layout,
+  LayoutDashboard,
   Phone,
   Scroll,
   ShieldCheck,
   ShieldEllipsis,
   Speech,
+  User,
 } from 'lucide-react'
 
 export const ListUserNavigation = [
   {
     title: 'Beranda',
-    icon: <Layout size={16} />,
+    icon: <LayoutDashboard size={16} />,
+  },
+  {
+    title: 'Profil',
+    icon: <User size={16} />,
   },
   {
     title: 'Jadwal PPDB',

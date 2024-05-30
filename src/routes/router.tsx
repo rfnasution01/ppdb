@@ -32,6 +32,7 @@ import {
   EditTiketPage,
   TambahTiketPage,
   DetailTiketPage,
+  SiswaBerandaPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: 'beranda',
+        path: 'profil',
         element: <BerandaPage />,
       },
       {
@@ -123,6 +124,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '',
+        element: <SiswaBerandaPage />,
+      },
+      {
+        path: 'profil',
         element: <BiodataPage />,
         children: [
           {

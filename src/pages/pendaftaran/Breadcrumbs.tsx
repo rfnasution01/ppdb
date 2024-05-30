@@ -96,7 +96,7 @@ export default function Breadcrumb({
               setActiveIndex(isSDOnClick(idx))
               setName(convertToSlug(item))
               dispatch(setStateBiodata({ page: convertToSlug(item) }))
-              navigate(`/main?page=${convertToSlug(item)}`)
+              navigate(`/main/profil?page=${convertToSlug(item)}`)
             }
           }}
         >

@@ -4,12 +4,14 @@ import { Link, Outlet } from 'react-router-dom'
 import { usePathname } from '@/libs/hooks/usePathname'
 
 export default function Biodata() {
-  const { secondPathname } = usePathname()
+  const { secondPathname, thirdPathname } = usePathname()
 
   const isActivePage = (item: string) => {
     if (
-      convertToSlug(item) === secondPathname ||
-      (item.toLowerCase() === 'pendaftaran' && secondPathname === undefined)
+      (item.toLowerCase() === 'biodata' && thirdPathname !== undefined) ||
+      (item.toLowerCase() === 'pendaftaran' &&
+        secondPathname === 'profil' &&
+        thirdPathname === undefined)
     ) {
       return true
     }
@@ -22,7 +24,7 @@ export default function Biodata() {
         {['Pendaftaran', 'Biodata'].map((item, idx) => (
           <Link
             to={
-              item === 'Pendaftaran' ? '/main' : `/main/${convertToSlug(item)}`
+              item === 'Pendaftaran' ? '/main/profil' : `/main/profil/biodata`
             }
             className={clsx(
               'border-b px-24 py-16 text-center text-[2rem] hover:cursor-pointer hover:border-danger-300 hover:text-danger-300',

@@ -152,7 +152,7 @@ export function BiodataSekolah({
                 setActiveIndex(4)
                 setName('kelengkapan-dokumen')
                 dispatch(setStateBiodata({ page: 'kelengkapan-dokumen' }))
-                navigate(`/main?page=${'kelengkapan-dokumen'}`)
+                navigate(`/main/profil?page=${'kelengkapan-dokumen'}`)
               }}
             >
               Kembali

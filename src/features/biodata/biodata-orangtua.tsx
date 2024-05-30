@@ -97,7 +97,7 @@ export function BiodataOrangTua({
         setActiveIndex(4)
         setName('kelengkapan-dokumen')
         dispatch(setStateBiodata({ page: 'kelengkapan-dokumen' }))
-        navigate(`/main?page=${'kelengkapan-dokumen'}`)
+        navigate(`/main/profil?page=${'kelengkapan-dokumen'}`)
       }, 2000)
     }
   }, [isSuccessOrangTua])
@@ -186,12 +186,12 @@ export function BiodataOrangTua({
                   setActiveIndex(1)
                   setName('informasi-pribadi')
                   dispatch(setStateBiodata({ page: 'informasi-pribadi' }))
-                  navigate(`/main?page=${'informasi-pribadi'}`)
+                  navigate(`/main/profil?page=${'informasi-pribadi'}`)
                 } else {
                   setActiveIndex(2)
                   setName('pendidikan-sebelumnya')
                   dispatch(setStateBiodata({ page: 'pendidikan-sebelumnya' }))
-                  navigate(`/main?page=${'pendidikan-sebelumnya'}`)
+                  navigate(`/main/profil?page=${'pendidikan-sebelumnya'}`)
                 }
               }}
             >

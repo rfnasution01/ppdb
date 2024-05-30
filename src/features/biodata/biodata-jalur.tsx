@@ -92,7 +92,7 @@ export function BiodataJalur({
         setActiveIndex(1)
         setName('informasi-pribadi')
         dispatch(setStateBiodata({ page: 'informasi-pribadi' }))
-        navigate(`/main?page=${'informasi-pribadi'}`)
+        navigate(`/main/profil?page=${'informasi-pribadi'}`)
       }, 2000)
     }
   }, [isSuccessJalur])

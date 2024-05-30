@@ -156,7 +156,7 @@ export function ProfilDataSiswa({
                 type="button"
                 disabled={isLoading || dataSudahValidasi}
                 onClick={() => {
-                  navigate(`/main?page=${'jalur-pendaftaran'}`)
+                  navigate(`/main/profil?page=${'jalur-pendaftaran'}`)
                 }}
               >
                 Edit

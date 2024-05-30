@@ -77,7 +77,7 @@ export function BiodataPendidikan({
         setActiveIndex(3)
         setName('orang-tua')
         dispatch(setStateBiodata({ page: 'orang-tua' }))
-        navigate(`/main?page=${'orang-tua'}`)
+        navigate(`/main/profil?page=${'orang-tua'}`)
       }, 2000)
     }
   }, [isSuccessPendidikan])
@@ -139,7 +139,7 @@ export function BiodataPendidikan({
                 setActiveIndex(1)
                 setName('informasi-pribadi')
                 dispatch(setStateBiodata({ page: 'informasi-pribadi' }))
-                navigate(`/main?page=${'informasi-pribadi'}`)
+                navigate(`/main/profil?page=${'informasi-pribadi'}`)
               }}
             >
               Kembali
