@@ -27,6 +27,7 @@ import {
   GelombangPage,
   ValidasiPage,
   HubungiKamiPage,
+  KotakMasukPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -146,13 +147,9 @@ export const router = createBrowserRouter([
         path: 'daftar-ulang',
         element: <ComingSoonPage />,
       },
-      // {
-      //   path: 'kotak-masuk',
-      //   element: <KotakMasukPage />,
-      // },
       {
         path: 'pertanyaan',
-        element: <ComingSoonPage />,
+        element: <KotakMasukPage />,
       },
       {
         path: 'jadwal-ppdb',

@@ -19,6 +19,7 @@ export type Res<T, M = undefined> = {
   pendaftar?: PendaftarType[]
   header?: HeaderType
   statistik?: PendaftarStatistik[]
+  can_add?: boolean
 }
 
 const baseURL = import.meta.env.VITE_BASE_URL
@@ -35,7 +36,7 @@ export const api = createApi({
       return headers
     },
   }),
-  tagTypes: ['daptar-akun', 'profil', 'prestasi'],
+  tagTypes: ['daptar-akun', 'profil', 'prestasi', 'tiket', 'detail-tiket'],
   // * it's okay to disable eslint here, because the warning is unnecessary. Each endpoint will be injected from an api slice.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   endpoints: (_builder) => ({}),

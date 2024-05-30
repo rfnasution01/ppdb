@@ -111,7 +111,7 @@ export function ModalWelcome({
             <div className="flex items-center justify-end">
               <div
                 onClick={handleCloseWelcome}
-                className="flex items-center gap-12 rounded-2xl bg-green-700 px-24 py-12 text-white hover:bg-green-900"
+                className="flex items-center gap-12 rounded-2xl bg-green-700 px-24 py-12 text-white hover:cursor-pointer hover:bg-green-900"
               >
                 <DoorClosed size={16} />
                 Jangan Tampilkan Lagi
