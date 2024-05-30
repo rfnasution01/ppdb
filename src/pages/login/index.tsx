@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 
 export default function Login() {
   const [msg, setMsg] = useState<string>('')
+  const [validasi, setValidasi] = useState<number>()
   const navigate = useNavigate()
   // --- Post API ---
   const [
@@ -46,6 +47,7 @@ export default function Login() {
         Cookies.set('token', token)
         Cookies.set('jalur', jalur)
         Cookies.set('jenjang', jenjang)
+        setValidasi(res?.data?.data?.validasi)
       } else {
         console.error('Error occurred:', res.error)
       }
@@ -58,7 +60,7 @@ export default function Login() {
     if (loginIsSuccess) {
       setMsg('Login Berhasil!')
       setTimeout(() => {
-        navigate('/main')
+        navigate(`${validasi !== 1 ? '/main/profil' : '/main'}`)
       }, 1000)
     }
   }, [loginIsSuccess])

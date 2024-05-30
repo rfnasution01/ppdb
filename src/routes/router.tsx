@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: 'profil',
+        path: 'beranda',
         element: <BerandaPage />,
       },
       {

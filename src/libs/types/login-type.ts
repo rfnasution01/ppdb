@@ -7,6 +7,7 @@ export type ResponseLoginType = {
   token: string
   jenjang: string
   jalur: string
+  validasi: number
 }
 
 export type ChangePasswordType = {

@@ -9,7 +9,15 @@ export const LoginEndpoints = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['daptar-akun', 'profil'],
+      invalidatesTags: [
+        'daptar-akun',
+        'profil',
+        'detail-tiket',
+        'dashboard',
+        'notifikasi',
+        'prestasi',
+        'tiket',
+      ],
     }),
   }),
 })
