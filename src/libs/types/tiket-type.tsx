@@ -9,6 +9,13 @@ export type TiketType = {
   status_at: string
 }
 
+export type TikeetNotificationType = {
+  status: string
+  message: string
+  data: number
+  id: string
+}
+
 export type TiketDetailType = {
   ticket: TiketType
   chat: TiketChatType[]

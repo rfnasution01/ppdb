@@ -1,5 +1,6 @@
 import { Res, api } from '../api'
 import {
+  TikeetNotificationType,
   TiketChatParams,
   TiketDetailType,
   TiketParams,
@@ -23,7 +24,7 @@ export const TiketEndpoints = api.injectEndpoints({
       }),
       providesTags: ['detail-tiket'],
     }),
-    getTiketNotifikasi: builder.query<Res<TiketType>, void>({
+    getTiketNotifikasi: builder.query<TikeetNotificationType, void>({
       query: () => ({
         url: `notifikasi`,
       }),
