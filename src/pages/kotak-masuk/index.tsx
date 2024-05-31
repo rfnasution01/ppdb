@@ -8,9 +8,9 @@ import {
 } from '@/store/slices/tiketAPI'
 import { TikeetNotificationType, TiketType } from '@/libs/types/tiket-type'
 import { NoData } from '@/components/atoms/NoData'
-import { MappingLayanan } from './mapping-layanan'
 import Loading from '@/components/atoms/Loading'
 import { Link } from 'react-router-dom'
+import { MappingTiket } from './mapping-tiket'
 
 export default function KotakMasuk() {
   // --- Layanan ---
@@ -83,11 +83,7 @@ export default function KotakMasuk() {
         <Loading />
       ) : (
         <div className="flex h-full flex-col gap-24">
-          {layanan?.length === 0 ? (
-            <NoData />
-          ) : (
-            <MappingLayanan data={layanan} />
-          )}
+          {layanan?.length === 0 ? <NoData /> : <MappingTiket data={layanan} />}
         </div>
       )}
 

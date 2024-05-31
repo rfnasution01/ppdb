@@ -19,3 +19,7 @@ export const chatSchema = zod.object({
   }),
   berkas: zod.array(zod.string()).optional().nullable().nullish(),
 })
+
+export const closeSchema = zod.object({
+  id: zod.array(zod.string()).optional().nullable().nullish(),
+})

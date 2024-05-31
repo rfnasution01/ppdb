@@ -34,7 +34,7 @@ export function MenubarLayanan({
         >
           <Ellipsis size={16} />
         </MenubarTrigger>
-        <MenubarContent className="shadow-grey-light-1 absolute left-0 top-0 w-[30rem] transition-all duration-300">
+        <MenubarContent className="shadow-grey-light-1 absolute right-0 top-0 w-[30rem] transition-all duration-300">
           <div className="flex flex-col gap-12 rounded-2xl bg-white p-24 text-[2rem] phones:text-[2.4rem]">
             {['Edit'].map((item, idx) => (
               <Link

@@ -70,6 +70,21 @@ export const TiketEndpoints = api.injectEndpoints({
         formData: true,
       }),
     }),
+    createTutupChat: builder.mutation<
+      void,
+      {
+        data: {
+          id: string
+        }
+      }
+    >({
+      query: ({ data }) => ({
+        url: `layanan_close`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['tiket', 'detail-tiket', 'notifikasi'],
+    }),
   }),
 })
 
@@ -82,4 +97,5 @@ export const {
   useCreateTiketChatMutation,
   useCreateTiketBacaMutation,
   useEditTiketMutation,
+  useCreateTutupChatMutation,
 } = TiketEndpoints
