@@ -16,6 +16,7 @@ import { FormChat } from './form-chat'
 import { Bounce, ToastContainer, toast } from 'react-toastify'
 import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { DetailHistory } from './detail-tiket-history'
+import clsx from 'clsx'
 
 export default function DetailTiket() {
   const searchParams = new URLSearchParams(location.search)
@@ -119,9 +120,24 @@ export default function DetailTiket() {
   return (
     <div className="flex h-full w-full flex-col gap-32">
       {/* --- Header --- */}
-      <p className="border-b border-[#ccd2da] pb-16 text-[3rem]">
-        {detail?.ticket?.judul ?? '-'}
-      </p>
+      <div className="flex flex-col gap-12 border-b border-[#ccd2da] pb-16">
+        <p className="text-[3rem]">{detail?.ticket?.judul ?? '-'}</p>
+        <div className="flex">
+          <div
+            className={clsx('rounded-full px-24 py-8 text-[2rem]', {
+              'bg-blue-300 text-blue-700': detail?.ticket?.status === 0,
+              'bg-orange-300 text-orange-700': detail?.ticket?.status === 1,
+              'bg-green-300 text-green-700': detail?.ticket?.status === 2,
+            })}
+          >
+            {detail?.ticket?.status === 1
+              ? 'Berlangsung'
+              : detail?.ticket?.status === 2
+                ? 'Selesai'
+                : 'Menunggu'}
+          </div>
+        </div>
+      </div>
       {/* --- Tiket --- */}
       <div className="scrollbar flex h-full flex-col gap-32 overflow-y-auto">
         {isFetching || isLoading ? (

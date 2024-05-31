@@ -62,10 +62,10 @@ export function MappingLayanan({ data }: { data: TiketType[] }) {
                     {item?.status === enumTicket.TICKETBARU
                       ? 'Menunggu'
                       : item?.status === enumTicket.TICKETSUDAHDIRESPONS
-                        ? 'On Progress'
+                        ? 'Berlangsung'
                         : item?.status === enumTicket.TICKETSELESAI
                           ? 'Selesai'
-                          : 'On Progress'}
+                          : 'Berlangsung'}
                   </p>
                 </div>
               </td>
