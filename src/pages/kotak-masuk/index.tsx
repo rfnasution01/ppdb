@@ -69,7 +69,7 @@ export default function KotakMasuk() {
         </div>
       </div>
 
-      <div className="flex">
+      <div className="flex ">
         <Link
           to={`${canAdd ? '/main/pertanyaan/tambah' : ''}`}
           className={`flex items-center justify-center gap-12 rounded-lg bg-green-700 px-24 py-12 text-[2rem] text-white hover:bg-green-900 ${canAdd ? 'hover:cursor-pointer' : 'cursor-not-allowed'}`}
@@ -78,14 +78,20 @@ export default function KotakMasuk() {
           Buat Ticket
         </Link>
       </div>
-      {/* --- Layanan --- */}
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <div className="flex h-full flex-col gap-24">
-          {layanan?.length === 0 ? <NoData /> : <MappingTiket data={layanan} />}
-        </div>
-      )}
+      <div className="scrollbar h-full flex-1 overflow-y-auto">
+        {/* --- Layanan --- */}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className="scrollbar flex h-full flex-col gap-24 overflow-y-auto">
+            {layanan?.length === 0 ? (
+              <NoData />
+            ) : (
+              <MappingTiket data={layanan} />
+            )}
+          </div>
+        )}
+      </div>
 
       <ToastContainer />
     </div>

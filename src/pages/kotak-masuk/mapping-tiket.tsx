@@ -11,7 +11,7 @@ export function MappingTiket({ data }: { data: TiketType[] }) {
   const navigate = useNavigate()
 
   return (
-    <div className="scrollbar flex h-full flex-col gap-32 overflow-auto">
+    <div className="scrollbar flex h-full flex-col gap-32 overflow-y-auto">
       {data?.map((item, idx) => (
         <div
           onClick={() => {
