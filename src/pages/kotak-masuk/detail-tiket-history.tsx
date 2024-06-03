@@ -66,7 +66,7 @@ export function DetailHistory({
                   {item?.jenis_chat === 'SISWA' ? 'Anda' : item?.user}
                 </p>
                 <p className="font-sf-pro">{item?.isi}</p>
-                {detail?.ticket?.lampiran?.length > 0 && (
+                {detail?.chat?.length > 0 && (
                   <div className="grid grid-cols-12 gap-32">
                     {item?.lampiran?.map((list, index) => (
                       <div
