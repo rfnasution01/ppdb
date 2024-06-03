@@ -31,7 +31,7 @@ export function ValidasiData({ profil }: { profil: ProfilData }) {
           }
         />
         <DataComponent
-          label="Tanggal Verifikasi"
+          label="Tanggal Validasi"
           value={
             profil?.validasi?.status
               ? dayjs(profil?.validasi?.tanggal_validasi)
