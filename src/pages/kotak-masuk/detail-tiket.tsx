@@ -19,7 +19,7 @@ import { MultiSkeleton } from '@/components/molecules/skeleton'
 import { DetailHistory } from './detail-tiket-history'
 import clsx from 'clsx'
 import { Form } from '@/components/atoms/Form'
-import { ArrowDown, ArrowLeft, Loader, Ticket } from 'lucide-react'
+import { ArrowLeft, Loader, Ticket } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 export default function DetailTiket() {
@@ -186,15 +186,6 @@ export default function DetailTiket() {
 
   return (
     <div className="flex h-full w-full flex-col gap-32">
-      <div className="absolute bottom-64 right-32 z-50 flex justify-end">
-        <a
-          href="#tiket"
-          className="flex flex-col items-center justify-center gap-12 rounded-2xl bg-white bg-opacity-20 p-32 hover:bg-opacity-80"
-        >
-          <ArrowDown size={32} />
-          Scroll ke bawah
-        </a>
-      </div>
       {/* --- Header --- */}
       <div className="flex flex-col gap-12 border-b border-[#ccd2da] pb-16">
         <p className="text-[3rem]">{detail?.ticket?.judul ?? '-'}</p>
@@ -271,20 +262,15 @@ export default function DetailTiket() {
             {/* --- Image Profil --- */}
             <DetailTiketProfil pasPhoto={pasPhoto} profil={profil} />
             {/* --- Data Tiket --- */}
-            <div id="tiket" className="w-full">
-              <FormChat
-                form={form}
-                handleSubmit={handleSubmit}
-                isLoadingUpload={isLoadingUpload}
-                setUrls={setUrls}
-              />
-            </div>
+            <FormChat
+              form={form}
+              handleSubmit={handleSubmit}
+              isLoadingUpload={isLoadingUpload}
+              setUrls={setUrls}
+            />
           </div>
         ) : (
-          <div
-            id="tiket"
-            className="rounded-2xl border border-red-300 bg-red-100 p-24 text-red-700"
-          >
+          <div className="rounded-2xl border border-red-300 bg-red-100 p-24 text-red-700">
             Tiket telah ditutup
           </div>
         )}
