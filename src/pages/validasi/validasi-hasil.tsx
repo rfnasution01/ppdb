@@ -1,17 +1,15 @@
-import { enumVerifikasi } from '@/libs/enum/enum-verifikasi'
-import { HasilPendaftaran } from './cetak-hasil'
+import { BuktiPendaftaran } from '@/features/profil/cetak-bukti'
+import { enumValidasi } from '@/libs/enum/enum-validasi'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
+import dayjs from 'dayjs'
+import 'dayjs/locale/id'
 
-export function VerifikasiHasil({
-  status,
-  jenjang,
-  sekolah,
+export function ValidasiHasil({
   profil,
+  jenjang,
 }: {
-  status: number
-  jenjang: string
-  sekolah: string
   profil: ProfilData
+  jenjang: string
 }) {
   return (
     <div
@@ -25,26 +23,21 @@ export function VerifikasiHasil({
         className="bg-[#242a30] p-32 text-white"
         style={{ borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem' }}
       >
-        Status Verifikasi
+        Status Validasi
       </div>
-      {status < enumVerifikasi.DISETUJUI ? (
-        <div className="bg-white p-32">
-          <div className="text-oranges-700 flex w-full items-center justify-center gap-32 rounded-2xl bg-orange-300 p-32">
-            <p>Menunggu persetujuan dari admin</p>
-          </div>
-        </div>
-      ) : status === enumVerifikasi.DISETUJUI ? (
+      {profil?.validasi?.status === enumValidasi.SUDAHVALIDASI ? (
         <div className="bg-white p-32">
           <div className="flex w-full items-center justify-center gap-32 rounded-2xl bg-emerald-300 p-32 text-emerald-700 phones:flex-col phones:items-start">
             <p>
-              Selamat data anda{' '}
-              <span className=" text-center font-bold uppercase">
-                telah di verifikasi
-              </span>{' '}
-              oleh {sekolah}
+              Terima kasih, anda sudah melakukan{' '}
+              <span className=" text-center font-bold uppercase">validasi</span>{' '}
+              data pendaftaran anda pada tanggal{' '}
+              {dayjs(profil?.validasi?.tanggal_validasi)
+                .locale('id')
+                .format('DD MMMM YYYY HH:mm:ss')}
             </p>
-            {status === enumVerifikasi?.DISETUJUI && (
-              <HasilPendaftaran jenjang={jenjang} profil={profil} />
+            {profil?.validasi?.status === enumValidasi.SUDAHVALIDASI && (
+              <BuktiPendaftaran jenjang={jenjang} profil={profil} />
             )}
           </div>
         </div>
@@ -52,11 +45,11 @@ export function VerifikasiHasil({
         <div className="bg-white p-32">
           <div className="flex w-full items-center justify-center gap-32 rounded-2xl bg-rose-300 p-32 text-rose-700">
             <p>
-              Maaf verifikasi data anda{' '}
+              Anda{' '}
               <span className=" text-center font-bold uppercase">
-                telah di tolak
+                belum memvalidasi
               </span>{' '}
-              oleh {sekolah}
+              data anda
             </p>
           </div>
         </div>

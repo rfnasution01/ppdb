@@ -7,8 +7,8 @@ export function DataComponent({
 }) {
   return (
     <div className="flex w-full items-center text-[2rem] font-light phones:text-[2.4rem]">
-      <p className="w-1/3 phones:w-1/2">{label}</p>
-      <p className="w-2/3 phones:w-1/2">: {value}</p>
+      <p className="w-1/5 phones:w-1/2">{label}</p>
+      <p className="w-4/5 phones:w-1/2">: {value}</p>
     </div>
   )
 }

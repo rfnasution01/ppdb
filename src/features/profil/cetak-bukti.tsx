@@ -222,7 +222,7 @@ export function BuktiPendaftaran({
           e.stopPropagation()
           handlePrint()
         }}
-        className="flex items-center justify-center gap-12 text-nowrap text-[2rem] hover:text-danger-100 phones:text-[2.4rem]"
+        className="flex items-center justify-center gap-12 text-nowrap text-[2rem] hover:text-emerald-500 phones:text-[2.4rem]"
       >
         <Printer size={16} />
         Cetak Bukti Daftar
