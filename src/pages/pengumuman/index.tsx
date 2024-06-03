@@ -2,6 +2,7 @@ import { PengumumanHasil } from './pengumuman-hasil'
 import { PengumumanRegistrasiUlang } from './registrasi-ulang'
 
 export default function Pengumuman() {
+  const status = 0
   return (
     <div className="flex h-full w-full flex-col gap-32">
       {/* --- Header --- */}
@@ -10,8 +11,8 @@ export default function Pengumuman() {
           Pengumuman
         </p>
       </div>
-      <PengumumanHasil />
-      <PengumumanRegistrasiUlang />
+      <PengumumanHasil status={status} />
+      {status > 0 && <PengumumanRegistrasiUlang />}
     </div>
   )
 }
