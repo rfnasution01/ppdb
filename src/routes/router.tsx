@@ -33,6 +33,7 @@ import {
   TambahTiketPage,
   DetailTiketPage,
   SiswaBerandaPage,
+  PengumumanPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -150,7 +151,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'pengumuman',
-        element: <ComingSoonPage />,
+        element: <PengumumanPage />,
       },
       {
         path: 'daftar-ulang',
