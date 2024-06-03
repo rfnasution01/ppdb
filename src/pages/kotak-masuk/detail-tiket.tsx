@@ -5,6 +5,7 @@ import {
   useCreateTiketChatMutation,
   useCreateTutupChatMutation,
   useGetTiketDetailQuery,
+  useGetTiketNotifikasiQuery,
 } from '@/store/slices/tiketAPI'
 import { useEffect, useState } from 'react'
 import { DetailTiketProfil } from './detail-tiket-profil'
@@ -183,6 +184,14 @@ export default function DetailTiket() {
   }, [isErrorClose, errorClose])
 
   const navigate = useNavigate()
+
+  const { data: notifData, refetch } = useGetTiketNotifikasiQuery()
+
+  useEffect(() => {
+    if (notifData?.data > 0) {
+      refetch()
+    }
+  }, [notifData])
 
   return (
     <div className="flex h-full w-full flex-col gap-32">
