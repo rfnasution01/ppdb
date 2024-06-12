@@ -293,6 +293,7 @@ export function PrintHasil({
                       <p>Mengetahui,</p>
                       <p className="bold">Kepala Dinas Pendidikan</p>
                       <p className="bold">Kabupaten Batu Bara</p>
+
                       <p className="bold">{kadis}</p>
                       <p>NIP. {nip_kadis}</p>
                     </div>

@@ -5,3 +5,9 @@ export type SeleksiType = {
   asal_sekolah: string
   skor_lulus: string
 }
+
+export type HasilType = {
+  status: 0
+  sekolah: null
+  batas_registrasi_ulang: null
+}

@@ -1,24 +1,17 @@
 import { GelombangType } from '@/libs/types'
-import { useGetGelombangQuery } from '@/store/slices/gelombangAPI'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
-import Cookies from 'js-cookie'
-import { useEffect, useState } from 'react'
 import { PrintHasil } from './cetak-hasil'
 
-export function PengumumanHasil({ status }: { status: number }) {
-  const jenjang = Cookies.get('jenjang')
-  // --- Gelombang ---
-  const [gelombang, setGekombang] = useState<GelombangType[]>([])
-  const { data: getGelombang } = useGetGelombangQuery({
-    jenjang: jenjang.toLowerCase(),
-  })
-
-  useEffect(() => {
-    if (getGelombang?.data) {
-      setGekombang(getGelombang?.data)
-    }
-  }, [getGelombang?.data])
+export function PengumumanHasil({
+  status,
+  sekolah,
+  gelombang,
+}: {
+  status: number
+  sekolah: string
+  gelombang: GelombangType[]
+}) {
   return (
     <div
       className="flex flex-col shadow"
@@ -39,7 +32,7 @@ export function PengumumanHasil({ status }: { status: number }) {
             <p>
               Selamat Anda{' '}
               <span className=" text-center font-bold uppercase">lulus</span> di
-              UPT. SMP Negeri 1 AIR PUTIH
+              {sekolah}
             </p>
             <PrintHasil
               sekolah="UPTD. SMP Negeri 1 Kampung Rakyat"
@@ -68,7 +61,7 @@ export function PengumumanHasil({ status }: { status: number }) {
               <span className=" text-center font-bold uppercase">
                 tidak lulus
               </span>{' '}
-              di UPT. SMP Negeri 1 AIR PUTIH
+              di {sekolah}
             </p>
           </div>
         </div>
