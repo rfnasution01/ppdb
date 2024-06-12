@@ -6,6 +6,7 @@ import {
   PendaftarStatistik,
   PendaftarType,
 } from '../types'
+import { SeleksiType } from '../types/seleksi-type'
 
 type ListLokasiType = {
   lokasi: string
@@ -136,6 +137,34 @@ export const columnsListPendaftar: Column<PendaftarType>[] = [
   {
     header: 'Skor',
     key: 'skor',
+    width: '!w-[15%]',
+  },
+]
+
+export const columnsListSeleksi: Column<SeleksiType>[] = [
+  {
+    header: 'Nama',
+    key: 'nama',
+    width: '!w-[28rem]',
+  },
+  {
+    header: 'No Peserta',
+    key: 'nomor_peserta',
+    width: '!w-[15%]',
+  },
+  {
+    header: 'NISN',
+    key: 'nisn',
+    width: '!w-[15%]',
+  },
+  {
+    header: 'Asal Sekolah',
+    key: 'asal_sekolah',
+    width: '!w-[15%]',
+  },
+  {
+    header: 'Skor',
+    key: 'skor_lulus',
     width: '!w-[15%]',
   },
 ]

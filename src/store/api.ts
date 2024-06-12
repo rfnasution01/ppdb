@@ -1,4 +1,5 @@
 import { HeaderType, PendaftarStatistik, PendaftarType } from '@/libs/types'
+import { SeleksiType } from '@/libs/types/seleksi-type'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import Cookies from 'js-cookie'
 
@@ -20,6 +21,7 @@ export type Res<T, M = undefined> = {
   header?: HeaderType
   statistik?: PendaftarStatistik[]
   can_add?: boolean
+  hasil?: SeleksiType[]
 }
 
 const baseURL = import.meta.env.VITE_BASE_URL
