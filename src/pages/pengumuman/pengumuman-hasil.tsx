@@ -3,8 +3,8 @@ import { useGetGelombangQuery } from '@/store/slices/gelombangAPI'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
 import Cookies from 'js-cookie'
-import { Printer } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { PrintHasil } from './cetak-hasil'
 
 export function PengumumanHasil({ status }: { status: number }) {
   const jenjang = Cookies.get('jenjang')
@@ -41,13 +41,26 @@ export function PengumumanHasil({ status }: { status: number }) {
               <span className=" text-center font-bold uppercase">lulus</span> di
               UPT. SMP Negeri 1 AIR PUTIH
             </p>
-            <div className="flex items-center gap-8 text-emerald-950">
-              <Printer size={16} />
-              Cetak Keterangan Lulus
-            </div>
+            <PrintHasil
+              sekolah="UPTD. SMP Negeri 1 Kampung Rakyat"
+              alamat="Kampung Rakyat"
+              noSurat="420/0124/PPDB-BATUBARA"
+              nama="John Doe"
+              tempat_lahir="Batubara"
+              tanggal_lahir="16 Juni 2012"
+              noPendaftaran="01231414"
+              nisn="9012310"
+              tgl_daftarUlang="17-28 Juni 2023 Pukul: 08:00 - 16:00"
+              kepsek="John Doe"
+              kadis="John Doe"
+              nip_kadis="098908403"
+              nip_kepsek="990894089"
+              diterbitkan_di="Batu Bara"
+              diterbitkan_tgl="19 Juni 2024"
+            />
           </div>
         </div>
-      ) : status === 2 ? (
+      ) : status === 0 ? (
         <div className="bg-white p-32">
           <div className="flex w-full items-center justify-center gap-32 rounded-2xl bg-rose-300 p-32 text-rose-700">
             <p>
