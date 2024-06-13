@@ -1,7 +1,11 @@
 import { Accordion } from '@/features/aturan/accordion-aturan'
+import { GelombangType } from '@/libs/types'
 import { DashboardType, FaqType } from '@/libs/types/dashboard-type'
+import { useGetGelombangQuery } from '@/store/slices/gelombangAPI'
 import clsx from 'clsx'
+import Cookies from 'js-cookie'
 import { Check, Ticket, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function StatusPendaftaran({
@@ -11,23 +15,40 @@ export function StatusPendaftaran({
   item: DashboardType
   faq: FaqType[]
 }) {
+  const jenjang = Cookies.get('jenjang')
+  const idGelombang = Cookies.get('idGelombang')
+
+  // --- Gelombang ---
+  const [gelombang, setGelombang] = useState<GelombangType[]>([])
+  const { data: getGelombang } = useGetGelombangQuery({
+    jenjang: jenjang.toLowerCase(),
+  })
+
+  useEffect(() => {
+    if (gelombang) {
+      setGelombang(getGelombang?.data)
+    }
+  }, [getGelombang?.data])
+
   return (
     <div className="scrollbar flex h-full flex-col gap-64 overflow-y-auto">
       {item?.status_pendaftaran?.lulus !== 1 &&
         item?.status_pendaftaran?.pengumuman === 1 && (
-          <div className="flex w-full items-center justify-center gap-32 rounded-2xl bg-rose-300 px-32 py-16 text-rose-700">
+          <div className="flex w-full items-center justify-center gap-32 rounded-2xl bg-rose-300 px-32 py-16 text-rose-700 phones:flex-col phones:gap-16">
             <p>
               Maaf anda dinyatakan{' '}
               <span className=" text-center font-bold uppercase">
                 tidak lulus
               </span>{' '}
             </p>
-            <button
-              type="button"
-              className="hidden rounded-lg bg-rose-700 px-24 py-12 text-rose-100 hover:bg-rose-900"
-            >
-              Daptar Gelombang Kedua
-            </button>
+            {idGelombang === gelombang?.[1]?.id && (
+              <button
+                type="button"
+                className="rounded-lg bg-rose-700 px-24 py-12 text-rose-100 hover:bg-rose-900"
+              >
+                Daptar Gelombang Kedua
+              </button>
+            )}
           </div>
         )}
       <div className="flex flex-col gap-16">

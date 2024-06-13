@@ -44,9 +44,11 @@ export default function Login() {
         const token = res?.data?.data?.token
         const jenjang = res?.data?.data?.jenjang
         const jalur = res?.data?.data?.jalur
+        const id_gelombang = res?.data?.data?.id_gelombang
         Cookies.set('token', token)
         Cookies.set('jalur', jalur)
         Cookies.set('jenjang', jenjang)
+        Cookies.set('idGelombang', id_gelombang)
         setValidasi(res?.data?.data?.validasi)
       } else {
         console.error('Error occurred:', res.error)

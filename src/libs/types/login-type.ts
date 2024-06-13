@@ -8,6 +8,7 @@ export type ResponseLoginType = {
   jenjang: string
   jalur: string
   validasi: number
+  id_gelombang: string
 }
 
 export type ChangePasswordType = {

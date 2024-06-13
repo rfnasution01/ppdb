@@ -1,4 +1,3 @@
-import { GelombangType } from '@/libs/types'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
 import { PrintHasil } from './cetak-hasil'
@@ -7,25 +6,25 @@ import { LulusType } from '@/libs/types/seleksi-type'
 export function PengumumanHasil({
   status,
   sekolah,
-  gelombang,
+  pengumuman,
   lulus,
 }: {
   status: number
   sekolah: string
-  gelombang: GelombangType[]
+  pengumuman: string
   lulus: LulusType
 }) {
   // Hitung tanggal registrasi ulang
-  const tgl_registrasi_mulai = dayjs(gelombang?.[0]?.tgl_pengumuman)
+  const tgl_registrasi_mulai = dayjs(pengumuman)
     .add(1, 'day')
     .locale('id')
     .format('DD MMMM') // Format tanggal dalam bentuk tanggal dan bulan
-  const tgl_registrasi_selesai = dayjs(gelombang?.[0]?.batas_daftar_ulang)
+  const tgl_registrasi_selesai = dayjs(lulus?.batas_registrasi_ulang)
     .locale('id')
     .format('DD MMMM') // Format tanggal dalam bentuk tanggal dan bulan
 
   // Hitung jam registrasi ulang
-  const jam_registrasi_selesai = dayjs(gelombang?.[0]?.batas_daftar_ulang)
+  const jam_registrasi_selesai = dayjs(lulus?.batas_registrasi_ulang)
     .locale('id')
     .format('HH:mm')
 
@@ -50,7 +49,7 @@ export function PengumumanHasil({
           <div className="flex w-full items-center justify-center gap-32 rounded-2xl bg-emerald-300 p-32 text-emerald-700">
             <p>
               Selamat Anda{' '}
-              <span className=" text-center font-bold uppercase">lulus</span> di
+              <span className=" text-center font-bold uppercase">lulus</span> di{' '}
               {sekolah}
             </p>
             <PrintHasil
@@ -92,9 +91,7 @@ export function PengumumanHasil({
           <div className="text-oranges-700 flex w-full items-center justify-center gap-32 rounded-2xl bg-orange-300 p-32">
             <p>
               Tanggal pengumuman kelulusan{' '}
-              {dayjs(gelombang?.[0]?.tgl_pengumuman)
-                .locale('id')
-                .format('DD MMMM YYYY HH:mm:ss')}
+              {dayjs(pengumuman).locale('id').format('DD MMMM YYYY HH:mm:ss')}
             </p>
           </div>
         </div>

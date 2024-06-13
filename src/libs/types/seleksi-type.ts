@@ -7,9 +7,10 @@ export type SeleksiType = {
 }
 
 export type HasilType = {
-  status: 0
-  sekolah: null
-  batas_registrasi_ulang: null
+  status: number
+  sekolah: string
+  batas_registrasi_ulang: string
+  tanggal_pengumuman: string
 }
 
 export type LulusType = {

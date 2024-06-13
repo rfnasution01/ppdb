@@ -14,7 +14,6 @@ export function BerandaContent({
   getSekilas: SekilasType
   isLoading: boolean
 }) {
-  console.log(showJenjang)
   // --- Gelombang ---
   const [gelombang, setGekombang] = useState<GelombangType[]>([])
   const {
