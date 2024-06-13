@@ -143,20 +143,16 @@ export const columnsListPendaftar: Column<PendaftarType>[] = [
 
 export const columnsListSeleksi: Column<SeleksiType>[] = [
   {
-    header: 'Nama',
-    key: 'nama',
-    width: '!w-[28rem]',
-  },
-  {
     header: 'No Peserta',
     key: 'nomor_peserta',
     width: '!w-[15%]',
   },
   {
-    header: 'NISN',
-    key: 'nisn',
-    width: '!w-[15%]',
+    header: 'Nama',
+    key: 'nama',
+    width: '!w-[28rem]',
   },
+
   {
     header: 'Asal Sekolah',
     key: 'asal_sekolah',

@@ -13,19 +13,41 @@ export function StatusPendaftaran({
 }) {
   return (
     <div className="scrollbar flex h-full flex-col gap-64 overflow-y-auto">
+      {item?.status_pendaftaran?.lulus !== 1 &&
+        item?.status_pendaftaran?.pengumuman === 1 && (
+          <div className="flex w-full items-center justify-center gap-32 rounded-2xl bg-rose-300 px-32 py-16 text-rose-700">
+            <p>
+              Maaf anda dinyatakan{' '}
+              <span className=" text-center font-bold uppercase">
+                tidak lulus
+              </span>{' '}
+            </p>
+            <button
+              type="button"
+              className="hidden rounded-lg bg-rose-700 px-24 py-12 text-rose-100 hover:bg-rose-900"
+            >
+              Daptar Gelombang Kedua
+            </button>
+          </div>
+        )}
       <div className="flex flex-col gap-16">
         <p className="text-[3rem] font-bold">Status Pendaftaran</p>
         <p>
-          Sedang menunggu{' '}
-          {item?.status_pendaftaran?.lulus === 1
-            ? 'daftar ulang'
-            : item?.status_pendaftaran?.pengumuman === 1
-              ? 'hasil kelulusan'
-              : item?.status_pendaftaran?.verifikasi === 2
-                ? 'pengumuman'
-                : item?.status_pendaftaran?.validasi === 1
-                  ? 'verifikasi admin'
-                  : 'validasi admin'}
+          {item?.status_pendaftaran?.pengumuman === 1 &&
+          item?.status_pendaftaran?.lulus === 0
+            ? 'Maaf anda tidak lulus'
+            : item?.status_pendaftaran?.pengumuman === 1 &&
+                item?.status_pendaftaran?.lulus === 1
+              ? 'Sedang menunggu daftar ulang'
+              : item?.status_pendaftaran?.pengumuman === 1
+                ? 'Sedang menunggu hasil kelulusan'
+                : item?.status_pendaftaran?.verifikasi === 2
+                  ? 'Sedang menunggu pengumuman'
+                  : item?.status_pendaftaran?.validasi === 1
+                    ? 'Sedang menunggu verifikasi admin'
+                    : item?.status_pendaftaran?.validasi === 0
+                      ? 'Sedang menunggu validasi admin'
+                      : 'Selesai'}
         </p>
       </div>
 
@@ -198,7 +220,7 @@ export function StatusPendaftaran({
                   item?.status_pendaftaran?.validasi !== 0 &&
                   item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1,
-                'border[#efefef]': !(
+                'border-[#efefef]': !(
                   item?.status_pendaftaran?.validasi !== 0 &&
                   item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1
@@ -212,22 +234,19 @@ export function StatusPendaftaran({
                   'h-[5rem] w-[5rem]':
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&
-                    item?.status_pendaftaran?.pengumuman === 1 &&
-                    item?.status_pendaftaran?.lulus === 1,
+                    item?.status_pendaftaran?.pengumuman === 1,
                   'h-[2rem] w-[2rem]': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&
-                    item?.status_pendaftaran?.pengumuman === 1 &&
+                    item?.status_pendaftaran?.pengumuman === 0 &&
                     item?.status_pendaftaran?.lulus === 1
                   ),
                 },
                 {
-                  'bg-slate-300': !(
+                  'bg-slate-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&
-                    item?.status_pendaftaran?.pengumuman === 1 &&
-                    item?.status_pendaftaran?.lulus === 1
-                  ),
+                    item?.status_pendaftaran?.pengumuman === 0,
                   'bg-green-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&
@@ -237,7 +256,7 @@ export function StatusPendaftaran({
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
-                    item?.status_pendaftaran?.lulus === 2,
+                    item?.status_pendaftaran?.lulus === 0,
                 },
               )}
             >
@@ -249,7 +268,7 @@ export function StatusPendaftaran({
               ) : item?.status_pendaftaran?.validasi !== 0 &&
                 item?.status_pendaftaran?.verifikasi === 2 &&
                 item?.status_pendaftaran?.pengumuman === 1 &&
-                item?.status_pendaftaran?.lulus === 2 ? (
+                item?.status_pendaftaran?.lulus === 0 ? (
                 <X size={20} />
               ) : (
                 ''
@@ -311,8 +330,7 @@ export function StatusPendaftaran({
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&
                     item?.status_pendaftaran?.pengumuman === 1 &&
-                    item?.status_pendaftaran?.lulus === 1 &&
-                    item?.status_pendaftaran?.registrasi_ulang === 1
+                    item?.status_pendaftaran?.lulus === 1
                   ),
                   'bg-green-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
@@ -320,6 +338,12 @@ export function StatusPendaftaran({
                     item?.status_pendaftaran?.pengumuman === 1 &&
                     item?.status_pendaftaran?.lulus === 1 &&
                     item?.status_pendaftaran?.registrasi_ulang === 1,
+                  'bg-[#ffd800]':
+                    item?.status_pendaftaran?.validasi !== 0 &&
+                    item?.status_pendaftaran?.verifikasi === 2 &&
+                    item?.status_pendaftaran?.pengumuman === 1 &&
+                    item?.status_pendaftaran?.lulus === 1 &&
+                    item?.status_pendaftaran?.registrasi_ulang === 0,
                 },
               )}
             >
@@ -339,12 +363,14 @@ export function StatusPendaftaran({
                   item?.status_pendaftaran?.validasi !== 0 &&
                   item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
-                  item?.status_pendaftaran?.lulus === 1,
+                  item?.status_pendaftaran?.lulus === 1 &&
+                  item?.status_pendaftaran?.registrasi_ulang === 1,
                 'border[#efefef]': !(
                   item?.status_pendaftaran?.validasi !== 0 &&
                   item?.status_pendaftaran?.verifikasi === 2 &&
                   item?.status_pendaftaran?.pengumuman === 1 &&
-                  item?.status_pendaftaran?.lulus === 1
+                  item?.status_pendaftaran?.lulus === 1 &&
+                  item?.status_pendaftaran?.registrasi_ulang === 1
                 ),
               })}
             />
@@ -361,7 +387,9 @@ export function StatusPendaftaran({
             <p className="text-nowrap text-center">Pengumuman</p>
           </div>
           <div className="w-1/5">
-            <p className="text-nowrap text-center">Lulus</p>
+            <p className="text-nowrap text-center">
+              {item?.status_pendaftaran?.lulus === 1 ? 'Lulus' : 'Tidak Lulus'}
+            </p>
           </div>
           <div className="w-1/5">
             <p className="text-nowrap text-center">Daftar Ulang</p>

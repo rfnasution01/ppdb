@@ -2,16 +2,35 @@ import { GelombangType } from '@/libs/types'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
 import { PrintHasil } from './cetak-hasil'
+import { LulusType } from '@/libs/types/seleksi-type'
 
 export function PengumumanHasil({
   status,
   sekolah,
   gelombang,
+  lulus,
 }: {
   status: number
   sekolah: string
   gelombang: GelombangType[]
+  lulus: LulusType
 }) {
+  // Hitung tanggal registrasi ulang
+  const tgl_registrasi_mulai = dayjs(gelombang?.[0]?.tgl_pengumuman)
+    .add(1, 'day')
+    .locale('id')
+    .format('DD MMMM') // Format tanggal dalam bentuk tanggal dan bulan
+  const tgl_registrasi_selesai = dayjs(gelombang?.[0]?.batas_daftar_ulang)
+    .locale('id')
+    .format('DD MMMM') // Format tanggal dalam bentuk tanggal dan bulan
+
+  // Hitung jam registrasi ulang
+  const jam_registrasi_selesai = dayjs(gelombang?.[0]?.batas_daftar_ulang)
+    .locale('id')
+    .format('HH:mm')
+
+  // Gabungkan tanggal dan jam registrasi ulang dalam satu string
+  const periode_registrasi = `${tgl_registrasi_mulai} - ${tgl_registrasi_selesai} Mulai Pukul 08:00 - ${jam_registrasi_selesai}`
   return (
     <div
       className="flex flex-col shadow"
@@ -35,21 +54,25 @@ export function PengumumanHasil({
               {sekolah}
             </p>
             <PrintHasil
-              sekolah="UPTD. SMP Negeri 1 Kampung Rakyat"
-              alamat="Kampung Rakyat"
-              noSurat="420/0124/PPDB-BATUBARA"
-              nama="John Doe"
-              tempat_lahir="Batubara"
-              tanggal_lahir="16 Juni 2012"
-              noPendaftaran="01231414"
-              nisn="9012310"
-              tgl_daftarUlang="17-28 Juni 2023 Pukul: 08:00 - 16:00"
-              kepsek="John Doe"
-              kadis="John Doe"
-              nip_kadis="098908403"
-              nip_kepsek="990894089"
-              diterbitkan_di="Batu Bara"
-              diterbitkan_tgl="19 Juni 2024"
+              sekolah={lulus?.nama_sekolah}
+              alamat={lulus?.alamat_sekolah}
+              noSurat={lulus?.nomor}
+              nama={lulus?.nama}
+              tempat_lahir={lulus?.tempat_lahir}
+              tanggal_lahir={dayjs(lulus?.tanggal_lahir)
+                .locale('id')
+                .format('DD MMMM YYYY')}
+              noPendaftaran={lulus?.nomor_pendaftaran}
+              nisn={lulus?.nisn}
+              tgl_daftarUlang={periode_registrasi}
+              kepsek={lulus?.nama_kepsek}
+              kadis={lulus?.nama_kadis}
+              nip_kadis={lulus?.nip_kadis}
+              nip_kepsek={lulus?.nip_kepsek}
+              diterbitkan_di={lulus?.tempat}
+              diterbitkan_tgl={dayjs(lulus?.tanggal)
+                .locale('id')
+                .format('DD MMMM YYYY')}
             />
           </div>
         </div>
@@ -61,7 +84,6 @@ export function PengumumanHasil({
               <span className=" text-center font-bold uppercase">
                 tidak lulus
               </span>{' '}
-              di {sekolah}
             </p>
           </div>
         </div>

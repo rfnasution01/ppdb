@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import printJS from 'print-js'
 import { Printer } from 'lucide-react'
+// import QrCode from 'react-qr-code'
 
 export function PrintHasil({
   sekolah,
@@ -246,7 +247,7 @@ export function PrintHasil({
                     <p>Nomor: {noSurat}</p>
                   </div>
                   <p>
-                    Dinas Pendidikan Batubara Provinsi Sumatera Utara
+                    Dinas Pendidikan Batu Bara Provinsi Sumatera Utara
                     menerangkan bahwa:
                   </p>
                   <div className="identitas">
@@ -293,7 +294,11 @@ export function PrintHasil({
                       <p>Mengetahui,</p>
                       <p className="bold">Kepala Dinas Pendidikan</p>
                       <p className="bold">Kabupaten Batu Bara</p>
-
+                      {/* <QrCode
+                        value={kadis}
+                        style={{ height: '88px', width: '88px' }}
+                      /> */}
+                      <div style={{ height: '88px', width: '88px' }}></div>
                       <p className="bold">{kadis}</p>
                       <p>NIP. {nip_kadis}</p>
                     </div>
@@ -309,6 +314,12 @@ export function PrintHasil({
                       <p>Mengetahui,</p>
                       <p className="bold">Kepala Sekolah</p>
                       <p className="bold">{sekolah}</p>
+                      <div style={{ height: '88px', width: '88px' }}></div>
+
+                      {/* <QrCode
+                        value={kepsek}
+                        style={{ height: '88px', width: '88px' }}
+                      /> */}
                       <p className="bold">{kepsek}</p>
                       <p>NIP. {nip_kepsek}</p>
                     </div>
@@ -333,7 +344,7 @@ export function PrintHasil({
           handlePrint()
         }}
         type="button"
-        className="flex items-center justify-center gap-12 text-nowrap text-[2rem] hover:text-emerald-500 phones:text-[2.4rem]"
+        className="flex items-center justify-center gap-12 text-nowrap text-[2rem] hover:text-primary phones:text-[2.4rem]"
       >
         <Printer size={16} />
         Cetak Keterangan Lulus
