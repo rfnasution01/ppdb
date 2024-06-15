@@ -7,6 +7,7 @@ export const IdentitasEndpoints = api.injectEndpoints({
       query: () => ({
         url: `identitas`,
       }),
+      providesTags: ['identitas'],
     }),
   }),
 })

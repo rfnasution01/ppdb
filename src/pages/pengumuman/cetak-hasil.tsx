@@ -276,7 +276,7 @@ export function PrintHasil({
                     Telah dinyatakan <span className="bold">LULUS</span> di{' '}
                     {sekolah} ({alamat}) berdasarkan hasil seleksi Penerimaan
                     Peserta Didik Baru Tingkat SMP Kabupaten Batu Bara Tahun
-                    Akademik 2023/2024
+                    Akademik 2024/2025
                   </p>
                   <p>
                     Kami beritahukan agar segera mendaftar ulang ke sekolah

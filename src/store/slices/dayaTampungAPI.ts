@@ -7,6 +7,7 @@ export const DayaTampungEndpoints = api.injectEndpoints({
       query: ({ jenjang, jalur }) => ({
         url: `daya_tampung/${jenjang}/${jalur}`,
       }),
+      providesTags: ['daya-tampung'],
     }),
   }),
 })

@@ -10,6 +10,7 @@ export const StatistikEndpoints = api.injectEndpoints({
           id_sekolah: id_sekolah,
         },
       }),
+      providesTags: ['statistik'],
     }),
   }),
 })

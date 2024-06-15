@@ -7,6 +7,7 @@ export const LokasiEndpoints = api.injectEndpoints({
       query: ({ jenjang, jalur }) => ({
         url: `lokasi/${jenjang}/${jalur}`,
       }),
+      providesTags: ['lokasi'],
     }),
   }),
 })

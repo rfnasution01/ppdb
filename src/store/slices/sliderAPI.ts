@@ -7,6 +7,7 @@ export const SliderEndpoints = api.injectEndpoints({
       query: () => ({
         url: `slider`,
       }),
+      providesTags: ['slider'],
     }),
   }),
 })

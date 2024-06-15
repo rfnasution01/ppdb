@@ -7,11 +7,13 @@ export const HasilEndpoints = api.injectEndpoints({
       query: () => ({
         url: `hasil`,
       }),
+      providesTags: ['hasil'],
     }),
     getLulus: builder.query<Res<LulusType>, void>({
       query: () => ({
         url: `lulus`,
       }),
+      providesTags: ['hasil'],
     }),
   }),
 })

@@ -7,6 +7,7 @@ export const JadwalEndpoints = api.injectEndpoints({
       query: ({ jenjang, jalur }) => ({
         url: `jadwal/${jenjang}/${jalur}`,
       }),
+      providesTags: ['jadwal'],
     }),
   }),
 })

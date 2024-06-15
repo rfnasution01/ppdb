@@ -1,13 +1,12 @@
-import { LoginType, ResponseLoginType } from '@/libs/types'
+import { DaptarGelombang2 } from '@/libs/types'
 import { Res, api } from '../api'
 
-export const LoginEndpoints = api.injectEndpoints({
+export const DaptarGelombangEndpoints = api.injectEndpoints({
   endpoints: (builder) => ({
-    createLogin: builder.mutation<Res<ResponseLoginType>, { data: LoginType }>({
-      query: ({ data }) => ({
-        url: `login`,
+    createDaptarGelombang: builder.mutation<Res<DaptarGelombang2>, void>({
+      query: () => ({
+        url: `daftar`,
         method: 'POST',
-        body: data,
       }),
       invalidatesTags: [
         'daptar-akun',
@@ -35,4 +34,4 @@ export const LoginEndpoints = api.injectEndpoints({
   }),
 })
 
-export const { useCreateLoginMutation } = LoginEndpoints
+export const { useCreateDaptarGelombangMutation } = DaptarGelombangEndpoints

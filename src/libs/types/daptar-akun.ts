@@ -23,3 +23,8 @@ export type HeaderType = {
   tanggal_seleksi: string
   wilayah: string
 }
+
+export type DaptarGelombang2 = {
+  id_gelombang: string
+  jalur: string
+}

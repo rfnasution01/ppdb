@@ -7,6 +7,7 @@ export const AturanEndpoints = api.injectEndpoints({
       query: ({ jenjang, jalur }) => ({
         url: `aturan/${jenjang}/${jalur}`,
       }),
+      providesTags: ['aturan'],
     }),
   }),
 })

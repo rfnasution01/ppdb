@@ -7,6 +7,7 @@ import {
 import { JalurMasukType } from '@/libs/types'
 import { ProfilData } from '@/libs/types/pendaftaran-type'
 import { setStateBiodata } from '@/store/reducer/stateBiodata'
+import { setStateJalur } from '@/store/reducer/stateJalur'
 import { useGetJalurMasukQuery } from '@/store/slices/jalurAPI'
 import { useCreateJalurMutation } from '@/store/slices/pendaftaranAPI'
 import clsx from 'clsx'
@@ -64,12 +65,7 @@ export function BiodataJalur({
 
   const handleSubmit = () => {
     try {
-      const res = createJalur({ data: { jalur: jalur } })
-      if ('data' in res) {
-        Cookies.set('jalur', jalur)
-      } else {
-        console.error('Error occurred')
-      }
+      createJalur({ data: { jalur: jalur } })
     } catch (error) {
       console.log(error)
     }
@@ -89,6 +85,8 @@ export function BiodataJalur({
         transition: Bounce,
       })
       setTimeout(() => {
+        dispatch(setStateJalur({ kode: jalur }))
+        Cookies.set('jalur', jalur)
         setActiveIndex(1)
         setName('informasi-pribadi')
         dispatch(setStateBiodata({ page: 'informasi-pribadi' }))

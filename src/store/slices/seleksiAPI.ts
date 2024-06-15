@@ -10,6 +10,7 @@ export const SeleksiEndpoints = api.injectEndpoints({
           id_sekolah: id_sekolah,
         },
       }),
+      providesTags: ['seleksi'],
     }),
   }),
 })

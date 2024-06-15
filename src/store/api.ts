@@ -32,7 +32,7 @@ export const api = createApi({
     prepareHeaders: (headers) => {
       const token = Cookies.get('token')
       if (token) {
-        headers.set('authorization', `Bearer ${token}`)
+        headers.set('Authorization', `Bearer ${token}`)
       }
 
       return headers
@@ -46,6 +46,19 @@ export const api = createApi({
     'detail-tiket',
     'notifikasi',
     'dashboard',
+    'alur',
+    'aturan',
+    'daya-tampung',
+    'gelombang',
+    'hasil',
+    'identitas',
+    'jadwal',
+    'jalur',
+    'lokasi',
+    'sekilas',
+    'seleksi',
+    'slider',
+    'statistik',
   ],
   // * it's okay to disable eslint here, because the warning is unnecessary. Each endpoint will be injected from an api slice.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

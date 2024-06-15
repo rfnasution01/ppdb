@@ -72,7 +72,7 @@ export function BiodataPrestasi({
               </tr>
             </thead>
             <tbody>
-              {getProfil?.prestasi?.data.length === 0 ? (
+              {getProfil?.prestasi?.data?.length === 0 ? (
                 <tr>
                   <td colSpan={9}>
                     <NoData />

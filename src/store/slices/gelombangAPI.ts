@@ -7,6 +7,7 @@ export const GelombangEndpoints = api.injectEndpoints({
       query: ({ jenjang }) => ({
         url: `gelombang/${jenjang}`,
       }),
+      providesTags: ['gelombang'],
     }),
   }),
 })

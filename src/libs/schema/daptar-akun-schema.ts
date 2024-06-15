@@ -56,3 +56,7 @@ export const daptarAkunSchema = zod
     message: 'Konfirmasi tanggal lahir harus sama dengan tanggal lahir',
     path: ['konfirmasi_tgl_lahir'],
   })
+
+export const gelombang2Schema = zod.object({
+  status: zod.string().optional().nullable().nullish(),
+})

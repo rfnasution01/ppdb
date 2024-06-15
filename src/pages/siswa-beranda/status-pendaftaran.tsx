@@ -7,16 +7,26 @@ import Cookies from 'js-cookie'
 import { Check, Ticket, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
+import { gelombang2Schema } from '@/libs/schema/daptar-akun-schema'
+import { Form } from '@/components/atoms/Form'
 
 export function StatusPendaftaran({
   item,
   faq,
+  handleSubmit,
 }: {
   item: DashboardType
   faq: FaqType[]
+  handleSubmit: () => Promise<void>
 }) {
   const jenjang = Cookies.get('jenjang')
-  const idGelombang = Cookies.get('idGelombang')
+  const form = useForm<zod.infer<typeof gelombang2Schema>>({
+    resolver: zodResolver(gelombang2Schema),
+    defaultValues: {},
+  })
 
   // --- Gelombang ---
   const [gelombang, setGelombang] = useState<GelombangType[]>([])
@@ -25,7 +35,7 @@ export function StatusPendaftaran({
   })
 
   useEffect(() => {
-    if (gelombang) {
+    if (getGelombang) {
       setGelombang(getGelombang?.data)
     }
   }, [getGelombang?.data])
@@ -41,13 +51,17 @@ export function StatusPendaftaran({
                 tidak lulus
               </span>{' '}
             </p>
-            {idGelombang === gelombang?.[1]?.id && (
-              <button
-                type="button"
-                className="rounded-lg bg-rose-700 px-24 py-12 text-rose-100 hover:bg-rose-900"
-              >
-                Daptar Gelombang Kedua
-              </button>
+            {gelombang?.length > 1 && (
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(handleSubmit)}>
+                  <button
+                    type="submit"
+                    className="rounded-lg bg-emerald-700 px-24 py-12 text-rose-100 hover:bg-emerald-900"
+                  >
+                    Daftar Gelombang Kedua
+                  </button>
+                </form>
+              </Form>
             )}
           </div>
         )}

@@ -6,6 +6,7 @@ import stateJenjang from './reducer/stateJenjang.ts'
 import stateJalur from './reducer/stateJalur.ts'
 import stateBiodata from './reducer/stateBiodata.ts'
 import statePilihSekolah from './reducer/statePilihSekolah.ts'
+import stateGelombang from './reducer/stateGelombang.ts'
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     stateJalur: stateJalur,
     stateBiodata: stateBiodata,
     statePilihSekolah: statePilihSekolah,
+    stateGelombang: stateGelombang,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

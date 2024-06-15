@@ -7,6 +7,7 @@ export const JalurMasukEndpoints = api.injectEndpoints({
       query: ({ jenjang }) => ({
         url: `jalur_masuk/${jenjang}`,
       }),
+      providesTags: ['jalur'],
     }),
   }),
 })

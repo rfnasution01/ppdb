@@ -7,6 +7,7 @@ export const SekilasEndpoints = api.injectEndpoints({
       query: ({ jenjang, jalur }) => ({
         url: `sekilas/${jenjang}/${jalur}`,
       }),
+      providesTags: ['sekilas'],
     }),
   }),
 })
