@@ -6,9 +6,11 @@ import { ProfilData } from '@/libs/types/pendaftaran-type'
 import clsx from 'clsx'
 import Cookies from 'js-cookie'
 import { Trash2 } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ModalLogout } from '../root-layout/modal-logout'
+import { DashboardType } from '@/libs/types/dashboard-type'
+import { useGetDashboardQuery } from '@/store/slices/dashboardAPI'
 
 export function MainHeader({ profil }: { profil: ProfilData }) {
   const { secondPathname, thirdPathname } = usePathname()
@@ -34,7 +36,18 @@ export function MainHeader({ profil }: { profil: ProfilData }) {
     navigate('/login')
   }
 
+  const [dashboard, setDashboard] = useState<DashboardType>()
+  const { data, isFetching, isLoading } = useGetDashboardQuery()
+  const load = isFetching || isLoading
+
+  useEffect(() => {
+    if (data) {
+      setDashboard(data?.data)
+    }
+  }, [data])
+
   const isValidasi = profil?.validasi?.status === enumValidasi.SUDAHVALIDASI
+  const isLulus = !load && dashboard?.status_pendaftaran?.lulus !== 1
 
   const listNotValidasi = ListUserNavigation.filter(
     (item) =>
@@ -43,7 +56,15 @@ export function MainHeader({ profil }: { profil: ProfilData }) {
       item?.title === 'Hubungi Kami',
   )
 
-  const list = isValidasi ? ListUserNavigation : listNotValidasi
+  const listNotLulus = ListUserNavigation.filter(
+    (item) => item?.title !== 'Daftar Ulang',
+  )
+
+  const list = isLulus
+    ? listNotLulus
+    : isValidasi
+      ? ListUserNavigation
+      : listNotValidasi
 
   return (
     <div className="flex h-full flex-col gap-64">

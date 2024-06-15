@@ -31,7 +31,7 @@ export function StatusPendaftaran({
   // --- Gelombang ---
   const [gelombang, setGelombang] = useState<GelombangType[]>([])
   const { data: getGelombang } = useGetGelombangQuery({
-    jenjang: jenjang.toLowerCase(),
+    jenjang: jenjang?.toLowerCase(),
   })
 
   useEffect(() => {
@@ -278,10 +278,11 @@ export function StatusPendaftaran({
                   ),
                 },
                 {
-                  'bg-slate-300':
+                  'bg-slate-300': !(
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&
-                    item?.status_pendaftaran?.pengumuman === 0,
+                    item?.status_pendaftaran?.pengumuman === 1
+                  ),
                   'bg-green-300':
                     item?.status_pendaftaran?.validasi !== 0 &&
                     item?.status_pendaftaran?.verifikasi === 2 &&

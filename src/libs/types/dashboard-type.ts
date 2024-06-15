@@ -11,6 +11,8 @@ export type DashboardType = {
     pengumuman: number
     lulus: number
     registrasi_ulang: number
+    user_registrasi: string
+    tanggal_registrasi: string
   }
   faq: FaqType[]
   tiket: '7e6a7e9c-acb8-4ebf-acd5-173dc0c4728b'

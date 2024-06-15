@@ -45,6 +45,7 @@ export const GelombangPage = loadable(() => import('@/pages/gelombang'))
 export const HubungiKamiPage = loadable(() => import('@/pages/hubungi-kami'))
 export const SiswaBerandaPage = loadable(() => import('@/pages/siswa-beranda'))
 export const PengumumanPage = loadable(() => import('@/pages/pengumuman'))
+export const DaftarUlangPage = loadable(() => import('@/pages/daptar-ulang'))
 export const EditTiketPage = loadable(
   () => import('@/pages/kotak-masuk/edit-tiket'),
 )

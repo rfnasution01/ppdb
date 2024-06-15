@@ -22,7 +22,6 @@ import {
   MainLayout,
   PendaftaranPage,
   ProfilPage,
-  ComingSoonPage,
   VerifikasiPage,
   GelombangPage,
   ValidasiPage,
@@ -34,6 +33,7 @@ import {
   DetailTiketPage,
   SiswaBerandaPage,
   PengumumanPage,
+  DaftarUlangPage,
 } from './loadables'
 import Cookies from 'js-cookie'
 import DaptarAkun from '@/pages/daptar-akun'
@@ -155,7 +155,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'daftar-ulang',
-        element: <ComingSoonPage />,
+        element: <DaftarUlangPage />,
       },
       {
         path: 'pertanyaan',
